@@ -36,350 +36,285 @@ public class SqliteCommandSet extends AbstractCommandSet {
     @Override
     @Language("sqlite")
     public String createMapTableStatement() {
-        return """
-        CREATE TABLE IF NOT EXISTS `bluemap_map` (
-         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-         `map_id` TEXT UNIQUE NOT NULL
-        ) STRICT
-        """;
+        return "CREATE TABLE IF NOT EXISTS `bluemap_map` (\n" +
+               " `id` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+               " `map_id` TEXT UNIQUE NOT NULL\n" +
+               ") STRICT";
     }
 
     @Override
     @Language("sqlite")
     public String createCompressionTableStatement() {
-        return """
-        CREATE TABLE IF NOT EXISTS `bluemap_compression` (
-         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-         `key` TEXT UNIQUE NOT NULL
-        ) STRICT
-        """;
+        return "CREATE TABLE IF NOT EXISTS `bluemap_compression` (\n" +
+               " `id` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+               " `key` TEXT UNIQUE NOT NULL\n" +
+               ") STRICT";
     }
 
     @Override
     @Language("sqlite")
     public String createItemStorageTableStatement() {
-        return """
-        CREATE TABLE IF NOT EXISTS `bluemap_item_storage` (
-         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-         `key` TEXT UNIQUE NOT NULL
-        ) STRICT
-        """;
+        return "CREATE TABLE IF NOT EXISTS `bluemap_item_storage` (\n" +
+               " `id` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+               " `key` TEXT UNIQUE NOT NULL\n" +
+               ") STRICT";
     }
 
     @Override
     @Language("sqlite")
     public String createItemStorageDataTableStatement() {
-        return """
-        CREATE TABLE IF NOT EXISTS `bluemap_item_storage_data` (
-         `map` INTEGER NOT NULL,
-         `storage` INTEGER NOT NULL,
-         `compression` INTEGER NOT NULL,
-         `data` BLOB NOT NULL,
-         PRIMARY KEY (`map`, `storage`),
-         CONSTRAINT `fk_bluemap_item_map`
-          FOREIGN KEY (`map`)
-          REFERENCES `bluemap_map` (`id`)
-          ON UPDATE RESTRICT
-          ON DELETE CASCADE,
-         CONSTRAINT `fk_bluemap_item`
-          FOREIGN KEY (`storage`)
-          REFERENCES `bluemap_item_storage` (`id`)
-          ON UPDATE RESTRICT
-          ON DELETE CASCADE,
-         CONSTRAINT `fk_bluemap_item_compression`
-          FOREIGN KEY (`compression`)
-          REFERENCES `bluemap_compression` (`id`)
-          ON UPDATE RESTRICT
-          ON DELETE CASCADE
-        ) STRICT
-        """;
+        return "CREATE TABLE IF NOT EXISTS `bluemap_item_storage_data` (\n" +
+               " `map` INTEGER NOT NULL,\n" +
+               " `storage` INTEGER NOT NULL,\n" +
+               " `compression` INTEGER NOT NULL,\n" +
+               " `data` BLOB NOT NULL,\n" +
+               " PRIMARY KEY (`map`, `storage`),\n" +
+               " CONSTRAINT `fk_bluemap_item_map`\n" +
+               "  FOREIGN KEY (`map`)\n" +
+               "  REFERENCES `bluemap_map` (`id`)\n" +
+               "  ON UPDATE RESTRICT\n" +
+               "  ON DELETE CASCADE,\n" +
+               " CONSTRAINT `fk_bluemap_item`\n" +
+               "  FOREIGN KEY (`storage`)\n" +
+               "  REFERENCES `bluemap_item_storage` (`id`)\n" +
+               "  ON UPDATE RESTRICT\n" +
+               "  ON DELETE CASCADE,\n" +
+               " CONSTRAINT `fk_bluemap_item_compression`\n" +
+               "  FOREIGN KEY (`compression`)\n" +
+               "  REFERENCES `bluemap_compression` (`id`)\n" +
+               "  ON UPDATE RESTRICT\n" +
+               "  ON DELETE CASCADE\n" +
+               ") STRICT";
     }
 
     @Override
     @Language("sqlite")
     public String createGridStorageTableStatement() {
-        return """
-        CREATE TABLE IF NOT EXISTS `bluemap_grid_storage` (
-         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-         `key` TEXT UNIQUE NOT NULL
-        ) STRICT
-        """;
+        return "CREATE TABLE IF NOT EXISTS `bluemap_grid_storage` (\n" +
+               " `id` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+               " `key` TEXT UNIQUE NOT NULL\n" +
+               ") STRICT";
     }
 
     @Override
     @Language("sqlite")
     public String createGridStorageDataTableStatement() {
-        return """
-        CREATE TABLE IF NOT EXISTS `bluemap_grid_storage_data` (
-         `map` INTEGER NOT NULL,
-         `storage` INTEGER NOT NULL,
-         `x` INTEGER NOT NULL,
-         `z` INTEGER NOT NULL,
-         `compression` INTEGER NOT NULL,
-         `data` BLOB NOT NULL,
-         PRIMARY KEY (`map`, `storage`, `x`, `z`),
-         CONSTRAINT `fk_bluemap_grid_map`
-          FOREIGN KEY (`map`)
-          REFERENCES `bluemap_map` (`id`)
-          ON UPDATE RESTRICT
-          ON DELETE CASCADE,
-         CONSTRAINT `fk_bluemap_grid`
-          FOREIGN KEY (`storage`)
-          REFERENCES `bluemap_grid_storage` (`id`)
-          ON UPDATE RESTRICT
-          ON DELETE CASCADE,
-         CONSTRAINT `fk_bluemap_grid_compression`
-          FOREIGN KEY (`compression`)
-          REFERENCES `bluemap_compression` (`id`)
-          ON UPDATE RESTRICT
-          ON DELETE CASCADE
-        ) STRICT
-        """;
+        return "CREATE TABLE IF NOT EXISTS `bluemap_grid_storage_data` (\n" +
+               " `map` INTEGER NOT NULL,\n" +
+               " `storage` INTEGER NOT NULL,\n" +
+               " `x` INTEGER NOT NULL,\n" +
+               " `z` INTEGER NOT NULL,\n" +
+               " `compression` INTEGER NOT NULL,\n" +
+               " `data` BLOB NOT NULL,\n" +
+               " PRIMARY KEY (`map`, `storage`, `x`, `z`),\n" +
+               " CONSTRAINT `fk_bluemap_grid_map`\n" +
+               "  FOREIGN KEY (`map`)\n" +
+               "  REFERENCES `bluemap_map` (`id`)\n" +
+               "  ON UPDATE RESTRICT\n" +
+               "  ON DELETE CASCADE,\n" +
+               " CONSTRAINT `fk_bluemap_grid`\n" +
+               "  FOREIGN KEY (`storage`)\n" +
+               "  REFERENCES `bluemap_grid_storage` (`id`)\n" +
+               "  ON UPDATE RESTRICT\n" +
+               "  ON DELETE CASCADE,\n" +
+               " CONSTRAINT `fk_bluemap_grid_compression`\n" +
+               "  FOREIGN KEY (`compression`)\n" +
+               "  REFERENCES `bluemap_compression` (`id`)\n" +
+               "  ON UPDATE RESTRICT\n" +
+               "  ON DELETE CASCADE\n" +
+               ") STRICT";
     }
 
     @Override
     @Language("sqlite")
     public String itemStorageWriteStatement() {
-        return """
-        REPLACE
-        INTO `bluemap_item_storage_data` (`map`, `storage`, `compression`, `data`)
-        VALUES (?, ?, ?, ?)
-        """;
+        return "REPLACE\n" +
+               "INTO `bluemap_item_storage_data` (`map`, `storage`, `compression`, `data`)\n" +
+               "VALUES (?, ?, ?, ?)";
     }
 
     @Override
     @Language("sqlite")
     public String itemStorageReadStatement() {
-        return """
-        SELECT `data`
-        FROM `bluemap_item_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        AND `compression` = ?
-        """;
+        return "SELECT `data`\n" +
+               "FROM `bluemap_item_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?\n" +
+               "AND `compression` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String itemStorageDeleteStatement() {
-        return """
-        DELETE
-        FROM `bluemap_item_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        """;
+        return "DELETE\n" +
+               "FROM `bluemap_item_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String itemStorageHasStatement() {
-        return """
-        SELECT COUNT(*) > 0
-        FROM `bluemap_item_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        AND `compression` = ?
-        """;
+        return "SELECT COUNT(*) > 0\n" +
+               "FROM `bluemap_item_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?\n" +
+               "AND `compression` = ?";
     }
-
 
     @Override
     @Language("sqlite")
     public String gridStorageWriteStatement() {
-        return """
-        REPLACE
-        INTO `bluemap_grid_storage_data` (`map`, `storage`, `x`, `z`, `compression`, `data`)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """;
+        return "REPLACE\n" +
+               "INTO `bluemap_grid_storage_data` (`map`, `storage`, `x`, `z`, `compression`, `data`)\n" +
+               "VALUES (?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     @Language("sqlite")
     public String gridStorageReadStatement() {
-        return """
-        SELECT `data`
-        FROM `bluemap_grid_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        AND `x` = ?
-        AND `z` = ?
-        AND `compression` = ?
-        """;
+        return "SELECT `data`\n" +
+               "FROM `bluemap_grid_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?\n" +
+               "AND `x` = ?\n" +
+               "AND `z` = ?\n" +
+               "AND `compression` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String gridStorageDeleteStatement() {
-        return """
-        DELETE
-        FROM `bluemap_grid_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        AND `x` = ?
-        AND `z` = ?
-        """;
+        return "DELETE\n" +
+               "FROM `bluemap_grid_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?\n" +
+               "AND `x` = ?\n" +
+               "AND `z` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String gridStorageHasStatement() {
-        return """
-        SELECT COUNT(*) > 0
-        FROM `bluemap_grid_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        AND `x` = ?
-        AND `z` = ?
-        AND `compression` = ?
-        """;
+        return "SELECT COUNT(*) > 0\n" +
+               "FROM `bluemap_grid_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?\n" +
+               "AND `x` = ?\n" +
+               "AND `z` = ?\n" +
+               "AND `compression` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String gridStorageListStatement() {
-        return """
-        SELECT `x`, `z`
-        FROM `bluemap_grid_storage_data`
-        WHERE `map` = ?
-        AND `storage` = ?
-        AND `compression` = ?
-        LIMIT ? OFFSET ?
-        """;
+        return "SELECT `x`, `z`\n" +
+               "FROM `bluemap_grid_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "AND `storage` = ?\n" +
+               "AND `compression` = ?\n" +
+               "LIMIT ? OFFSET ?";
     }
 
     @Override
     @Language("sqlite")
     public String gridStorageCountMapItemsStatement() {
-        return """
-        SELECT COUNT(*)
-        FROM `bluemap_grid_storage_data`
-        WHERE `map` = ?
-        """;
+        return "SELECT COUNT(*)\n" +
+               "FROM `bluemap_grid_storage_data`\n" +
+               "WHERE `map` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String gridStoragePurgeMapStatement() {
-        return """
-        DELETE
-        FROM `bluemap_grid_storage_data`
-        WHERE ROWID IN (
-         SELECT t.ROWID
-         FROM `bluemap_grid_storage_data` t
-         WHERE t.`map` = ?
-         LIMIT ?
-        )
-        """;
+        return "DELETE\n" +
+               "FROM `bluemap_grid_storage_data`\n" +
+               "WHERE `map` = ?\n" +
+               "LIMIT ?";
     }
 
     @Override
     @Language("sqlite")
     public String purgeMapStatement() {
-        return """
-        DELETE
-        FROM `bluemap_map`
-        WHERE `id` = ?
-        """;
+        return "DELETE\n" +
+               "FROM `bluemap_map`\n" +
+               "WHERE `id` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String hasMapStatement() {
-        return """
-        SELECT COUNT(*) > 0
-        FROM `bluemap_map` m
-        WHERE m.`map_id` = ?
-        """;
+        return "SELECT COUNT(*) > 0\n" +
+               "FROM `bluemap_map`\n" +
+               "WHERE `map_id` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String listMapIdsStatement() {
-        return """
-        SELECT `map_id`
-        FROM `bluemap_map` m
-        LIMIT ? OFFSET ?
-        """;
+        return "SELECT `map_id`\n" +
+               "FROM `bluemap_map`\n" +
+               "LIMIT ? OFFSET ?";
     }
 
     @Override
     @Language("sqlite")
     public String findMapKeyStatement() {
-        return """
-        SELECT `id`
-        FROM `bluemap_map`
-        WHERE map_id = ?
-        """;
+        return "SELECT `id`\n" +
+               "FROM `bluemap_map`\n" +
+               "WHERE `map_id` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String createMapKeyStatement() {
-        return """
-        INSERT
-        INTO `bluemap_map` (`map_id`)
-        VALUES (?)
-        """;
+        return "INSERT INTO `bluemap_map` (`map_id`)\n" +
+               "VALUES (?)";
     }
 
     @Override
     @Language("sqlite")
     public String findCompressionKeyStatement() {
-        return """
-        SELECT `id`
-        FROM `bluemap_compression`
-        WHERE `key` = ?
-        """;
+        return "SELECT `id`\n" +
+               "FROM `bluemap_compression`\n" +
+               "WHERE `key` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String createCompressionKeyStatement() {
-        return """
-        INSERT
-        INTO `bluemap_compression` (`key`)
-        VALUES (?)
-        """;
+        return "INSERT INTO `bluemap_compression` (`key`)\n" +
+               "VALUES (?)";
     }
 
     @Override
     @Language("sqlite")
     public String findItemStorageKeyStatement() {
-        return """
-        SELECT `id`
-        FROM `bluemap_item_storage`
-        WHERE `key` = ?
-        """;
+        return "SELECT `id`\n" +
+               "FROM `bluemap_item_storage`\n" +
+               "WHERE `key` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String createItemStorageKeyStatement() {
-        return """
-        INSERT
-        INTO `bluemap_item_storage` (`key`)
-        VALUES (?)
-        """;
+        return "INSERT INTO `bluemap_item_storage` (`key`)\n" +
+               "VALUES (?)";
     }
 
     @Override
     @Language("sqlite")
     public String findGridStorageKeyStatement() {
-        return """
-        SELECT `id`
-        FROM `bluemap_grid_storage`
-        WHERE `key` = ?
-        """;
+        return "SELECT `id`\n" +
+               "FROM `bluemap_grid_storage`\n" +
+               "WHERE `key` = ?";
     }
 
     @Override
     @Language("sqlite")
     public String createGridStorageKeyStatement() {
-        return """
-        INSERT
-        INTO `bluemap_grid_storage` (`key`)
-        VALUES (?)
-        """;
+        return "INSERT INTO `bluemap_grid_storage` (`key`)\n" +
+               "VALUES (?)";
     }
 
 }

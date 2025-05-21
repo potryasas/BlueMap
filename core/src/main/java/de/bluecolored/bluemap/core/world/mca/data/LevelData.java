@@ -24,52 +24,64 @@
  */
 package de.bluecolored.bluemap.core.world.mca.data;
 
+import com.flowpowered.math.vector.Vector3i;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTFile;
 import de.bluecolored.bluemap.core.world.DimensionType;
-import de.bluecolored.bluenbt.NBTName;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-@SuppressWarnings("FieldMayBeFinal")
 public class LevelData {
+    private final Data data;
 
-    @NBTName("Data")
-    private Data data = new Data();
+    public LevelData(NBTFile nbtFile) {
+        NBTCompound data = nbtFile.getCompound("Data");
+        this.data = new Data(data);
+    }
 
     @Getter
     public static class Data {
+        private final String levelName;
+        private final int spawnX;
+        private final int spawnY;
+        private final int spawnZ;
+        private final WorldGenSettings worldGenSettings;
 
-        @NBTName("LevelName")
-        private String levelName = "world";
-
-        @NBTName("SpawnX")
-        private int spawnX = 0;
-
-        @NBTName("SpawnY")
-        private int spawnY = 0;
-
-        @NBTName("SpawnZ")
-        private int spawnZ = 0;
-
-        @NBTName("WorldGenSettings")
-        private WGSettings worldGenSettings = new WGSettings();
-
+        public Data(NBTCompound data) {
+            this.levelName = data.getString("LevelName");
+            this.spawnX = data.getInteger("SpawnX");
+            this.spawnY = data.getInteger("SpawnY");
+            this.spawnZ = data.getInteger("SpawnZ");
+            this.worldGenSettings = new WorldGenSettings(data.getCompound("WorldGenSettings"));
+        }
     }
 
     @Getter
-    public static class WGSettings {
-        private Map<String, Dimension> dimensions = new HashMap<>();
+    public static class WorldGenSettings {
+        private final Map<String, Dimension> dimensions;
+
+        public WorldGenSettings(NBTCompound settings) {
+            this.dimensions = new HashMap<>();
+            NBTCompound dims = settings.getCompound("dimensions");
+            for (String key : dims.getKeys()) {
+                dimensions.put(key, new Dimension(dims.getCompound(key)));
+            }
+        }
     }
 
     @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class Dimension {
-        private DimensionType type = DimensionType.OVERWORLD;
-    }
+        private final DimensionType type;
 
+        public Dimension(NBTCompound dim) {
+            this.type = DimensionType.valueOf(dim.getString("type").toUpperCase());
+        }
+
+        public Dimension(DimensionType type) {
+            this.type = type;
+        }
+    }
 }

@@ -24,8 +24,9 @@
  */
 package de.bluecolored.bluemap.core.util;
 
-import de.bluecolored.bluenbt.*;
-import de.bluecolored.bluenbt.adapter.ArrayAdapterFactory;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTList;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
@@ -33,32 +34,29 @@ import java.lang.reflect.Array;
 import java.util.HashMap;
 
 @RequiredArgsConstructor
-public class PalettedArrayAdapter<T> implements TypeAdapter<T[]> {
+public class PalettedArrayAdapter<T> implements NBTAdapter<T[]> {
 
     private final Class<T> type;
-    private final TypeAdapter<T[]> paletteAdapter;
+    private final ArrayAdapter<T[]> paletteAdapter;
 
     @SuppressWarnings("unchecked")
-    public PalettedArrayAdapter(BlueNBT blueNBT, Class<T> type) {
+    public PalettedArrayAdapter(Class<T> type) {
         this.type = type;
-        this.paletteAdapter = ArrayAdapterFactory.INSTANCE.create((TypeToken<T[]>) TypeToken.array(type), blueNBT).orElseThrow();
+        this.paletteAdapter = new ArrayAdapter<>(type);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public T[] read(NBTReader reader) throws IOException {
-        reader.beginCompound();
+    @SuppressWarnings("unchecked")
+    public T[] read(NBTCompound compound) throws IOException {
         T[] palette = null;
         byte[] data = null;
-        while (reader.hasNext()) {
-            String name = reader.name();
-            switch (name) {
-                case "palette" -> palette = paletteAdapter.read(reader);
-                case "data" -> data = reader.nextArrayAsByteArray();
-                default -> reader.skip();
-            }
+
+        if (compound.hasKey("palette")) {
+            palette = paletteAdapter.read(compound.getCompound("palette"));
         }
-        reader.endCompound();
+        if (compound.hasKey("data")) {
+            data = compound.getByteArray("data");
+        }
 
         if (palette == null || palette.length == 0) throw new IOException("Missing or empty palette");
         if (data == null) return (T[]) Array.newInstance(type, 0);
@@ -72,9 +70,9 @@ public class PalettedArrayAdapter<T> implements TypeAdapter<T[]> {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public void write(T[] value, NBTWriter writer) throws IOException {
+    @SuppressWarnings("unchecked")
+    public void write(T[] value, NBTCompound compound) throws IOException {
         HashMap<T, Byte> paletteMap = new HashMap<>();
         byte[] data = new byte[value.length];
         for (int i = 0; i < value.length; i++) {
@@ -85,11 +83,35 @@ public class PalettedArrayAdapter<T> implements TypeAdapter<T[]> {
         T[] palette = (T[]) Array.newInstance(type, paletteMap.size());
         paletteMap.forEach((k, v) -> palette[v] = k);
 
-        writer.beginCompound();
-        writer.name("palette");
-        paletteAdapter.write(palette, writer);
-        writer.name("data").value(data);
-        writer.endCompound();
+        NBTCompound paletteCompound = compound.addCompound("palette");
+        paletteAdapter.write(palette, paletteCompound);
+        compound.setByteArray("data", data);
     }
 
+    private static class ArrayAdapter<T> implements NBTAdapter<T[]> {
+        private final Class<T> type;
+
+        public ArrayAdapter(Class<T> type) {
+            this.type = type;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public T[] read(NBTCompound compound) {
+            NBTList list = compound.getList("values", type);
+            T[] result = (T[]) Array.newInstance(type, list.size());
+            for (int i = 0; i < list.size(); i++) {
+                result[i] = (T) list.get(i);
+            }
+            return result;
+        }
+
+        @Override
+        public void write(T[] value, NBTCompound compound) {
+            NBTList list = compound.createList("values", type);
+            for (T t : value) {
+                list.add(t);
+            }
+        }
+    }
 }

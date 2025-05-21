@@ -1,0 +1,5 @@
+name: BlueMap
+version: 1.0.0
+main: de.bluecolored.bluemap.bukkit.legacy.DummyClass
+author: "Blue"
+description: "A 3D map for Minecraft 1.5.2"

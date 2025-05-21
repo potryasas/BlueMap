@@ -25,77 +25,84 @@
 package de.bluecolored.bluemap.core.map.renderstate;
 
 import de.bluecolored.bluemap.core.util.Key;
-import de.bluecolored.bluemap.core.util.RegistryAdapter;
-import de.bluecolored.bluenbt.*;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.List;
 
 import static de.bluecolored.bluemap.core.map.renderstate.MapTileState.SHIFT;
 
-public class TileInfoRegion implements CellStorage.Cell {
+@Data
+public class TileInfoRegion {
 
     private static final int REGION_LENGTH = 1 << SHIFT;
     private static final int REGION_MASK = REGION_LENGTH - 1;
     private static final int TILES_PER_REGION = REGION_LENGTH * REGION_LENGTH;
 
-    @NBTName("last-render-times")
     private int[] lastRenderTimes;
-
-    @NBTName("tile-states")
     private TileState[] tileStates;
 
     @Getter
     private transient boolean modified;
 
+    private TileInfo[] tileInfos;
+
     private TileInfoRegion() {}
 
-    @NBTPostDeserialize
-    public void init() {
-        if (lastRenderTimes == null || lastRenderTimes.length != TILES_PER_REGION)
-            lastRenderTimes = new int[TILES_PER_REGION];
-
-        if (tileStates == null || tileStates.length != TILES_PER_REGION) {
-            tileStates = new TileState[TILES_PER_REGION];
-            Arrays.fill(tileStates, TileState.UNKNOWN);
+    private void init() {
+        this.tileInfos = new TileInfo[TILES_PER_REGION];
+        for (int i = 0; i < tileInfos.length; i++) {
+            tileInfos[i] = new TileInfo(0, TileState.UNKNOWN);
         }
     }
 
-    public TileInfo get(int x, int z) {
-        int index = index(x, z);
-        return new TileInfo(
-                lastRenderTimes[index],
-                tileStates[index]
-        );
+    public void readFromNBT(NBTCompound compound) {
+        if (compound.hasKey("last-render-times")) {
+            this.lastRenderTimes = compound.getIntArray("last-render-times");
+        }
+        if (compound.hasKey("tile-states")) {
+            NBTCompound statesCompound = compound.getCompound("tile-states");
+            List<TileState> states = new ArrayList<>();
+            for (String key : statesCompound.getKeys()) {
+                states.add(TileState.REGISTRY.get(Key.parse(key)));
+            }
+            this.tileStates = states.toArray(new TileState[0]);
+        }
     }
 
-    public TileInfo set(int x, int z, TileInfo info) {
-        int index = index(x, z);
+    public void writeToNBT(NBTCompound compound) {
+        compound.setIntArray("last-render-times", lastRenderTimes);
+        NBTCompound statesCompound = compound.getCompound("tile-states");
+        for (TileState state : tileStates) {
+            statesCompound.setString(state.getKey().getFormatted(), state.getKey().getFormatted());
+        }
+    }
 
-        TileInfo previous = new TileInfo(
-                lastRenderTimes[index],
-                tileStates[index]
-        );
+    public TileInfo getTileInfo(int x, int z) {
+        return tileInfos[x + z * REGION_LENGTH];
+    }
 
-        lastRenderTimes[index] = info.getRenderTime();
-        tileStates[index] = Objects.requireNonNull(info.getState());
-
-        if (!previous.equals(info))
-            this.modified = true;
-
-        return previous;
+    public void setTileInfo(int x, int z, TileInfo tileInfo) {
+        tileInfos[x + z * REGION_LENGTH] = tileInfo;
     }
 
     int findLatestRenderTime() {
         if (lastRenderTimes == null) return -1;
-        return Arrays.stream(lastRenderTimes)
-                .max()
-                .orElse(-1);
+        int max = -1;
+        for (int time : lastRenderTimes) {
+            if (time > max) max = time;
+        }
+        return max;
     }
 
     private static int index(int x, int z) {
@@ -105,10 +112,8 @@ public class TileInfoRegion implements CellStorage.Cell {
     @Data
     @AllArgsConstructor
     public static class TileInfo {
-
         private int renderTime;
         private TileState state;
-
     }
 
     public static TileInfoRegion create() {
@@ -121,25 +126,19 @@ public class TileInfoRegion implements CellStorage.Cell {
      * Only loads the palette-part from a TileState-file
      */
     public static TileState[] loadPalette(InputStream in) throws IOException {
-        return PaletteOnly.BLUE_NBT.read(in, PaletteOnly.class).tileStates.palette;
-    }
-
-    @Getter
-    private static class PaletteOnly {
-
-        private final static BlueNBT BLUE_NBT = new BlueNBT();
-        static {
-            BLUE_NBT.register(TypeToken.of(TileState.class), new RegistryAdapter<>(TileState.REGISTRY, Key.BLUEMAP_NAMESPACE, TileState.UNKNOWN));
+        File tempFile = File.createTempFile("bluemap", ".nbt");
+        try {
+            Files.copy(in, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            NBTFile nbtFile = new NBTFile(tempFile);
+            NBTCompound tileStatesCompound = nbtFile.getCompound("tile-states");
+            NBTCompound paletteCompound = tileStatesCompound.getCompound("palette");
+            List<TileState> palette = new ArrayList<>();
+            for (String key : paletteCompound.getKeys()) {
+                palette.add(TileState.REGISTRY.get(Key.parse(key)));
+            }
+            return palette.toArray(new TileState[0]);
+        } finally {
+            tempFile.delete();
         }
-
-        @NBTName("tile-states")
-        private TileStates tileStates;
-
-        @Getter
-        private static class TileStates {
-            private TileState[] palette;
-        }
-
     }
-
 }

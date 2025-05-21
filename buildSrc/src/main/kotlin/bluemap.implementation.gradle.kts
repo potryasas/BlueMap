@@ -9,7 +9,7 @@ tasks.shadowJar {
 
 tasks.register<CopyFileTask>("release") {
     group = "publishing"
-    dependsOn(tasks.shadowJar, tasks.spotlessCheck)
+    dependsOn(tasks.shadowJar)
 
     inputFile = tasks.shadowJar.flatMap { it.archiveFile }
     outputFile = releaseDirectory.resolve("bluemap-${project.version}-${project.name}.jar")

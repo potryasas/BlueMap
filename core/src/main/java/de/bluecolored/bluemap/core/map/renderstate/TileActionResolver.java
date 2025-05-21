@@ -48,11 +48,21 @@ public interface TileActionResolver {
         DELETE
     }
 
-    record ActionAndNextState (Action action, TileState state) {
+    class ActionAndNextState {
+        private final Action action;
+        private final TileState state;
 
         public ActionAndNextState(Action action, TileState state) {
             this.action = Objects.requireNonNull(action);
             this.state = Objects.requireNonNull(state);
+        }
+
+        public Action getAction() {
+            return action;
+        }
+
+        public TileState getState() {
+            return state;
         }
 
         public static final ActionAndNextState RENDER_RENDERED = new ActionAndNextState(Action.RENDER, RENDERED);

@@ -29,69 +29,106 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
-public interface DimensionType {
+public enum DimensionType {
+    OVERWORLD,
+    OVERWORLD_CAVES,
+    NETHER,
+    END;
 
-    DimensionType OVERWORLD = new Builtin(
-            true,
-            true,
-            false,
-            0f,
-            -64,
-            384,
-            null,
-            1.0
-    );
-    DimensionType OVERWORLD_CAVES = new Builtin(
-            true,
-            true,
-            true,
-            0,
-            -64,
-            384,
-            null,
-            1.0
-    );
-    DimensionType NETHER = new Builtin(
-            false,
-            false,
-            true,
-            0.1f,
-            0,
-            256,
-            6000L,
-            8.0
-    );
-    DimensionType END = new Builtin(
-            false,
-            false,
-            false,
-            0,
-            0,
-            256,
-            18000L,
-            1.0
-    );
+    public String getFormatted() {
+        switch (this) {
+            case OVERWORLD:
+                return "minecraft:overworld";
+            case NETHER:
+                return "minecraft:the_nether";
+            case END:
+                return "minecraft:the_end";
+            default:
+                return "minecraft:overworld";
+        }
+    }
 
-    boolean isNatural();
+    public boolean isNatural() {
+        return this == OVERWORLD || this == OVERWORLD_CAVES;
+    }
 
-    boolean hasSkylight();
+    public boolean hasSkylight() {
+        return this == OVERWORLD || this == OVERWORLD_CAVES || this == NETHER;
+    }
 
-    boolean hasCeiling();
+    public boolean hasCeiling() {
+        return this == OVERWORLD || this == OVERWORLD_CAVES;
+    }
 
-    float getAmbientLight();
+    public float getAmbientLight() {
+        switch (this) {
+            case OVERWORLD:
+            case OVERWORLD_CAVES:
+            case END:
+                return 0.0f;
+            case NETHER:
+                return 0.1f;
+            default:
+                return 0.0f;
+        }
+    }
 
-    int getMinY();
+    public int getMinY() {
+        switch (this) {
+            case OVERWORLD:
+            case OVERWORLD_CAVES:
+                return -64;
+            case NETHER:
+            case END:
+                return 0;
+            default:
+                return 0;
+        }
+    }
 
-    int getHeight();
+    public int getHeight() {
+        switch (this) {
+            case OVERWORLD:
+            case OVERWORLD_CAVES:
+                return 384;
+            case NETHER:
+            case END:
+                return 256;
+            default:
+                return 256;
+        }
+    }
 
-    Long getFixedTime();
+    public Long getFixedTime() {
+        switch (this) {
+            case OVERWORLD:
+            case OVERWORLD_CAVES:
+                return null;
+            case NETHER:
+                return 6000L;
+            case END:
+                return 18000L;
+            default:
+                return null;
+        }
+    }
 
-    double getCoordinateScale();
+    public double getCoordinateScale() {
+        switch (this) {
+            case OVERWORLD:
+            case OVERWORLD_CAVES:
+            case END:
+                return 1.0;
+            case NETHER:
+                return 8.0;
+            default:
+                return 1.0;
+        }
+    }
 
     @Getter
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    class Builtin implements DimensionType {
-
+    public static class Builtin {
         private final boolean natural;
         @Accessors(fluent = true) private final boolean hasSkylight;
         @Accessors(fluent = true) private final boolean hasCeiling;
@@ -100,7 +137,5 @@ public interface DimensionType {
         private final int height;
         private final Long fixedTime;
         private final double coordinateScale;
-
     }
-
 }

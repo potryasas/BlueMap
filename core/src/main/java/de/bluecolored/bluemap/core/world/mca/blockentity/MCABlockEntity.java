@@ -26,21 +26,47 @@ package de.bluecolored.bluemap.core.world.mca.blockentity;
 
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.world.BlockEntity;
-import de.bluecolored.bluenbt.NBTName;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @SuppressWarnings("FieldMayBeFinal")
-public class MCABlockEntity implements BlockEntity {
+public class MCABlockEntity extends BlockEntity {
 
     Key id;
-    int x, y, z;
-
-    @NBTName("keepPacked")
     boolean keepPacked;
 
+    public MCABlockEntity() {
+        super("", 0, 0, 0);
+    }
+
+    public void readFromNBT(NBTCompound compound) {
+        if (compound.hasKey("keepPacked")) {
+            this.keepPacked = compound.getBoolean("keepPacked");
+        }
+        if (compound.hasKey("x")) {
+            this.x = compound.getInteger("x");
+        }
+        if (compound.hasKey("y")) {
+            this.y = compound.getInteger("y");
+        }
+        if (compound.hasKey("z")) {
+            this.z = compound.getInteger("z");
+        }
+        if (compound.hasKey("id")) {
+            this.id = Key.parse(compound.getString("id"));
+        }
+    }
+
+    public void writeToNBT(NBTCompound compound) {
+        compound.setBoolean("keepPacked", keepPacked);
+        compound.setInteger("x", x);
+        compound.setInteger("y", y);
+        compound.setInteger("z", z);
+        compound.setString("id", id.getFormatted());
+    }
 }

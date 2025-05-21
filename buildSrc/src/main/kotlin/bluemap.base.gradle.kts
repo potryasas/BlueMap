@@ -2,7 +2,6 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id ( "com.diffplug.spotless" )
 }
 
 group = "de.bluecolored"
@@ -41,7 +40,7 @@ tasks.withType(AbstractArchiveTask::class).configureEach {
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    toolchain.languageVersion = JavaLanguageVersion.of(8)
     withSourcesJar()
     withJavadocJar()
 }
@@ -49,7 +48,7 @@ java {
 tasks.javadoc {
     (options as StandardJavadocDocletOptions).apply {
         links(
-            "https://docs.oracle.com/en/java/javase/21/docs/api/",
+            "https://docs.oracle.com/javase/8/docs/api/",
             "https://javadoc.io/doc/com.flowpowered/flow-math/1.0.3/",
             "https://javadoc.io/doc/com.google.code.gson/gson/2.8.9/",
         )
@@ -60,16 +59,6 @@ tasks.javadoc {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-spotless {
-    java {
-        target ("src/*/java/**/*.java")
-
-        licenseHeaderFile(rootProject.file("LICENSE_HEADER"))
-        indentWithSpaces()
-        trimTrailingWhitespace()
-    }
 }
 
 publishing {

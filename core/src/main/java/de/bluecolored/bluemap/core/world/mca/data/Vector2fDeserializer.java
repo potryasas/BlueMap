@@ -25,57 +25,41 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import com.flowpowered.math.vector.Vector2f;
-import com.flowpowered.math.vector.Vector3d;
-import de.bluecolored.bluenbt.NBTReader;
-import de.bluecolored.bluenbt.TagType;
-import de.bluecolored.bluenbt.TypeDeserializer;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTList;
 
-import java.io.IOException;
-
-public class Vector2fDeserializer implements TypeDeserializer<Vector2f> {
+public class Vector2fDeserializer implements NBTAdapter<Vector2f> {
 
     @Override
-    public Vector2f read(NBTReader reader) throws IOException {
-        TagType tag = reader.peek();
+    public Vector2f read(NBTCompound compound) {
+        if (compound.hasKey("")) {
+            long[] values = compound.getLongArray("");
+            if (values.length != 2) throw new IllegalArgumentException("Unexpected array length: " + values.length);
+            return new Vector2f(values[0], values[1]);
+        }
 
-        return switch (tag) {
+        if (compound.hasKey("x") || compound.hasKey("y") || compound.hasKey("z") || 
+            compound.hasKey("yaw") || compound.hasKey("pitch")) {
+            float x = compound.getFloat("x");
+            float y = compound.getFloat("y");
+            return new Vector2f(x, y);
+        }
 
-            case INT_ARRAY, LONG_ARRAY, BYTE_ARRAY -> {
-                long[] values = reader.nextArrayAsLongArray();
-                if (values.length != 2) throw new IllegalStateException("Unexpected array length: " + values.length);
-                yield new Vector2f(
-                        values[0],
-                        values[1]
-                );
-            }
+        NBTList list = compound.getList("", NBTList.class);
+        if (list != null) {
+            return new Vector2f(
+                list.getFloat(0),
+                list.getFloat(1)
+            );
+        }
 
-            case LIST -> {
-                reader.beginList();
-                Vector2f value = new Vector2f(
-                        reader.nextFloat(),
-                        reader.nextFloat()
-                );
-                reader.endList();
-                yield value;
-            }
-
-            case COMPOUND -> {
-                double x = 0, y = 0, z = 0;
-                reader.beginCompound();
-                while (reader.peek() != TagType.END) {
-                    switch (reader.name()) {
-                        case "x", "yaw": x = reader.nextFloat(); break;
-                        case "y", "z", "pitch": y = reader.nextFloat(); break;
-                        default: reader.skip();
-                    }
-                }
-                reader.endCompound();
-                yield new Vector2f(x, y);
-            }
-
-            case null, default -> throw new IllegalStateException("Unexpected tag-type: " + tag);
-
-        };
+        throw new IllegalArgumentException("Could not read Vector2f from NBT");
     }
 
+    @Override
+    public void write(Vector2f value, NBTCompound compound) {
+        compound.setFloat("x", value.getX());
+        compound.setFloat("y", value.getY());
+    }
 }

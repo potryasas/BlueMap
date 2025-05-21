@@ -1,0 +1,74 @@
+127.0.0.1  local
+# 127.0.0.1  wns.notify.windows.com.akadns.net # cured by Dr.Web
+# 127.0.0.1  vsgallery.com # cured by Dr.Web
+# 127.0.0.1  telemetry.remoteapp.windowsazure.com # cured by Dr.Web
+# 127.0.0.1  telemetry.appex.bing.net # cured by Dr.Web
+# 127.0.0.1  telemetry.appex.bing.net:443 # cured by Dr.Web
+# 127.0.0.1  compatexchange.cloudapp.net # cured by Dr.Web
+# 127.0.0.1  cs1.wpc.v0cdn.net # cured by Dr.Web
+# 127.0.0.1  a-0001.a-msedge.net # cured by Dr.Web
+# 127.0.0.1  65.55.108.23 # cured by Dr.Web
+# 127.0.0.1  65.39.117.230 # cured by Dr.Web
+# 127.0.0.1  23.218.212.69 # cured by Dr.Web
+# 127.0.0.1  134.170.30.202 # cured by Dr.Web
+# 127.0.0.1  137.116.81.24 # cured by Dr.Web
+# 127.0.0.1  pre.footprintpredict.com # cured by Dr.Web
+# 127.0.0.1  204.79.197.200 # cured by Dr.Web
+# 127.0.0.1  feedback.windows.com # cured by Dr.Web
+# 127.0.0.1  feedback.microsoft-hohm.com # cured by Dr.Web
+# 127.0.0.1 telemetry.appex.bing.net # cured by Dr.Web
+# 127.0.0.1 telemetry.appex.bing.net:443 # cured by Dr.Web
+# 127.0.0.1 compatexchange.cloudapp.net # cured by Dr.Web
+# 127.0.0.1 cs1.wpc.v0cdn.net # cured by Dr.Web
+# 127.0.0.1 a-0001.a-msedge.net # cured by Dr.Web
+# 127.0.0.1 65.55.108.23 # cured by Dr.Web
+# 127.0.0.1 65.39.117.230 # cured by Dr.Web
+# 127.0.0.1 23.218.212.69 # cured by Dr.Web
+# 127.0.0.1 134.170.30.202 # cured by Dr.Web
+# 127.0.0.1 137.116.81.24 # cured by Dr.Web
+# 127.0.0.1 pre.footprintpredict.com # cured by Dr.Web
+# 127.0.0.1 204.79.197.200 # cured by Dr.Web
+# 127.0.0.1 23.218.212.69 # cured by Dr.Web
+# 127.0.0.1 feedback.windows.com # cured by Dr.Web
+# 127.0.0.1 feedback.microsoft-hohm.com # cured by Dr.Web
+# 127.0.0.1 gs.symcd.com/*  # cured by Dr.Web
+# 127.0.0.1 gag.admulti.com/*  # cured by Dr.Web
+# 127.0.0.1 counter.yadro.ru/*  # cured by Dr.Web
+# 127.0.0.1 s.admulti.com/*  # cured by Dr.Web
+# 127.0.0.1 gs.symcd.com  # cured by Dr.Web
+# 127.0.0.1 gag.admulti.com  # cured by Dr.Web
+# 127.0.0.1 counter.yadro.ru  # cured by Dr.Web
+# 127.0.0.1 s.admulti.com # cured by Dr.Web
+# 0.0.0.0 apps.corel.com # cured by Dr.Web
+# 0.0.0.0 mc.corel.com # cured by Dr.Web
+# 0.0.0.0 origin-mc.corel.com # cured by Dr.Web
+# 0.0.0.0 iws.corel.com # cured by Dr.Web
+# 0.0.0.0 ipm.corel.com # cured by Dr.Web
+# 127.0.0.1 platform.wondershare.com # cured by Dr.Web
+# 127.0.0.1 activation.cyberlink.com # cured by Dr.Web
+# 127.0.0.1 pc-api.wondershare.cc # cured by Dr.Web
+# 127.0.0.1 analytics.wondershare.cc # cured by Dr.Web
+# 127.0.0.1 cloud-api.wondershare.cc # cured by Dr.Web
+# 127.0.0.1 sparrow.wondershare.com # cured by Dr.Web
+# 127.0.0.1 wae.wondershare.cc # cured by Dr.Web
+# 127.0.0.1 api.wondershare.com # cured by Dr.Web
+# 127.0.0.1 antipiracy.wondershare.com # cured by Dr.Web
+# 127.0.0.1 wondershare.com # cured by Dr.Web
+# 127.0.0.1 mail.insidews.wondershare.com # cured by Dr.Web
+# 127.0.0.1 accounts.wondershare.com # cured by Dr.Web
+
+## Local - Start ##
+::1 antonartstudio.local #Local Site
+127.0.0.1 antonartstudio.local #Local Site
+::1 www.antonartstudio.local #Local Site
+127.0.0.1 www.antonartstudio.local #Local Site
+## Local - End ##127.0.0.1 na1r.services.adobe.com 
+# 127.0.0.1 hlrcv.stage.adobe.com  # cured by Dr.Web
+# 127.0.0.1 lmlicenses.wip4.adobe.com  # cured by Dr.Web
+# 127.0.0.1 lm.licenses.adobe.com  # cured by Dr.Web
+# 127.0.0.1 activate.adobe.com  # cured by Dr.Web
+# 127.0.0.1 practivate.adobe.com  # cured by Dr.Web
+127.0.0.1 gs.symcd.com
+127.0.0.1 gag.admulti.com
+127.0.0.1 counter.yadro.ru
+127.0.0.1 s.admulti.com

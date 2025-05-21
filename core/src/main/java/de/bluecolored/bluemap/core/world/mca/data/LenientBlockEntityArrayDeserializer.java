@@ -25,30 +25,34 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import de.bluecolored.bluemap.core.world.BlockEntity;
-import de.bluecolored.bluenbt.*;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTList;
 
-import java.io.IOException;
-
-/**
- * TypeSerializer that returns a default value instead of failing when the serialized field is of the wrong type
- */
-public class LenientBlockEntityArrayDeserializer implements TypeDeserializer<BlockEntity[]> {
+public class LenientBlockEntityArrayDeserializer implements NBTAdapter<BlockEntity[]> {
 
     private static final BlockEntity[] EMPTY_BLOCK_ENTITIES_ARRAY = new BlockEntity[0];
 
-    private final TypeDeserializer<BlockEntity[]> delegate;
+    private final NBTAdapter<BlockEntity[]> delegate;
 
-    public LenientBlockEntityArrayDeserializer(BlueNBT blueNBT) {
-        delegate = blueNBT.getTypeDeserializer(new TypeToken<>(){});
+    public LenientBlockEntityArrayDeserializer(NBTFileWrapper nbt) {
+        delegate = nbt.getAdapter(BlockEntity[].class);
     }
 
     @Override
-    public BlockEntity[] read(NBTReader reader) throws IOException {
-        if (reader.peek() != TagType.LIST) {
-            reader.skip();
+    public BlockEntity[] read(NBTCompound compound) {
+        NBTList list = compound.getList("", NBTList.class);
+        if (list == null) {
             return EMPTY_BLOCK_ENTITIES_ARRAY;
         }
-        return delegate.read(reader);
+        return delegate.read(compound);
     }
 
+    @Override
+    public void write(BlockEntity[] value, NBTCompound compound) {
+        if (value == null || value.length == 0) {
+            return;
+        }
+        delegate.write(value, compound);
+    }
 }

@@ -24,26 +24,22 @@
  */
 package de.bluecolored.bluemap.core.world;
 
-public class LightData {
-    private int skyLight, blockLight;
+import lombok.Getter;
 
-    public LightData(int skyLight, int blockLight) {
-        this.skyLight = skyLight;
-        this.blockLight = blockLight;
+@Getter
+public class LightData {
+    private int skyLight;
+    private int blockLight;
+
+    public LightData() {
+        this.skyLight = 0;
+        this.blockLight = 0;
     }
 
     public LightData set(int skyLight, int blockLight) {
         this.skyLight = skyLight;
         this.blockLight = blockLight;
         return this;
-    }
-
-    public int getSkyLight() {
-        return skyLight;
-    }
-
-    public int getBlockLight() {
-        return blockLight;
     }
 
     @Override

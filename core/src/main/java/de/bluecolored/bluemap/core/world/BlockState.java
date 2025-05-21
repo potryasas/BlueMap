@@ -26,6 +26,7 @@ package de.bluecolored.bluemap.core.world;
 
 import de.bluecolored.bluemap.core.util.Key;
 import org.jetbrains.annotations.NotNull;
+import lombok.Getter;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -38,12 +39,13 @@ import java.util.regex.Pattern;
  * <br>
  * <i>The implementation of this class has to be thread-save!</i><br>
  */
+@Getter
 public class BlockState extends Key {
 
     private static final Pattern BLOCKSTATE_SERIALIZATION_PATTERN = Pattern.compile("^(.+?)(?:\\[(.*)])?$");
 
     public static final BlockState AIR = new BlockState("minecraft:air");
-    public static final BlockState MISSING = new BlockState("bluemap:missing");
+    public static final BlockState MISSING = new BlockState("minecraft:missing");
 
     private boolean hashed;
     private int hash;
@@ -54,12 +56,14 @@ public class BlockState extends Key {
     private final boolean isAir, isWater, isWaterlogged;
     private int liquidLevel = -1, redstonePower = -1;
 
-    public BlockState(String value) {
-        this(value, Collections.emptyMap());
+    private final String id;
+
+    public BlockState(String id) {
+        this(id, Collections.emptyMap());
     }
 
-    public BlockState(String value, Map<String, String> properties) {
-        super(value);
+    public BlockState(String id, Map<String, String> properties) {
+        super(id);
 
         this.hashed = false;
         this.hash = 0;
@@ -79,6 +83,7 @@ public class BlockState extends Key {
         this.isWater = "minecraft:water".equals(this.getFormatted());
         this.isWaterlogged = "true".equals(properties.get("waterlogged"));
 
+        this.id = id;
     }
 
     /**
@@ -134,11 +139,11 @@ public class BlockState extends Key {
         return redstonePower;
     }
 
-    @SuppressWarnings("StringEquality")
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof BlockState b)) return false;
+        if (!(obj instanceof BlockState)) return false;
+        BlockState b = (BlockState) obj;
         if (!b.canEqual(this)) return false;
         if (getFormatted() != b.getFormatted()) return false;
         return Arrays.equals(propertiesArray, b.propertiesArray);
@@ -223,6 +228,11 @@ public class BlockState extends Key {
             return keyCompare != 0 ? keyCompare : value.compareTo(o.value);
         }
 
+    }
+
+    public static BlockState get(long state) {
+        // TODO: Implement state to block mapping
+        return AIR;
     }
 
 }

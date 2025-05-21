@@ -24,101 +24,82 @@
  */
 package de.bluecolored.bluemap.core.map.renderstate;
 
-import com.flowpowered.math.vector.Vector2i;
 import de.bluecolored.bluemap.core.logger.Logger;
-import de.bluecolored.bluemap.core.storage.GridStorage;
-import de.bluecolored.bluemap.core.storage.compression.CompressedInputStream;
-import de.bluecolored.bluemap.core.util.Key;
-import de.bluecolored.bluemap.core.util.PalettedArrayAdapter;
-import de.bluecolored.bluemap.core.util.RegistryAdapter;
-import de.bluecolored.bluenbt.BlueNBT;
-import de.bluecolored.bluenbt.TypeToken;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTFile;
 import lombok.Getter;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
-abstract class CellStorage<T extends CellStorage.Cell> {
+public class CellStorage<T extends CellStorage.Cell> {
 
-    private static final BlueNBT BLUE_NBT = new BlueNBT();
-    static {
-        BLUE_NBT.register(TypeToken.of(TileState.class), new RegistryAdapter<>(TileState.REGISTRY, Key.BLUEMAP_NAMESPACE, TileState.UNKNOWN));
-        BLUE_NBT.register(TypeToken.of(TileState[].class), new PalettedArrayAdapter<>(BLUE_NBT, TileState.class));
+    private final Map<Long, T> cells;
+    private final CellFactory<T> cellFactory;
+
+    public CellStorage(CellFactory<T> cellFactory) {
+        this.cells = new HashMap<>();
+        this.cellFactory = cellFactory;
     }
 
-    private static final int CACHE_SIZE = 4;
-
-    @Getter private final GridStorage storage;
-    private final Class<T> type;
-    private final LinkedHashMap<Vector2i, T> cells = new LinkedHashMap<>(
-            8,
-            0.75f,
-            true
-    ) {
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<Vector2i, T> eldest) {
-            if (this.size() <= CACHE_SIZE) return false;
-            saveCell(eldest.getKey(), eldest.getValue());
-            return true;
+    public T getCell(int x, int z) {
+        long key = key(x, z);
+        T cell = cells.get(key);
+        if (cell == null) {
+            cell = cellFactory.create();
+            cells.put(key, cell);
         }
-    };
-
-    public CellStorage(GridStorage storage, Class<T> type) {
-        this.storage = storage;
-        this.type = type;
+        return cell;
     }
 
-    public synchronized void save() {
-        cells.forEach(this::saveCell);
-    }
-
-    public synchronized void reset() {
+    public void clear() {
         cells.clear();
     }
 
-    T cell(int x, int z) {
-        return cell(new Vector2i(x, z));
+    public void save(File file) throws IOException {
+        NBTFile nbtFile = new NBTFile(file);
+        NBTCompound root = nbtFile.getCompound("cells");
+        for (Map.Entry<Long, T> entry : cells.entrySet()) {
+            if (!entry.getValue().isModified()) continue;
+            NBTCompound cellCompound = root.getCompound(String.valueOf(entry.getKey()));
+            entry.getValue().writeToNBT(cellCompound);
+        }
+        nbtFile.save();
     }
 
-    synchronized T cell(Vector2i pos) {
-        return cells.computeIfAbsent(pos, this::loadCell);
-    }
+    public void load(File file) throws IOException {
+        if (!file.exists()) return;
 
-    private synchronized T loadCell(Vector2i pos) {
-        try (CompressedInputStream in = storage.read(pos.getX(), pos.getY())) {
-            if (in != null)
-                return BLUE_NBT.read(in.decompress(), type);
-        } catch (IOException ex) {
-            Logger.global.logError("Failed to load render-state cell " + pos, ex);
-        } catch (RuntimeException ex) { // E.g. NoSuchElementException thrown by BlueNBT if there is a format error
-            Logger.global.logError("Failed to load render-state cell " + pos, ex);
-
-            // try to delete the possibly corrupted file for self-healing
+        NBTFile nbtFile = new NBTFile(file);
+        NBTCompound root = nbtFile.getCompound("cells");
+        for (String key : root.getKeys()) {
             try {
-                storage.delete(pos.getX(), pos.getY());
-            } catch (IOException e) {
-                Logger.global.logError("Failed to delete render-state cell " + pos, e);
+                long cellKey = Long.parseLong(key);
+                NBTCompound cellCompound = root.getCompound(key);
+                T cell = cellFactory.create();
+                cell.readFromNBT(cellCompound);
+                cells.put(cellKey, cell);
+            } catch (NumberFormatException ex) {
+                Logger.global.logWarning("Failed to parse cell-key: " + key);
             }
         }
-
-        return createNewCell();
     }
 
-    protected abstract T createNewCell();
+    private static long key(int x, int z) {
+        return ((long) x << 32) | (z & 0xFFFFFFFFL);
+    }
 
-    private synchronized void saveCell(Vector2i pos, T cell) {
-        if (!cell.isModified()) return;
-        try (OutputStream in = storage.write(pos.getX(), pos.getY())) {
-            BLUE_NBT.write(cell, in, type);
-        } catch (IOException ex) {
-            Logger.global.logError("Failed to save render-state cell " + pos, ex);
-        }
+    @FunctionalInterface
+    public interface CellFactory<T extends Cell> {
+        T create();
     }
 
     public interface Cell {
         boolean isModified();
+        void readFromNBT(NBTCompound compound);
+        void writeToNBT(NBTCompound compound);
     }
 
 }

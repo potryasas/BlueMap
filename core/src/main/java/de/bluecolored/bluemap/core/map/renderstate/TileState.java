@@ -36,40 +36,60 @@ public interface TileState extends Keyed, TileActionResolver {
 
     TileState UNKNOWN = new Impl( Key.bluemap("unknown"));
 
-    TileState RENDERED = new Impl(Key.bluemap("rendered"), (changed, bounds) ->
-            switch (bounds) {
-                case INSIDE -> changed ? RENDER_RENDERED : NONE_RENDERED;
-                case EDGE -> RENDER_RENDERED_EDGE;
-                case OUTSIDE -> DELETE_OUT_OF_BOUNDS;
-            }
-    );
-    TileState RENDERED_EDGE = new Impl(Key.bluemap("rendered-edge"), (changed, bounds) ->
-            switch (bounds) {
-                case INSIDE -> RENDER_RENDERED;
-                case EDGE -> changed ? RENDER_RENDERED_EDGE : NONE_RENDERED_EDGE;
-                case OUTSIDE -> DELETE_OUT_OF_BOUNDS;
-            }
-    );
-    TileState OUT_OF_BOUNDS = new Impl(Key.bluemap("out-of-bounds"), (changed, bounds) ->
-            switch (bounds) {
-                case INSIDE -> RENDER_RENDERED;
-                case EDGE -> RENDER_RENDERED_EDGE;
-                case OUTSIDE -> NONE_OUT_OF_BOUNDS;
-            }
-    );
+    TileState RENDERED = new Impl(Key.bluemap("rendered"), (changed, bounds) -> {
+        switch (bounds) {
+            case INSIDE:
+                return changed ? RENDER_RENDERED : NONE_RENDERED;
+            case EDGE:
+                return RENDER_RENDERED_EDGE;
+            case OUTSIDE:
+                return DELETE_OUT_OF_BOUNDS;
+            default:
+                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        }
+    });
+    TileState RENDERED_EDGE = new Impl(Key.bluemap("rendered-edge"), (changed, bounds) -> {
+        switch (bounds) {
+            case INSIDE:
+                return RENDER_RENDERED;
+            case EDGE:
+                return changed ? RENDER_RENDERED_EDGE : NONE_RENDERED_EDGE;
+            case OUTSIDE:
+                return DELETE_OUT_OF_BOUNDS;
+            default:
+                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        }
+    });
+    TileState OUT_OF_BOUNDS = new Impl(Key.bluemap("out-of-bounds"), (changed, bounds) -> {
+        switch (bounds) {
+            case INSIDE:
+                return RENDER_RENDERED;
+            case EDGE:
+                return RENDER_RENDERED_EDGE;
+            case OUTSIDE:
+                return NONE_OUT_OF_BOUNDS;
+            default:
+                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        }
+    });
 
     TileState NOT_GENERATED = new Impl(Key.bluemap("not-generated"));
     TileState MISSING_LIGHT = new Impl(Key.bluemap("missing-light"));
     TileState LOW_INHABITED_TIME = new Impl(Key.bluemap("low-inhabited-time"));
     TileState CHUNK_ERROR = new Impl(Key.bluemap("chunk-error"));
 
-    TileState RENDER_ERROR = new Impl(Key.bluemap("render-error"), (changed, bounds) ->
-            switch (bounds) {
-                case INSIDE -> RENDER_RENDERED;
-                case EDGE -> RENDER_RENDERED_EDGE;
-                case OUTSIDE -> DELETE_OUT_OF_BOUNDS;
-            }
-    );
+    TileState RENDER_ERROR = new Impl(Key.bluemap("render-error"), (changed, bounds) -> {
+        switch (bounds) {
+            case INSIDE:
+                return RENDER_RENDERED;
+            case EDGE:
+                return RENDER_RENDERED_EDGE;
+            case OUTSIDE:
+                return DELETE_OUT_OF_BOUNDS;
+            default:
+                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        }
+    });
 
     Registry<TileState> REGISTRY = new Registry<>(
             UNKNOWN,
@@ -93,11 +113,16 @@ public interface TileState extends Keyed, TileActionResolver {
             this.key = key;
             this.resolver = (changed, bounds) -> {
                 if (!changed) return noActionThisNextState();
-                return switch (bounds) {
-                    case INSIDE -> RENDER_RENDERED;
-                    case EDGE -> RENDER_RENDERED_EDGE;
-                    case OUTSIDE -> DELETE_OUT_OF_BOUNDS;
-                };
+                switch (bounds) {
+                    case INSIDE:
+                        return RENDER_RENDERED;
+                    case EDGE:
+                        return RENDER_RENDERED_EDGE;
+                    case OUTSIDE:
+                        return DELETE_OUT_OF_BOUNDS;
+                    default:
+                        throw new IllegalStateException("Unexpected bounds: " + bounds);
+                }
             };
         }
 

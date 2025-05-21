@@ -1,0 +1,7 @@
+Начало сборки: 21.05.2025 19:50:17,82 
+Используем Java: 
+openjdk version "1.8.0_422"
+OpenJDK Runtime Environment (Temurin)(build 1.8.0_422-b05)
+OpenJDK 64-Bit Server VM (Temurin)(build 25.422-b05, mixed mode)
+Создаем упрощенный buildSrc... 
+Создаем структуру для bukkit-legacy... 

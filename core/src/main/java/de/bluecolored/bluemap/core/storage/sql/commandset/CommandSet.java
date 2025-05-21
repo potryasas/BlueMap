@@ -77,6 +77,35 @@ public interface CommandSet extends Closeable {
 
     boolean isClosed();
 
-    record TilePosition (int x, int z) {}
+    class TilePosition {
+        private final int x;
+        private final int z;
+
+        public TilePosition(int x, int z) {
+            this.x = x;
+            this.z = z;
+        }
+
+        public int x() {
+            return x;
+        }
+
+        public int z() {
+            return z;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            TilePosition that = (TilePosition) o;
+            return x == that.x && z == that.z;
+        }
+
+        @Override
+        public int hashCode() {
+            return 31 * x + z;
+        }
+    }
 
 }

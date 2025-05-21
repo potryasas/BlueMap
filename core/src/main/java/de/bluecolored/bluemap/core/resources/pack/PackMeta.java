@@ -38,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 @Getter
@@ -67,7 +68,7 @@ public class PackMeta {
 
     @Getter
     public static class Features {
-        private Collection<Key> enabled = Set.of();
+        private Collection<Key> enabled = Collections.emptySet();
     }
 
     @Getter
@@ -90,12 +91,13 @@ public class PackMeta {
 
             @Override
             public VersionRange read(JsonReader in, Gson gson) throws IOException {
-                return switch (in.peek()) {
-                    case NUMBER -> {
+                JsonToken token = in.peek();
+                switch (token) {
+                    case NUMBER: {
                         int version = in.nextInt();
-                        yield new VersionRange(version, version);
+                        return new VersionRange(version, version);
                     }
-                    case BEGIN_ARRAY -> {
+                    case BEGIN_ARRAY: {
                         in.beginArray();
                         VersionRange range = new VersionRange(
                                 in.nextInt(),
@@ -106,12 +108,14 @@ public class PackMeta {
                             in.skipValue();
                         in.endArray();
 
-                        yield range;
+                        return range;
                     }
-                    default -> gson
-                            .getDelegateAdapter(this, TypeToken.get(VersionRange.class))
-                            .read(in);
-                };
+                    default: {
+                        return gson
+                                .getDelegateAdapter(this, TypeToken.get(VersionRange.class))
+                                .read(in);
+                    }
+                }
             }
 
         }

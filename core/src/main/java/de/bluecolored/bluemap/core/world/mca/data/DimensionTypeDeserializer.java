@@ -29,29 +29,26 @@ import de.bluecolored.bluemap.core.resources.pack.datapack.DataPack;
 import de.bluecolored.bluemap.core.resources.pack.datapack.dimension.DimensionTypeData;
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.world.DimensionType;
-import de.bluecolored.bluenbt.*;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
 
-import java.io.IOException;
+public class DimensionTypeDeserializer implements NBTAdapter<DimensionType> {
 
-public class DimensionTypeDeserializer implements TypeDeserializer<DimensionType> {
-
-    private final TypeDeserializer<DimensionTypeData> defaultTypeDeserializer;
+    private final NBTAdapter<DimensionTypeData> defaultTypeDeserializer;
     private final DataPack dataPack;
 
-    public DimensionTypeDeserializer(BlueNBT blueNBT, DataPack dataPack) {
-        this.defaultTypeDeserializer = blueNBT.getTypeDeserializer(TypeToken.of(DimensionTypeData.class));
+    public DimensionTypeDeserializer(NBTFileWrapper nbt, DataPack dataPack) {
+        this.defaultTypeDeserializer = nbt.getAdapter(DimensionTypeData.class);
         this.dataPack = dataPack;
     }
 
     @Override
-    public DimensionType read(NBTReader reader) throws IOException {
+    public DimensionType read(NBTCompound compound) {
+        if (compound.hasKey("")) {
+            return defaultTypeDeserializer.read(compound);
+        }
 
-        // try load directly
-        if (reader.peek() == TagType.COMPOUND)
-            return defaultTypeDeserializer.read(reader);
-
-        // load from datapack
-        Key key = Key.parse(reader.nextString(), Key.MINECRAFT_NAMESPACE);
+        Key key = Key.parse(compound.getString(""), Key.MINECRAFT_NAMESPACE);
 
         DimensionType dimensionType = dataPack.getDimensionType(key);
         if (dimensionType == null) {
@@ -62,4 +59,8 @@ public class DimensionTypeDeserializer implements TypeDeserializer<DimensionType
         return dimensionType;
     }
 
+    @Override
+    public void write(DimensionType value, NBTCompound compound) {
+        compound.setString("", value.getFormatted());
+    }
 }

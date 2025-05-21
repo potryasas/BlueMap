@@ -24,31 +24,33 @@
  */
 package de.bluecolored.bluemap.core.world.mca.data;
 
-import de.bluecolored.bluenbt.NBTReader;
-import de.bluecolored.bluenbt.TagType;
-import de.bluecolored.bluenbt.TypeDeserializer;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTList;
 
-import java.io.IOException;
 import java.util.UUID;
 
-public class UUIDDeserializer implements TypeDeserializer<UUID> {
+public class UUIDDeserializer implements NBTAdapter<UUID> {
 
     @Override
-    public UUID read(NBTReader reader) throws IOException {
-        TagType tagType = reader.peek();
+    public UUID read(NBTCompound compound) {
+        if (compound.hasKey("")) {
+            return UUID.fromString(compound.getString(""));
+        }
 
-        if (tagType == TagType.STRING)
-            return UUID.fromString(reader.nextString());
-
-        if (tagType == TagType.INT_ARRAY) {
-            int[] ints = reader.nextIntArray();
-            if (ints.length != 4) throw new IOException("Unexpected number of UUID-ints, expected 4, got " + ints.length);
+        if (compound.hasKey("UUID")) {
+            int[] ints = compound.getIntArray("UUID");
+            if (ints.length != 4) throw new IllegalArgumentException("Unexpected number of UUID-ints, expected 4, got " + ints.length);
             return new UUID((long) ints[0] << 32 | ints[1], (long) ints[2] << 32 | ints[3]);
         }
 
-        long[] longs = reader.nextLongArray();
-        if (longs.length != 2) throw new IOException("Unexpected number of UUID-longs, expected 2, got " + longs.length);
+        long[] longs = compound.getLongArray("UUID");
+        if (longs.length != 2) throw new IllegalArgumentException("Unexpected number of UUID-longs, expected 2, got " + longs.length);
         return new UUID(longs[0], longs[1]);
     }
 
+    @Override
+    public void write(UUID value, NBTCompound compound) {
+        compound.setString("", value.toString());
+    }
 }

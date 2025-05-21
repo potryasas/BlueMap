@@ -25,16 +25,20 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import de.bluecolored.bluemap.core.util.Key;
-import de.bluecolored.bluenbt.NBTReader;
-import de.bluecolored.bluenbt.TypeDeserializer;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
 
 import java.io.IOException;
 
-public class KeyDeserializer implements TypeDeserializer<Key> {
+public class KeyDeserializer implements NBTAdapter<Key> {
 
     @Override
-    public Key read(NBTReader reader) throws IOException {
-        return Key.parse(reader.nextString(), Key.MINECRAFT_NAMESPACE);
+    public Key read(NBTCompound compound) throws IOException {
+        return Key.parse(compound.getString("key"), Key.MINECRAFT_NAMESPACE);
     }
 
+    @Override
+    public void write(Key value, NBTCompound compound) throws IOException {
+        compound.setString("key", value.getFormatted());
+    }
 }

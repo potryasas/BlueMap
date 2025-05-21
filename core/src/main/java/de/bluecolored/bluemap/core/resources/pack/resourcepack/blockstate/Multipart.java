@@ -87,7 +87,7 @@ public class Multipart {
             in.endArray();
 
             Multipart result = new Multipart();
-            result.parts = parts.toArray(VariantSet[]::new);
+            result.parts = parts.toArray(new VariantSet[0]);
             return result;
         }
 
@@ -97,8 +97,10 @@ public class Multipart {
             while (in.hasNext()) {
                 String name = in.nextName();
                 switch (name) {
-                    case JSON_COMMENT -> in.skipValue();
-                    case "OR" -> {
+                    case JSON_COMMENT:
+                        in.skipValue();
+                        break;
+                    case "OR": {
                         List<BlockStateCondition> orConditions = new ArrayList<>();
                         in.beginArray();
                         while (in.hasNext()) {
@@ -107,8 +109,9 @@ public class Multipart {
                         in.endArray();
                         andConditions.add(
                                 BlockStateCondition.or(orConditions.toArray(new BlockStateCondition[0])));
+                        break;
                     }
-                    case "AND" -> {
+                    case "AND": {
                         List<BlockStateCondition> andArray = new ArrayList<>();
                         in.beginArray();
                         while (in.hasNext()) {
@@ -117,10 +120,12 @@ public class Multipart {
                         in.endArray();
                         andConditions.add(
                                 BlockStateCondition.and(andArray.toArray(new BlockStateCondition[0])));
+                        break;
                     }
-                    default -> {
+                    default: {
                         String[] values = nextStringOrBoolean(in).split("\\|");
                         andConditions.add(BlockStateCondition.property(name, values));
+                        break;
                     }
                 }
             }

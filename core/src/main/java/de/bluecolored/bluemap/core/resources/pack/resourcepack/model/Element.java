@@ -69,20 +69,28 @@ public class Element {
     }
 
     private Vector4f calculateDefaultUV(Direction face) {
-        return switch (face) {
-            case DOWN, UP -> new Vector4f(
-                    from.getX(), from.getZ(),
-                    to.getX(), to.getZ()
-            );
-            case NORTH, SOUTH -> new Vector4f(
-                    from.getX(), from.getY(),
-                    to.getX(), to.getY()
-            );
-            case WEST, EAST -> new Vector4f(
-                    from.getZ(), from.getY(),
-                    to.getZ(), to.getY()
-            );
-        };
+        switch (face) {
+            case DOWN:
+            case UP:
+                return new Vector4f(
+                        from.getX(), from.getZ(),
+                        to.getX(), to.getZ()
+                );
+            case NORTH:
+            case SOUTH:
+                return new Vector4f(
+                        from.getX(), from.getY(),
+                        to.getX(), to.getY()
+                );
+            case WEST:
+            case EAST:
+                return new Vector4f(
+                        from.getZ(), from.getY(),
+                        to.getZ(), to.getY()
+                );
+            default:
+                throw new IllegalStateException("Unexpected face: " + face);
+        }
     }
 
     public Element copy() {
@@ -98,7 +106,7 @@ public class Element {
     }
 
     public void optimize(ResourcePack resourcePack) {
-        for (var face : faces.values())  {
+        for (Face face : faces.values())  {
             face.optimize(resourcePack);
         }
     }

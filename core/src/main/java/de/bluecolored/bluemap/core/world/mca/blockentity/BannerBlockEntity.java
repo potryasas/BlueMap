@@ -24,13 +24,14 @@
  */
 package de.bluecolored.bluemap.core.world.mca.blockentity;
 
-import de.bluecolored.bluenbt.NBTName;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -40,21 +41,54 @@ import java.util.Map;
 @SuppressWarnings("FieldMayBeFinal")
 public class BannerBlockEntity extends MCABlockEntity {
 
-    @NBTName("CustomName")
     @Nullable String customName;
+    List<Pattern> patterns = Collections.emptyList();
 
-    List<Pattern> patterns = List.of();
+    @Override
+    public void readFromNBT(NBTCompound compound) {
+        super.readFromNBT(compound);
+        if (compound.hasKey("CustomName")) {
+            this.customName = compound.getString("CustomName");
+        }
+        if (compound.hasKey("Patterns")) {
+            List<Pattern> patterns = new ArrayList<>();
+            NBTCompound patternsCompound = compound.getCompound("Patterns");
+            for (String key : patternsCompound.getKeys()) {
+                NBTCompound patternCompound = patternsCompound.getCompound(key);
+                Pattern pattern = new Pattern();
+                pattern.pattern = patternCompound.getString("Pattern");
+                pattern.color = patternCompound.getString("Color");
+                patterns.add(pattern);
+            }
+            this.patterns = patterns;
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTCompound compound) {
+        super.writeToNBT(compound);
+        if (customName != null) {
+            compound.setString("CustomName", customName);
+        }
+        if (!patterns.isEmpty()) {
+            NBTCompound patternsCompound = compound.getCompound("Patterns");
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+                NBTCompound patternCompound = patternsCompound.getCompound(String.valueOf(i));
+                patternCompound.setString("Pattern", pattern.pattern.toString());
+                patternCompound.setString("Color", pattern.color.toString());
+            }
+        }
+    }
 
     @Getter
     @EqualsAndHashCode
     @ToString
     @SuppressWarnings("FieldMayBeFinal")
     public static class Pattern {
-
         // TODO: proper pattern-data implementation
         Object pattern;
         Object color;
-
     }
 
     /*
@@ -63,5 +97,4 @@ public class BannerBlockEntity extends MCABlockEntity {
         RED, BLACK
     }
     */
-
 }

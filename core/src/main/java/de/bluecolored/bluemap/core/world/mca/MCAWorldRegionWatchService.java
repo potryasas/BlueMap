@@ -35,6 +35,7 @@ import java.nio.file.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class MCAWorldRegionWatchService implements WatchService<Vector2i> {
 
@@ -114,14 +115,15 @@ public class MCAWorldRegionWatchService implements WatchService<Vector2i> {
         try {
             return key.pollEvents().stream()
                     .map(event -> {
-                        if (event.context() instanceof Path path) {
+                        if (event.context() instanceof Path) {
+                            Path path = (Path) event.context();
                             return RegionType.regionForFileName(path.getFileName().toString());
                         } else {
                             return null;
                         }
                     })
                     .filter(Objects::nonNull)
-                    .toList();
+                    .collect(Collectors.toList());
         } finally {
             key.reset();
         }

@@ -24,26 +24,51 @@
  */
 package de.bluecolored.bluemap.core.world.mca.entity.chunk;
 
-import com.flowpowered.math.vector.Vector2i;
-import de.bluecolored.bluemap.core.world.Entity;
-import de.bluecolored.bluenbt.NBTName;
+import de.bluecolored.bluemap.core.world.mca.MCAWorld;
+import de.bluecolored.bluemap.core.world.mca.entity.MCAEntity;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class MCAEntityChunk {
 
-    private static final Entity[] EMPTY_ENTITIES = new Entity[0];
+    private final MCAWorld world;
+    private final Data data;
 
-    public static final MCAEntityChunk EMPTY_CHUNK = new MCAEntityChunk();
-    public static final MCAEntityChunk ERRORED_CHUNK = new MCAEntityChunk();
+    public MCAEntityChunk(MCAWorld world, Data data) {
+        this.world = world;
+        this.data = data;
+    }
 
-    @NBTName("Entities")
-    public Entity[] entities = EMPTY_ENTITIES;
+    @Getter
+    public static class Data {
+        private List<MCAEntity> entities = new ArrayList<>();
 
-    @NBTName("DataVersion")
-    public int dataVersion = -1;
+        public void readFromNBT(NBTCompound compound) {
+            if (compound.hasKey("Entities")) {
+                NBTCompound entitiesCompound = compound.getCompound("Entities");
+                this.entities = new ArrayList<>();
+                for (String key : entitiesCompound.getKeys()) {
+                    NBTCompound entityCompound = entitiesCompound.getCompound(key);
+                    MCAEntity entity = new MCAEntity();
+                    entity.readFromNBT(entityCompound);
+                    entities.add(entity);
+                }
+            }
+        }
 
-    @NBTName("Position")
-    public Vector2i position = Vector2i.ZERO;
+        public void writeToNBT(NBTCompound compound) {
+            if (entities != null) {
+                NBTCompound entitiesCompound = compound.getCompound("Entities");
+                for (int i = 0; i < entities.size(); i++) {
+                    NBTCompound entityCompound = entitiesCompound.getCompound(String.valueOf(i));
+                    entities.get(i).writeToNBT(entityCompound);
+                }
+            }
+        }
+    }
 
 }

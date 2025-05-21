@@ -25,15 +25,19 @@
 package de.bluecolored.bluemap.core.world;
 
 import de.bluecolored.bluemap.core.util.Key;
+import lombok.Getter;
 
-public interface BlockEntity {
+@Getter
+public class BlockEntity {
+    protected Key id;
+    protected int x;
+    protected int y;
+    protected int z;
 
-    Key getId();
-
-    int getX();
-    int getY();
-    int getZ();
-
-    boolean isKeepPacked();
-
+    public BlockEntity(String id, int x, int y, int z) {
+        this.id = Key.parse(id);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 }

@@ -25,59 +25,43 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import com.flowpowered.math.vector.Vector3d;
-import de.bluecolored.bluenbt.NBTReader;
-import de.bluecolored.bluenbt.TagType;
-import de.bluecolored.bluenbt.TypeDeserializer;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTList;
 
-import java.io.IOException;
-
-public class Vector3dDeserializer implements TypeDeserializer<Vector3d> {
+public class Vector3dDeserializer implements NBTAdapter<Vector3d> {
 
     @Override
-    public Vector3d read(NBTReader reader) throws IOException {
-        TagType tag = reader.peek();
+    public Vector3d read(NBTCompound compound) {
+        if (compound.hasKey("")) {
+            long[] values = compound.getLongArray("");
+            if (values.length != 3) throw new IllegalArgumentException("Unexpected array length: " + values.length);
+            return new Vector3d(values[0], values[1], values[2]);
+        }
 
-        return switch (tag) {
+        if (compound.hasKey("x") || compound.hasKey("y") || compound.hasKey("z")) {
+            double x = compound.getDouble("x");
+            double y = compound.getDouble("y");
+            double z = compound.getDouble("z");
+            return new Vector3d(x, y, z);
+        }
 
-            case INT_ARRAY, LONG_ARRAY, BYTE_ARRAY -> {
-                long[] values = reader.nextArrayAsLongArray();
-                if (values.length != 3) throw new IllegalStateException("Unexpected array length: " + values.length);
-                yield new Vector3d(
-                        values[0],
-                        values[1],
-                        values[2]
-                );
-            }
+        NBTList list = compound.getList("", NBTList.class);
+        if (list != null) {
+            return new Vector3d(
+                list.getDouble(0),
+                list.getDouble(1),
+                list.getDouble(2)
+            );
+        }
 
-            case LIST -> {
-                reader.beginList();
-                Vector3d value = new Vector3d(
-                        reader.nextDouble(),
-                        reader.nextDouble(),
-                        reader.nextDouble()
-                );
-                reader.endList();
-                yield value;
-            }
-
-            case COMPOUND -> {
-                double x = 0, y = 0, z = 0;
-                reader.beginCompound();
-                while (reader.peek() != TagType.END) {
-                    switch (reader.name()) {
-                        case "x": x = reader.nextDouble(); break;
-                        case "y": y = reader.nextDouble(); break;
-                        case "z": z = reader.nextDouble(); break;
-                        default: reader.skip();
-                    }
-                }
-                reader.endCompound();
-                yield new Vector3d(x, y, z);
-            }
-
-            case null, default -> throw new IllegalStateException("Unexpected tag-type: " + tag);
-
-        };
+        throw new IllegalArgumentException("Could not read Vector3d from NBT");
     }
 
+    @Override
+    public void write(Vector3d value, NBTCompound compound) {
+        compound.setDouble("x", value.getX());
+        compound.setDouble("y", value.getY());
+        compound.setDouble("z", value.getZ());
+    }
 }

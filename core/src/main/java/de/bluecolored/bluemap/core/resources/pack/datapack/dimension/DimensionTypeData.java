@@ -24,38 +24,69 @@
  */
 package de.bluecolored.bluemap.core.resources.pack.datapack.dimension;
 
-import de.bluecolored.bluemap.core.world.DimensionType;
-import de.bluecolored.bluenbt.NBTName;
-import lombok.*;
-import lombok.experimental.Accessors;
+import de.tr7zw.nbtapi.NBTCompound;
+import lombok.Data;
 
 @Data
-public class DimensionTypeData implements DimensionType {
+public class DimensionTypeData {
 
-    @NBTName("natural")
     private boolean natural;
-
-    @NBTName("has_skylight")
-    @Accessors(fluent = true)
     private boolean hasSkylight;
-
-    @NBTName("has_ceiling")
-    @Accessors(fluent = true)
     private boolean hasCeiling;
-
-    @NBTName("ambient_light")
     private float ambientLight;
-
-    @NBTName("min_y")
     private int minY;
-
-    @NBTName("height")
     private int height;
-
-    @NBTName("fixed_time")
     private Long fixedTime;
-
-    @NBTName("coordinate_scale")
     private double coordinateScale;
 
+    public DimensionTypeData() {
+        this.natural = false;
+        this.hasSkylight = false;
+        this.hasCeiling = false;
+        this.ambientLight = 0.0f;
+        this.minY = 0;
+        this.height = 256;
+        this.fixedTime = null;
+        this.coordinateScale = 1.0;
+    }
+
+    public void readFromNBT(NBTCompound compound) {
+        if (compound.hasKey("natural")) {
+            this.natural = compound.getBoolean("natural");
+        }
+        if (compound.hasKey("has_skylight")) {
+            this.hasSkylight = compound.getBoolean("has_skylight");
+        }
+        if (compound.hasKey("has_ceiling")) {
+            this.hasCeiling = compound.getBoolean("has_ceiling");
+        }
+        if (compound.hasKey("ambient_light")) {
+            this.ambientLight = compound.getFloat("ambient_light");
+        }
+        if (compound.hasKey("min_y")) {
+            this.minY = compound.getInteger("min_y");
+        }
+        if (compound.hasKey("height")) {
+            this.height = compound.getInteger("height");
+        }
+        if (compound.hasKey("fixed_time")) {
+            this.fixedTime = compound.getLong("fixed_time");
+        }
+        if (compound.hasKey("coordinate_scale")) {
+            this.coordinateScale = compound.getDouble("coordinate_scale");
+        }
+    }
+
+    public void writeToNBT(NBTCompound compound) {
+        compound.setBoolean("natural", natural);
+        compound.setBoolean("has_skylight", hasSkylight);
+        compound.setBoolean("has_ceiling", hasCeiling);
+        compound.setFloat("ambient_light", ambientLight);
+        compound.setInteger("min_y", minY);
+        compound.setInteger("height", height);
+        if (fixedTime != null) {
+            compound.setLong("fixed_time", fixedTime);
+        }
+        compound.setDouble("coordinate_scale", coordinateScale);
+    }
 }

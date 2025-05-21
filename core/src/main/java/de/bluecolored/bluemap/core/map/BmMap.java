@@ -241,8 +241,10 @@ public class BmMap {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof BmMap that)
+        if (obj instanceof BmMap) {
+            BmMap that = (BmMap) obj;
             return this.id.equals(that.id);
+        }
         return false;
     }
 

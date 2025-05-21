@@ -25,40 +25,41 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import de.bluecolored.bluemap.core.world.BlockState;
-import de.bluecolored.bluenbt.NBTReader;
-import de.bluecolored.bluenbt.TypeDeserializer;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class BlockStateDeserializer implements TypeDeserializer<BlockState> {
+public class BlockStateDeserializer implements NBTAdapter<BlockState> {
 
     @Override
-    public BlockState read(NBTReader reader) throws IOException {
-        reader.beginCompound();
+    public BlockState read(NBTCompound compound) {
+        String id = compound.getString("Name");
+        if (id == null) throw new IllegalArgumentException("Invalid BlockState, Name is missing!");
 
-        String id = null;
-        Map<String, String> properties = null;
-
-        while (reader.hasNext()) {
-            switch (reader.name()) {
-                case "Name" : id = reader.nextString(); break;
-                case "Properties" :
-                    properties = new LinkedHashMap<>();
-                    reader.beginCompound();
-                    while (reader.hasNext())
-                        properties.put(reader.name(), reader.nextString());
-                    reader.endCompound();
-                    break;
-                default : reader.skip();
-            }
+        NBTCompound propertiesCompound = compound.getCompound("Properties");
+        if (propertiesCompound == null) {
+            return new BlockState(id);
         }
 
-        reader.endCompound();
+        Map<String, String> properties = new LinkedHashMap<>();
+        for (String key : propertiesCompound.getKeys()) {
+            properties.put(key, propertiesCompound.getString(key));
+        }
 
-        if (id == null) throw new IOException("Invalid BlockState, Name is missing!");
-        return properties == null ? new BlockState(id) : new BlockState(id, properties);
+        return new BlockState(id, properties);
     }
 
+    @Override
+    public void write(BlockState value, NBTCompound compound) {
+        compound.setString("Name", value.getId());
+        
+        if (!value.getProperties().isEmpty()) {
+            NBTCompound propertiesCompound = compound.getCompound("Properties");
+            for (Map.Entry<String, String> entry : value.getProperties().entrySet()) {
+                propertiesCompound.setString(entry.getKey(), entry.getValue());
+            }
+        }
+    }
 }

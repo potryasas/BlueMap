@@ -74,11 +74,11 @@ public class Key implements Keyed {
         return this;
     }
 
-    @SuppressWarnings("StringEquality")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Key that)) return false;
+        if (!(o instanceof Key)) return false;
+        Key that = (Key) o;
         if (!that.canEqual(this)) return false;
         return formatted == that.formatted;
     }

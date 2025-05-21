@@ -149,9 +149,12 @@ public class MinecraftVersion {
                     );
                     OutputStream out = Files.newOutputStream(unverifiedFile)
             ) {
-
                 // download
-                in.transferTo(out);
+                byte[] buffer = new byte[8192];
+                int read;
+                while ((read = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, read);
+                }
 
                 // verify sha-1
                 if (!Arrays.equals(
@@ -237,7 +240,8 @@ public class MinecraftVersion {
             JsonObject object = gson.fromJson(in, JsonObject.class);
 
             JsonElement packVersion = object.get("pack_version");
-            if (packVersion instanceof JsonObject packVersionObject) {
+            if (packVersion instanceof JsonObject) {
+                JsonObject packVersionObject = (JsonObject) packVersion;
                 return new VersionInfo(
                         packVersionObject.get("resource").getAsInt(),
                         packVersionObject.get("data").getAsInt()

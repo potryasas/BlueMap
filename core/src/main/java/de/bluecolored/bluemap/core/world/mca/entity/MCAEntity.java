@@ -28,7 +28,7 @@ import com.flowpowered.math.vector.Vector2f;
 import com.flowpowered.math.vector.Vector3d;
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.world.Entity;
-import de.bluecolored.bluenbt.NBTName;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -42,11 +42,91 @@ import java.util.UUID;
 public class MCAEntity implements Entity {
 
     Key id;
-    @NBTName("UUID") UUID uuid;
-    @NBTName("CustomName") String customName;
-    @NBTName("CustomNameVisible") boolean customNameVisible;
-    @NBTName("Pos") Vector3d pos;
-    @NBTName("Motion") Vector3d motion;
-    @NBTName("Rotation") Vector2f rotation;
+    UUID uuid;
+    String customName;
+    boolean customNameVisible;
+    Vector3d pos;
+    Vector3d motion;
+    Vector2f rotation;
 
+    @Override
+    public Key getId() {
+        return id;
+    }
+
+    @Override
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    @Override
+    public String getCustomName() {
+        return customName;
+    }
+
+    @Override
+    public boolean isCustomNameVisible() {
+        return customNameVisible;
+    }
+
+    @Override
+    public Vector3d getPos() {
+        return pos;
+    }
+
+    @Override
+    public Vector3d getMotion() {
+        return motion;
+    }
+
+    @Override
+    public Vector2f getRotation() {
+        return rotation;
+    }
+
+    public void readFromNBT(NBTCompound compound) {
+        if (compound.hasKey("UUID")) {
+            this.uuid = UUID.fromString(compound.getString("UUID"));
+        }
+        if (compound.hasKey("CustomName")) {
+            this.customName = compound.getString("CustomName");
+        }
+        if (compound.hasKey("CustomNameVisible")) {
+            this.customNameVisible = compound.getBoolean("CustomNameVisible");
+        }
+        if (compound.hasKey("Pos")) {
+            NBTCompound pos = compound.getCompound("Pos");
+            this.pos = new Vector3d(pos.getDouble("X"), pos.getDouble("Y"), pos.getDouble("Z"));
+        }
+        if (compound.hasKey("Motion")) {
+            NBTCompound motion = compound.getCompound("Motion");
+            this.motion = new Vector3d(motion.getDouble("X"), motion.getDouble("Y"), motion.getDouble("Z"));
+        }
+        if (compound.hasKey("Rotation")) {
+            NBTCompound rotation = compound.getCompound("Rotation");
+            this.rotation = new Vector2f(rotation.getFloat("X"), rotation.getFloat("Y"));
+        }
+    }
+
+    public void writeToNBT(NBTCompound compound) {
+        compound.setString("UUID", uuid.toString());
+        if (customName != null) {
+            compound.setString("CustomName", customName);
+        }
+        compound.setBoolean("CustomNameVisible", customNameVisible);
+        
+        NBTCompound pos = compound.getCompound("Pos");
+        pos.setDouble("X", this.pos.getX());
+        pos.setDouble("Y", this.pos.getY());
+        pos.setDouble("Z", this.pos.getZ());
+
+        NBTCompound motion = compound.getCompound("Motion");
+        motion.setDouble("X", this.motion.getX());
+        motion.setDouble("Y", this.motion.getY());
+        motion.setDouble("Z", this.motion.getZ());
+
+        NBTCompound rotation = compound.getCompound("Rotation");
+        rotation.setFloat("X", this.rotation.getX());
+        rotation.setFloat("Y", this.rotation.getY());
+    }
 }

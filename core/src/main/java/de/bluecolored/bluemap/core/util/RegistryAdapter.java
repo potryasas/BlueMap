@@ -25,24 +25,22 @@
 package de.bluecolored.bluemap.core.util;
 
 import de.bluecolored.bluemap.core.logger.Logger;
-import de.bluecolored.bluenbt.NBTReader;
-import de.bluecolored.bluenbt.NBTWriter;
-import de.bluecolored.bluenbt.TagType;
-import de.bluecolored.bluenbt.TypeAdapter;
+import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
 @RequiredArgsConstructor
-public class RegistryAdapter<T extends Keyed> implements TypeAdapter<T> {
+public class RegistryAdapter<T extends Keyed> implements NBTAdapter<T> {
 
     private final Registry<T> registry;
     private final String defaultNamespace;
     private final T fallback;
 
     @Override
-    public T read(NBTReader reader) throws IOException {
-        Key key = Key.parse(reader.nextString(), defaultNamespace);
+    public T read(NBTCompound compound) throws IOException {
+        Key key = Key.parse(compound.getString("value"), defaultNamespace);
         T value = registry.get(key);
         if (value != null) return value;
 
@@ -51,13 +49,7 @@ public class RegistryAdapter<T extends Keyed> implements TypeAdapter<T> {
     }
 
     @Override
-    public void write(T value, NBTWriter writer) throws IOException {
-        writer.value(value.getKey().getFormatted());
+    public void write(T value, NBTCompound compound) throws IOException {
+        compound.setString("value", value.getKey().getFormatted());
     }
-
-    @Override
-    public TagType type() {
-        return TagType.STRING;
-    }
-
 }

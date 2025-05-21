@@ -34,16 +34,18 @@ import de.bluecolored.bluemap.core.util.Grid;
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.util.WatchService;
 import de.bluecolored.bluemap.core.world.*;
-import de.bluecolored.bluemap.core.world.mca.chunk.MCAChunkLoader;
+import de.bluecolored.bluemap.core.world.mca.chunk.Chunk;
+import de.bluecolored.bluemap.core.world.mca.chunk.Chunk_1_18;
 import de.bluecolored.bluemap.core.world.mca.data.DimensionTypeDeserializer;
 import de.bluecolored.bluemap.core.world.mca.data.LevelData;
 import de.bluecolored.bluemap.core.world.mca.entity.chunk.MCAEntityChunk;
 import de.bluecolored.bluemap.core.world.mca.entity.chunk.MCAEntityChunkLoader;
-import de.bluecolored.bluenbt.BlueNBT;
-import de.bluecolored.bluenbt.TypeToken;
+import de.tr7zw.nbtapi.NBTContainer;
+import de.tr7zw.nbtapi.NBTFile;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -51,16 +53,20 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
 
 @Getter
 @ToString
 public class MCAWorld implements World {
 
     private final String id;
-    private final Path worldFolder;
+    private final File worldFolder;
     private final Key dimension;
     private final DataPack dataPack;
     private final LevelData levelData;
+    private final Map<Long, Chunk> chunks;
+    private final Map<Long, Chunk> entities;
 
     private final DimensionType dimensionType;
     private final Vector3i spawnPoint;
@@ -69,12 +75,26 @@ public class MCAWorld implements World {
     private final ChunkGrid<Chunk> blockChunkGrid;
     private final ChunkGrid<MCAEntityChunk> entityChunkGrid;
 
-    private MCAWorld(Path worldFolder, Key dimension, DataPack dataPack, LevelData levelData) {
+    public MCAWorld(File worldFolder, Key dimension, DataPack dataPack) throws IOException {
         this.id = World.id(worldFolder, dimension);
         this.worldFolder = worldFolder;
         this.dimension = dimension;
         this.dataPack = dataPack;
-        this.levelData = levelData;
+        this.chunks = new ConcurrentHashMap<>();
+        this.entities = new ConcurrentHashMap<>();
+
+        // Load level.dat
+        File levelFile = new File(worldFolder, "level.dat");
+        if (!levelFile.exists()) {
+            throw new IOException("World folder does not contain a level.dat file!");
+        }
+
+        try {
+            NBTFile nbtFile = new NBTFile(levelFile);
+            this.levelData = new LevelData(nbtFile);
+        } catch (IOException e) {
+            throw new IOException("Failed to read level.dat!", e);
+        }
 
         LevelData.Dimension dimensionData = levelData.getData().getWorldGenSettings().getDimensions().get(dimension.getFormatted());
         if (dimensionData == null) {
@@ -98,7 +118,6 @@ public class MCAWorld implements World {
 
         this.blockChunkGrid = new ChunkGrid<>(new MCAChunkLoader(this), dimensionFolder.resolve("region"));
         this.entityChunkGrid = new ChunkGrid<>(new MCAEntityChunkLoader(), dimensionFolder.resolve("entities"));
-
     }
 
     @Override
@@ -123,7 +142,15 @@ public class MCAWorld implements World {
 
     @Override
     public Chunk getChunk(int x, int z) {
-        return blockChunkGrid.getChunk(x, z);
+        long key = ((long) x << 32) | (z & 0xFFFFFFFFL);
+        return chunks.computeIfAbsent(key, k -> {
+            try {
+                return loadChunk(x, z);
+            } catch (IOException e) {
+                Logger.global.logError("Failed to load chunk at " + x + "," + z, e);
+                return null;
+            }
+        });
     }
 
     @Override
@@ -185,18 +212,48 @@ public class MCAWorld implements World {
         }
     }
 
-    public static MCAWorld load(Path worldFolder, Key dimension, DataPack dataPack) throws IOException, InterruptedException {
+    @Override
+    public BlockState getBlockState(int x, int y, int z) {
+        Chunk chunk = getChunkAtBlock(x, z);
+        if (chunk == null) return BlockState.AIR;
+        return chunk.getBlockState(x, y, z);
+    }
 
-        // load level.dat
-        Path levelFile = worldFolder.resolve("level.dat");
-        BlueNBT blueNBT = createBlueNBTForDataPack(dataPack);
-        LevelData levelData;
-        try (InputStream levelFileIn = Compression.GZIP.decompress(Files.newInputStream(levelFile))) {
-            levelData = blueNBT.read(levelFileIn, LevelData.class);
+    private Chunk loadChunk(int x, int z) throws IOException {
+        File regionFile = MCAUtil.getRegionFile(worldFolder, x, z);
+        if (!regionFile.exists()) return null;
+
+        NBTFile nbtFile = new NBTFile(regionFile);
+        return new Chunk_1_18(this, x, z, nbtFile);
+    }
+
+    public void load() throws IOException {
+        // Load all chunks in the world
+        File regionFolder = MCAUtil.getRegionFolder(worldFolder, dimension);
+        if (!regionFolder.exists()) return;
+
+        File[] regionFiles = regionFolder.listFiles((dir, name) -> name.endsWith(".mca"));
+        if (regionFiles == null) return;
+
+        for (File regionFile : regionFiles) {
+            try {
+                NBTFile nbtFile = new NBTFile(regionFile);
+                String[] coords = regionFile.getName().split("\\.");
+                int regionX = Integer.parseInt(coords[1]);
+                int regionZ = Integer.parseInt(coords[2]);
+
+                for (int x = 0; x < 32; x++) {
+                    for (int z = 0; z < 32; z++) {
+                        int chunkX = (regionX << 5) + x;
+                        int chunkZ = (regionZ << 5) + z;
+                        long key = ((long) chunkX << 32) | (chunkZ & 0xFFFFFFFFL);
+                        chunks.put(key, new Chunk_1_18(this, chunkX, chunkZ, nbtFile));
+                    }
+                }
+            } catch (IOException e) {
+                Logger.global.logError("Failed to load region file: " + regionFile.getName(), e);
+            }
         }
-
-        // create world
-        return new MCAWorld(worldFolder, dimension, dataPack, levelData);
     }
 
     public static Path resolveDimensionFolder(Path worldFolder, Key dimension) {
@@ -204,12 +261,6 @@ public class MCAWorld implements World {
         if (DataPack.DIMENSION_THE_NETHER.equals(dimension)) return worldFolder.resolve("DIM-1");
         if (DataPack.DIMENSION_THE_END.equals(dimension)) return worldFolder.resolve("DIM1");
         return worldFolder.resolve("dimensions").resolve(dimension.getNamespace()).resolve(dimension.getValue());
-    }
-
-    private static BlueNBT createBlueNBTForDataPack(DataPack dataPack) {
-        BlueNBT blueNBT = MCAUtil.addCommonNbtSettings(new BlueNBT());
-        blueNBT.register(TypeToken.of(DimensionType.class), new DimensionTypeDeserializer(blueNBT, dataPack));
-        return blueNBT;
     }
 
 }
