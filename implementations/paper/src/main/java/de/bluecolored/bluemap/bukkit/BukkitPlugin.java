@@ -52,6 +52,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -211,7 +212,7 @@ public class BukkitPlugin extends JavaPlugin implements Server, Listener {
 
     @Override
     public Optional<Path> getModsFolder() {
-        return Optional.of(Path.of("mods")); // in case this is a Bukkit/Forge hybrid
+        return Optional.of(Paths.get("mods")); // in case this is a Bukkit/Forge hybrid
     }
 
     public Plugin getPlugin() {

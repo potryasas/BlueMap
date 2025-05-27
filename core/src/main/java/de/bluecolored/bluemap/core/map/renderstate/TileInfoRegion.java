@@ -29,7 +29,6 @@ import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +42,7 @@ import java.util.List;
 import static de.bluecolored.bluemap.core.map.renderstate.MapTileState.SHIFT;
 
 @Data
-public class TileInfoRegion {
+public class TileInfoRegion implements CellStorage.Cell {
 
     private static final int REGION_LENGTH = 1 << SHIFT;
     private static final int REGION_MASK = REGION_LENGTH - 1;
@@ -52,7 +51,6 @@ public class TileInfoRegion {
     private int[] lastRenderTimes;
     private TileState[] tileStates;
 
-    @Getter
     private transient boolean modified;
 
     private TileInfo[] tileInfos;
@@ -66,6 +64,17 @@ public class TileInfoRegion {
         }
     }
 
+    public TileInfo get(int x, int z) {
+        return getTileInfo(x, z);
+    }
+
+    public TileInfo set(int x, int z, TileInfo info) {
+        TileInfo old = getTileInfo(x, z);
+        setTileInfo(x, z, info);
+        modified = true;
+        return old;
+    }
+
     public void readFromNBT(NBTCompound compound) {
         if (compound.hasKey("last-render-times")) {
             this.lastRenderTimes = compound.getIntArray("last-render-times");
@@ -76,7 +85,7 @@ public class TileInfoRegion {
             for (String key : statesCompound.getKeys()) {
                 states.add(TileState.REGISTRY.get(Key.parse(key)));
             }
-            this.tileStates = states.toArray(new TileState[0]);
+            this.tileStates = states.toArray(new TileState[states.size()]);
         }
     }
 
@@ -89,11 +98,12 @@ public class TileInfoRegion {
     }
 
     public TileInfo getTileInfo(int x, int z) {
-        return tileInfos[x + z * REGION_LENGTH];
+        return tileInfos[index(x, z)];
     }
 
     public void setTileInfo(int x, int z, TileInfo tileInfo) {
-        tileInfos[x + z * REGION_LENGTH] = tileInfo;
+        tileInfos[index(x, z)] = tileInfo;
+        modified = true;
     }
 
     int findLatestRenderTime() {
@@ -106,7 +116,14 @@ public class TileInfoRegion {
     }
 
     private static int index(int x, int z) {
-        return (z & REGION_MASK) << SHIFT | (x & REGION_MASK);
+        int zPart = (z & REGION_MASK) * REGION_LENGTH;
+        int xPart = (x & REGION_MASK);
+        return zPart + xPart;
+    }
+
+    @Override
+    public boolean isModified() {
+        return modified;
     }
 
     @Data
@@ -123,7 +140,11 @@ public class TileInfoRegion {
     }
 
     /**
-     * Only loads the palette-part from a TileState-file
+     * Only loads the palette-part from a TileState-file.
+     *
+     * @param in the input stream containing the TileState NBT data
+     * @return an array of {@link TileState} representing the palette loaded from the input stream
+     * @throws IOException if an I/O error occurs during reading or file operations
      */
     public static TileState[] loadPalette(InputStream in) throws IOException {
         File tempFile = File.createTempFile("bluemap", ".nbt");

@@ -1,0 +1,52 @@
+[
+  {
+    "resourcePath": {
+      "namespace": "bluemap",
+      "value": "missing"
+    },
+    "color": [0.5, 0.0, 0.5, 1.0],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAPklEQVR4Xu3MsQkAMAwDQe2/tFPnBB4gpLhG8MpkZpNkZ6AKZKAKZKAKZKAKZKAKZKAKZKAKWg0XD/UPnjg4MbX+EDdeTUwAAAAASUVORK5CYII=",
+    "animation": null
+  },
+  {
+    "resourcePath": {
+      "namespace": "minecraft",
+      "value": "block/stone"
+    },
+    "color": [0.6, 0.6, 0.6, 1.0],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0klEQVR4nI2TMQ6CMRRFX5K5i2sx7sENWIErYSWuhJVwBVbiBlgBK9FFuAJ3wApcgStgJa6EldhOQgKh9IeS/uT1/r97/+tgMiKitm3HlFKUUkoppZSSUsZKKRmGoYsxvjjnIk4pRZxzruu6McaYZVnGOecc954xxmKtXZVluczz/E8QBPdarVYyGAwySSl7juN8aK2H3vtFGIbPlNKnMeYD7z2klG+ttZAQYhJFUdz3/W/S+5JlWUZE1HXdI8/zAuMBAKSUz8aYpbU2rqrqI4qiN2NMJCFEo/gDwBf8F/4TZIqg5gAAAABJRU5ErkJggg==",
+    "animation": null
+  },
+  {
+    "resourcePath": {
+      "namespace": "minecraft", 
+      "value": "block/dirt"
+    },
+    "color": [0.55, 0.42, 0.30, 1.0],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvElEQVR4nJWTwQ3CMAhF38Hu4i3cw3uwgBexhFdhBVdwlXYEV2AF3KVb8AIskJKmtJH8JQg+/weDCSEE59xUa11475dSynnf973W+pFSujLGXuM4fp1zd+ccDrbbLkmSR9u2N2vtA2ut3XGcQwihtdaOzrnrOI5f7/2+7/s9pXQ+WrZtW5ZlecEEbU3TNAeyiMSqHKjRlFAaWJCyp1CzUCiS7hNfzVprcc69pJR+lFLfzrk7pfTStm1dliXUVLh8/YdvPm0Zt+4PNpwAAAAASUVORK5CYII=",
+    "animation": null
+  },
+  {
+    "resourcePath": {
+      "namespace": "minecraft",
+      "value": "block/grass_block_top"
+    },
+    "color": [0.48, 0.66, 0.24, 1.0],
+    "halfTransparent": false, 
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0klEQVR4nI2TMQ6CMRRFX5K5i2sx7sENWIErYSWuhJVwBVbiBlgBK9FFuAJ3wApcgStgJa6EldhOQgKh9IeS/uT1/r97/+tgMiKitm3HlFKUUkoppZSSUsZKKRmGoYsxvjjnIk4pRZxzruu6McaYZVnGOecc954xxmKtXZVluczz/E8QBPdarVYyGAwySSl7juN8aK2H3vtFGIbPlNKnMeYD7z2klG+ttZAQYhJFUdz3/W/S+5JlWUZE1HXdI8/zAuMBAKSUz8aYpbU2rqrqI4qiN2NMJCFEo/gDwBf8F/4TZIqg5gAAAABJRU5ErkJggg==",
+    "animation": null
+  },
+  {
+    "resourcePath": {
+      "namespace": "minecraft",
+      "value": "block/grass_block_side"
+    },
+    "color": [0.55, 0.42, 0.30, 1.0],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA2klEQVR4nI2TMQ6CQBBFX5Lci7fxNt6GG3AlrISVsBKugJW4AVbASlgJK2ElrISV2E5IAglh/4Qkm8z/M/NnZhGfEBG1bTumlKKUUpRSSilJKWOllAzD0MUY35xzEaeUIsa5rutGjDHL3sMf55zjzN16DRuICKm1HnrvF2EY7pVSH8aYT7z3kFK+OaKJGGOWVVUt8zxfBkGwb7Va2Wg0yiSl7DmO86G1Hnrv4yAInnVd11EUtSKiH7z31HXdI0mSAq2maZq+R4wxyzRNX4Zh6OI47gHx93Vdd0mSpCClbBT/A+AXOd/+ExdJSTYAAAAASUVORK5CYII=",
+    "animation": null
+  }
+] 

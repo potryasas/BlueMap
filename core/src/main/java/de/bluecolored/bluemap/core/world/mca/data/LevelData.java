@@ -76,6 +76,10 @@ public class LevelData {
     public static class Dimension {
         private final DimensionType type;
 
+        public Dimension() {
+            this.type = DimensionType.OVERWORLD; // Default value
+        }
+
         public Dimension(NBTCompound dim) {
             this.type = DimensionType.valueOf(dim.getString("type").toUpperCase());
         }

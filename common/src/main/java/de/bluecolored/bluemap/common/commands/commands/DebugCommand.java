@@ -27,8 +27,8 @@ package de.bluecolored.bluemap.common.commands.commands;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.BlueMapService;
 import de.bluecolored.bluemap.common.commands.*;
 import de.bluecolored.bluemap.common.config.BlueMapConfigManager;
@@ -48,18 +48,23 @@ import net.kyori.adventure.text.Component;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Instant;
 
 import static de.bluecolored.bluemap.common.commands.TextFormat.*;
 import static net.kyori.adventure.text.Component.text;
 
 @RequiredArgsConstructor
-@Command("debug")
 public class DebugCommand {
 
     private final Plugin plugin;
 
-    @Command("dump")
+    @Command("debug")
+    public Component debug(CommandSource source) {
+        return text("Use one of the debug subcommands").color(BASE_COLOR);
+    }
+
+    @Command("debug dump")
     @Permission("bluemap.debug.dump")
     @Unloaded
     public int dump(CommandSource source) {
@@ -67,7 +72,7 @@ public class DebugCommand {
             BlueMapService bluemap = plugin.getBlueMap();
             Path file = bluemap != null ?
                     bluemap.getConfig().getCoreConfig().getData().resolve("dump.json"):
-                    Path.of("dump.json");
+                    Paths.get("dump.json");
             StateDumper.global().dump(file);
 
             source.sendMessage(format("Dump \uD83D\uDCA9 created at: %",
@@ -112,7 +117,7 @@ public class DebugCommand {
                         text(z).color(HIGHLIGHT_COLOR)
                 )),
                 item("block", text(chunk.getBlockState(x, y, z).toString()).color(HIGHLIGHT_COLOR)
-                        .appendNewline()
+                        .append(Component.newline())
                         .append(details(BASE_COLOR,
                                 item("biome", chunk.getBiome(x, y, z).getKey().getFormatted()),
                                 item("block-light", lightData.getBlockLight()),
@@ -123,18 +128,16 @@ public class DebugCommand {
                         text(chunkPos.getX()).color(HIGHLIGHT_COLOR),
                         text(chunkPos.getY()).color(HIGHLIGHT_COLOR)
                         )
-                        .appendNewline()
+                        .append(Component.newline())
                         .append(details(BASE_COLOR, TextFormat.stripNulls(
                                 item("is generated", chunk.isGenerated()),
                                 item("has lightdata", chunk.hasLightData()),
-                                chunk instanceof MCAChunk mcaChunk ?
-                                        item("data-version", mcaChunk.getDataVersion()) :
-                                        null,
+                                formatChunk(chunk),
                                 item("inhabited-time", chunk.getInhabitedTime())
                         )))
                 ),
                 item("world", text(world.getId()).color(HIGHLIGHT_COLOR)
-                        .appendNewline()
+                        .append(Component.newline())
                         .append(details(BASE_COLOR,
                                 item("name", world.getName()),
                                 item("min-y", world.getDimensionType().getMinY()),
@@ -192,10 +195,10 @@ public class DebugCommand {
         Vector2i tilePos = map.getHiresModelManager().getTileGrid().getCell(blockPos);
 
         TileInfoRegion.TileInfo tileInfo = map.getMapTileState().get(tilePos.getX(), tilePos.getY());
-        int tileRenderTime = tileInfo.getRenderTime();
+        int tileRenderTime = (int) tileInfo.getRenderTime();
 
-        int lastChunkHash = map.getMapChunkState().get(chunkPos.getX(), chunkPos.getY());
-        int currentChunkHash = 0;
+        long lastChunkHash = map.getMapChunkState().get(chunkPos.getX(), chunkPos.getY());
+        long currentChunkHash = 0;
 
         class FindHashConsumer implements ChunkConsumer.ListOnly<Chunk> {
             public int timestamp = 0;
@@ -225,7 +228,7 @@ public class DebugCommand {
                                 text(x >> 4).color(HIGHLIGHT_COLOR),
                                 text(z >> 4).color(HIGHLIGHT_COLOR)
                         )
-                                .appendNewline()
+                                .append(Component.newline())
                                 .append(details(BASE_COLOR,
                                         item("current hash", currentChunkHash),
                                         item("last rendered", lastChunkHash)
@@ -235,7 +238,7 @@ public class DebugCommand {
                                 text(x >> 4).color(HIGHLIGHT_COLOR),
                                 text(z >> 4).color(HIGHLIGHT_COLOR)
                         )
-                                .appendNewline()
+                                .append(Component.newline())
                                 .append(details(BASE_COLOR, stripNulls(
                                         (tileRenderTime > 0) ?
                                                 item("rendered", durationFormat(Instant.ofEpochSecond(tileRenderTime)))
@@ -245,6 +248,15 @@ public class DebugCommand {
                 )
         ));
 
+    }
+
+    private Component formatChunk(Chunk chunk) {
+        if (chunk instanceof MCAChunk) {
+            MCAChunk mcaChunk = (MCAChunk) chunk;
+            return format("MCAChunk: % (% sections)", mcaChunk.getPosition(), mcaChunk.getSections().size());
+        } else {
+            return format("Chunk: %", chunk.getPosition());
+        }
     }
 
 }

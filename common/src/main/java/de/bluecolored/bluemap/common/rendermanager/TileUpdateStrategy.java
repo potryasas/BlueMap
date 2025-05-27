@@ -38,4 +38,15 @@ public interface TileUpdateStrategy extends Predicate<TileState> {
         return force ? FORCE_ALL : FORCE_NONE;
     }
 
+    /**
+     * Returns a string representation of this update strategy
+     * @return a string representation of this update strategy
+     */
+    default String getName() {
+        if (this == FORCE_ALL) return "FORCE_ALL";
+        if (this == FORCE_EDGE) return "FORCE_EDGE";
+        if (this == FORCE_NONE) return "FORCE_NONE";
+        return this.toString();
+    }
+
 }

@@ -29,6 +29,7 @@ import de.bluecolored.bluemap.core.map.BmMap;
 import lombok.Getter;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MapUpdateTask extends CombinedRenderTask<RenderTask> implements MapRenderTask {
@@ -39,11 +40,11 @@ public class MapUpdateTask extends CombinedRenderTask<RenderTask> implements Map
         this(map, Stream.concat(
                 regions.stream().<RenderTask>map(region -> new WorldRegionRenderTask(map, region, force)),
                 Stream.of(new MapSaveTask(map))
-        ).toList());
+        ).collect(Collectors.toList()));
     }
 
     protected MapUpdateTask(BmMap map, Collection<RenderTask> tasks) {
-        super("updating map '%s'".formatted(map.getId()), tasks);
+        super(String.format("updating map '%s'", map.getId()), tasks);
         this.map = map;
     }
 

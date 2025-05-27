@@ -34,9 +34,8 @@ import de.bluecolored.bluemap.core.world.BlockEntity;
 import de.bluecolored.bluemap.core.world.mca.MCAUtil;
 import de.bluecolored.bluemap.core.world.mca.MCAWorld;
 import de.bluecolored.bluemap.core.world.mca.PackedIntArrayAccess;
-import de.bluecolored.bluemap.core.world.mca.data.LenientBlockEntityArrayDeserializer;
-import de.bluecolored.bluenbt.NBTDeserializer;
-import de.bluecolored.bluenbt.NBTName;
+import de.bluecolored.bluemap.core.world.mca.data.BlockEntityTypeResolver;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
@@ -212,7 +211,8 @@ public class Chunk_1_16 extends MCAChunk {
 
     @Override
     public @Nullable BlockEntity getBlockEntity(int x, int y, int z) {
-        return blockEntities.get((long) y << 8 | (x & 0xF) << 4 | z & 0xF);
+        long hash = (long) y << 8 | (x & 0xF) << 4 | z & 0xF;
+        return blockEntities.get(hash);
     }
 
     @Override
@@ -221,13 +221,12 @@ public class Chunk_1_16 extends MCAChunk {
     }
 
     private @Nullable Section getSection(int y) {
-        y -= sectionMin;
-        if (y < 0 || y >= this.sections.length) return null;
-        return this.sections[y];
+        int index = y - sectionMin;
+        if (index < 0 || index >= sections.length) return null;
+        return sections[index];
     }
 
     protected static class Section {
-
         private final int sectionY;
         private final BlockState[] blockPalette;
         private final PackedIntArrayAccess blocks;
@@ -236,111 +235,214 @@ public class Chunk_1_16 extends MCAChunk {
 
         public Section(SectionData sectionData) {
             this.sectionY = sectionData.y;
-
             this.blockPalette = sectionData.palette;
-            this.blocks = new PackedIntArrayAccess(sectionData.blockStates, BLOCKS_PER_SECTION);
-
-            this.blockLight = sectionData.getBlockLight();
-            this.skyLight = sectionData.getSkyLight();
+            this.blocks = new PackedIntArrayAccess(MCAUtil.ceilLog2(sectionData.palette.length), sectionData.blockStates);
+            this.blockLight = sectionData.blockLight;
+            this.skyLight = sectionData.skyLight;
         }
 
         public BlockState getBlockState(int x, int y, int z) {
-            if (blockPalette.length == 1) return blockPalette[0];
-            if (blockPalette.length == 0) return BlockState.AIR;
-
-            int id = blocks.get((y & 0xF) << 8 | (z & 0xF) << 4 | x & 0xF);
-            if (id >= blockPalette.length) {
-                Logger.global.noFloodWarning("palette-warning", "Got block-palette id " + id + " but palette has size of " + blockPalette.length + "! (Future occasions of this error will not be logged)");
-                return BlockState.MISSING;
-            }
-
-            return blockPalette[id];
+            int index = (y & 0xF) << 8 | (z & 0xF) << 4 | x & 0xF;
+            int paletteIndex = blocks.get(index);
+            if (paletteIndex >= blockPalette.length) return BlockState.AIR;
+            return blockPalette[paletteIndex];
         }
 
         public LightData getLightData(int x, int y, int z, LightData target) {
-            if (blockLight.length == 0 && skyLight.length == 0) return target.set(0, 0);
-
-            int blockByteIndex = (y & 0xF) << 8 | (z & 0xF) << 4 | x & 0xF;
-            int blockHalfByteIndex = blockByteIndex >> 1; // blockByteIndex / 2
-            boolean largeHalf = (blockByteIndex & 0x1) != 0; // (blockByteIndex % 2) == 0
-
-            return target.set(
-                    this.skyLight.length > blockHalfByteIndex ? MCAUtil.getByteHalf(this.skyLight[blockHalfByteIndex], largeHalf) : 0,
-                    this.blockLight.length > blockHalfByteIndex ? MCAUtil.getByteHalf(this.blockLight[blockHalfByteIndex], largeHalf) : 0
-            );
+            int index = (y & 0xF) << 8 | (z & 0xF) << 4 | x & 0xF;
+            int blockLightValue = blockLight != null ? MCAUtil.getByteHalf(blockLight[index >> 1], (index & 1) == 0) : 0;
+            int skyLightValue = skyLight != null ? MCAUtil.getByteHalf(skyLight[index >> 1], (index & 1) == 0) : 15;
+            return target.set(skyLightValue, blockLightValue);
         }
 
         public int getSectionY() {
             return sectionY;
         }
-
     }
 
     @Getter
     @SuppressWarnings("FieldMayBeFinal")
     public static class Data extends MCAChunk.Data {
-
-        @NBTName("Level")
         private Level level = new Level();
 
+        @Override
+        public void readFromNBT(NBTCompound compound) {
+            if (compound.hasKey("Level")) {
+                NBTCompound levelCompound = compound.getCompound("Level");
+                level.readFromNBT(levelCompound);
+            }
+        }
+
+        @Override
+        public void writeToNBT(NBTCompound compound) {
+            NBTCompound levelCompound = compound.getCompound("Level");
+            level.writeToNBT(levelCompound);
+        }
     }
 
     @Getter
     @SuppressWarnings("FieldMayBeFinal")
     public static class Level {
-
-        @NBTName("Status")
         private Key status = STATUS_EMPTY;
-
-        @NBTName("InhabitedTime")
         private long inhabitedTime = 0;
-
-        @NBTName("Heightmaps")
         private HeightmapsData heightmaps = new HeightmapsData();
-
-        @NBTName("Sections")
-        private SectionData @Nullable [] sections = null;
-
-        @NBTName("Biomes")
+        private SectionData[] sections = null;
         private int[] biomes = EMPTY_INT_ARRAY;
+        private BlockEntity[] blockEntities = EMPTY_BLOCK_ENTITIES_ARRAY;
 
-        @NBTName("TileEntities")
-        @NBTDeserializer(LenientBlockEntityArrayDeserializer.class)
-        private @Nullable BlockEntity [] blockEntities = EMPTY_BLOCK_ENTITIES_ARRAY;
+        public void readFromNBT(NBTCompound compound) {
+            if (compound.hasKey("Status")) {
+                this.status = Key.parse(compound.getString("Status"));
+            }
+            if (compound.hasKey("InhabitedTime")) {
+                this.inhabitedTime = compound.getLong("InhabitedTime");
+            }
+            if (compound.hasKey("Heightmaps")) {
+                NBTCompound heightmapsCompound = compound.getCompound("Heightmaps");
+                this.heightmaps.readFromNBT(heightmapsCompound);
+            }
+            if (compound.hasKey("Sections")) {
+                NBTCompound sectionsCompound = compound.getCompound("Sections");
+                this.sections = new SectionData[sectionsCompound.getKeys().size()];
+                int i = 0;
+                for (String key : sectionsCompound.getKeys()) {
+                    NBTCompound sectionCompound = sectionsCompound.getCompound(key);
+                    SectionData section = new SectionData();
+                    section.readFromNBT(sectionCompound);
+                    sections[i++] = section;
+                }
+            }
+            if (compound.hasKey("Biomes")) {
+                this.biomes = compound.getIntArray("Biomes");
+            }
+            if (compound.hasKey("TileEntities")) {
+                NBTCompound tileEntitiesCompound = compound.getCompound("TileEntities");
+                this.blockEntities = new BlockEntity[tileEntitiesCompound.getKeys().size()];
+                int i = 0;
+                for (String key : tileEntitiesCompound.getKeys()) {
+                    NBTCompound entityCompound = tileEntitiesCompound.getCompound(key);
+                    BlockEntity entity = new BlockEntity(
+                        entityCompound.getString("id"),
+                        entityCompound.getInteger("x"),
+                        entityCompound.getInteger("y"),
+                        entityCompound.getInteger("z")
+                    );
+                    if (entity != null) {
+                        blockEntities[i++] = entity;
+                    }
+                }
+            }
+        }
 
+        public void writeToNBT(NBTCompound compound) {
+            compound.setString("Status", status.toString());
+            compound.setLong("InhabitedTime", inhabitedTime);
+            NBTCompound heightmapsCompound = compound.getCompound("Heightmaps");
+            heightmaps.writeToNBT(heightmapsCompound);
+            if (sections != null) {
+                NBTCompound sectionsCompound = compound.getCompound("Sections");
+                for (int i = 0; i < sections.length; i++) {
+                    if (sections[i] != null) {
+                        NBTCompound sectionCompound = sectionsCompound.getCompound(String.valueOf(i));
+                        sections[i].writeToNBT(sectionCompound);
+                    }
+                }
+            }
+            if (biomes != null) {
+                compound.setIntArray("Biomes", biomes);
+            }
+            if (blockEntities != null) {
+                NBTCompound tileEntitiesCompound = compound.getCompound("TileEntities");
+                for (int i = 0; i < blockEntities.length; i++) {
+                    if (blockEntities[i] != null) {
+                        NBTCompound entityCompound = tileEntitiesCompound.getCompound(String.valueOf(i));
+                        entityCompound.setString("id", blockEntities[i].getId().toString());
+                        entityCompound.setInteger("x", blockEntities[i].getX());
+                        entityCompound.setInteger("y", blockEntities[i].getY());
+                        entityCompound.setInteger("z", blockEntities[i].getZ());
+                    }
+                }
+            }
+        }
     }
 
     @Getter
     @SuppressWarnings("FieldMayBeFinal")
     public static class HeightmapsData {
-
-        @NBTName("WORLD_SURFACE")
         private long[] worldSurface = EMPTY_LONG_ARRAY;
-
-        @NBTName("OCEAN_FLOOR")
         private long[] oceanFloor = EMPTY_LONG_ARRAY;
 
+        public void readFromNBT(NBTCompound compound) {
+            if (compound.hasKey("WORLD_SURFACE")) {
+                this.worldSurface = compound.getLongArray("WORLD_SURFACE");
+            }
+            if (compound.hasKey("OCEAN_FLOOR")) {
+                this.oceanFloor = compound.getLongArray("OCEAN_FLOOR");
+            }
+        }
+
+        public void writeToNBT(NBTCompound compound) {
+            if (worldSurface != null) {
+                compound.setLongArray("WORLD_SURFACE", worldSurface);
+            }
+            if (oceanFloor != null) {
+                compound.setLongArray("OCEAN_FLOOR", oceanFloor);
+            }
+        }
     }
 
     @Getter
     @SuppressWarnings("FieldMayBeFinal")
     public static class SectionData {
-
-        @NBTName("Y")
         private int y = 0;
-
-        @NBTName("BlockLight")
         private byte[] blockLight = EMPTY_BYTE_ARRAY;
-
-        @NBTName("SkyLight")
         private byte[] skyLight = EMPTY_BYTE_ARRAY;
-
-        @NBTName("Palette")
         private BlockState[] palette = EMPTY_BLOCKSTATE_ARRAY;
-
-        @NBTName("BlockStates")
         private long[] blockStates = EMPTY_LONG_ARRAY;
 
-    }
+        public void readFromNBT(NBTCompound compound) {
+            if (compound.hasKey("Y")) {
+                this.y = compound.getInteger("Y");
+            }
+            if (compound.hasKey("BlockLight")) {
+                this.blockLight = compound.getByteArray("BlockLight");
+            }
+            if (compound.hasKey("SkyLight")) {
+                this.skyLight = compound.getByteArray("SkyLight");
+            }
+            if (compound.hasKey("Palette")) {
+                NBTCompound paletteCompound = compound.getCompound("Palette");
+                this.palette = new BlockState[paletteCompound.getKeys().size()];
+                int i = 0;
+                for (String key : paletteCompound.getKeys()) {
+                    NBTCompound stateCompound = paletteCompound.getCompound(key);
+                    String name = stateCompound.getString("Name");
+                    palette[i++] = new BlockState(name);
+                }
+            }
+            if (compound.hasKey("BlockStates")) {
+                this.blockStates = compound.getLongArray("BlockStates");
+            }
+        }
 
+        public void writeToNBT(NBTCompound compound) {
+            compound.setInteger("Y", y);
+            if (blockLight != null) {
+                compound.setByteArray("BlockLight", blockLight);
+            }
+            if (skyLight != null) {
+                compound.setByteArray("SkyLight", skyLight);
+            }
+            if (palette != null) {
+                NBTCompound paletteCompound = compound.getCompound("Palette");
+                for (int i = 0; i < palette.length; i++) {
+                    NBTCompound stateCompound = paletteCompound.getCompound(String.valueOf(i));
+                    stateCompound.setString("Name", palette[i].getId());
+                }
+            }
+            if (blockStates != null) {
+                compound.setLongArray("BlockStates", blockStates);
+            }
+        }
+    }
 }

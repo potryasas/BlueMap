@@ -90,7 +90,8 @@ public class DataPack extends Pack {
                 .filter(Files::isRegularFile)
                 .forEach(file -> loadResource(root, file, 1, 3, key -> {
                     try (BufferedReader reader = Files.newBufferedReader(file)) {
-                        return ResourcesGson.INSTANCE.fromJson(reader, DimensionTypeData.class);
+                        DimensionTypeData data = ResourcesGson.INSTANCE.fromJson(reader, DimensionTypeData.class);
+                        return mapToDimensionType(data);
                     }
                 }, dimensionTypes));
 
@@ -105,6 +106,23 @@ public class DataPack extends Pack {
                         return new DatapackBiome(key, ResourcesGson.INSTANCE.fromJson(reader, DatapackBiome.Data.class));
                     }
                 }, biomes));
+    }
+
+    private DimensionType mapToDimensionType(DimensionTypeData data) {
+        if (data.isNatural()) {
+            if (data.isHasCeiling()) {
+                return DimensionType.OVERWORLD_CAVES;
+            }
+            return DimensionType.OVERWORLD;
+        } else if (data.getFixedTime() != null) {
+            if (data.getFixedTime() == 6000L) {
+                return DimensionType.NETHER;
+            } else if (data.getFixedTime() == 18000L) {
+                return DimensionType.END;
+            }
+        }
+
+        return DimensionType.OVERWORLD;
     }
 
     public void bake() {

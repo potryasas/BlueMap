@@ -1,0 +1,135 @@
+/* BlueMap CSS */
+:root {
+    --primary-color: #006EDE;
+    --accent-color: #0088ff;
+    --background-color: #f0f0f0;
+    --card-background: white;
+    --text-color: #333;
+    --text-secondary: #777;
+    --shadow-color: rgba(0,0,0,0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+.bluemap-legacy-container {
+    background-color: var(--card-background);
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px var(--shadow-color);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.content {
+    padding: 30px;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-top: 1px solid #eee;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    border-left: 4px solid var(--primary-color);
+}
+
+li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+noscript {
+    display: block;
+    padding: 20px;
+    background-color: #ffebee;
+    color: #d32f2f;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+} 

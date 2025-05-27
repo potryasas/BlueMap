@@ -44,6 +44,11 @@ public class MCABlockEntity extends BlockEntity {
         super("", 0, 0, 0);
     }
 
+    public MCABlockEntity(String id, int x, int y, int z) {
+        super(id, x, y, z);
+        this.id = Key.parse(id);
+    }
+
     public void readFromNBT(NBTCompound compound) {
         if (compound.hasKey("keepPacked")) {
             this.keepPacked = compound.getBoolean("keepPacked");

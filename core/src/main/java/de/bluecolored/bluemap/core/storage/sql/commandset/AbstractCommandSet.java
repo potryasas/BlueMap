@@ -330,7 +330,7 @@ public abstract class AbstractCommandSet implements CommandSet {
             while (result.next()) {
                 mapIds.add(result.getString(1));
             }
-            return mapIds.toArray(String[]::new);
+            return mapIds.toArray(new String[mapIds.size()]);
         });
     }
 

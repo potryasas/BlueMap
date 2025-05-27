@@ -32,5 +32,18 @@ public class AddonInfo {
 
     private String id;
     private String entrypoint;
-
+    
+    /**
+     * @return the addon ID
+     */
+    public String getId() {
+        return id;
+    }
+    
+    /**
+     * @return the entrypoint class name
+     */
+    public String getEntrypoint() {
+        return entrypoint;
+    }
 }

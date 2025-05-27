@@ -24,8 +24,8 @@
  */
 package de.bluecolored.bluemap.common.commands.commands;
 
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.common.rendermanager.*;
@@ -55,10 +55,13 @@ public class PurgeCommand {
 
             // delete map
             MapPurgeTask purgeTask = new MapPurgeTask(map);
-            plugin.getRenderManager().removeRenderTasksIf(task ->
-                    task instanceof MapRenderTask mrt &&
-                            mrt.getMap().equals(map)
-            );
+            plugin.getRenderManager().removeRenderTasksIf(task -> {
+                if (task instanceof MapRenderTask) {
+                    MapRenderTask mrt = (MapRenderTask) task;
+                    return mrt.getMap().equals(map);
+                }
+                return false;
+            });
             plugin.getRenderManager().scheduleRenderTaskNext(purgeTask);
 
             List<Component> lines = new LinkedList<>();
@@ -71,10 +74,8 @@ public class PurgeCommand {
 
             if (updateMap) {
                 lines.add(empty());
-                lines.add(format("""
-                                BlueMap will automatically start rendering the map again once the purge is done
-                                If you don't want this, use % before purging
-                                """.strip(),
+                lines.add(format("BlueMap will automatically start rendering the map again once the purge is done\n" +
+                                 "If you don't want this, use % before purging",
                         command("/bluemap freeze " + map.getId()).color(HIGHLIGHT_COLOR)
                 ).color(BASE_COLOR));
             }

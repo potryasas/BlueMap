@@ -1,0 +1,64 @@
+name: BlueMap
+version: "2.0.0-alpha-5"
+api-version: "1.13"
+author: BlueColored
+
+main: de.bluecolored.bluemap.bukkit.legacy.LegacyBukkitPlugin
+
+commands:
+  bluemap:
+    description: "BlueMap commands"
+    usage: "/bluemap <command>"
+    permission: bluemap.help
+
+permissions:
+  bluemap.*:
+    description: "All BlueMap permissions"
+    default: op
+    children:
+      bluemap.help: true
+      bluemap.render: true
+      bluemap.reload: true
+      bluemap.markers.*: true
+  
+  bluemap.help:
+    description: "Allows using basic BlueMap help commands"
+    default: true
+  
+  bluemap.render:
+    description: "Allows using BlueMap render commands"
+    default: op
+  
+  bluemap.reload:
+    description: "Allows reloading BlueMap configuration"
+    default: op
+  
+  bluemap.markers.*:
+    description: "All marker permissions"
+    default: op
+    children:
+      bluemap.markers.list: true
+      bluemap.markers.add: true
+      bluemap.markers.create: true
+      bluemap.markers.remove: true
+      bluemap.markers.save: true
+  
+  bluemap.markers.list:
+    description: "Allows viewing markers and categories"
+    default: true
+  
+  bluemap.markers.add:
+    description: "Allows adding new markers"
+    default: op
+  
+  bluemap.markers.create:
+    description: "Allows creating marker categories"
+    default: op
+  
+  bluemap.markers.remove:
+    description: "Allows removing markers and categories"
+    default: op
+  
+  bluemap.markers.save:
+    description: "Allows manual saving of markers"
+    default: op

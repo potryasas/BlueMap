@@ -59,11 +59,9 @@ public class MapHasCorrectWorldCheck implements Check {
     @Override
     public Component getFailureDescription() {
         return lines(
-                format("""
-                        ⚠ map % is configured for
-                        world % instead of
-                        world %
-                        """.strip(),
+                format("⚠ map %s is configured for\n" +
+                       "world %s instead of\n" +
+                       "world %s",
                         formatMap(map).color(HIGHLIGHT_COLOR),
                         text(map.getWorld().getId()).color(HIGHLIGHT_COLOR),
                         text(getExpectedWorldId()).color(HIGHLIGHT_COLOR)
@@ -74,24 +72,22 @@ public class MapHasCorrectWorldCheck implements Check {
     }
 
     private Component mapWorldConfigInfo() {
-        return format("""
-                to configure the map for your current world,
-                make sure to set
-                %
-                in the % config file
-                """.strip(),
+        return format(
+                "to configure the map for your current world,\n" +
+                "make sure to set\n" +
+                "%s\n" +
+                "in the %s config file",
                 formatWorldConfig().color(INFO_COLOR),
                 formatConfigFilePath("maps/" + map.getId()).color(HIGHLIGHT_COLOR)
         ).color(BASE_COLOR);
     }
 
     private Component formatWorldConfig() {
-        return format("""
-                ┌
-                │ world: "%"
-                │ dimension: "%"
-                └
-                """.strip(),
+        return format(
+                "┌\n" +
+                "│ world: \"%s\"\n" +
+                "│ dimension: \"%s\"\n" +
+                "└",
                 BlueMapConfigManager.formatPath(expectedWorld.getWorldFolder()),
                 expectedWorld.getDimension().getFormatted()
         );
@@ -100,7 +96,8 @@ public class MapHasCorrectWorldCheck implements Check {
     private Component formatConfigFilePath(String name) {
         Component format = text(name + ".conf");
 
-        if (plugin.getBlueMap().getConfig() instanceof BlueMapConfigManager configManager) {
+        if (plugin.getBlueMap().getConfig() instanceof BlueMapConfigManager) {
+            BlueMapConfigManager configManager = (BlueMapConfigManager) plugin.getBlueMap().getConfig();
             format = format.hoverEvent(
                     text(BlueMapConfigManager.formatPath(configManager.getConfigManager().resolveConfigFile(name)))
             );

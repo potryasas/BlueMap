@@ -30,6 +30,7 @@ import de.bluecolored.bluemap.common.BlueMapService;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.core.world.World;
 import de.bluecolored.bluemap.core.world.mca.MCAWorld;
+import de.bluecolored.bluemap.common.util.CollectorUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.ref.WeakReference;
@@ -74,7 +75,7 @@ public class BlueMapWorldImpl implements BlueMapWorld {
         return unpack(blueMapService).getMaps().values().stream()
                 .filter(map -> map.getWorld().equals(world))
                 .map(map -> new BlueMapMapImpl(map, this, plugin.get()))
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(CollectorUtil.toUnmodifiableSet());
     }
 
     @Override

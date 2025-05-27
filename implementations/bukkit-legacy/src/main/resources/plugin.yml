@@ -1,5 +1,38 @@
 name: BlueMap
-version: 1.0.0
-main: de.bluecolored.bluemap.bukkit.legacy.DummyClass
-author: "Blue"
-description: "A 3D map for Minecraft 1.5.2"
+version: ${version}
+main: de.bluecolored.bluemap.bukkit.legacy.LegacyBukkitPlugin
+author: Blue (Lukas Rieger)
+website: https://github.com/BlueMap-Minecraft/BlueMap
+
+commands:
+  bluemap:
+    description: Main command for BlueMap
+    usage: /bluemap help
+    aliases: [bm]
+    permission: bluemap.command
+
+permissions:
+  bluemap.*:
+    description: Gives access to all BlueMap commands
+    default: op
+    children:
+      bluemap.command: true
+      bluemap.reload: true
+      bluemap.render: true
+      bluemap.stop: true
+      bluemap.help: true
+  bluemap.command:
+    description: Allows using the /bluemap command
+    default: op
+  bluemap.reload:
+    description: Allows reloading the plugin
+    default: op
+  bluemap.render:
+    description: Allows starting a render
+    default: op
+  bluemap.stop:
+    description: Allows stopping a render
+    default: op
+  bluemap.help:
+    description: Allows viewing the help
+    default: op

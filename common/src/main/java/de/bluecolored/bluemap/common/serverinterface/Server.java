@@ -31,6 +31,7 @@ import de.bluecolored.bluemap.common.debug.DebugDump;
 import de.bluecolored.bluemap.core.util.Tristate;
 import de.bluecolored.bluemap.core.world.World;
 import de.bluecolored.bluemap.core.world.mca.MCAWorld;
+import de.bluecolored.bluemap.common.util.FileUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
@@ -74,11 +75,12 @@ public interface Server {
      */
     default Optional<ServerWorld> getServerWorld(World world) {
         return SERVER_WORLD_CACHE.get(world, w -> {
-            if (w instanceof MCAWorld mcaWorld) {
+            if (w instanceof MCAWorld) {
+                MCAWorld mcaWorld = (MCAWorld) w;
                 return getLoadedServerWorlds().stream()
                         .filter(serverWorld ->
-                                serverWorld.getWorldFolder().toAbsolutePath().normalize()
-                                        .equals(mcaWorld.getWorldFolder().toAbsolutePath().normalize()) &&
+                                FileUtil.toAbsolutePath(serverWorld.getWorldFolder()).normalize()
+                                        .equals(FileUtil.toAbsolutePath(mcaWorld.getWorldFolder()).normalize()) &&
                                         serverWorld.getDimension().equals(mcaWorld.getDimension())
                         )
                         .findAny();

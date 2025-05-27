@@ -46,6 +46,10 @@ public class SignBlockEntity extends MCABlockEntity {
         super();
     }
 
+    public SignBlockEntity(String id, int x, int y, int z) {
+        super(id, x, y, z);
+    }
+
     @Override
     public void readFromNBT(NBTCompound compound) {
         super.readFromNBT(compound);
@@ -89,6 +93,14 @@ public class SignBlockEntity extends MCABlockEntity {
         String text2;
         String text3;
         String text4;
+
+        public LegacySignBlockEntity() {
+            super();
+        }
+
+        public LegacySignBlockEntity(String id, int x, int y, int z) {
+            super(id, x, y, z);
+        }
 
         @Override
         public void readFromNBT(NBTCompound compound) {

@@ -50,7 +50,12 @@ public abstract class Server extends Thread implements Closeable, Runnable {
     public void bind(SocketAddress address) throws IOException {
         final ServerSocketChannel server = ServerSocketChannel.open();
         server.configureBlocking(false);
-        server.register(selector, SelectionKey.OP_ACCEPT, (SelectionConsumer) this::accept);
+        server.register(selector, SelectionKey.OP_ACCEPT, new SelectionConsumer() {
+            @Override
+            public void accept(SelectionKey selectionKey) {
+                Server.this.accept(selectionKey);
+            }
+        });
         server.bind(address);
         this.server.add(server);
 
@@ -75,7 +80,11 @@ public abstract class Server extends Thread implements Closeable, Runnable {
         Logger.global.logInfo("WebServer started.");
         while (this.selector.isOpen()) {
             try {
-                this.selector.select(this::selection);
+                this.selector.select();
+                for (SelectionKey selectionKey : this.selector.selectedKeys()) {
+                    selection(selectionKey);
+                }
+                this.selector.selectedKeys().clear();
             } catch (IOException e) {
                 Logger.global.logDebug("Failed to select channel: " + e);
             } catch (ClosedSelectorException ignore) {}

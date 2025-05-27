@@ -1,0 +1,2549 @@
+{
+  "category_1": {
+    "label": "Города",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "marker_1": {
+        "type": "poi",
+        "label": "Лайдли",
+        "position": {
+          "x": 235.0,
+          "y": 65.0,
+          "z": 182.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Лайдли",
+        "categoryName": "Города",
+        "originalId": "marker_60"
+      },
+      "marker_2": {
+        "type": "poi",
+        "label": "Пшенск",
+        "position": {
+          "x": -1417.0,
+          "y": 82.0,
+          "z": 243.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Пшенск",
+        "categoryName": "Города",
+        "originalId": "marker_12"
+      },
+      "marker_3": {
+        "type": "poi",
+        "label": "Phoenix City",
+        "position": {
+          "x": -3598.0,
+          "y": 65.0,
+          "z": -1384.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Phoenix City",
+        "categoryName": "Города",
+        "originalId": "marker_56"
+      },
+      "marker_4": {
+        "type": "poi",
+        "label": "Шершград",
+        "position": {
+          "x": -1280.0,
+          "y": 68.0,
+          "z": 42.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Шершград",
+        "categoryName": "Города",
+        "originalId": "marker_13"
+      },
+      "marker_5": {
+        "type": "poi",
+        "label": "Афганистан",
+        "position": {
+          "x": -505.0,
+          "y": 65.0,
+          "z": -544.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Афганистан",
+        "categoryName": "Города",
+        "originalId": "marker_10"
+      },
+      "marker_6": {
+        "type": "poi",
+        "label": "Кесселинпера",
+        "position": {
+          "x": -4423.0,
+          "y": 65.0,
+          "z": -2327.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Кесселинпера",
+        "categoryName": "Города",
+        "originalId": "marker_54"
+      },
+      "marker_7": {
+        "type": "poi",
+        "label": "Иерусалим",
+        "position": {
+          "x": 4601.0,
+          "y": 65.0,
+          "z": 5321.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Иерусалим",
+        "categoryName": "Города",
+        "originalId": "marker_55"
+      },
+      "marker_8": {
+        "type": "poi",
+        "label": "Switzerland",
+        "position": {
+          "x": -3853.0,
+          "y": 65.0,
+          "z": -1245.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Switzerland",
+        "categoryName": "Города",
+        "originalId": "marker_11"
+      },
+      "marker_9": {
+        "type": "poi",
+        "label": "Малая Канада",
+        "position": {
+          "x": -4320.0,
+          "y": 65.0,
+          "z": 316.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Малая Канада",
+        "categoryName": "Города",
+        "originalId": "marker_52"
+      },
+      "marker_10": {
+        "type": "poi",
+        "label": "Кельн",
+        "position": {
+          "x": -5161.0,
+          "y": 65.0,
+          "z": -2911.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Кельн",
+        "categoryName": "Города",
+        "originalId": "marker_53"
+      },
+      "marker_11": {
+        "type": "poi",
+        "label": "Сочи",
+        "position": {
+          "x": -1961.0,
+          "y": 65.0,
+          "z": -1078.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Сочи",
+        "categoryName": "Города",
+        "originalId": "marker_50"
+      },
+      "marker_12": {
+        "type": "poi",
+        "label": "Джеймстаун",
+        "position": {
+          "x": 3510.0,
+          "y": 65.0,
+          "z": 1574.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Джеймстаун",
+        "categoryName": "Города",
+        "originalId": "marker_51"
+      },
+      "marker_13": {
+        "type": "poi",
+        "label": "Сталинодар",
+        "position": {
+          "x": -1963.0,
+          "y": 65.0,
+          "z": 876.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Сталинодар",
+        "categoryName": "Города",
+        "originalId": "marker_18"
+      },
+      "marker_14": {
+        "type": "poi",
+        "label": "FORTUNA",
+        "position": {
+          "x": -110.0,
+          "y": 64.0,
+          "z": 652.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "FORTUNA",
+        "categoryName": "Города",
+        "originalId": "marker_19"
+      },
+      "marker_15": {
+        "type": "poi",
+        "label": "Плотник",
+        "position": {
+          "x": -196.0,
+          "y": 65.0,
+          "z": 724.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Плотник",
+        "categoryName": "Города",
+        "originalId": "marker_16"
+      },
+      "marker_16": {
+        "type": "poi",
+        "label": "Бебранск",
+        "position": {
+          "x": -1008.0,
+          "y": 67.0,
+          "z": -625.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Бебранск",
+        "categoryName": "Города",
+        "originalId": "marker_17"
+      },
+      "marker_17": {
+        "type": "poi",
+        "label": "Альфдант",
+        "position": {
+          "x": -1108.0,
+          "y": 72.0,
+          "z": 1485.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Альфдант",
+        "categoryName": "Города",
+        "originalId": "marker_14"
+      },
+      "marker_18": {
+        "type": "poi",
+        "label": "Колхоз Имени Ленина",
+        "position": {
+          "x": -2020.0,
+          "y": 75.0,
+          "z": 634.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Колхоз Имени Ленина",
+        "categoryName": "Города",
+        "originalId": "marker_58"
+      },
+      "marker_19": {
+        "type": "poi",
+        "label": "Руссия",
+        "position": {
+          "x": -717.0,
+          "y": 65.0,
+          "z": 2174.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Руссия",
+        "categoryName": "Города",
+        "originalId": "marker_15"
+      },
+      "marker_20": {
+        "type": "poi",
+        "label": "SafariLand",
+        "position": {
+          "x": -3559.0,
+          "y": 65.0,
+          "z": -1595.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "SafariLand",
+        "categoryName": "Города",
+        "originalId": "marker_59"
+      },
+      "marker_21": {
+        "type": "poi",
+        "label": "Винтерхоум",
+        "position": {
+          "x": 1316.0,
+          "y": 64.0,
+          "z": 1368.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Винтерхоум",
+        "categoryName": "Города",
+        "originalId": "marker_67"
+      },
+      "marker_22": {
+        "type": "poi",
+        "label": "Norra Staden",
+        "position": {
+          "x": -2013.0,
+          "y": 93.0,
+          "z": -3301.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Norra Staden",
+        "categoryName": "Города",
+        "originalId": "marker_23"
+      },
+      "marker_23": {
+        "type": "poi",
+        "label": "Новый Тимград",
+        "position": {
+          "x": -1314.0,
+          "y": 83.0,
+          "z": 1990.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Новый Тимград",
+        "categoryName": "Города",
+        "originalId": "marker_68"
+      },
+      "marker_24": {
+        "type": "poi",
+        "label": "Болото 40тонн",
+        "position": {
+          "x": 1832.0,
+          "y": 64.0,
+          "z": 303.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Болото 40тонн",
+        "categoryName": "Города",
+        "originalId": "marker_24"
+      },
+      "marker_25": {
+        "type": "poi",
+        "label": "Норден",
+        "position": {
+          "x": -6686.0,
+          "y": 68.0,
+          "z": -6870.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Норден",
+        "categoryName": "Города",
+        "originalId": "marker_65"
+      },
+      "marker_26": {
+        "type": "poi",
+        "label": "Шмары",
+        "position": {
+          "x": -1487.0,
+          "y": 83.0,
+          "z": 1658.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Шмары",
+        "categoryName": "Города",
+        "originalId": "marker_21"
+      },
+      "marker_27": {
+        "type": "poi",
+        "label": "Триаполь",
+        "position": {
+          "x": 360.0,
+          "y": 68.0,
+          "z": -460.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Триаполь",
+        "categoryName": "Города",
+        "originalId": "marker_22"
+      },
+      "marker_28": {
+        "type": "poi",
+        "label": "Бокград",
+        "position": {
+          "x": -7834.0,
+          "y": 65.0,
+          "z": -3353.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Бокград",
+        "categoryName": "Города",
+        "originalId": "marker_66"
+      },
+      "marker_29": {
+        "type": "poi",
+        "label": "RADAR",
+        "position": {
+          "x": -3435.0,
+          "y": 65.0,
+          "z": 295.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "RADAR",
+        "categoryName": "Города",
+        "originalId": "marker_63"
+      },
+      "marker_30": {
+        "type": "poi",
+        "label": "Пивоград",
+        "position": {
+          "x": 1594.0,
+          "y": 66.0,
+          "z": 1226.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Пивоград",
+        "categoryName": "Города",
+        "originalId": "marker_20"
+      },
+      "marker_31": {
+        "type": "poi",
+        "label": "Норден",
+        "position": {
+          "x": -6709.0,
+          "y": 65.0,
+          "z": -6897.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Норден",
+        "categoryName": "Города",
+        "originalId": "marker_64"
+      },
+      "marker_32": {
+        "type": "poi",
+        "label": "GreenVille (Shrek617)",
+        "position": {
+          "x": -3799.0,
+          "y": 91.0,
+          "z": 186.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "GreenVille (Shrek617)",
+        "categoryName": "Города",
+        "originalId": "marker_61"
+      },
+      "marker_33": {
+        "type": "poi",
+        "label": "Редукция",
+        "position": {
+          "x": 6197.0,
+          "y": 64.0,
+          "z": 6675.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Редукция",
+        "categoryName": "Города",
+        "originalId": "marker_62"
+      },
+      "marker_34": {
+        "type": "poi",
+        "label": "Каменный город",
+        "position": {
+          "x": -4824.0,
+          "y": 65.0,
+          "z": -51.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Каменный город",
+        "categoryName": "Города",
+        "originalId": "marker_29"
+      },
+      "marker_35": {
+        "type": "poi",
+        "label": "Метаксиполис",
+        "position": {
+          "x": -3829.0,
+          "y": 64.0,
+          "z": -141.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Метаксиполис",
+        "categoryName": "Города",
+        "originalId": "marker_27"
+      },
+      "marker_36": {
+        "type": "poi",
+        "label": "Лаоград",
+        "position": {
+          "x": -374.0,
+          "y": 71.0,
+          "z": -710.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Лаоград",
+        "categoryName": "Города",
+        "originalId": "marker_28"
+      },
+      "marker_37": {
+        "type": "poi",
+        "label": "Крепость Коулун",
+        "position": {
+          "x": -53.0,
+          "y": 65.0,
+          "z": 140.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Крепость Коулун",
+        "categoryName": "Города",
+        "originalId": "marker_25"
+      },
+      "marker_38": {
+        "type": "poi",
+        "label": "Korela Сity",
+        "position": {
+          "x": -4211.0,
+          "y": 65.0,
+          "z": -1304.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Korela Сity",
+        "categoryName": "Города",
+        "originalId": "marker_26"
+      },
+      "marker_39": {
+        "type": "poi",
+        "label": "Кнодельштадт",
+        "position": {
+          "x": -1089.0,
+          "y": 68.0,
+          "z": 931.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Кнодельштадт",
+        "categoryName": "Города",
+        "originalId": "marker_5"
+      },
+      "marker_40": {
+        "type": "poi",
+        "label": "Новое Кусотсу",
+        "position": {
+          "x": 679.0,
+          "y": 68.0,
+          "z": 54.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Новое Кусотсу",
+        "categoryName": "Города",
+        "originalId": "marker_6"
+      },
+      "marker_41": {
+        "type": "poi",
+        "label": "Далёкая Пшеница",
+        "position": {
+          "x": -968.0,
+          "y": 65.0,
+          "z": 1026.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Далёкая Пшеница",
+        "categoryName": "Города",
+        "originalId": "marker_7"
+      },
+      "marker_42": {
+        "type": "poi",
+        "label": "Нижний-ФэгоГрадск",
+        "position": {
+          "x": -3475.0,
+          "y": 66.0,
+          "z": 298.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Нижний-ФэгоГрадск",
+        "categoryName": "Города",
+        "originalId": "marker_8"
+      },
+      "marker_43": {
+        "type": "poi",
+        "label": "Нью-Вегас",
+        "position": {
+          "x": 800.0,
+          "y": 68.0,
+          "z": 963.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Нью-Вегас",
+        "categoryName": "Города",
+        "originalId": "marker_9"
+      },
+      "marker_44": {
+        "type": "poi",
+        "label": "Мирный",
+        "position": {
+          "x": 2741.0,
+          "y": 75.0,
+          "z": 864.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Мирный",
+        "categoryName": "Города",
+        "originalId": "marker_34"
+      },
+      "marker_45": {
+        "type": "poi",
+        "label": "Узел",
+        "position": {
+          "x": 1726.0,
+          "y": 80.0,
+          "z": -535.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Узел",
+        "categoryName": "Города",
+        "originalId": "marker_35"
+      },
+      "marker_46": {
+        "type": "poi",
+        "label": "Шахидын-Хаант-Улсын-Голгазар",
+        "position": {
+          "x": -4105.0,
+          "y": 80.0,
+          "z": -1698.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Шахидын-Хаант-Улсын-Голгазар",
+        "categoryName": "Города",
+        "originalId": "marker_32"
+      },
+      "marker_47": {
+        "type": "poi",
+        "label": "ВинтерХолд",
+        "position": {
+          "x": 403.0,
+          "y": 69.0,
+          "z": 1297.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "ВинтерХолд",
+        "categoryName": "Города",
+        "originalId": "marker_33"
+      },
+      "marker_48": {
+        "type": "poi",
+        "label": "Тамалир",
+        "position": {
+          "x": 2082.0,
+          "y": 67.0,
+          "z": 4993.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Тамалир",
+        "categoryName": "Города",
+        "originalId": "marker_1"
+      },
+      "marker_49": {
+        "type": "poi",
+        "label": "Руллария",
+        "position": {
+          "x": -134.0,
+          "y": 69.0,
+          "z": -1446.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Руллария",
+        "categoryName": "Города",
+        "originalId": "marker_30"
+      },
+      "marker_50": {
+        "type": "poi",
+        "label": "Сигмастополь",
+        "position": {
+          "x": 754.0,
+          "y": 86.0,
+          "z": 4050.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Сигмастополь",
+        "categoryName": "Города",
+        "originalId": "marker_31"
+      },
+      "marker_51": {
+        "type": "poi",
+        "label": "Кусотсу (Японск)",
+        "position": {
+          "x": 359.0,
+          "y": 71.0,
+          "z": 585.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Кусотсу (Японск)",
+        "categoryName": "Города",
+        "originalId": "marker_2"
+      },
+      "marker_52": {
+        "type": "poi",
+        "label": "Советский Союз",
+        "position": {
+          "x": -232.0,
+          "y": 64.0,
+          "z": 331.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Советский Союз",
+        "categoryName": "Города",
+        "originalId": "marker_3"
+      },
+      "marker_53": {
+        "type": "poi",
+        "label": "Сербастополь",
+        "position": {
+          "x": -647.0,
+          "y": 66.0,
+          "z": 191.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Сербастополь",
+        "categoryName": "Города",
+        "originalId": "marker_4"
+      },
+      "marker_54": {
+        "type": "poi",
+        "label": "Горящий Кенгуру",
+        "position": {
+          "x": 4529.0,
+          "y": 64.0,
+          "z": 9516.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Горящий Кенгуру",
+        "categoryName": "Города",
+        "originalId": "marker_38"
+      },
+      "marker_55": {
+        "type": "poi",
+        "label": "Ленинодар",
+        "position": {
+          "x": -16789.0,
+          "y": 65.0,
+          "z": 3107.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Ленинодар",
+        "categoryName": "Города",
+        "originalId": "marker_39"
+      },
+      "marker_56": {
+        "type": "poi",
+        "label": "Новобебрянск",
+        "position": {
+          "x": 663.0,
+          "y": 69.0,
+          "z": -2424.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Новобебрянск",
+        "categoryName": "Города",
+        "originalId": "marker_36"
+      },
+      "marker_57": {
+        "type": "poi",
+        "label": "Мирадеш",
+        "position": {
+          "x": -3927.0,
+          "y": 64.0,
+          "z": -532.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Мирадеш",
+        "categoryName": "Города",
+        "originalId": "marker_37"
+      },
+      "marker_58": {
+        "type": "poi",
+        "label": "Ляля Ленд",
+        "position": {
+          "x": -1408.0,
+          "y": 65.0,
+          "z": 961.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Ляля Ленд",
+        "categoryName": "Города",
+        "originalId": "marker_45"
+      },
+      "marker_59": {
+        "type": "poi",
+        "label": "Социалистический Союз Рабочих",
+        "position": {
+          "x": -1413.0,
+          "y": 65.0,
+          "z": -3654.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Социалистический Союз Рабочих",
+        "categoryName": "Города",
+        "originalId": "marker_46"
+      },
+      "marker_60": {
+        "type": "poi",
+        "label": "Оазис",
+        "position": {
+          "x": -4878.0,
+          "y": 65.0,
+          "z": -1321.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Оазис",
+        "categoryName": "Города",
+        "originalId": "marker_43"
+      },
+      "marker_61": {
+        "type": "poi",
+        "label": "Берлин",
+        "position": {
+          "x": -4351.0,
+          "y": 65.0,
+          "z": -3272.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Берлин",
+        "categoryName": "Города",
+        "originalId": "marker_44"
+      },
+      "marker_62": {
+        "type": "poi",
+        "label": "Вадерландия",
+        "position": {
+          "x": -2678.0,
+          "y": 65.0,
+          "z": -396.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Вадерландия",
+        "categoryName": "Города",
+        "originalId": "marker_41"
+      },
+      "marker_63": {
+        "type": "poi",
+        "label": "Шенди-Сенс",
+        "position": {
+          "x": -2702.0,
+          "y": 65.0,
+          "z": -479.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Шенди-Сенс",
+        "categoryName": "Города",
+        "originalId": "marker_42"
+      },
+      "marker_64": {
+        "type": "poi",
+        "label": "Вадерландия",
+        "position": {
+          "x": -2678.0,
+          "y": 65.0,
+          "z": -396.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Вадерландия",
+        "categoryName": "Города",
+        "originalId": "marker_40"
+      },
+      "marker_65": {
+        "type": "poi",
+        "label": "Рок-Бург",
+        "position": {
+          "x": 2376.0,
+          "y": 65.0,
+          "z": 1285.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Рок-Бург",
+        "categoryName": "Города",
+        "originalId": "marker_49"
+      },
+      "marker_66": {
+        "type": "poi",
+        "label": "Lost-Haven",
+        "position": {
+          "x": -2981.0,
+          "y": 65.0,
+          "z": 261.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Lost-Haven",
+        "categoryName": "Города",
+        "originalId": "marker_47"
+      },
+      "marker_67": {
+        "type": "poi",
+        "label": "Торфина",
+        "position": {
+          "x": 520.0,
+          "y": 65.0,
+          "z": 356.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/church.png",
+        "originalName": "Торфина",
+        "categoryName": "Города",
+        "originalId": "marker_48"
+      },
+      "marker_119": {
+        "type": "poi",
+        "label": "Тестовый город",
+        "position": {
+          "x": 1000.0,
+          "y": 70.0,
+          "z": 2000.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "icon": "assets/poi.svg",
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "originalName": "Тестовый город",
+        "categoryName": "Города",
+        "originalId": "marker_119"
+      }
+    }
+  },
+  "category_2": {
+    "label": "Области",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "marker_68": {
+        "type": "poi",
+        "label": "Замёрзший порт",
+        "position": {
+          "x": -5138.0,
+          "y": 64.0,
+          "z": -260.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/area.png",
+        "originalName": "Замёрзший порт",
+        "categoryName": "Области",
+        "originalId": "marker_11"
+      },
+      "marker_69": {
+        "type": "poi",
+        "label": "Сапфирия",
+        "position": {
+          "x": 5952.0,
+          "y": 65.0,
+          "z": 5459.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/area.png",
+        "originalName": "Сапфирия",
+        "categoryName": "Области",
+        "originalId": "marker_1"
+      },
+      "marker_70": {
+        "type": "poi",
+        "label": "Новая Швейцария",
+        "position": {
+          "x": -12650.0,
+          "y": 65.0,
+          "z": 2597.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/area.png",
+        "originalName": "Новая Швейцария",
+        "categoryName": "Области",
+        "originalId": "marker_2"
+      },
+      "marker_71": {
+        "type": "poi",
+        "label": "СССГ",
+        "position": {
+          "x": -1962.0,
+          "y": 65.0,
+          "z": 912.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/area.png",
+        "originalName": "СССГ",
+        "categoryName": "Области",
+        "originalId": "marker_4"
+      },
+      "marker_72": {
+        "type": "poi",
+        "label": "Римcкая Империя",
+        "position": {
+          "x": 3143.0,
+          "y": 76.0,
+          "z": 4236.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/area.png",
+        "originalName": "Римcкая Империя",
+        "categoryName": "Области",
+        "originalId": "marker_5"
+      }
+    }
+  },
+  "category_3": {
+    "label": "Маркеры",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "marker_73": {
+        "type": "poi",
+        "label": "Спавн",
+        "position": {
+          "x": -24.0,
+          "y": 64.0,
+          "z": 256.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/marker.png",
+        "originalName": "Спавн",
+        "categoryName": "Маркеры",
+        "originalId": "_spawn_world"
+      },
+      "marker_74": {
+        "type": "poi",
+        "label": "Центральный Банк",
+        "position": {
+          "x": -1141.0,
+          "y": 71.0,
+          "z": 451.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/marker.png",
+        "originalName": "Центральный Банк",
+        "categoryName": "Маркеры",
+        "originalId": "marker_1"
+      },
+      "marker_75": {
+        "type": "poi",
+        "label": "Новое Метро",
+        "position": {
+          "x": -17.0,
+          "y": 57.0,
+          "z": 230.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/marker.png",
+        "originalName": "Новое Метро",
+        "categoryName": "Маркеры",
+        "originalId": "marker_2"
+      },
+      "marker_76": {
+        "type": "poi",
+        "label": "Дача Малины Иванова",
+        "position": {
+          "x": -4396.0,
+          "y": 70.0,
+          "z": -22056.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/marker.png",
+        "originalName": "Дача Малины Иванова",
+        "categoryName": "Маркеры",
+        "originalId": "marker_3"
+      }
+    }
+  },
+  "category_4": {
+    "label": "Деревни",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "marker_77": {
+        "type": "poi",
+        "label": "Дурт Урундык",
+        "position": {
+          "x": -6721.0,
+          "y": 65.0,
+          "z": -3276.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Дурт Урундык",
+        "categoryName": "Деревни",
+        "originalId": "marker_12"
+      },
+      "marker_78": {
+        "type": "poi",
+        "label": "Остров Леонский",
+        "position": {
+          "x": 3575.0,
+          "y": 65.0,
+          "z": 3075.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Остров Леонский",
+        "categoryName": "Деревни",
+        "originalId": "marker_10"
+      },
+      "marker_79": {
+        "type": "poi",
+        "label": "Монови",
+        "position": {
+          "x": -486.0,
+          "y": 65.0,
+          "z": 923.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Монови",
+        "categoryName": "Деревни",
+        "originalId": "marker_11"
+      },
+      "marker_80": {
+        "type": "poi",
+        "label": "Сэнд Кост (Бобровск)",
+        "position": {
+          "x": -526.0,
+          "y": 69.0,
+          "z": 1998.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Сэнд Кост (Бобровск)",
+        "categoryName": "Деревни",
+        "originalId": "marker_2"
+      },
+      "marker_81": {
+        "type": "poi",
+        "label": "LimeTown",
+        "position": {
+          "x": -4595.0,
+          "y": 65.0,
+          "z": -1854.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "LimeTown",
+        "categoryName": "Деревни",
+        "originalId": "marker_3"
+      },
+      "marker_82": {
+        "type": "poi",
+        "label": "Фарленд",
+        "position": {
+          "x": -14726.0,
+          "y": 65.0,
+          "z": -772.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Фарленд",
+        "categoryName": "Деревни",
+        "originalId": "marker_4"
+      },
+      "marker_83": {
+        "type": "poi",
+        "label": "Северск 1",
+        "position": {
+          "x": -2524.0,
+          "y": 65.0,
+          "z": 740.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Северск 1",
+        "categoryName": "Деревни",
+        "originalId": "marker_5"
+      },
+      "marker_84": {
+        "type": "poi",
+        "label": "Подгородье",
+        "position": {
+          "x": -3094.0,
+          "y": 65.0,
+          "z": 896.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Подгородье",
+        "categoryName": "Деревни",
+        "originalId": "marker_6"
+      },
+      "marker_85": {
+        "type": "poi",
+        "label": "Усадьба mr_haaat",
+        "position": {
+          "x": 4024.0,
+          "y": 65.0,
+          "z": 4143.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Усадьба mr_haaat",
+        "categoryName": "Деревни",
+        "originalId": "marker_7"
+      },
+      "marker_86": {
+        "type": "poi",
+        "label": "Норильск",
+        "position": {
+          "x": -200.0,
+          "y": 65.0,
+          "z": -2072.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Норильск",
+        "categoryName": "Деревни",
+        "originalId": "marker_8"
+      },
+      "marker_87": {
+        "type": "poi",
+        "label": "Смоляново",
+        "position": {
+          "x": -468.0,
+          "y": 65.0,
+          "z": 436.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Смоляново",
+        "categoryName": "Деревни",
+        "originalId": "marker_9"
+      },
+      "marker_88": {
+        "type": "poi",
+        "label": "Бобровск",
+        "position": {
+          "x": -1035.0,
+          "y": 69.0,
+          "z": 1131.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/village.png",
+        "originalName": "Бобровск",
+        "categoryName": "Деревни",
+        "originalId": "marker_14"
+      }
+    }
+  },
+  "category_5": {
+    "label": "Достопримечательности",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "marker_89": {
+        "type": "poi",
+        "label": "Мавзолей Ленина",
+        "position": {
+          "x": -1266.0,
+          "y": 83.0,
+          "z": -26.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Мавзолей Ленина",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_5"
+      },
+      "marker_90": {
+        "type": "poi",
+        "label": "Международный Аэропорт Провинции Редсворд",
+        "position": {
+          "x": -4680.0,
+          "y": 64.0,
+          "z": 563.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Международный Аэропорт Провинции Редсворд",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_6"
+      },
+      "marker_91": {
+        "type": "poi",
+        "label": "Музей Блоков",
+        "position": {
+          "x": -298.0,
+          "y": 69.0,
+          "z": -966.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Музей Блоков",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_7"
+      },
+      "marker_92": {
+        "type": "poi",
+        "label": "Обсерватория",
+        "position": {
+          "x": -4178.0,
+          "y": 65.0,
+          "z": -768.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Обсерватория",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_8"
+      },
+      "marker_93": {
+        "type": "poi",
+        "label": "Воронцовский Дворец",
+        "position": {
+          "x": 2026.0,
+          "y": 70.0,
+          "z": 5286.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Воронцовский Дворец",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_9"
+      },
+      "marker_94": {
+        "type": "poi",
+        "label": "Мемориал Кену Блоку (DC Shoes)",
+        "position": {
+          "x": -6682.0,
+          "y": 64.0,
+          "z": -3251.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Мемориал Кену Блоку (DC Shoes)",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_12"
+      },
+      "marker_95": {
+        "type": "poi",
+        "label": "Долина Пшеницы",
+        "position": {
+          "x": -875.0,
+          "y": 72.0,
+          "z": 1037.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Долина Пшеницы",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_13"
+      },
+      "marker_96": {
+        "type": "poi",
+        "label": "Остров Питкэрн",
+        "position": {
+          "x": 1018.0,
+          "y": 65.0,
+          "z": -420.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Остров Питкэрн",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_10"
+      },
+      "marker_97": {
+        "type": "poi",
+        "label": "Статуя Культа Личности Баси",
+        "position": {
+          "x": -300.0,
+          "y": 65.0,
+          "z": -1400.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Статуя Культа Личности Баси",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_11"
+      },
+      "marker_98": {
+        "type": "poi",
+        "label": "WTC Towers",
+        "position": {
+          "x": 2794.0,
+          "y": 65.0,
+          "z": 687.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "WTC Towers",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_1"
+      },
+      "marker_99": {
+        "type": "poi",
+        "label": "Survival Games: Breeze Island",
+        "position": {
+          "x": 984.0,
+          "y": 71.0,
+          "z": -483.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Survival Games: Breeze Island",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_2"
+      },
+      "marker_100": {
+        "type": "poi",
+        "label": "Херсонесский Маяк",
+        "position": {
+          "x": 1974.0,
+          "y": 67.0,
+          "z": 1435.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Херсонесский Маяк",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_3"
+      },
+      "marker_101": {
+        "type": "poi",
+        "label": "Майдан Незалежності",
+        "position": {
+          "x": 2788.0,
+          "y": 76.0,
+          "z": 880.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/monument.png",
+        "originalName": "Майдан Незалежності",
+        "categoryName": "Достопримечательности",
+        "originalId": "marker_4"
+      }
+    }
+  },
+  "category_6": {
+    "label": "Посёлки",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "marker_102": {
+        "type": "poi",
+        "label": "Песчаный",
+        "position": {
+          "x": -298.0,
+          "y": 71.0,
+          "z": 101.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Песчаный",
+        "categoryName": "Посёлки",
+        "originalId": "marker_5"
+      },
+      "marker_103": {
+        "type": "poi",
+        "label": "Эрзянск",
+        "position": {
+          "x": -1876.0,
+          "y": 82.0,
+          "z": -230.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Эрзянск",
+        "categoryName": "Посёлки",
+        "originalId": "marker_6"
+      },
+      "marker_104": {
+        "type": "poi",
+        "label": "Сенди-Кост",
+        "position": {
+          "x": 1520.0,
+          "y": 64.0,
+          "z": -655.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Сенди-Кост",
+        "categoryName": "Посёлки",
+        "originalId": "marker_7"
+      },
+      "marker_105": {
+        "type": "poi",
+        "label": "Жигулёвский",
+        "position": {
+          "x": 120.0,
+          "y": 64.0,
+          "z": 136.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Жигулёвский",
+        "categoryName": "Посёлки",
+        "originalId": "marker_8"
+      },
+      "marker_106": {
+        "type": "poi",
+        "label": "Новый Фарленд",
+        "position": {
+          "x": -38045.0,
+          "y": 64.0,
+          "z": -506.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Новый Фарленд",
+        "categoryName": "Посёлки",
+        "originalId": "marker_9"
+      },
+      "marker_107": {
+        "type": "poi",
+        "label": "Малый Маяк",
+        "position": {
+          "x": 1954.0,
+          "y": 65.0,
+          "z": 1219.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Малый Маяк",
+        "categoryName": "Посёлки",
+        "originalId": "marker_12"
+      },
+      "marker_108": {
+        "type": "poi",
+        "label": "Красово",
+        "position": {
+          "x": -263.0,
+          "y": 65.0,
+          "z": -1175.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Красово",
+        "categoryName": "Посёлки",
+        "originalId": "marker_13"
+      },
+      "marker_109": {
+        "type": "poi",
+        "label": "Полтава",
+        "position": {
+          "x": 3110.0,
+          "y": 65.0,
+          "z": -100.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Полтава",
+        "categoryName": "Посёлки",
+        "originalId": "marker_10"
+      },
+      "marker_110": {
+        "type": "poi",
+        "label": "Торопова Дача",
+        "position": {
+          "x": 3397.0,
+          "y": 65.0,
+          "z": 493.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Торопова Дача",
+        "categoryName": "Посёлки",
+        "originalId": "marker_11"
+      },
+      "marker_111": {
+        "type": "poi",
+        "label": "Примм",
+        "position": {
+          "x": 1103.0,
+          "y": 72.0,
+          "z": 1052.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Примм",
+        "categoryName": "Посёлки",
+        "originalId": "marker_1"
+      },
+      "marker_112": {
+        "type": "poi",
+        "label": "Кандалар",
+        "position": {
+          "x": 608.0,
+          "y": 64.0,
+          "z": 725.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Кандалар",
+        "categoryName": "Посёлки",
+        "originalId": "marker_2"
+      },
+      "marker_113": {
+        "type": "poi",
+        "label": "Деревня игрока 40тонн",
+        "position": {
+          "x": 1145.0,
+          "y": 78.0,
+          "z": 780.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Деревня игрока 40тонн",
+        "categoryName": "Посёлки",
+        "originalId": "marker_3"
+      },
+      "marker_114": {
+        "type": "poi",
+        "label": "Горбург",
+        "position": {
+          "x": -2261.0,
+          "y": 73.0,
+          "z": 313.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Горбург",
+        "categoryName": "Посёлки",
+        "originalId": "marker_4"
+      },
+      "marker_115": {
+        "type": "poi",
+        "label": "Агроусадьба игрока Arbuzik_21",
+        "position": {
+          "x": -4360.0,
+          "y": 65.0,
+          "z": -22040.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Агроусадьба игрока Arbuzik_21",
+        "categoryName": "Посёлки",
+        "originalId": "marker_16"
+      },
+      "marker_116": {
+        "type": "poi",
+        "label": "Новый Тимград",
+        "position": {
+          "x": -1274.0,
+          "y": 80.0,
+          "z": 1984.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Новый Тимград",
+        "categoryName": "Посёлки",
+        "originalId": "marker_17"
+      },
+      "marker_117": {
+        "type": "poi",
+        "label": "Колхоз Имени Ленина",
+        "position": {
+          "x": -2000.0,
+          "y": 70.0,
+          "z": 640.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Колхоз Имени Ленина",
+        "categoryName": "Посёлки",
+        "originalId": "marker_14"
+      },
+      "marker_118": {
+        "type": "poi",
+        "label": "Эль-Джауф",
+        "position": {
+          "x": -4100.0,
+          "y": 76.0,
+          "z": -1914.0
+        },
+        "anchor": {
+          "x": 16,
+          "y": 16
+        },
+        "sorting": 100,
+        "listed": true,
+        "minDistance": 10,
+        "maxDistance": 100000,
+        "icon": "assets/town.png",
+        "originalName": "Эль-Джауф",
+        "categoryName": "Посёлки",
+        "originalId": "marker_15"
+      }
+    }
+  }
+}

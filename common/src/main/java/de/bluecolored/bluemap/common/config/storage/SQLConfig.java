@@ -78,10 +78,10 @@ public class SQLConfig extends StorageConfig {
 
             return Optional.of(driverJarURL);
         } catch (MalformedURLException ex) {
-            throw new ConfigurationException("""
-            The configured driver-jar path is not formatted correctly!
-            Please check your 'driver-jar' setting in your configuration and make sure you have the correct path configured.
-            """.strip(), ex);
+            throw new ConfigurationException(
+                "The configured driver-jar path is not formatted correctly!\n" +
+                "Please check your 'driver-jar' setting in your configuration and make sure you have the correct path configured.",
+                ex);
         }
     }
 
@@ -106,10 +106,9 @@ public class SQLConfig extends StorageConfig {
                 }
             }
 
-            if (key == null) throw new ConfigurationException("""
-                Could not find any sql-dialect that is matching the given connection-url.
-                Please check your 'connection-url' setting in your configuration and make sure it is in the correct format.
-                """.strip());
+            if (key == null) throw new ConfigurationException(
+                "Could not find any sql-dialect that is matching the given connection-url.\n" +
+                "Please check your 'connection-url' setting in your configuration and make sure it is in the correct format.");
         }
 
         return parseKey(Dialect.REGISTRY, key, "dialect");
@@ -138,11 +137,10 @@ public class SQLConfig extends StorageConfig {
             if (driverJarUrl != null) {
 
                 // sanity-check if file exists
-                if (!Files.exists(Path.of(driverJarUrl.toURI()))) {
-                    throw new ConfigurationException("""
-                    The configured driver-jar was not found!
-                    Please check your 'driver-jar' setting in your configuration and make sure you have the correct path configured.
-                    """.strip());
+                if (!Files.exists(Paths.get(driverJarUrl.toURI()))) {
+                    throw new ConfigurationException(
+                        "The configured driver-jar was not found!\n" +
+                        "Please check your 'driver-jar' setting in your configuration and make sure you have the correct path configured.");
                 }
 
                 ClassLoader classLoader = new URLClassLoader(new URL[]{driverJarUrl});
@@ -154,22 +152,22 @@ public class SQLConfig extends StorageConfig {
             // create driver
             return (Driver) driverClazz.getDeclaredConstructor().newInstance();
         } catch (ClassCastException ex) {
-            throw new ConfigurationException("""
-            The configured driver-class was found but is not of the correct class-type!
-            Please check your 'driver-class' setting in your configuration and make sure you have the correct class configured.
-            """.strip(), ex);
+            throw new ConfigurationException(
+                "The configured driver-class was found but is not of the correct class-type!\n" +
+                "Please check your 'driver-class' setting in your configuration and make sure you have the correct class configured.",
+                ex);
         } catch (ClassNotFoundException ex) {
-            throw new ConfigurationException("""
-            The configured driver-class was not found!
-            Please check your 'driver-class' setting in your configuration and make sure you have the correct class configured.
-            """.strip(), ex);
+            throw new ConfigurationException(
+                "The configured driver-class was not found!\n" +
+                "Please check your 'driver-class' setting in your configuration and make sure you have the correct class configured.",
+                ex);
         } catch (ConfigurationException ex) {
             throw ex;
         } catch (Exception ex) {
-            throw new ConfigurationException("""
-            BlueMap failed to load the configured SQL-Driver!
-            Please check your 'driver-jar' and 'driver-class' settings in your configuration.
-            """.strip(), ex);
+            throw new ConfigurationException(
+                "BlueMap failed to load the configured SQL-Driver!\n" +
+                "Please check your 'driver-jar' and 'driver-class' settings in your configuration.",
+                ex);
         }
     }
 

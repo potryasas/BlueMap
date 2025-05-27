@@ -71,7 +71,7 @@ public final class Addons {
                         .filter(f -> f.getFileName().toString().endsWith(".jar"))
                         .forEach(expectOnlyAddons ? Addons::tryLoadAddon : Addons::tryLoadJar);
         } catch (IOException e) {
-            Logger.global.logError("Failed to load addons from '%s'".formatted(root), e);
+            Logger.global.logError(String.format("Failed to load addons from '%s'", root), e);
         }
     }
 
@@ -84,7 +84,7 @@ public final class Addons {
 
             loadAddon(addonJarFile, addonInfo);
         } catch (ConfigurationException e) {
-            ConfigurationException e2 = new ConfigurationException("BlueMap failed to load the addon '%s'!".formatted(addonJarFile), e);
+            ConfigurationException e2 = new ConfigurationException(String.format("BlueMap failed to load the addon '%s'!", addonJarFile), e);
             Logger.global.logWarning(e2.getFormattedExplanation());
             Logger.global.logError(e2);
         }
@@ -94,7 +94,7 @@ public final class Addons {
         try {
             AddonInfo addonInfo = loadAddonInfo(addonJarFile);
             if (addonInfo == null) {
-                Logger.global.logDebug("No %s found in '%s', skipping...".formatted(ADDON_INFO_FILE, addonJarFile));
+                Logger.global.logDebug(String.format("No %s found in '%s', skipping...", ADDON_INFO_FILE, addonJarFile));
                 return;
             }
 
@@ -102,18 +102,17 @@ public final class Addons {
 
             loadAddon(addonJarFile, addonInfo);
         } catch (ConfigurationException e) {
-            ConfigurationException e2 = new ConfigurationException("BlueMap failed to load the addon '%s'!".formatted(addonJarFile), e);
+            ConfigurationException e2 = new ConfigurationException(String.format("BlueMap failed to load the addon '%s'!", addonJarFile), e);
             Logger.global.logWarning(e2.getFormattedExplanation());
             Logger.global.logError(e2);
         }
     }
 
     public synchronized static void loadAddon(Path jarFile, AddonInfo addonInfo) throws ConfigurationException {
-        Logger.global.logInfo("Loading BlueMap Addon: %s (%s)".formatted(addonInfo.getId(), jarFile));
+        Logger.global.logInfo(String.format("Loading BlueMap Addon: %s (%s)", addonInfo.getId(), jarFile));
 
         if (LOADED_ADDONS.containsKey(addonInfo.getId()))
-            throw new ConfigurationException("There is already an addon with same id ('%s') loaded!"
-                    .formatted(addonInfo.getId()));
+            throw new ConfigurationException(String.format("There is already an addon with same id ('%s') loaded!", addonInfo.getId()));
 
         try {
             ClassLoader addonClassLoader = BlueMap.class.getClassLoader();
@@ -140,8 +139,10 @@ public final class Addons {
             LOADED_ADDONS.put(addonInfo.getId(), addon);
 
             // run addon
-            if (instance instanceof Runnable runnable)
+            if (instance instanceof Runnable) {
+                Runnable runnable = (Runnable) instance;
                 runnable.run();
+            }
 
         } catch (Exception e) {
             throw new ConfigurationException("There was an exception trying to initialize the addon!", e);
@@ -184,20 +185,18 @@ public final class Addons {
                 if (Files.exists(root.resolve(FABRIC_MOD_JSON))) isMod = true;
             }
         } catch (IOException e) {
-            Logger.global.logError("Failed to log file-info for '%s'".formatted(jarFile), e);
+            Logger.global.logError(String.format("Failed to log file-info for '%s'", jarFile), e);
         }
 
-        if (!(isPlugin || isMod)) return new ConfigurationException("""
-        File '%s' does not seem to be a valid native bluemap addon.
-        """.strip().formatted(jarFile));
+        if (!(isPlugin || isMod)) return new ConfigurationException(
+                String.format("File '%s' does not seem to be a valid native bluemap addon.", jarFile));
 
         String type = isPlugin ? "plugin" : "mod";
         String targetFolder = isPlugin ? "./plugins" : "./mods";
 
-        return new ConfigurationException("""
-        File '%s' seems to be a %s and not a native bluemap addon.
-        Try adding it to the '%s' folder of your server instead!
-        """.strip().formatted(jarFile, type, targetFolder));
+        return new ConfigurationException(
+                String.format("File '%s' seems to be a %s and not a native bluemap addon.\nTry adding it to the '%s' folder of your server instead!", 
+                jarFile, type, targetFolder));
     }
 
 }

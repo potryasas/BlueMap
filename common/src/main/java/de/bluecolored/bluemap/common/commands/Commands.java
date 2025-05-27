@@ -28,7 +28,8 @@ import com.flowpowered.math.vector.Vector3d;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
-import de.bluecolored.bluecommands.*;
+import de.bluecolored.bluemap.common.commands.java8compat.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.BlueMapCommands;
 import de.bluecolored.bluemap.common.commands.arguments.MapBackedArgumentParser;
 import de.bluecolored.bluemap.common.commands.arguments.StringSetArgumentParser;
 import de.bluecolored.bluemap.common.commands.commands.*;
@@ -43,6 +44,7 @@ import de.bluecolored.bluemap.core.world.World;
 import net.kyori.adventure.text.event.ClickEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -60,66 +62,9 @@ public class Commands {
             .weakKeys()
             .build(Commands::safeRandomRef);
 
-    public static de.bluecolored.bluecommands.Command<CommandSource, Object> create(Plugin plugin) {
-        BlueCommands<CommandSource> builder = new BlueCommands<>();
-
-        builder.setArgumentParserForArgumentType(BmMap.class, new MapBackedArgumentParser<>("map", () ->
-                plugin.isLoaded() ? plugin.getBlueMap().getMaps() : Map.of()));
-        builder.setArgumentParserForArgumentType(StorageConfig.class, new MapBackedArgumentParser<>("storage", () ->
-                plugin.isLoaded() ? plugin.getBlueMap().getConfig().getStorageConfigs() : Map.of()));
-        builder.setArgumentParserForArgumentType(RenderTask.class, new MapBackedArgumentParser<>("render-task", REF_TO_RENDERTASK.asMap()));
-
-        builder.setArgumentParserForId("storage-id", new StringSetArgumentParser("storage", () ->
-                plugin.isLoaded() ? plugin.getBlueMap().getConfig().getStorageConfigs().keySet() : Set.of()));
-
-        builder.setContextResolverForType(ServerWorld.class, c -> c.getWorld().orElse(null));
-        builder.setContextResolverForType(World.class, c -> plugin.isLoaded() ? c.getWorld().map(plugin::getWorld).orElse(null) : null);
-        builder.setContextResolverForType(Vector3d.class, c -> c.getPosition().orElse(null));
-
-        builder.setAnnotationContextPredicate(Permission.class, (permission, commandSource) ->
-                permission == null || commandSource.hasPermission(permission.value())
-        );
-        builder.setAnnotationContextPredicate(WithWorld.class, (withWorld, commandSource) ->
-                withWorld == null || plugin.isLoaded() && commandSource.getWorld().map(plugin::getWorld).isPresent()
-        );
-        builder.setAnnotationContextPredicate(WithPosition.class, (withPosition, commandSource) ->
-                withPosition == null || commandSource.getPosition().isPresent()
-        );
-
-        de.bluecolored.bluecommands.Command<CommandSource, Object> commands = new LiteralCommand<>("bluemap");
-
-        // register commands
-        Stream.of(
-                new DebugCommand(plugin),
-                new FreezeCommand(plugin),
-                new HelpCommand(plugin),
-                new MapListCommand(plugin),
-                new PurgeCommand(plugin),
-                new ReloadCommand(plugin),
-                new StartCommand(plugin),
-                new StatusCommand(plugin),
-                new StopCommand(plugin),
-                new StoragesCommand(plugin),
-                new TasksCommand(plugin),
-                new TroubleshootCommand(plugin),
-                new UnfreezeCommand(plugin),
-                new VersionCommand(plugin)
-        )
-                .map(builder::createCommand)
-                .forEach(commands::addSubCommand);
-
-        // register an update-command for each update-strategy
-        Map.of(
-                "update", TileUpdateStrategy.FORCE_NONE,
-                "fix-edges", TileUpdateStrategy.FORCE_EDGE,
-                "force-update", TileUpdateStrategy.FORCE_ALL
-        ).forEach((updateLiteral, strategy) -> {
-            Command<CommandSource, Object> updateCommand = new LiteralCommand<>(updateLiteral);
-            updateCommand.addSubCommand(builder.createCommand(new UpdateCommand(plugin, strategy)));
-            commands.addSubCommand(updateCommand);
-        });
-
-        return commands;
+    public static Command create(Plugin plugin) {
+        BlueMapCommands.BlueMapCommandRegistry.initialize(plugin);
+        return BlueMapCommands.BlueMapCommandRegistry.getRootCommand();
     }
 
     public static String getRefForTask(RenderTask task) {
@@ -130,17 +75,24 @@ public class Commands {
         return REF_TO_RENDERTASK.getIfPresent(ref);
     }
 
-    public static boolean checkExecutablePreconditions(Plugin plugin, CommandSource context, CommandExecutable<CommandSource, Object> executable) {
-        if (executable instanceof MethodCommandExecutable<CommandSource> methodExecutable) {
-
-            // check if plugin needs to be loaded
-            if (methodExecutable.getMethod().getAnnotation(Unloaded.class) == null) {
-                return Commands.checkPluginLoaded(plugin, context);
-            }
-
+    public static boolean checkExecutablePreconditions(Plugin plugin, CommandSource context, Object executable) {
+        if (!hasUnloadedAnnotation(executable)) {
+            return Commands.checkPluginLoaded(plugin, context);
         }
 
         return true;
+    }
+
+    private static boolean hasUnloadedAnnotation(Object executable) {
+        try {
+            if (executable instanceof Class) {
+                return ((Class<?>) executable).isAnnotationPresent(Unloaded.class);
+            } else {
+                return executable.getClass().isAnnotationPresent(Unloaded.class);
+            }
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static boolean checkPluginLoaded(Plugin plugin, CommandSource context){

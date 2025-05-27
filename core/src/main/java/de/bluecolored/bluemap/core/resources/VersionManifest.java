@@ -1,27 +1,3 @@
-/*
- * This file is part of BlueMap, licensed under the MIT License (MIT).
- *
- * Copyright (c) Blue (Lukas Rieger) <https://bluecolored.de>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package de.bluecolored.bluemap.core.resources;
 
 import com.google.gson.Gson;
@@ -41,6 +17,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents the Minecraft version manifest as provided by Mojang's public API.
+ */
 @Getter
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class VersionManifest {
@@ -65,12 +44,23 @@ public class VersionManifest {
     @Getter(AccessLevel.NONE)
     private transient boolean sorted;
 
-
+    /**
+     * Returns the cached VersionManifest instance, or fetches it if not loaded.
+     *
+     * @return the VersionManifest instance
+     * @throws IOException if an I/O error occurs when fetching
+     */
     public static VersionManifest getOrFetch() throws IOException {
         if (instance == null) return fetch();
         return instance;
     }
 
+    /**
+     * Fetches the latest version manifest from the Mojang API.
+     *
+     * @return the fetched VersionManifest instance
+     * @throws IOException if an I/O error occurs
+     */
     public static VersionManifest fetch() throws IOException {
         try (
                 InputStream in = openInputStream(MANIFEST_URL);
@@ -82,13 +72,21 @@ public class VersionManifest {
     }
 
     /**
-     * An array of versions, ordered newest first
+     * Returns an array of versions, ordered newest first.
+     *
+     * @return an array of versions
      */
     public synchronized Version[] getVersions() {
         if (!sorted) Arrays.sort(versions, Comparator.reverseOrder());
         return versions;
     }
 
+    /**
+     * Returns a specific version by its ID, or {@code null} if not found.
+     *
+     * @param id the version id
+     * @return the Version object, or null if not found
+     */
     public synchronized @Nullable Version getVersion(String id) {
         if (versionMap == null) {
             versionMap = new HashMap<>();
@@ -99,12 +97,18 @@ public class VersionManifest {
         return versionMap.get(id);
     }
 
+    /**
+     * Contains the IDs of the latest release and snapshot versions.
+     */
     @Getter
     public static class Latest {
         private String release;
         private String snapshot;
     }
 
+    /**
+     * Represents a single Minecraft version entry from the manifest.
+     */
     @Getter
     public static class Version implements Comparable<Version> {
 
@@ -117,6 +121,12 @@ public class VersionManifest {
         @Getter(AccessLevel.NONE)
         private transient @Nullable VersionDetail detail;
 
+        /**
+         * Fetches the detailed information for this version, using its URL.
+         *
+         * @return the VersionDetail object
+         * @throws IOException if an I/O error occurs while fetching details
+         */
         public synchronized VersionDetail fetchDetail() throws IOException {
             if (detail == null) {
                 try (
@@ -137,6 +147,9 @@ public class VersionManifest {
 
     }
 
+    /**
+     * Contains detailed information about a particular version, including downloads.
+     */
     @Getter
     public static class VersionDetail {
         private String id;
@@ -144,24 +157,43 @@ public class VersionManifest {
         private Downloads downloads;
     }
 
+    /**
+     * Contains download links for client and server for a version.
+     */
     @Getter
     public static class Downloads {
         private Download client;
         private Download server;
     }
 
+    /**
+     * Represents a downloadable file, such as a client or server JAR.
+     */
     @Getter
     public static class Download {
         private String url;
         private long size;
         private String sha1;
 
+        /**
+         * Opens an InputStream to download the file from its URL.
+         *
+         * @return an InputStream for the download URL
+         * @throws IOException if an I/O error occurs
+         */
         public InputStream createInputStream() throws IOException {
             return openInputStream(url);
         }
 
     }
 
+    /**
+     * Opens an InputStream for a given URL path, with appropriate timeouts.
+     *
+     * @param urlPath the URL string
+     * @return an InputStream to the URL
+     * @throws IOException if an I/O error or invalid URL occurs
+     */
     private static InputStream openInputStream(String urlPath) throws IOException {
         try {
             URL downloadUrl = new URI(urlPath).toURL();

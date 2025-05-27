@@ -49,12 +49,12 @@ public class Model {
     private Model(){}
 
     public synchronized void optimize(ResourcePack resourcePack) {
-        for (var variable : this.textures.values()) {
+        for (TextureVariable variable : this.textures.values()) {
             variable.optimize(resourcePack);
         }
 
         if (this.elements != null) {
-            for (var element : elements) {
+            for (Element element : elements) {
                 if (element != null) element.optimize(resourcePack);
             }
         }

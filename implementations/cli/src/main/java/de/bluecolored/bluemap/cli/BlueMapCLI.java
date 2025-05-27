@@ -59,6 +59,7 @@ import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -74,7 +75,7 @@ public class BlueMapCLI {
     private static boolean shutdownInProgress = false;
 
     private String minecraftVersion = null;
-    private Path configFolder = Path.of("config");
+    private Path configFolder = Paths.get("config");
     private Path modsFolder = null;
 
 
@@ -147,7 +148,7 @@ public class BlueMapCLI {
                 String eta = "";
                 if (etaMs > 0) {
                     Duration duration = Duration.of(etaMs, ChronoUnit.MILLIS);
-                    eta = " (ETA: %s)".formatted(TextFormat.duration(duration));
+                    eta = String.format(" (ETA: %s)", TextFormat.duration(duration));
                 }
                 Logger.global.logInfo(task.getDescription() + ": " + (Math.round(progress * 100000) / 1000.0) + "%" + eta);
             }
@@ -261,7 +262,7 @@ public class BlueMapCLI {
         routingRequestHandler.register(".*", new FileRequestHandler(config.getWebroot()));
 
         // map route
-        for (var mapConfigEntry : blueMap.getConfig().getMapConfigs().entrySet()) {
+        for (Map.Entry<String, MapConfig> mapConfigEntry : blueMap.getConfig().getMapConfigs().entrySet()) {
             MapStorage storage = blueMap.getOrLoadStorage(mapConfigEntry.getValue().getStorage())
                     .map(mapConfigEntry.getKey());
 
@@ -277,7 +278,7 @@ public class BlueMapCLI {
         if (config.getLog().getFile() != null) {
             ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
             webLoggerList.add(Logger.file(
-                    Path.of(String.format(config.getLog().getFile(), zdt)),
+                    Paths.get(String.format(config.getLog().getFile(), zdt)),
                     config.getLog().isAppend()
             ));
         }
@@ -326,7 +327,7 @@ public class BlueMapCLI {
             }
 
             if (cmd.hasOption("l")) {
-                Logger.global.put(Logger.file(Path.of(cmd.getOptionValue("l")), cmd.hasOption("a")));
+                Logger.global.put(Logger.file(Paths.get(cmd.getOptionValue("l")), cmd.hasOption("a")));
             }
 
             //help
@@ -343,13 +344,13 @@ public class BlueMapCLI {
 
             //config folder
             if (cmd.hasOption("c")) {
-                cli.configFolder = Path.of(cmd.getOptionValue("c"));
+                cli.configFolder = Paths.get(cmd.getOptionValue("c"));
                 FileHelper.createDirectories(cli.configFolder);
             }
 
             //mods folder
             if (cmd.hasOption("n")) {
-                cli.modsFolder = Path.of(cmd.getOptionValue("n"));
+                cli.modsFolder = Paths.get(cmd.getOptionValue("n"));
                 if (!Files.isDirectory(cli.modsFolder)) {
                     throw new ConfigurationException("Mods folder does not exist: " + cli.modsFolder);
                 }
@@ -372,8 +373,8 @@ public class BlueMapCLI {
                     .modsFolder(cli.modsFolder)
                     .packsFolder(packsFolder)
                     .usePluginConfig(false)
-                    .defaultDataFolder(Path.of("data"))
-                    .defaultWebroot(Path.of("web"))
+                    .defaultDataFolder(Paths.get("data"))
+                    .defaultWebroot(Paths.get("web"))
                     .build();
 
             //apply new file-logger config
@@ -381,7 +382,7 @@ public class BlueMapCLI {
             if (coreConfig.getLog().getFile() != null) {
                 ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
                 Logger.global.put(Logger.file(
-                        Path.of(String.format(coreConfig.getLog().getFile(), zdt)),
+                        Paths.get(String.format(coreConfig.getLog().getFile(), zdt)),
                         coreConfig.getLog().isAppend()
                 ));
             }
@@ -550,7 +551,7 @@ public class BlueMapCLI {
     private static String getCliCommand() {
         String filename = "bluemap-cli.jar";
         try {
-            Path file = Path.of(BlueMapCLI.class.getProtectionDomain()
+            Path file = Paths.get(BlueMapCLI.class.getProtectionDomain()
                     .getCodeSource()
                     .getLocation()
                     .toURI());
@@ -558,7 +559,7 @@ public class BlueMapCLI {
             if (Files.isRegularFile(file)) {
                 try {
                     filename = "." + file.getFileSystem().getSeparator() +
-                            Path.of("").toRealPath().relativize(file.toRealPath());
+                            Paths.get("").toRealPath().relativize(file.toRealPath());
                 } catch (IllegalArgumentException ex) {
                     filename = file.toAbsolutePath().toString();
                 }

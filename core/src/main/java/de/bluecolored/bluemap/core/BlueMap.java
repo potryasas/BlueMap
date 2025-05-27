@@ -31,6 +31,7 @@ import org.spongepowered.configurate.gson.GsonConfigurationLoader;
 import java.io.IOException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinWorkerThread;
+import java.util.concurrent.ForkJoinPool.ForkJoinWorkerThreadFactory;
 
 public class BlueMap {
 
@@ -58,12 +59,15 @@ public class BlueMap {
 
     public static final ForkJoinPool THREAD_POOL = new ForkJoinPool(
             Runtime.getRuntime().availableProcessors(),
-            pool -> {
-                ForkJoinWorkerThread thread = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
-                // use current classloader, this fixes ClassLoading issues with forge
-                thread.setContextClassLoader(BlueMap.class.getClassLoader());
-                thread.setName("BlueMap-FJP-" + thread.getPoolIndex());
-                return thread;
+            new ForkJoinWorkerThreadFactory() {
+                @Override
+                public ForkJoinWorkerThread newThread(ForkJoinPool pool) {
+                    ForkJoinWorkerThread thread = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
+                    // use current classloader, this fixes ClassLoading issues with forge
+                    thread.setContextClassLoader(BlueMap.class.getClassLoader());
+                    thread.setName("BlueMap-FJP-" + thread.getPoolIndex());
+                    return thread;
+                }
             },
             null,
             false

@@ -30,6 +30,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.FileVisitOption;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -59,7 +60,7 @@ class FileTreeIterator implements Iterator<FileTreeWalker.Event>, Closeable {
     FileTreeIterator(Path start, int maxDepth, FileVisitOption... options)
             throws IOException
     {
-        this.walker = new FileTreeWalker(List.of(options), maxDepth);
+        this.walker = new FileTreeWalker(Arrays.asList(options), maxDepth);
         this.next = walker.walk(start);
         assert next.type() == FileTreeWalker.EventType.ENTRY ||
                 next.type() == FileTreeWalker.EventType.START_DIRECTORY;

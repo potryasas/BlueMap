@@ -41,7 +41,10 @@ public class UUIDDeserializer implements NBTAdapter<UUID> {
         if (compound.hasKey("UUID")) {
             int[] ints = compound.getIntArray("UUID");
             if (ints.length != 4) throw new IllegalArgumentException("Unexpected number of UUID-ints, expected 4, got " + ints.length);
-            return new UUID((long) ints[0] << 32 | ints[1], (long) ints[2] << 32 | ints[3]);
+            // Fix for Java 8 compatibility - properly handle int to long conversion with masking
+            long mostSigBits = ((long) ints[0] << 32) | (ints[1] & 0xFFFFFFFFL);
+            long leastSigBits = ((long) ints[2] << 32) | (ints[3] & 0xFFFFFFFFL);
+            return new UUID(mostSigBits, leastSigBits);
         }
 
         long[] longs = compound.getLongArray("UUID");

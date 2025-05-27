@@ -59,21 +59,6 @@ public abstract class DelegateInputStream extends InputStream {
     }
 
     @Override
-    public byte[] readAllBytes() throws IOException {
-        return in.readAllBytes();
-    }
-
-    @Override
-    public byte[] readNBytes(int len) throws IOException {
-        return in.readNBytes(len);
-    }
-
-    @Override
-    public int readNBytes(byte[] b, int off, int len) throws IOException {
-        return in.readNBytes(b, off, len);
-    }
-
-    @Override
     public long skip(long n) throws IOException {
         return in.skip(n);
     }
@@ -101,11 +86,6 @@ public abstract class DelegateInputStream extends InputStream {
     @Override
     public synchronized void reset() throws IOException {
         in.reset();
-    }
-
-    @Override
-    public long transferTo(OutputStream out) throws IOException {
-        return in.transferTo(out);
     }
 
 }

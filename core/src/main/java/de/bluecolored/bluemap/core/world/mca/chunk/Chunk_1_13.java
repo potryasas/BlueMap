@@ -254,7 +254,7 @@ public class Chunk_1_13 extends MCAChunk {
 
         public BlockState getBlockState(int x, int y, int z) {
             int index = (y & 0xF) << 8 | (z & 0xF) << 4 | x & 0xF;
-            int paletteIndex = (int) MCAUtil.getValueFromLongStream(blocks, index, bitsPerBlock);
+            int paletteIndex = (int) (MCAUtil.getValueFromLongStream(blocks, index, bitsPerBlock) & 0x7FFFFFFF);
             if (paletteIndex >= blockPalette.length) return BlockState.AIR;
             return blockPalette[paletteIndex];
         }

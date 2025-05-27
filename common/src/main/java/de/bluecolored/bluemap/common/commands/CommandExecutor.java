@@ -24,8 +24,8 @@
  */
 package de.bluecolored.bluemap.common.commands;
 
-import de.bluecolored.bluecommands.ParseMatch;
-import de.bluecolored.bluecommands.ParseResult;
+import de.bluecolored.bluemap.common.commands.java8compat.BlueMapCommands;
+import de.bluecolored.bluemap.common.commands.java8compat.CommandResult;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.common.serverinterface.CommandSource;
 import de.bluecolored.bluemap.core.BlueMap;
@@ -33,7 +33,7 @@ import de.bluecolored.bluemap.core.logger.Logger;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.ComponentLike;
 
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -45,47 +45,58 @@ public class CommandExecutor {
 
     private final Plugin plugin;
 
-    public ExecutionResult execute(ParseResult<CommandSource, Object> parseResult) {
-        if (parseResult.getMatches().isEmpty()) {
+    public static class ExecutionResult {
+        private final int resultCode;
+        private final boolean parseFailure;
+        
+        public ExecutionResult(int resultCode, boolean parseFailure) {
+            this.resultCode = resultCode;
+            this.parseFailure = parseFailure;
+        }
+        
+        public int resultCode() {
+            return resultCode;
+        }
+        
+        public boolean parseFailure() {
+            return parseFailure;
+        }
+    }
 
+    public ExecutionResult execute(String input, CommandSource context) {
+        if (input == null || input.trim().isEmpty()) {
             // check if the plugin is not loaded first
-            if (!Commands.checkPluginLoaded(plugin, parseResult.getContext()))
+            if (!Commands.checkPluginLoaded(plugin, context))
                 return new ExecutionResult(0, false);
 
             return new ExecutionResult(0, true);
         }
 
-        ParseMatch<CommandSource, Object> match = parseResult.getMatches().stream()
-                .max(Comparator.comparing(ParseMatch::getPriority))
-                .orElseThrow(IllegalStateException::new);
-
-        if (!Commands.checkExecutablePreconditions(plugin, match.getContext(), match.getExecutable()))
+        // Разбиваем ввод на аргументы
+        String[] args = input.trim().split("\\s+");
+        
+        // Если первый аргумент не "bluemap", добавляем его
+        if (args.length == 0 || !args[0].equalsIgnoreCase("bluemap")) {
+            String[] newArgs = new String[args.length + 1];
+            newArgs[0] = "bluemap";
+            System.arraycopy(args, 0, newArgs, 1, args.length);
+            args = newArgs;
+        }
+        
+        try {
+            CommandResult result = BlueMapCommands.executeCommand(context, input);
+            
+            if (result.getMessage() != null && !result.getMessage().isEmpty()) {
+                context.sendMessage(text(result.getMessage()));
+            }
+            
+            return new ExecutionResult(result.getResultCode(), false);
+        } catch (Exception e) {
+            Logger.global.logError("Command execution for '" + input + "' failed", e);
+            context.sendMessage(text("There was an error executing this command! See logs or console for details.")
+                    .color(NEGATIVE_COLOR));
             return new ExecutionResult(0, false);
-
-        return CompletableFuture.supplyAsync(match::execute, BlueMap.THREAD_POOL)
-                .thenApply(result -> switch (result) {
-                    case Number n -> n.intValue();
-                    case ComponentLike c -> {
-                        match.getContext().sendMessage(c.asComponent());
-                        yield 1;
-                    }
-                    case Boolean b -> b ? 1 : 0;
-                    case null, default -> 1;
-                })
-                .exceptionally(e -> {
-                    Logger.global.logError("Command execution for '%s' failed".formatted(parseResult.getInput()), e);
-                    parseResult.getContext().sendMessage(text("There was an error executing this command! See logs or console for details.")
-                            .color(NEGATIVE_COLOR));
-                    return 0;
-                })
-                .completeOnTimeout(1, 100, TimeUnit.MILLISECONDS)
-                .thenApply(code -> new ExecutionResult(code, false))
-                .join();
+        }
     }
-
-    public record ExecutionResult (
-        int resultCode,
-        boolean parseFailure
-    ) {}
 
 }

@@ -39,10 +39,33 @@ import java.util.function.Function;
 
 public interface Dialect extends Keyed {
 
-    Dialect MYSQL = new Impl(Key.bluemap("mysql"), "jdbc:mysql:", MySQLCommandSet::new);
-    Dialect MARIADB = new Impl(Key.bluemap("mariadb"), "jdbc:mariadb:", MySQLCommandSet::new);
-    Dialect POSTGRESQL = new Impl(Key.bluemap("postgresql"), "jdbc:postgresql:", PostgreSQLCommandSet::new);
-    Dialect SQLITE = new Impl(Key.bluemap("sqlite"), "jdbc:sqlite:", SqliteCommandSet::new);
+    Dialect MYSQL = new Impl(Key.bluemap("mysql"), "jdbc:mysql:", new Function<Database, CommandSet>() {
+        @Override
+        public CommandSet apply(Database database) {
+            return new MySQLCommandSet(database);
+        }
+    });
+    
+    Dialect MARIADB = new Impl(Key.bluemap("mariadb"), "jdbc:mariadb:", new Function<Database, CommandSet>() {
+        @Override
+        public CommandSet apply(Database database) {
+            return new MySQLCommandSet(database);
+        }
+    });
+    
+    Dialect POSTGRESQL = new Impl(Key.bluemap("postgresql"), "jdbc:postgresql:", new Function<Database, CommandSet>() {
+        @Override
+        public CommandSet apply(Database database) {
+            return new PostgreSQLCommandSet(database);
+        }
+    });
+    
+    Dialect SQLITE = new Impl(Key.bluemap("sqlite"), "jdbc:sqlite:", new Function<Database, CommandSet>() {
+        @Override
+        public CommandSet apply(Database database) {
+            return new SqliteCommandSet(database);
+        }
+    });
 
     Registry<Dialect> REGISTRY = new Registry<>(
             MYSQL,

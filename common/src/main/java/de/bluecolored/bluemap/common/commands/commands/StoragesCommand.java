@@ -24,9 +24,9 @@
  */
 package de.bluecolored.bluemap.common.commands.commands;
 
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
-import de.bluecolored.bluecommands.annotations.Parser;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Parser;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.config.BlueMapConfigManager;
 import de.bluecolored.bluemap.common.config.ConfigurationException;
@@ -62,7 +62,7 @@ public class StoragesCommand {
         Map<String, Storage> loadedStorages = plugin.getBlueMap().getLoadedStorages();
         Component[] lines = plugin.getBlueMap().getConfig().getStorageConfigs().entrySet().stream()
                 .map(storage -> formatStorageEntry(storage.getKey(), storage.getValue(), loadedStorages.containsKey(storage.getKey())))
-                .toArray(Component[]::new);
+                .toArray(size -> new Component[size]);
         return paragraph("Storages", lines(lines));
     }
 
@@ -78,7 +78,7 @@ public class StoragesCommand {
 
     @Command("storages <storage>")
     @Permission("bluemap.storages")
-    public Component storage(CommandSource source, @Argument("storage") @Parser("storage-id") String storageId)
+    public Component storage(CommandSource source, @Argument("storage") @Parser(name="storage-id") String storageId)
             throws ConfigurationException, InterruptedException, IOException {
 
         StorageConfig storageConfig = plugin.getBlueMap().getConfig().getStorageConfigs().get(storageId);
@@ -90,26 +90,7 @@ public class StoragesCommand {
                 text(storageConfig.getStorageType().getKey().getFormatted()).color(HIGHLIGHT_COLOR)
         ).color(BASE_COLOR));
 
-        if (storage instanceof FileStorage fileStorage) {
-            lines.add(format("Path: %",
-                    text(BlueMapConfigManager.formatPath(fileStorage.getRoot())).color(HIGHLIGHT_COLOR)
-            ).color(BASE_COLOR));
-        }
-
-        if (storageConfig instanceof FileConfig fileConfig) {
-            lines.add(format("Compression: %",
-                    text(fileConfig.getCompression().getKey().getFormatted()).color(HIGHLIGHT_COLOR)
-            ).color(BASE_COLOR));
-        }
-
-        if (storageConfig instanceof SQLConfig sqlConfig) {
-            lines.add(format("Dialect: %",
-                    text(sqlConfig.getDialect().getKey().getFormatted()).color(HIGHLIGHT_COLOR)
-            ).color(BASE_COLOR));
-            lines.add(format("Compression: %",
-                    text(sqlConfig.getCompression().getKey().getFormatted()).color(HIGHLIGHT_COLOR)
-            ).color(BASE_COLOR));
-        }
+        lines.add(formatStorage(storage, storageConfig));
 
         lines.add(empty());
         lines.add(text("Maps:").color(BASE_COLOR));
@@ -118,24 +99,22 @@ public class StoragesCommand {
                 .map(mapId -> formatMapEntry(mapId, storage))
                 .forEach(lines::add);
 
-        return paragraph("Storage '%s'".formatted(storageId), lines(lines));
+        return paragraph("Storage '" + storageId + "'", lines(lines));
     }
 
     @Command("storages <storage> delete <map>")
     @Permission("bluemap.storages.delete")
     public void deleteMap(
             CommandSource source,
-            @Argument("storage") @Parser("storage-id") String storageId,
+            @Argument("storage") @Parser(name="storage-id") String storageId,
             @Argument("map") String mapId
     ) throws ConfigurationException, InterruptedException {
         Storage storage = getOrLoadStorage(storageId, source);
 
         if (isMapLoaded(mapId, storage)) {
             source.sendMessage(text("Can't delete a loaded map!").color(NEGATIVE_COLOR)
-                    .append(format("""
-                            Unload the map by removing it's config-file first,
-                            or use % if you want to purge it.
-                            """.strip(),
+                    .append(format("Unload the map by removing it's config-file first,\n" +
+                                   "or use % if you want to purge it.",
                             command("/bluemap purge " + mapId).color(HIGHLIGHT_COLOR)
                     ).color(BASE_COLOR)));
             return;
@@ -178,6 +157,29 @@ public class StoragesCommand {
                 loadedIcon,
                 text(id).color(HIGHLIGHT_COLOR)
         ).color(BASE_COLOR);
+    }
+
+    private Component formatStorage(Storage storage, StorageConfig storageConfig) {
+        Component storageInfo;
+
+        if (storage instanceof FileStorage) {
+            FileStorage fileStorage = (FileStorage) storage;
+            storageInfo = format("File-Storage: %", fileStorage.getRoot());
+        } else {
+            storageInfo = format("Storage: %", storage.getClass().getSimpleName());
+        }
+
+        if (storageConfig instanceof FileConfig) {
+            FileConfig fileConfig = (FileConfig) storageConfig;
+            storageInfo = storageInfo.append(Component.newline())
+                    .append(format("Root: %", fileConfig.getRoot()));
+        } else if (storageConfig instanceof SQLConfig) {
+            SQLConfig sqlConfig = (SQLConfig) storageConfig;
+            storageInfo = storageInfo.append(Component.newline())
+                    .append(format("URL: %", sqlConfig.getConnectionUrl()));
+        }
+
+        return storageInfo;
     }
 
 }

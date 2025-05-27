@@ -43,6 +43,7 @@ import java.time.temporal.TemporalUnit;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
+import java.util.stream.Collectors;
 
 import static net.kyori.adventure.text.Component.text;
 
@@ -102,7 +103,7 @@ public class TextFormat {
     }
 
     public static Component details(TextColor color, Collection<Component> components) {
-        return details(color, components.toArray(Component[]::new));
+        return details(color, components.toArray(new Component[0]));
     }
 
     public static Component details(TextColor color, Component... components) {
@@ -134,11 +135,29 @@ public class TextFormat {
     }
 
     public static Component format(Component format, Iterable<Object> placeholders) {
-        Iterator<Object> iterator = placeholders.iterator();
-        return format.replaceText(TextReplacementConfig.builder()
+        List<Component> values = new ArrayList<>();
+        for (Object placeholder : placeholders) {
+            values.add(toComponent(placeholder));
+        }
+        
+        TextReplacementConfig config = TextReplacementConfig.builder()
                 .match(PLACEHOLDER_PATTERN)
-                .replacement(match -> iterator.hasNext() ? toComponent(iterator.next()) : null)
-                .build());
+                .replacement(values.isEmpty() ? Component.empty() : values.get(0))
+                .build();
+        
+        Component result = format.replaceText(config);
+        
+        if (values.size() > 1) {
+            for (int i = 1; i < values.size(); i++) {
+                config = TextReplacementConfig.builder()
+                        .match(PLACEHOLDER_PATTERN)
+                        .replacement(values.get(i))
+                        .build();
+                result = result.replaceText(config);
+            }
+        }
+        
+        return result;
     }
 
     public static Component item(String key, Object value) {
@@ -150,11 +169,13 @@ public class TextFormat {
     }
 
     public static Component toComponent(Object object) {
-        return switch (object) {
-            case ComponentLike cl -> cl.asComponent();
-            case null -> Component.text("null");
-            default -> Component.text(object.toString());
-        };
+        if (object instanceof ComponentLike) {
+            return ((ComponentLike) object).asComponent();
+        } else if (object == null) {
+            return Component.text("null");
+        } else {
+            return Component.text(object.toString());
+        }
     }
 
     public static Component indent(Component component, Component indent) {
@@ -174,7 +195,7 @@ public class TextFormat {
                 JoinConfiguration.newlines(),
                 StreamSupport.stream(lines.spliterator(), true)
                         .filter(Objects::nonNull)
-                        .toList()
+                        .collect(Collectors.toList())
         );
     }
 
@@ -191,16 +212,24 @@ public class TextFormat {
     public static int lineCount(Component component) {
         int lines = 1;
         for (Component c : component.iterable(ComponentIteratorType.BREADTH_FIRST)) {
-            if (c instanceof TextComponent text && text.content().contains("\n"))
-                lines++;
+            if (c instanceof TextComponent) {
+                TextComponent text = (TextComponent) c;
+                if (text.content().contains("\n")) {
+                    lines++;
+                }
+            }
         }
         return lines;
     }
 
     public static Component[] stripNulls(Component... elements) {
-        return Arrays.stream(elements)
-                .filter(Objects::nonNull)
-                .toArray(Component[]::new);
+        List<Component> result = new ArrayList<>();
+        for (Component component : elements) {
+            if (component != null) {
+                result.add(component);
+            }
+        }
+        return result.toArray(new Component[result.size()]);
     }
 
     public static String duration(Instant since) {
@@ -229,15 +258,49 @@ public class TextFormat {
     }
 
     public static Component durationFormat(Instant since) {
-        LocalDateTime time = LocalDateTime.ofInstant(since, ZoneId.systemDefault());
-        return text(duration(since))
-                .color(HIGHLIGHT_COLOR)
-                .hoverEvent(text(DATE_TIME_FORMAT.format(time)));
+        return text(duration(since)).color(HIGHLIGHT_COLOR);
+    }
+
+    /**
+     * Appends a newline and returns a new component (Java 8 compatible replacement for appendNewline)
+     * @param component The component to append a newline to
+     * @return A new component with the newline appended
+     */
+    public static Component appendNewline(Component component) {
+        return component.append(Component.newline());
+    }
+
+    /**
+     * Appends a space and returns a new component (Java 8 compatible replacement for appendSpace)
+     * @param component The component to append a space to
+     * @return A new component with the space appended
+     */
+    public static Component appendSpace(Component component) {
+        return component.append(Component.space());
     }
 
     public static Component formatMap(BmMap map) {
         return text(map.getId())
                 .hoverEvent(HoverEvent.showText(text(map.getName())));
+    }
+
+    private static Component formatMapSummary(Collection<BmMap> maps, String single, String multiple) {
+        if (maps.size() == 1) {
+            return format(single, formatMap(maps.iterator().next()).color(HIGHLIGHT_COLOR));
+        } else if (maps.size() <= 10) {
+            List<Component> coloredMaps = new ArrayList<>();
+            for (BmMap map : maps) {
+                coloredMaps.add(formatMap(map).color(HIGHLIGHT_COLOR));
+            }
+            Component[] mapArray = coloredMaps.toArray(new Component[0]);
+            Component mapsList = Component.join(
+                    JoinConfiguration.separator(text(", ").color(BASE_COLOR)),
+                    mapArray
+            );
+            return format(multiple, text(maps.size()).color(HIGHLIGHT_COLOR).hoverEvent(HoverEvent.showText(mapsList)));
+        } else {
+            return format(multiple, text(maps.size()).color(HIGHLIGHT_COLOR));
+        }
     }
 
 }

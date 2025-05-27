@@ -82,4 +82,10 @@ public interface Chunk {
 
     default void iterateBlockEntities(Consumer<BlockEntity> consumer) { }
 
+    /**
+     * Gets a string representation of this chunk's position
+     * @return A string representation of the position
+     */
+    default String getPosition() { return "unknown"; }
+
 }

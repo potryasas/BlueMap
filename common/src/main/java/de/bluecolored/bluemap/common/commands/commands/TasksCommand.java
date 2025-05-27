@@ -24,12 +24,13 @@
  */
 package de.bluecolored.bluemap.common.commands.commands;
 
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.commands.Commands;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.common.rendermanager.RenderTask;
+import de.bluecolored.bluemap.common.util.ListUtil;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -51,7 +52,7 @@ public class TasksCommand {
     public Component taskList() {
         Map<RenderTask, Long> completedTasks = plugin.getRenderManager().getCompletedTasks();
         List<RenderTask> scheduledTasks = plugin.getRenderManager().getScheduledRenderTasks();
-        RenderTask currentTask = scheduledTasks.isEmpty() ? null : scheduledTasks.removeFirst();
+        RenderTask currentTask = scheduledTasks.isEmpty() ? null : ListUtil.removeFirst(scheduledTasks);
 
         List<Component> tasks = new LinkedList<>();
 

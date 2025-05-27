@@ -38,6 +38,8 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class HiresModelManager {
 
@@ -47,8 +49,14 @@ public class HiresModelManager {
     @Getter
     private final Grid tileGrid;
 
-    public HiresModelManager(GridStorage storage, ResourcePack resourcePack, TextureGallery textureGallery, RenderSettings renderSettings, Grid tileGrid) {
-        this(storage, new HiresModelRenderer(resourcePack, textureGallery, renderSettings), tileGrid);
+    public HiresModelManager(
+            GridStorage storage,
+            ResourcePack resourcePack,
+            TextureGallery textureGallery,
+            RenderSettings renderSettings,
+            Grid tileGrid
+    ) {
+        this(storage, new HiresModelRenderer(resourcePack, textureGallery, renderSettings, Paths.get("maps")), tileGrid);
     }
 
     public HiresModelManager(GridStorage storage, HiresModelRenderer renderer, Grid tileGrid) {
@@ -106,6 +114,7 @@ public class HiresModelManager {
                 PRBMWriter modelWriter = new PRBMWriter(out)
         ) {
             modelWriter.write(model);
+            Logger.global.logInfo("Generated and saved tile at coordinates [" + tile.getX() + ", " + tile.getY() + "]");
         } catch (IOException e){
             Logger.global.logError("Failed to save hires model: " + tile, e);
         }

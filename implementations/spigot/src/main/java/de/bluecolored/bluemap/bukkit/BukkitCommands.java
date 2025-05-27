@@ -52,7 +52,7 @@ public class BukkitCommands implements Listener {
     }
 
     public Collection<? extends BukkitCommand> getRootCommands(){
-        return List.of(new CommandProxy(((LiteralCommand<?, ?>) commands).getLiteral()));
+        return Arrays.asList(new CommandProxy(((LiteralCommand<?, ?>) commands).getLiteral()));
     }
 
     @EventHandler

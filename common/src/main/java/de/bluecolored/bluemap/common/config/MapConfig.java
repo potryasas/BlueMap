@@ -46,6 +46,7 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 import java.lang.reflect.Type;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.Map;
 
 @SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
@@ -120,7 +121,7 @@ public class MapConfig implements MapSettings {
      * parse marker-config by converting it first from hocon to json and then loading it with MarkerGson
      */
     public Map<String, MarkerSet> parseMarkerSets() throws ConfigurationException {
-        if (markerSets == null || markerSets.empty()) return Map.of();
+        if (markerSets == null || markerSets.empty()) return Collections.emptyMap();
         try {
             String markerJson = GsonConfigurationLoader.builder()
                     .headerMode(HeaderMode.NONE)

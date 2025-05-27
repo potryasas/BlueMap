@@ -158,19 +158,23 @@ public class BmMap {
     }
 
     public synchronized void save() {
-        lowresTileManager.save();
-        mapTileState.save();
-        mapChunkState.save();
-        saveMarkerState();
-        savePlayerState();
-        saveMapSettings();
-
-        // only save texture gallery if not present in storage
         try {
-            if (!storage.textures().exists())
-                saveTextureGallery();
+            lowresTileManager.save();
+            mapTileState.save();
+            mapChunkState.save();
+            saveMarkerState();
+            savePlayerState();
+            saveMapSettings();
+            
+            // only save texture gallery if not present in storage
+            try {
+                if (!storage.textures().exists())
+                    saveTextureGallery();
+            } catch (IOException e) {
+                Logger.global.logError("Failed to read or save texture gallery for map '" + getId() + "'!", e);
+            }
         } catch (IOException e) {
-            Logger.global.logError("Failed to read texture gallery for map '" + getId() + "'!", e);
+            Logger.global.logError("Failed to save map data for map '" + getId() + "'!", e);
         }
 
         lastSaveTime = System.currentTimeMillis();
@@ -187,11 +191,12 @@ public class BmMap {
         return new TextureGallery();
     }
 
-    private void saveTextureGallery() {
+    private void saveTextureGallery() throws IOException {
         try (OutputStream out = storage.textures().write()) {
             this.textureGallery.writeTexturesFile(out);
         } catch (IOException ex) {
             Logger.global.logError("Failed to save textures for map '" + getId() + "'!", ex);
+            throw ex;
         }
     }
 
@@ -250,12 +255,23 @@ public class BmMap {
 
     @Override
     public String toString() {
-        return "BmMap{" +
-               "id='" + id + '\'' +
-               ", name='" + name + '\'' +
-               ", world=" + world +
-               ", storage=" + storage +
-               '}';
+        return "BmMap{" + "id=" + id + '}';
+    }
+
+    /**
+     * Determines if this map has updates disabled (is frozen)
+     * @return true if the map has updates disabled, false otherwise
+     */
+    public boolean isFrozen() {
+        return false; // Default implementation - should be controlled by the plugin state
+    }
+    
+    /**
+     * Determines if this map is up-to-date
+     * @return true if the map is up-to-date, false otherwise
+     */
+    public boolean isUpdated() {
+        return true; // Default implementation - should be calculated based on pending updates
     }
 
 }

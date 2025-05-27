@@ -1,0 +1,253 @@
+# BlueMap configuration file
+# For information about configuration values see: https://bluemap.bluecolored.de/wiki/configuration/Main-Configuration.html
+
+# The webserver configuration
+webserver:
+  # The port of the webserver
+  port: 8100
+  
+  # If the webserver should bind to all network-interfaces (0.0.0.0) or just to localhost (127.0.0.1)
+  bind-address: "0.0.0.0"
+
+# The data configuration
+data:
+  # The folder where bluemap saves rendered map-data
+  web-root: "web"
+  
+  # The folder where bluemap saves internal data
+  storage-root: "data"
+
+  # Texture export settings
+  textures:
+    # Enable texture export
+    enabled: true
+    
+    # The format to export textures in (base64 or files)
+    format: "base64"
+    
+    # The quality of exported textures (0-100)
+    quality: 100
+    
+    # Generate textures.json in the web root
+    generate-json: true
+    
+    # The path to save textures.json
+    json-file: "web/textures.json"
+
+# The maps configuration
+maps:
+  world:
+    # The name of the map that will be displayed in the webinterface
+    name: "Overworld"
+    
+    # The path to the world-folder
+    world: "world"
+    
+    # The position of the map in the webinterface-menu
+    sorting: 0
+    
+    # The save-file where the render-progress is stored. Relative to storage-root
+    save-file: "world.save"
+    
+    # The map-type specific render-settings
+    render:
+      # The render-type (flat, isometric, or perspective)
+      type: "perspective"
+      
+      # The orientation of the map (north-east, north-west, south-east, or south-west)
+      orientation: "north-east"
+      
+      # The height where the map will be rendered from
+      height: 319
+      
+      # If the map should be rendered with shadows
+      shadows: true
+      
+      # If the map should be rendered with ambient-occlusion
+      ambient-occlusion: true
+      
+      # Render settings for better 3D view
+      hires: true
+      
+      # Render distance in chunks around player
+      render-distance: 12
+      
+      # Update interval in milliseconds (1 second)
+      update-interval: 1000
+      
+      # Render caves and underground
+      render-caves: true
+      
+      # Render surface
+      render-surface: true
+      
+      # Render edges
+      render-edges: true
+      
+      # Use actual block textures
+      use-block-textures: true
+      
+      # Enable biome colors
+      biome-colors: true
+      
+      # Ambient light level (0.0-1.0)
+      ambient-light: 0.3
+      
+      # Quality settings
+      quality:
+        # Normal vectors quality (0-4)
+        normal-quality: 4
+        
+        # Texture quality (0-4)
+        texture-quality: 4
+        
+        # Anti-aliasing level (0-4)
+        anti-aliasing: 4
+        
+      # Advanced settings
+      advanced:
+        # Use parallax occlusion mapping
+        use-parallax: true
+        
+        # Use normal mapping
+        use-normal-maps: true
+        
+        # Use specular mapping
+        use-specular-maps: true
+        
+        # Block detail level (higher means more detailed blocks)
+        block-detail: 4
+        
+        # Enable texture animations
+        texture-animations: true
+        
+        # Enable texture filtering
+        texture-filtering: true
+        
+        # Enable texture compression
+        texture-compression: false
+        
+        # Resource pack settings
+        resource-pack:
+          # Enable resource pack loading
+          enabled: true
+          
+          # The path to the resource pack
+          path: "assets"
+          
+          # Enable downloading of vanilla resources
+          download-vanilla: true
+      
+      # Texture settings
+      textures:
+        # Use the exported textures
+        use-exported: true
+        
+        # Enable texture compression
+        compression: false
+        
+        # Enable texture filtering
+        filtering: true
+        
+        # Enable mipmapping
+        mipmapping: true
+
+# Player marker configuration
+player-tracker:
+  # If player-markers are enabled
+  enabled: true
+  
+  # The update-interval in seconds
+  update-interval: 1
+  
+  # If player-markers should be shown by default
+  default-hidden: false
+  
+  # If player-markers should be toggleable
+  toggleable: true
+  
+  # If player-markers should show player-heads
+  show-heads: true
+  
+  # If player-markers should show player-bodies
+  show-bodies: true
+  
+  # If player-markers should show player-names
+  show-names: true
+  
+  # If player-markers should show player-armor
+  show-armor: true
+  
+  # If player-markers should show player-health
+  show-health: true
+  
+  # If player-markers should show player-food
+  show-food: true
+  
+  # If player-markers should show player-experience
+  show-experience: true
+  
+  # If player-markers should show player-effects
+  show-effects: true
+
+# Render API configuration
+render-api:
+  enabled: true
+  port: 8200
+  
+  # Maximum number of chunks to render simultaneously
+  max-render-threads: 2
+  
+  # Maximum time in milliseconds to spend rendering per frame
+  max-render-time: 50
+  
+  # Use player position as center for rendering
+  follow-player: true
+  
+  # Radius in chunks around player to keep rendered
+  player-render-radius: 8
+
+# Web interface configuration
+web:
+  enabled: true
+  webserver: true
+  port: 8100
+  webroot: "web"
+
+# World configurations
+maps:
+  world:
+    enabled: true
+    render-edges: true
+    render-caves: true
+    render-surface: true
+    render-height: 319
+    min-height: -64
+    ambient-occlusion: true
+    hires: true
+    render-distance: 10
+    update-interval: 1000
+    
+  world_nether:
+    enabled: true
+    render-edges: true
+    render-caves: true
+    render-surface: true
+    render-height: 127
+    min-height: 0
+    ambient-occlusion: true
+    hires: true
+    render-distance: 10
+    update-interval: 1000
+    
+  world_the_end:
+    enabled: true
+    render-edges: true
+    render-caves: true
+    render-surface: true
+    render-height: 255
+    min-height: 0
+    ambient-occlusion: true
+    hires: true
+    render-distance: 10
+    update-interval: 1000 

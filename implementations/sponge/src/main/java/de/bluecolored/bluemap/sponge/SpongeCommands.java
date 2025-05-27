@@ -51,7 +51,7 @@ public class SpongeCommands {
     }
 
     public Collection<SpongeCommandProxy> getRootCommands(){
-        return List.of(new SpongeCommandProxy(((LiteralCommand<?, ?>) commands).getLiteral()));
+        return Arrays.asList(new SpongeCommandProxy(((LiteralCommand<?, ?>) commands).getLiteral()));
     }
 
     public class SpongeCommandProxy implements org.spongepowered.api.command.Command.Raw {
@@ -120,7 +120,7 @@ public class SpongeCommands {
             return completions.stream()
                     .sorted(String::compareToIgnoreCase)
                     .map(CommandCompletion::of)
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         @Override

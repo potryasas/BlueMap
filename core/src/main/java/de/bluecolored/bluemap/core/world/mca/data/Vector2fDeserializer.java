@@ -25,6 +25,7 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import com.flowpowered.math.vector.Vector2f;
+import de.bluecolored.bluemap.core.util.nbt.BasicNBTAdapter;
 import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTList;
@@ -33,24 +34,18 @@ public class Vector2fDeserializer implements NBTAdapter<Vector2f> {
 
     @Override
     public Vector2f read(NBTCompound compound) {
-        if (compound.hasKey("")) {
-            long[] values = compound.getLongArray("");
-            if (values.length != 2) throw new IllegalArgumentException("Unexpected array length: " + values.length);
-            return new Vector2f(values[0], values[1]);
-        }
-
-        if (compound.hasKey("x") || compound.hasKey("y") || compound.hasKey("z") || 
-            compound.hasKey("yaw") || compound.hasKey("pitch")) {
+        if (compound.hasKey("x") || compound.hasKey("y")) {
             float x = compound.getFloat("x");
             float y = compound.getFloat("y");
             return new Vector2f(x, y);
         }
 
-        NBTList list = compound.getList("", NBTList.class);
+        // Use BasicNBTAdapter for Java 8 compatibility
+        NBTList list = BasicNBTAdapter.getList(compound, "", NBTList.class);
         if (list != null) {
             return new Vector2f(
-                list.getFloat(0),
-                list.getFloat(1)
+                    BasicNBTAdapter.getFloat(list, 0),
+                    BasicNBTAdapter.getFloat(list, 1)
             );
         }
 

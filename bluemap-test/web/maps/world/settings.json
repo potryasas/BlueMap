@@ -1,0 +1,12 @@
+{
+  "name": "world",
+  "sorting": 0,
+  "startLocation": {
+    "x": 0,
+    "z": 0
+  },
+  "live": {
+    "markers": true,
+    "players": true
+  }
+}

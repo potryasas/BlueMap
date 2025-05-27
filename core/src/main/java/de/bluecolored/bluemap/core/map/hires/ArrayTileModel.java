@@ -51,6 +51,9 @@ public class ArrayTileModel implements TileModel {
 
     private int capacity;
     int size;
+    private final int x;
+    private final int z;
+    private final int zoom;
 
     float[] position;
     float[] color, uv, ao;
@@ -61,6 +64,33 @@ public class ArrayTileModel implements TileModel {
         if (initialCapacity < 0) throw new IllegalArgumentException("initialCapacity is negative");
         setCapacity(initialCapacity);
         clear();
+        this.x = 0;
+        this.z = 0;
+        this.zoom = 0;
+    }
+
+    public ArrayTileModel(int x, int z, int zoom, int initialCapacity) {
+        if (initialCapacity < 0) throw new IllegalArgumentException("initialCapacity is negative");
+        setCapacity(initialCapacity);
+        clear();
+        this.x = x;
+        this.z = z;
+        this.zoom = zoom;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getZ() {
+        return z;
+    }
+
+    @Override
+    public int getZoom() {
+        return zoom;
     }
 
     @Override

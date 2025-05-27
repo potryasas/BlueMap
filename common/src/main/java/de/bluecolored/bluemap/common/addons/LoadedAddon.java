@@ -24,8 +24,26 @@
  */
 package de.bluecolored.bluemap.common.addons;
 
-public record LoadedAddon (
-        AddonInfo addonInfo,
-        ClassLoader classLoader,
-        Object instance
-) {}
+public class LoadedAddon {
+    private final AddonInfo addonInfo;
+    private final ClassLoader classLoader;
+    private final Object instance;
+
+    public LoadedAddon(AddonInfo addonInfo, ClassLoader classLoader, Object instance) {
+        this.addonInfo = addonInfo;
+        this.classLoader = classLoader;
+        this.instance = instance;
+    }
+
+    public AddonInfo getAddonInfo() {
+        return addonInfo;
+    }
+
+    public ClassLoader getClassLoader() {
+        return classLoader;
+    }
+
+    public Object getInstance() {
+        return instance;
+    }
+}

@@ -1,31 +1,9 @@
-/*
- * This file is part of BlueMap, licensed under the MIT License (MIT).
- *
- * Copyright (c) Blue (Lukas Rieger) <https://bluecolored.de>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package de.bluecolored.bluemap.core.util;
 
 import de.bluecolored.bluemap.core.util.stream.OnCloseOutputStream;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,11 +18,18 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * Utility methods for file operations and handling streams.
+ */
 public class FileHelper {
 
     /**
      * Creates an OutputStream that writes to a ".filepart"-file first and then atomically moves (overwrites) to the final target atomically
      * once the stream gets closed.
+     *
+     * @param file the target file path
+     * @return an OutputStream writing to a temp file and moving to target on close
+     * @throws IOException if an I/O error occurs
      */
     public static OutputStream createFilepartOutputStream(final Path file) throws IOException {
         Path folder = file.toAbsolutePath().normalize().getParent();
@@ -59,7 +44,11 @@ public class FileHelper {
     }
 
     /**
-     * Tries to move the file atomically, but fallbacks to a normal move operation if moving atomically fails
+     * Tries to move the file atomically, but fallbacks to a normal move operation if moving atomically fails.
+     *
+     * @param from the source path
+     * @param to the destination path
+     * @throws IOException if an I/O error occurs
      */
     public static void atomicMove(Path from, Path to) throws IOException {
         try {
@@ -78,6 +67,11 @@ public class FileHelper {
 
     /**
      * Same as {@link Files#createDirectories(Path, FileAttribute[])} but accepts symlinked folders.
+     *
+     * @param dir the directory path to create
+     * @param attrs optional file attributes
+     * @return the created directory path
+     * @throws IOException if an I/O error occurs
      * @see Files#createDirectories(Path, FileAttribute[])
      */
     public static Path createDirectories(Path dir, FileAttribute<?>... attrs) throws IOException {
@@ -85,9 +79,13 @@ public class FileHelper {
         return Files.createDirectories(dir, attrs);
     }
 
-
     /**
-     * Extracts the entire zip-file into the given target directory
+     * Extracts the entire zip-file into the given target directory.
+     *
+     * @param zipFile the URL of the zip file
+     * @param targetDirectory the target directory to extract into
+     * @param options optional copy options
+     * @throws IOException if an I/O error occurs
      */
     public static void extractZipFile(URL zipFile, Path targetDirectory, CopyOption... options) throws IOException {
         Path temp = Files.createTempFile(null, ".zip");
@@ -97,7 +95,12 @@ public class FileHelper {
     }
 
     /**
-     * Extracts the entire zip-file into the given target directory
+     * Extracts the entire zip-file into the given target directory.
+     *
+     * @param zipFile the path to the zip file
+     * @param targetDirectory the target directory to extract into
+     * @param options optional copy options
+     * @throws IOException if an I/O error occurs
      */
     public static void extractZipFile(Path zipFile, Path targetDirectory, CopyOption... options) throws IOException {
         try (FileSystem webappZipFs = FileSystems.newFileSystem(zipFile, (ClassLoader) null)) {
@@ -109,19 +112,55 @@ public class FileHelper {
     }
 
     /**
-     * Copies from a URL to a target-path
+     * Copies from a URL to a target-path.
+     *
+     * @param source the URL to copy from
+     * @param target the path to copy to
+     * @throws IOException if an I/O error occurs
      */
     public static void copy(URL source, Path target) throws IOException {
         try (
                 InputStream in = source.openStream();
                 OutputStream out = Files.newOutputStream(target)
         ) {
-            in.transferTo(out);
+            transferTo(in, out);
         }
     }
 
     /**
-     * Uses file-watchers on the path-parent to wait until a specific file or folder exists
+     * Java 8 compatible replacement for InputStream.transferTo().
+     *
+     * @param in the input stream to read from
+     * @param out the output stream to write to
+     * @return the number of bytes transferred
+     * @throws IOException if an I/O error occurs
+     */
+    public static long transferTo(InputStream in, OutputStream out) throws IOException {
+        BufferedInputStream bis = in instanceof BufferedInputStream ? (BufferedInputStream) in : new BufferedInputStream(in);
+        BufferedOutputStream bos = out instanceof BufferedOutputStream ? (BufferedOutputStream) out : new BufferedOutputStream(out);
+
+        byte[] buffer = new byte[8192];
+        long transferred = 0;
+        int read;
+
+        while ((read = bis.read(buffer, 0, buffer.length)) >= 0) {
+            bos.write(buffer, 0, read);
+            transferred += read;
+        }
+
+        bos.flush();
+        return transferred;
+    }
+
+    /**
+     * Uses file-watchers on the path-parent to wait until a specific file or folder exists.
+     *
+     * @param path the file or folder path to wait for
+     * @param timeout the maximum time to wait
+     * @param unit the time unit of the timeout argument
+     * @return true if the file/folder exists, false if timed out
+     * @throws IOException if an I/O error occurs
+     * @throws InterruptedException if interrupted while waiting
      */
     public static boolean awaitExistence(Path path, long timeout, TimeUnit unit) throws IOException, InterruptedException {
         if (Files.exists(path)) return true;
@@ -147,6 +186,12 @@ public class FileHelper {
     /**
      * Adapted version of {@link Files#walk(Path, int, FileVisitOption...)}.
      * This version ignores NoSuchFileException if they occur while iterating the file-tree.
+     *
+     * @param start the starting file or directory
+     * @param maxDepth the maximum number of directory levels to visit
+     * @param options options to configure the traversal
+     * @return a Stream of paths
+     * @throws IOException if an I/O error occurs
      */
     public static Stream<Path> walk(Path start, int maxDepth, FileVisitOption... options) throws IOException {
         FileTreeIterator iterator = new FileTreeIterator(start, maxDepth, options);
@@ -165,6 +210,11 @@ public class FileHelper {
     /**
      * Adapted version of {@link Files#walk(Path, FileVisitOption...)} .
      * This version ignores NoSuchFileException if they occur while iterating the file-tree.
+     *
+     * @param start the starting file or directory
+     * @param options options to configure the traversal
+     * @return a Stream of paths
+     * @throws IOException if an I/O error occurs
      */
     public static Stream<Path> walk(Path start, FileVisitOption... options) throws IOException {
         return walk(start, Integer.MAX_VALUE, options);

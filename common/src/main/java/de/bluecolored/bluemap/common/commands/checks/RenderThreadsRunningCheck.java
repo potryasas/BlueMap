@@ -74,7 +74,8 @@ public class RenderThreadsRunningCheck implements Check {
     private Component formatConfigFilePath(String name) {
         Component format = text(name + ".conf");
 
-        if (plugin.getBlueMap().getConfig() instanceof BlueMapConfigManager configManager) {
+        if (plugin.getBlueMap().getConfig() instanceof BlueMapConfigManager) {
+            BlueMapConfigManager configManager = (BlueMapConfigManager) plugin.getBlueMap().getConfig();
             format = format.hoverEvent(
                     text(BlueMapConfigManager.formatPath(configManager.getConfigManager().resolveConfigFile(name)))
             );

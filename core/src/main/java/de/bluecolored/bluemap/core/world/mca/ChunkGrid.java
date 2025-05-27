@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -99,7 +100,7 @@ public class ChunkGrid<T> {
 
     public void preloadRegionChunks(int x, int z, Predicate<Vector2i> chunkFilter) {
         try {
-            getRegion(x, z).iterateAllChunks(new ChunkConsumer<>() {
+            getRegion(x, z).iterateAllChunks(new ChunkConsumer<T>() {
                 @Override
                 public boolean filter(int chunkX, int chunkZ, int lastModified) {
                     Vector2i chunkPos = VECTOR_2_I_CACHE.get(chunkX, chunkZ);
@@ -114,11 +115,11 @@ public class ChunkGrid<T> {
 
                 @Override
                 public void fail(int chunkX, int chunkZ, IOException ex) {
-                    Logger.global.logDebug("Failed to preload chunk (%d, %d) from region ('%s' -> x:%d, z:%d): %s".formatted(chunkX, chunkZ, regionFolder, x, z, ex));
+                    Logger.global.logDebug(String.format("Failed to preload chunk (%d, %d) from region ('%s' -> x:%d, z:%d): %s", chunkX, chunkZ, regionFolder, x, z, ex));
                 }
             });
         } catch (IOException ex) {
-            Logger.global.logDebug("Unexpected exception trying to preload region ('%s' -> x:%d, z:%d): %s".formatted(regionFolder, x, z, ex));
+            Logger.global.logDebug(String.format("Unexpected exception trying to preload region ('%s' -> x:%d, z:%d): %s", regionFolder, x, z, ex));
         }
     }
 
@@ -131,15 +132,15 @@ public class ChunkGrid<T> {
                             if (Files.size(file) <= 0) return null;
                             return RegionType.regionForFileName(file.getFileName().toString());
                         } catch (IOException ex) {
-                            Logger.global.logError("Failed to read region-file: " + file, ex);
+                            Logger.global.logError(String.format("Failed to read region-file: %s", file), ex);
                             return null;
                         }
                     })
                     .filter(Objects::nonNull)
-                    .toList();
+                    .collect(Collectors.toList());
         } catch (IOException ex) {
-            Logger.global.logError("Failed to list regions from: '%s'".formatted(regionFolder), ex);
-            return List.of();
+            Logger.global.logError(String.format("Failed to list regions from: '%s'", regionFolder), ex);
+            return Collections.emptyList();
         }
     }
 
@@ -195,7 +196,7 @@ public class ChunkGrid<T> {
             }
         }
 
-        Logger.global.logDebug("Unexpected exception trying to load chunk ('%s' -> x:%d, z:%d): %s".formatted(regionFolder, x, z, loadException));
+        Logger.global.logDebug(String.format("Unexpected exception trying to load chunk ('%s' -> x:%d, z:%d): %s", regionFolder, x, z, loadException));
         return chunkLoader.erroredChunk();
     }
 

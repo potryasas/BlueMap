@@ -189,12 +189,12 @@ public class ForgeMod implements Server {
 
     @Override
     public Path getConfigFolder() {
-        return Path.of("config", "bluemap");
+        return Paths.get("config", "bluemap");
     }
 
     @Override
     public Optional<Path> getModsFolder() {
-        return Optional.of(Path.of("mods"));
+        return Optional.of(Paths.get("mods"));
     }
 
     @SubscribeEvent

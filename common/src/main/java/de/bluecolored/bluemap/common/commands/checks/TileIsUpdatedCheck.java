@@ -75,18 +75,14 @@ public class TileIsUpdatedCheck implements Check {
     @Override
     public Component getFailureDescription() {
         return lines(
-                format("""
-                        ⚠ the region around (x:%, z:%) has pending
-                        updates for map %
-                        """.strip(),
+                format("⚠ the region around (x:%, z:%) has pending\n" +
+                       "updates for map %",
                         position.getX(), position.getY(),
                         formatMap(map).color(HIGHLIGHT_COLOR)
                 ),
                 empty(),
-                format("""
-                        wait until the map finished updating
-                        you can use % to see the update progress
-                        """.strip(),
+                format("wait until the map finished updating\n" +
+                       "you can use % to see the update progress",
                         command("/bluemap").color(HIGHLIGHT_COLOR)
                 ).color(BASE_COLOR)
         );

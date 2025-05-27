@@ -2,8 +2,8 @@ Loading BuildTools version: git-BuildTools-e9b4728-164 (#164)
 Java Version: Java 8
 Current Path: C:\Users\potryasas\Desktop\BlueMap\buildtools\.
 git version 2.47.1.windows.1
-tresha
-97985571+potryasas@users.noreply.github.com
+Builder
+builder@example.com
 Picked up _JAVA_OPTIONS: -Djdk.net.URLClassPath.disableClassPathURLCheck=true
 openjdk version "1.8.0_422"
 OpenJDK Runtime Environment (Temurin)(build 1.8.0_422-b05)

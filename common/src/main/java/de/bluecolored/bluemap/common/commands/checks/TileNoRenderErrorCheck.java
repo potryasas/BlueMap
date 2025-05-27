@@ -67,21 +67,16 @@ public class TileNoRenderErrorCheck implements Check {
     public Component getFailureDescription() {
         LocalDateTime failureTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(tileInfo.getRenderTime()), ZoneId.systemDefault());
         return lines(
-                format("""
-                        ⚠ there was an error while rendering
-                        around (x:%, z:%) for map %
-                        """.strip(),
+                format("⚠ there was an error while rendering\n" +
+                       "around (x:%, z:%) for map %",
                         text(position.getX()).color(HIGHLIGHT_COLOR),
                         text(position.getY()).color(HIGHLIGHT_COLOR),
                         formatMap(map).color(HIGHLIGHT_COLOR)
                 ),
                 empty(),
-                format("""
-                        check your server-logs for errors
-                        around %
-
-                        if the problem persists, you can visit bluemaps % for help
-                        """.strip(),
+                format("check your server-logs for errors\n" +
+                       "around %\n\n" +
+                       "if the problem persists, you can visit bluemaps % for help",
                         text(DATE_TIME_FORMAT.format(failureTime)).color(HIGHLIGHT_COLOR),
                         text("discord")
                                 .hoverEvent(text(DISCORD_LINK))

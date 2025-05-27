@@ -50,10 +50,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.logging.Level;
 
 public class BukkitPlugin extends JavaPlugin implements Server, Listener {
 
@@ -232,7 +234,7 @@ public class BukkitPlugin extends JavaPlugin implements Server, Listener {
 
     @Override
     public Optional<Path> getModsFolder() {
-        return Optional.of(Path.of("mods")); // in case this is a Bukkit/Forge hybrid
+        return Optional.of(Paths.get("mods")); // in case this is a Bukkit/Forge hybrid
     }
 
     public Plugin getPlugin() {
@@ -270,19 +272,43 @@ public class BukkitPlugin extends JavaPlugin implements Server, Listener {
      */
     private void updateSomePlayers() {
         int onlinePlayerCount = onlinePlayerList.size();
-        if (onlinePlayerCount == 0) return;
+        if (onlinePlayerCount == 0) {
+            getLogger().info("[BlueMap] No players online to update");
+            return;
+        }
 
-        int playersToBeUpdated = onlinePlayerCount / 20; //with 20 tps, each player is updated once a second
-        if (playersToBeUpdated == 0) playersToBeUpdated = 1;
+        // Log start of update cycle with timestamp
+        getLogger().info(String.format(
+            "[BlueMap] Starting position update cycle at %s for %d players",
+            new java.text.SimpleDateFormat("HH:mm:ss.SSS").format(new java.util.Date()),
+            onlinePlayerCount
+        ));
 
-        for (int i = 0; i < playersToBeUpdated; i++) {
-            playerUpdateIndex++;
-            if (playerUpdateIndex >= 20 && playerUpdateIndex >= onlinePlayerCount) playerUpdateIndex = 0;
-
-            if (playerUpdateIndex < onlinePlayerCount) {
-                onlinePlayerList.get(playerUpdateIndex).update();
+        // Update all players every tick for smoother movement
+        for (Player player : onlinePlayerList) {
+            try {
+                getLogger().info(String.format(
+                    "[BlueMap] Updating player: %s (UUID: %s)",
+                    player.getName().toPlainString(),
+                    player.getUuid()
+                ));
+                player.update();
+            } catch (Exception e) {
+                getLogger().severe(String.format(
+                    "[BlueMap] Failed to update player %s: %s\nStack trace:\n%s",
+                    player.getName().toPlainString(),
+                    e.getMessage(),
+                    Arrays.toString(e.getStackTrace())
+                ));
             }
         }
+        
+        // Log completion of update cycle with timestamp
+        getLogger().info(String.format(
+            "[BlueMap] Completed position update cycle at %s for %d players",
+            new java.text.SimpleDateFormat("HH:mm:ss.SSS").format(new java.util.Date()),
+            onlinePlayerCount
+        ));
     }
 
 }

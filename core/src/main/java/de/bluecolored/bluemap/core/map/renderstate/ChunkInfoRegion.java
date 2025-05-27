@@ -26,12 +26,11 @@ package de.bluecolored.bluemap.core.map.renderstate;
 
 import de.tr7zw.nbtapi.NBTCompound;
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.Arrays;
 
 @Data
-public class ChunkInfoRegion {
+public class ChunkInfoRegion implements CellStorage.Cell {
 
     private static final int REGION_LENGTH = 32;
     private static final int REGION_MASK = REGION_LENGTH - 1;
@@ -39,7 +38,6 @@ public class ChunkInfoRegion {
 
     private long[] chunkHashes;
 
-    @Getter
     private transient boolean modified;
 
     private ChunkInfo[] chunkInfos;
@@ -51,6 +49,18 @@ public class ChunkInfoRegion {
         for (int i = 0; i < chunkInfos.length; i++) {
             chunkInfos[i] = new ChunkInfo(0);
         }
+    }
+
+    public long get(int x, int z) {
+        return getChunkInfo(x, z).getHash();
+    }
+
+    public long set(int x, int z, long hash) {
+        ChunkInfo old = getChunkInfo(x, z);
+        long oldHash = old.getHash();
+        setChunkInfo(x, z, new ChunkInfo(hash));
+        modified = true;
+        return oldHash;
     }
 
     public void readFromNBT(NBTCompound compound) {
@@ -73,21 +83,29 @@ public class ChunkInfoRegion {
     }
 
     public ChunkInfo getChunkInfo(int x, int z) {
-        return chunkInfos[x + z * REGION_LENGTH];
+        return chunkInfos[index(x, z)];
     }
 
     public void setChunkInfo(int x, int z, ChunkInfo chunkInfo) {
-        chunkInfos[x + z * REGION_LENGTH] = chunkInfo;
+        chunkInfos[index(x, z)] = chunkInfo;
+        modified = true;
     }
 
     private static int index(int x, int z) {
-        return (z & REGION_MASK) << 5 | (x & REGION_MASK);
+        int zPart = (z & REGION_MASK) * REGION_LENGTH;
+        int xPart = (x & REGION_MASK);
+        return zPart + xPart;
     }
 
     public static ChunkInfoRegion create() {
         ChunkInfoRegion region = new ChunkInfoRegion();
         region.init();
         return region;
+    }
+
+    @Override
+    public boolean isModified() {
+        return modified;
     }
 
     @Data

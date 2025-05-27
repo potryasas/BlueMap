@@ -57,10 +57,8 @@ public class TileInsideBoundsCheck implements Check {
                         formatMap(map).color(HIGHLIGHT_COLOR)
                 ),
                 empty(),
-                format("""
-                        make sure to set %, %, % and %
-                        in % correctly
-                        """.strip(),
+                format("make sure to set %, %, % and %\n" +
+                       "in % correctly",
                         text("min-x").color(HIGHLIGHT_COLOR),
                         text("min-z").color(HIGHLIGHT_COLOR),
                         text("max-x").color(HIGHLIGHT_COLOR),
@@ -73,7 +71,8 @@ public class TileInsideBoundsCheck implements Check {
     private Component formatConfigFilePath(String name) {
         Component format = text(name + ".conf");
 
-        if (plugin.getBlueMap().getConfig() instanceof BlueMapConfigManager configManager) {
+        if (plugin.getBlueMap().getConfig() instanceof BlueMapConfigManager) {
+            BlueMapConfigManager configManager = (BlueMapConfigManager) plugin.getBlueMap().getConfig();
             format = format.hoverEvent(
                     text(BlueMapConfigManager.formatPath(configManager.getConfigManager().resolveConfigFile(name)))
             );

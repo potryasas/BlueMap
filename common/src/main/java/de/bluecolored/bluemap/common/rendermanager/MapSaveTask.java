@@ -58,7 +58,7 @@ public class MapSaveTask implements MapRenderTask {
 
     @Override
     public String getDescription() {
-        return "saving map '%s'".formatted(map.getId());
+        return String.format("saving map '%s'", map.getId());
     }
 
     @Override

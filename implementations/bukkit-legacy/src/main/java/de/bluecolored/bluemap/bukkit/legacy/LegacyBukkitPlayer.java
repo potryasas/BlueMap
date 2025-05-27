@@ -24,42 +24,31 @@
  */
 package de.bluecolored.bluemap.bukkit.legacy;
 
-import de.bluecolored.bluemap.common.serverinterface.Player;
-import de.bluecolored.bluemap.common.serverinterface.ServerWorld;
-import org.bukkit.Location;
-import org.bukkit.entity.Entity;
+import java.util.UUID;
 
+import de.bluecolored.bluemap.bukkit.legacy.java8compat.Player;
+import de.bluecolored.bluemap.bukkit.legacy.java8compat.ServerWorld;
+
+/**
+ * Legacy Bukkit implementation of Player interface
+ */
 public class LegacyBukkitPlayer implements Player {
+    private final org.bukkit.entity.Player bukkitPlayer;
+    private final LegacyBukkitWorld world;
 
-    private final org.bukkit.entity.Player player;
-    private String name;
-    private String displayName;
-    private boolean sneaking;
-    private float health;
-    
-    private double posX;
-    private double posY;
-    private double posZ;
-    private float rotationYaw;
-    private ServerWorld world;
-
-    public LegacyBukkitPlayer(org.bukkit.entity.Player player) {
-        this.player = player;
-        this.update();
+    public LegacyBukkitPlayer(org.bukkit.entity.Player bukkitPlayer, LegacyBukkitWorld world) {
+        this.bukkitPlayer = bukkitPlayer;
+        this.world = world;
     }
 
-    public void update() {
-        this.name = player.getName();
-        this.displayName = player.getDisplayName();
-        this.sneaking = player.isSneaking();
-        this.health = player.getHealth();
-        
-        Location location = player.getLocation();
-        this.posX = location.getX();
-        this.posY = location.getY();
-        this.posZ = location.getZ();
-        this.rotationYaw = location.getYaw();
-        this.world = LegacyBukkitPlugin.getInstance().getServerWorld(player.getWorld());
+    @Override
+    public String getName() {
+        return bukkitPlayer.getName();
+    }
+
+    @Override
+    public String getUUID() {
+        return bukkitPlayer.getUniqueId().toString();
     }
 
     @Override
@@ -68,52 +57,31 @@ public class LegacyBukkitPlayer implements Player {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public double getX() {
+        return bukkitPlayer.getLocation().getX();
     }
 
     @Override
-    public String getDisplayName() {
-        return displayName;
+    public double getY() {
+        return bukkitPlayer.getLocation().getY();
     }
 
     @Override
-    public boolean isSneaking() {
-        return sneaking;
+    public double getZ() {
+        return bukkitPlayer.getLocation().getZ();
     }
 
     @Override
-    public float getHealth() {
-        return health;
+    public float getPitch() {
+        return bukkitPlayer.getLocation().getPitch();
     }
 
     @Override
-    public boolean isInvisible() {
-        return false; // Not available in 1.5.2 API
+    public float getYaw() {
+        return bukkitPlayer.getLocation().getYaw();
     }
 
-    @Override
-    public double getPosX() {
-        return posX;
-    }
-
-    @Override
-    public double getPosY() {
-        return posY;
-    }
-
-    @Override
-    public double getPosZ() {
-        return posZ;
-    }
-
-    @Override
-    public float getRotationYaw() {
-        return rotationYaw;
-    }
-
-    @Override
-    public Entity getEntity() {
-        return player;
+    public org.bukkit.entity.Player getBukkitPlayer() {
+        return bukkitPlayer;
     }
 } 

@@ -70,6 +70,7 @@ public class Variants {
     }
 
     static class Adapter extends AbstractTypeAdapterFactory<Variants> {
+        private static final String JSON_COMMENT = "//";
 
         public Adapter() {
             super(Variants.class);
@@ -102,7 +103,7 @@ public class Variants {
 
             Variants result = new Variants();
             result.defaultVariant = defaultVariant;
-            result.variants = variants.toArray(VariantSet[]::new);
+            result.variants = variants.toArray(new VariantSet[variants.size()]);
             return result;
         }
 

@@ -28,12 +28,22 @@ import de.bluecolored.bluemap.core.world.mca.MCAWorld;
 import de.bluecolored.bluemap.core.world.mca.entity.MCAEntity;
 import de.tr7zw.nbtapi.NBTCompound;
 import lombok.Getter;
+import de.bluecolored.bluemap.core.world.Chunk;
+import de.bluecolored.bluemap.core.world.BlockState;
+import de.bluecolored.bluemap.core.world.LightData;
+import de.bluecolored.bluemap.core.world.biome.Biome;
+import de.bluecolored.bluemap.core.world.BlockEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Getter
-public class MCAEntityChunk {
+public class MCAEntityChunk implements Chunk {
+
+    public static final MCAEntityChunk EMPTY_CHUNK = new MCAEntityChunk(null, new Data());
+    public static final MCAEntityChunk ERRORED_CHUNK = new MCAEntityChunk(null, new Data());
 
     private final MCAWorld world;
     private final Data data;
@@ -41,6 +51,83 @@ public class MCAEntityChunk {
     public MCAEntityChunk(MCAWorld world, Data data) {
         this.world = world;
         this.data = data;
+    }
+
+    public MCAEntity[] getEntities() {
+        if (data == null || data.getEntities() == null) {
+            return new MCAEntity[0];
+        }
+        return data.getEntities().toArray(new MCAEntity[data.getEntities().size()]);
+    }
+
+    @Override
+    public BlockState getBlockState(int x, int y, int z) {
+        return BlockState.AIR;
+    }
+
+    @Override
+    public boolean isGenerated() {
+        return true;
+    }
+
+    @Override
+    public boolean hasLightData() {
+        return false;
+    }
+
+    @Override
+    public long getInhabitedTime() {
+        return 0;
+    }
+
+    @Override
+    public Biome getBiome(int x, int y, int z) {
+        return Biome.DEFAULT;
+    }
+
+    @Override
+    public LightData getLightData(int x, int y, int z, LightData target) {
+        return target.set(0, 0);
+    }
+
+    @Override
+    public int getMinY(int x, int z) {
+        return 0;
+    }
+
+    @Override
+    public int getMaxY(int x, int z) {
+        return 255;
+    }
+
+    @Override
+    public boolean hasWorldSurfaceHeights() {
+        return false;
+    }
+
+    @Override
+    public int getWorldSurfaceY(int x, int z) {
+        return 0;
+    }
+
+    @Override
+    public boolean hasOceanFloorHeights() {
+        return false;
+    }
+
+    @Override
+    public int getOceanFloorY(int x, int z) {
+        return 0;
+    }
+
+    @Override
+    public BlockEntity getBlockEntity(int x, int y, int z) {
+        return null;
+    }
+
+    @Override
+    public void iterateBlockEntities(Consumer<BlockEntity> consumer) {
+        // No block entities in entity chunks
     }
 
     @Getter

@@ -1,0 +1,5 @@
+{
+  "webServerEnabled": true,
+  "webServerPort": 8100,
+  "webServerBindAddress": "0.0.0.0"
+}

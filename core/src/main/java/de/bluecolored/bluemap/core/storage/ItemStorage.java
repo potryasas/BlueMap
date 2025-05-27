@@ -36,6 +36,9 @@ public interface ItemStorage {
      * Returns an {@link OutputStream} that can be used to write the item-data of this storage
      * (overwriting any existing item).
      * The OutputStream is expected to be closed by the caller of this method.
+     *
+     * @return an OutputStream to write the item-data
+     * @throws IOException if an I/O error occurs
      */
     OutputStream write() throws IOException;
 
@@ -43,21 +46,31 @@ public interface ItemStorage {
      * Returns a {@link CompressedInputStream} that can be used to read the item-data from this storage
      * or null if there is nothing stored.
      * The CompressedInputStream is expected to be closed by the caller of this method.
+     *
+     * @return a CompressedInputStream to read the item-data, or null if nothing is stored
+     * @throws IOException if an I/O error occurs
      */
     @Nullable CompressedInputStream read() throws IOException;
 
     /**
-     * Deletes the item from this storage
+     * Deletes the item from this storage.
+     *
+     * @throws IOException if an I/O error occurs
      */
     void delete() throws IOException;
 
     /**
-     * Tests if this item of this storage exists
+     * Tests if this item of this storage exists.
+     *
+     * @return true if the item exists, false otherwise
+     * @throws IOException if an I/O error occurs
      */
     boolean exists() throws IOException;
 
     /**
-     * Checks if this storage is closed
+     * Checks if this storage is closed.
+     *
+     * @return true if the storage is closed, false otherwise
      */
     boolean isClosed();
 

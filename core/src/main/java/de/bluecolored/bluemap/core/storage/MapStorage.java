@@ -30,73 +30,102 @@ import java.util.function.DoublePredicate;
 public interface MapStorage {
 
     /**
-     * Returns the {@link GridStorage} holding the maps hires-tiles
+     * Returns the {@link GridStorage} holding the map's hires-tiles.
+     *
+     * @return the GridStorage for hi-res tiles
      */
     GridStorage hiresTiles();
 
     /**
-     * Returns the {@link GridStorage} holding the maps lowres-tiles of the given lod level
+     * Returns the {@link GridStorage} holding the map's lowres-tiles of the given lod level.
+     *
+     * @param lod the level of detail
+     * @return the GridStorage for low-res tiles at the given LOD
      */
     GridStorage lowresTiles(int lod);
 
     /**
-     * Returns a {@link GridStorage} for the tile-state (meta-) data of this map
+     * Returns a {@link GridStorage} for the tile-state (meta-) data of this map.
+     *
+     * @return the GridStorage for tile state data
      */
     GridStorage tileState();
 
     /**
-     * Returns a {@link GridStorage} for the chunk-state (meta-) data of this map
+     * Returns a {@link GridStorage} for the chunk-state (meta-) data of this map.
+     *
+     * @return the GridStorage for chunk state data
      */
     GridStorage chunkState();
 
     /**
-     * Returns a {@link ItemStorage} for a map asset with the given name
+     * Returns a {@link ItemStorage} for a map asset with the given name.
+     *
+     * @param name the name of the asset
+     * @return the ItemStorage for the specified asset
      */
     ItemStorage asset(String name);
 
     /**
-     * Returns a {@link ItemStorage} for the settings (settings.json) of this map
+     * Returns a {@link ItemStorage} for the settings (settings.json) of this map.
+     *
+     * @return the ItemStorage for the settings
      */
     ItemStorage settings();
 
     /**
-     * Returns a {@link ItemStorage} for the texture-data (textures.json) of this map
+     * Returns a {@link ItemStorage} for the texture-data (textures.json) of this map.
+     *
+     * @return the ItemStorage for the textures
      */
     ItemStorage textures();
 
     /**
-     * Returns a {@link ItemStorage} for the marker-data (live/markers.json) of this map
+     * Returns a {@link ItemStorage} for the marker-data (live/markers.json) of this map.
+     *
+     * @return the ItemStorage for the markers
      */
     ItemStorage markers();
 
     /**
-     * Returns a {@link ItemStorage} for the player-data (live/players.json) of this map
+     * Returns a {@link ItemStorage} for the player-data (live/players.json) of this map.
+     *
+     * @return the ItemStorage for the players
      */
     ItemStorage players();
 
     /**
-     * Deletes the entire map from the storage
+     * Deletes the entire map from the storage.
+     *
+     * @throws IOException if an I/O error occurs
      */
     default void delete() throws IOException {
         delete(info -> true);
     }
 
     /**
-     * Deletes the entire map from the storage
+     * Deletes the entire map from the storage.
+     *
      * @param onProgress a function that takes in a progress-percentage and returns true
      *                   if the deletion should continue or false if it should be aborted.
      *                   No guarantees are made on how often (if at all) this method is actually being called and if the
      *                   progress is actually aborted when false is returned.
+     * @throws IOException if an I/O error occurs
      */
     void delete(DoublePredicate onProgress) throws IOException;
 
     /**
-     * Tests whether this map currently exists on the storage or not
+     * Tests whether this map currently exists on the storage or not.
+     *
+     * @return true if the map exists, false otherwise
+     * @throws IOException if an I/O error occurs
      */
     boolean exists() throws IOException;
 
     /**
-     * Checks if this storage is closed
+     * Checks if this storage is closed.
+     *
+     * @return true if the storage is closed, false otherwise
      */
     boolean isClosed();
 

@@ -34,17 +34,24 @@ public class MapChunkState extends CellStorage<ChunkInfoRegion> {
         super(storage, ChunkInfoRegion.class);
     }
 
-    public int get(int x, int z) {
+    public long get(int x, int z) {
         return cell(x >> SHIFT, z >> SHIFT).get(x, z);
     }
 
-    public synchronized int set(int x, int z, int hash) {
+    public synchronized long set(int x, int z, long hash) {
         return cell(x >> SHIFT, z >> SHIFT).set(x, z, hash);
     }
 
     @Override
     protected ChunkInfoRegion createNewCell() {
         return ChunkInfoRegion.create();
+    }
+    
+    /**
+     * Resets the state
+     */
+    public synchronized void reset() {
+        clear();
     }
 
 }

@@ -1,0 +1,1676 @@
+{
+  "by_id": {
+    "marker_1": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Лайдли"
+    },
+    "marker_2": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Пшенск"
+    },
+    "marker_3": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Phoenix City"
+    },
+    "marker_4": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Шершград"
+    },
+    "marker_5": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Афганистан"
+    },
+    "marker_6": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Кесселинпера"
+    },
+    "marker_7": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Иерусалим"
+    },
+    "marker_8": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Switzerland"
+    },
+    "marker_9": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Малая Канада"
+    },
+    "marker_10": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Кельн"
+    },
+    "marker_11": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Сочи"
+    },
+    "marker_12": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Джеймстаун"
+    },
+    "marker_13": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Сталинодар"
+    },
+    "marker_14": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "FORTUNA"
+    },
+    "marker_15": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Плотник"
+    },
+    "marker_16": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Бебранск"
+    },
+    "marker_17": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Альфдант"
+    },
+    "marker_18": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Колхоз Имени Ленина"
+    },
+    "marker_19": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Руссия"
+    },
+    "marker_20": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "SafariLand"
+    },
+    "marker_21": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Винтерхоум"
+    },
+    "marker_22": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Norra Staden"
+    },
+    "marker_23": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Новый Тимград"
+    },
+    "marker_24": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Болото 40тонн"
+    },
+    "marker_25": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Норден"
+    },
+    "marker_26": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Шмары"
+    },
+    "marker_27": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Триаполь"
+    },
+    "marker_28": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Бокград"
+    },
+    "marker_29": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "RADAR"
+    },
+    "marker_30": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Пивоград"
+    },
+    "marker_31": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Норден"
+    },
+    "marker_32": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "GreenVille (Shrek617)"
+    },
+    "marker_33": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Редукция"
+    },
+    "marker_34": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Каменный город"
+    },
+    "marker_35": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Метаксиполис"
+    },
+    "marker_36": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Лаоград"
+    },
+    "marker_37": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Крепость Коулун"
+    },
+    "marker_38": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Korela Сity"
+    },
+    "marker_39": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Кнодельштадт"
+    },
+    "marker_40": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Новое Кусотсу"
+    },
+    "marker_41": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Далёкая Пшеница"
+    },
+    "marker_42": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Нижний-ФэгоГрадск"
+    },
+    "marker_43": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Нью-Вегас"
+    },
+    "marker_44": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Мирный"
+    },
+    "marker_45": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Узел"
+    },
+    "marker_46": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Шахидын-Хаант-Улсын-Голгазар"
+    },
+    "marker_47": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "ВинтерХолд"
+    },
+    "marker_48": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Тамалир"
+    },
+    "marker_49": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Руллария"
+    },
+    "marker_50": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Сигмастополь"
+    },
+    "marker_51": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Кусотсу (Японск)"
+    },
+    "marker_52": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Советский Союз"
+    },
+    "marker_53": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Сербастополь"
+    },
+    "marker_54": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Горящий Кенгуру"
+    },
+    "marker_55": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Ленинодар"
+    },
+    "marker_56": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Новобебрянск"
+    },
+    "marker_57": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Мирадеш"
+    },
+    "marker_58": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Ляля Ленд"
+    },
+    "marker_59": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Социалистический Союз Рабочих"
+    },
+    "marker_60": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Оазис"
+    },
+    "marker_61": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Берлин"
+    },
+    "marker_62": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Вадерландия"
+    },
+    "marker_63": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Шенди-Сенс"
+    },
+    "marker_64": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Вадерландия"
+    },
+    "marker_65": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Рок-Бург"
+    },
+    "marker_66": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Lost-Haven"
+    },
+    "marker_67": {
+      "category_id": "category_1",
+      "category_name": "Города",
+      "marker_name": "Торфина"
+    },
+    "marker_68": {
+      "category_id": "category_2",
+      "category_name": "Области",
+      "marker_name": "Замёрзший порт"
+    },
+    "marker_69": {
+      "category_id": "category_2",
+      "category_name": "Области",
+      "marker_name": "Сапфирия"
+    },
+    "marker_70": {
+      "category_id": "category_2",
+      "category_name": "Области",
+      "marker_name": "Новая Швейцария"
+    },
+    "marker_71": {
+      "category_id": "category_2",
+      "category_name": "Области",
+      "marker_name": "СССГ"
+    },
+    "marker_72": {
+      "category_id": "category_2",
+      "category_name": "Области",
+      "marker_name": "Римcкая Империя"
+    },
+    "marker_73": {
+      "category_id": "category_3",
+      "category_name": "Маркеры",
+      "marker_name": "Спавн"
+    },
+    "marker_74": {
+      "category_id": "category_3",
+      "category_name": "Маркеры",
+      "marker_name": "Центральный Банк"
+    },
+    "marker_75": {
+      "category_id": "category_3",
+      "category_name": "Маркеры",
+      "marker_name": "Новое Метро"
+    },
+    "marker_76": {
+      "category_id": "category_3",
+      "category_name": "Маркеры",
+      "marker_name": "Дача Малины Иванова"
+    },
+    "marker_77": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Дурт Урундык"
+    },
+    "marker_78": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Остров Леонский"
+    },
+    "marker_79": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Монови"
+    },
+    "marker_80": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Сэнд Кост (Бобровск)"
+    },
+    "marker_81": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "LimeTown"
+    },
+    "marker_82": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Фарленд"
+    },
+    "marker_83": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Северск 1"
+    },
+    "marker_84": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Подгородье"
+    },
+    "marker_85": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Усадьба mr_haaat"
+    },
+    "marker_86": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Норильск"
+    },
+    "marker_87": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Смоляново"
+    },
+    "marker_88": {
+      "category_id": "category_4",
+      "category_name": "Деревни",
+      "marker_name": "Бобровск"
+    },
+    "marker_89": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Мавзолей Ленина"
+    },
+    "marker_90": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Международный Аэропорт Провинции Редсворд"
+    },
+    "marker_91": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Музей Блоков"
+    },
+    "marker_92": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Обсерватория"
+    },
+    "marker_93": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Воронцовский Дворец"
+    },
+    "marker_94": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Мемориал Кену Блоку (DC Shoes)"
+    },
+    "marker_95": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Долина Пшеницы"
+    },
+    "marker_96": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Остров Питкэрн"
+    },
+    "marker_97": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Статуя Культа Личности Баси"
+    },
+    "marker_98": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "WTC Towers"
+    },
+    "marker_99": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Survival Games: Breeze Island"
+    },
+    "marker_100": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Херсонесский Маяк"
+    },
+    "marker_101": {
+      "category_id": "category_5",
+      "category_name": "Достопримечательности",
+      "marker_name": "Майдан Незалежності"
+    },
+    "marker_102": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Песчаный"
+    },
+    "marker_103": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Эрзянск"
+    },
+    "marker_104": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Сенди-Кост"
+    },
+    "marker_105": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Жигулёвский"
+    },
+    "marker_106": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Новый Фарленд"
+    },
+    "marker_107": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Малый Маяк"
+    },
+    "marker_108": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Красово"
+    },
+    "marker_109": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Полтава"
+    },
+    "marker_110": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Торопова Дача"
+    },
+    "marker_111": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Примм"
+    },
+    "marker_112": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Кандалар"
+    },
+    "marker_113": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Деревня игрока 40тонн"
+    },
+    "marker_114": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Горбург"
+    },
+    "marker_115": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Агроусадьба игрока Arbuzik_21"
+    },
+    "marker_116": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Новый Тимград"
+    },
+    "marker_117": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Колхоз Имени Ленина"
+    },
+    "marker_118": {
+      "category_id": "category_6",
+      "category_name": "Посёлки",
+      "marker_name": "Эль-Джауф"
+    }
+  },
+  "by_name": {
+    "лайдли": {
+      "marker_id": "marker_1",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "пшенск": {
+      "marker_id": "marker_2",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "phoenix city": {
+      "marker_id": "marker_3",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "шершград": {
+      "marker_id": "marker_4",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "афганистан": {
+      "marker_id": "marker_5",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "кесселинпера": {
+      "marker_id": "marker_6",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "иерусалим": {
+      "marker_id": "marker_7",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "switzerland": {
+      "marker_id": "marker_8",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "малая канада": {
+      "marker_id": "marker_9",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "кельн": {
+      "marker_id": "marker_10",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "сочи": {
+      "marker_id": "marker_11",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "джеймстаун": {
+      "marker_id": "marker_12",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "сталинодар": {
+      "marker_id": "marker_13",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "fortuna": {
+      "marker_id": "marker_14",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "плотник": {
+      "marker_id": "marker_15",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "бебранск": {
+      "marker_id": "marker_16",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "альфдант": {
+      "marker_id": "marker_17",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "колхоз имени ленина": {
+      "marker_id": "marker_117",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "руссия": {
+      "marker_id": "marker_19",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "safariland": {
+      "marker_id": "marker_20",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "винтерхоум": {
+      "marker_id": "marker_21",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "norra staden": {
+      "marker_id": "marker_22",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "новый тимград": {
+      "marker_id": "marker_116",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "болото 40тонн": {
+      "marker_id": "marker_24",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "норден": {
+      "marker_id": "marker_31",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "шмары": {
+      "marker_id": "marker_26",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "триаполь": {
+      "marker_id": "marker_27",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "бокград": {
+      "marker_id": "marker_28",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "radar": {
+      "marker_id": "marker_29",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "пивоград": {
+      "marker_id": "marker_30",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "greenville (shrek617)": {
+      "marker_id": "marker_32",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "редукция": {
+      "marker_id": "marker_33",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "каменный город": {
+      "marker_id": "marker_34",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "метаксиполис": {
+      "marker_id": "marker_35",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "лаоград": {
+      "marker_id": "marker_36",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "крепость коулун": {
+      "marker_id": "marker_37",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "korela сity": {
+      "marker_id": "marker_38",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "кнодельштадт": {
+      "marker_id": "marker_39",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "новое кусотсу": {
+      "marker_id": "marker_40",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "далёкая пшеница": {
+      "marker_id": "marker_41",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "нижний-фэгоградск": {
+      "marker_id": "marker_42",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "нью-вегас": {
+      "marker_id": "marker_43",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "мирный": {
+      "marker_id": "marker_44",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "узел": {
+      "marker_id": "marker_45",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "шахидын-хаант-улсын-голгазар": {
+      "marker_id": "marker_46",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "винтерхолд": {
+      "marker_id": "marker_47",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "тамалир": {
+      "marker_id": "marker_48",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "руллария": {
+      "marker_id": "marker_49",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "сигмастополь": {
+      "marker_id": "marker_50",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "кусотсу (японск)": {
+      "marker_id": "marker_51",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "советский союз": {
+      "marker_id": "marker_52",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "сербастополь": {
+      "marker_id": "marker_53",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "горящий кенгуру": {
+      "marker_id": "marker_54",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "ленинодар": {
+      "marker_id": "marker_55",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "новобебрянск": {
+      "marker_id": "marker_56",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "мирадеш": {
+      "marker_id": "marker_57",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "ляля ленд": {
+      "marker_id": "marker_58",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "социалистический союз рабочих": {
+      "marker_id": "marker_59",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "оазис": {
+      "marker_id": "marker_60",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "берлин": {
+      "marker_id": "marker_61",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "вадерландия": {
+      "marker_id": "marker_64",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "шенди-сенс": {
+      "marker_id": "marker_63",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "рок-бург": {
+      "marker_id": "marker_65",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "lost-haven": {
+      "marker_id": "marker_66",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "торфина": {
+      "marker_id": "marker_67",
+      "category_id": "category_1",
+      "category_name": "Города"
+    },
+    "замёрзший порт": {
+      "marker_id": "marker_68",
+      "category_id": "category_2",
+      "category_name": "Области"
+    },
+    "сапфирия": {
+      "marker_id": "marker_69",
+      "category_id": "category_2",
+      "category_name": "Области"
+    },
+    "новая швейцария": {
+      "marker_id": "marker_70",
+      "category_id": "category_2",
+      "category_name": "Области"
+    },
+    "сссг": {
+      "marker_id": "marker_71",
+      "category_id": "category_2",
+      "category_name": "Области"
+    },
+    "римcкая империя": {
+      "marker_id": "marker_72",
+      "category_id": "category_2",
+      "category_name": "Области"
+    },
+    "спавн": {
+      "marker_id": "marker_73",
+      "category_id": "category_3",
+      "category_name": "Маркеры"
+    },
+    "центральный банк": {
+      "marker_id": "marker_74",
+      "category_id": "category_3",
+      "category_name": "Маркеры"
+    },
+    "новое метро": {
+      "marker_id": "marker_75",
+      "category_id": "category_3",
+      "category_name": "Маркеры"
+    },
+    "дача малины иванова": {
+      "marker_id": "marker_76",
+      "category_id": "category_3",
+      "category_name": "Маркеры"
+    },
+    "дурт урундык": {
+      "marker_id": "marker_77",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "остров леонский": {
+      "marker_id": "marker_78",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "монови": {
+      "marker_id": "marker_79",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "сэнд кост (бобровск)": {
+      "marker_id": "marker_80",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "limetown": {
+      "marker_id": "marker_81",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "фарленд": {
+      "marker_id": "marker_82",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "северск 1": {
+      "marker_id": "marker_83",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "подгородье": {
+      "marker_id": "marker_84",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "усадьба mr_haaat": {
+      "marker_id": "marker_85",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "норильск": {
+      "marker_id": "marker_86",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "смоляново": {
+      "marker_id": "marker_87",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "бобровск": {
+      "marker_id": "marker_88",
+      "category_id": "category_4",
+      "category_name": "Деревни"
+    },
+    "мавзолей ленина": {
+      "marker_id": "marker_89",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "международный аэропорт провинции редсворд": {
+      "marker_id": "marker_90",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "музей блоков": {
+      "marker_id": "marker_91",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "обсерватория": {
+      "marker_id": "marker_92",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "воронцовский дворец": {
+      "marker_id": "marker_93",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "мемориал кену блоку (dc shoes)": {
+      "marker_id": "marker_94",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "долина пшеницы": {
+      "marker_id": "marker_95",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "остров питкэрн": {
+      "marker_id": "marker_96",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "статуя культа личности баси": {
+      "marker_id": "marker_97",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "wtc towers": {
+      "marker_id": "marker_98",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "survival games: breeze island": {
+      "marker_id": "marker_99",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "херсонесский маяк": {
+      "marker_id": "marker_100",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "майдан незалежності": {
+      "marker_id": "marker_101",
+      "category_id": "category_5",
+      "category_name": "Достопримечательности"
+    },
+    "песчаный": {
+      "marker_id": "marker_102",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "эрзянск": {
+      "marker_id": "marker_103",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "сенди-кост": {
+      "marker_id": "marker_104",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "жигулёвский": {
+      "marker_id": "marker_105",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "новый фарленд": {
+      "marker_id": "marker_106",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "малый маяк": {
+      "marker_id": "marker_107",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "красово": {
+      "marker_id": "marker_108",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "полтава": {
+      "marker_id": "marker_109",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "торопова дача": {
+      "marker_id": "marker_110",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "примм": {
+      "marker_id": "marker_111",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "кандалар": {
+      "marker_id": "marker_112",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "деревня игрока 40тонн": {
+      "marker_id": "marker_113",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "горбург": {
+      "marker_id": "marker_114",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "агроусадьба игрока arbuzik_21": {
+      "marker_id": "marker_115",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    },
+    "эль-джауф": {
+      "marker_id": "marker_118",
+      "category_id": "category_6",
+      "category_name": "Посёлки"
+    }
+  },
+  "categories": {
+    "category_1": {
+      "name": "Города",
+      "marker_count": 67,
+      "markers": [
+        {
+          "marker_id": "marker_1",
+          "marker_name": "Лайдли"
+        },
+        {
+          "marker_id": "marker_2",
+          "marker_name": "Пшенск"
+        },
+        {
+          "marker_id": "marker_3",
+          "marker_name": "Phoenix City"
+        },
+        {
+          "marker_id": "marker_4",
+          "marker_name": "Шершград"
+        },
+        {
+          "marker_id": "marker_5",
+          "marker_name": "Афганистан"
+        },
+        {
+          "marker_id": "marker_6",
+          "marker_name": "Кесселинпера"
+        },
+        {
+          "marker_id": "marker_7",
+          "marker_name": "Иерусалим"
+        },
+        {
+          "marker_id": "marker_8",
+          "marker_name": "Switzerland"
+        },
+        {
+          "marker_id": "marker_9",
+          "marker_name": "Малая Канада"
+        },
+        {
+          "marker_id": "marker_10",
+          "marker_name": "Кельн"
+        },
+        {
+          "marker_id": "marker_11",
+          "marker_name": "Сочи"
+        },
+        {
+          "marker_id": "marker_12",
+          "marker_name": "Джеймстаун"
+        },
+        {
+          "marker_id": "marker_13",
+          "marker_name": "Сталинодар"
+        },
+        {
+          "marker_id": "marker_14",
+          "marker_name": "FORTUNA"
+        },
+        {
+          "marker_id": "marker_15",
+          "marker_name": "Плотник"
+        },
+        {
+          "marker_id": "marker_16",
+          "marker_name": "Бебранск"
+        },
+        {
+          "marker_id": "marker_17",
+          "marker_name": "Альфдант"
+        },
+        {
+          "marker_id": "marker_18",
+          "marker_name": "Колхоз Имени Ленина"
+        },
+        {
+          "marker_id": "marker_19",
+          "marker_name": "Руссия"
+        },
+        {
+          "marker_id": "marker_20",
+          "marker_name": "SafariLand"
+        },
+        {
+          "marker_id": "marker_21",
+          "marker_name": "Винтерхоум"
+        },
+        {
+          "marker_id": "marker_22",
+          "marker_name": "Norra Staden"
+        },
+        {
+          "marker_id": "marker_23",
+          "marker_name": "Новый Тимград"
+        },
+        {
+          "marker_id": "marker_24",
+          "marker_name": "Болото 40тонн"
+        },
+        {
+          "marker_id": "marker_25",
+          "marker_name": "Норден"
+        },
+        {
+          "marker_id": "marker_26",
+          "marker_name": "Шмары"
+        },
+        {
+          "marker_id": "marker_27",
+          "marker_name": "Триаполь"
+        },
+        {
+          "marker_id": "marker_28",
+          "marker_name": "Бокград"
+        },
+        {
+          "marker_id": "marker_29",
+          "marker_name": "RADAR"
+        },
+        {
+          "marker_id": "marker_30",
+          "marker_name": "Пивоград"
+        },
+        {
+          "marker_id": "marker_31",
+          "marker_name": "Норден"
+        },
+        {
+          "marker_id": "marker_32",
+          "marker_name": "GreenVille (Shrek617)"
+        },
+        {
+          "marker_id": "marker_33",
+          "marker_name": "Редукция"
+        },
+        {
+          "marker_id": "marker_34",
+          "marker_name": "Каменный город"
+        },
+        {
+          "marker_id": "marker_35",
+          "marker_name": "Метаксиполис"
+        },
+        {
+          "marker_id": "marker_36",
+          "marker_name": "Лаоград"
+        },
+        {
+          "marker_id": "marker_37",
+          "marker_name": "Крепость Коулун"
+        },
+        {
+          "marker_id": "marker_38",
+          "marker_name": "Korela Сity"
+        },
+        {
+          "marker_id": "marker_39",
+          "marker_name": "Кнодельштадт"
+        },
+        {
+          "marker_id": "marker_40",
+          "marker_name": "Новое Кусотсу"
+        },
+        {
+          "marker_id": "marker_41",
+          "marker_name": "Далёкая Пшеница"
+        },
+        {
+          "marker_id": "marker_42",
+          "marker_name": "Нижний-ФэгоГрадск"
+        },
+        {
+          "marker_id": "marker_43",
+          "marker_name": "Нью-Вегас"
+        },
+        {
+          "marker_id": "marker_44",
+          "marker_name": "Мирный"
+        },
+        {
+          "marker_id": "marker_45",
+          "marker_name": "Узел"
+        },
+        {
+          "marker_id": "marker_46",
+          "marker_name": "Шахидын-Хаант-Улсын-Голгазар"
+        },
+        {
+          "marker_id": "marker_47",
+          "marker_name": "ВинтерХолд"
+        },
+        {
+          "marker_id": "marker_48",
+          "marker_name": "Тамалир"
+        },
+        {
+          "marker_id": "marker_49",
+          "marker_name": "Руллария"
+        },
+        {
+          "marker_id": "marker_50",
+          "marker_name": "Сигмастополь"
+        },
+        {
+          "marker_id": "marker_51",
+          "marker_name": "Кусотсу (Японск)"
+        },
+        {
+          "marker_id": "marker_52",
+          "marker_name": "Советский Союз"
+        },
+        {
+          "marker_id": "marker_53",
+          "marker_name": "Сербастополь"
+        },
+        {
+          "marker_id": "marker_54",
+          "marker_name": "Горящий Кенгуру"
+        },
+        {
+          "marker_id": "marker_55",
+          "marker_name": "Ленинодар"
+        },
+        {
+          "marker_id": "marker_56",
+          "marker_name": "Новобебрянск"
+        },
+        {
+          "marker_id": "marker_57",
+          "marker_name": "Мирадеш"
+        },
+        {
+          "marker_id": "marker_58",
+          "marker_name": "Ляля Ленд"
+        },
+        {
+          "marker_id": "marker_59",
+          "marker_name": "Социалистический Союз Рабочих"
+        },
+        {
+          "marker_id": "marker_60",
+          "marker_name": "Оазис"
+        },
+        {
+          "marker_id": "marker_61",
+          "marker_name": "Берлин"
+        },
+        {
+          "marker_id": "marker_62",
+          "marker_name": "Вадерландия"
+        },
+        {
+          "marker_id": "marker_63",
+          "marker_name": "Шенди-Сенс"
+        },
+        {
+          "marker_id": "marker_64",
+          "marker_name": "Вадерландия"
+        },
+        {
+          "marker_id": "marker_65",
+          "marker_name": "Рок-Бург"
+        },
+        {
+          "marker_id": "marker_66",
+          "marker_name": "Lost-Haven"
+        },
+        {
+          "marker_id": "marker_67",
+          "marker_name": "Торфина"
+        }
+      ]
+    },
+    "category_2": {
+      "name": "Области",
+      "marker_count": 5,
+      "markers": [
+        {
+          "marker_id": "marker_68",
+          "marker_name": "Замёрзший порт"
+        },
+        {
+          "marker_id": "marker_69",
+          "marker_name": "Сапфирия"
+        },
+        {
+          "marker_id": "marker_70",
+          "marker_name": "Новая Швейцария"
+        },
+        {
+          "marker_id": "marker_71",
+          "marker_name": "СССГ"
+        },
+        {
+          "marker_id": "marker_72",
+          "marker_name": "Римcкая Империя"
+        }
+      ]
+    },
+    "category_3": {
+      "name": "Маркеры",
+      "marker_count": 4,
+      "markers": [
+        {
+          "marker_id": "marker_73",
+          "marker_name": "Спавн"
+        },
+        {
+          "marker_id": "marker_74",
+          "marker_name": "Центральный Банк"
+        },
+        {
+          "marker_id": "marker_75",
+          "marker_name": "Новое Метро"
+        },
+        {
+          "marker_id": "marker_76",
+          "marker_name": "Дача Малины Иванова"
+        }
+      ]
+    },
+    "category_4": {
+      "name": "Деревни",
+      "marker_count": 12,
+      "markers": [
+        {
+          "marker_id": "marker_77",
+          "marker_name": "Дурт Урундык"
+        },
+        {
+          "marker_id": "marker_78",
+          "marker_name": "Остров Леонский"
+        },
+        {
+          "marker_id": "marker_79",
+          "marker_name": "Монови"
+        },
+        {
+          "marker_id": "marker_80",
+          "marker_name": "Сэнд Кост (Бобровск)"
+        },
+        {
+          "marker_id": "marker_81",
+          "marker_name": "LimeTown"
+        },
+        {
+          "marker_id": "marker_82",
+          "marker_name": "Фарленд"
+        },
+        {
+          "marker_id": "marker_83",
+          "marker_name": "Северск 1"
+        },
+        {
+          "marker_id": "marker_84",
+          "marker_name": "Подгородье"
+        },
+        {
+          "marker_id": "marker_85",
+          "marker_name": "Усадьба mr_haaat"
+        },
+        {
+          "marker_id": "marker_86",
+          "marker_name": "Норильск"
+        },
+        {
+          "marker_id": "marker_87",
+          "marker_name": "Смоляново"
+        },
+        {
+          "marker_id": "marker_88",
+          "marker_name": "Бобровск"
+        }
+      ]
+    },
+    "category_5": {
+      "name": "Достопримечательности",
+      "marker_count": 13,
+      "markers": [
+        {
+          "marker_id": "marker_89",
+          "marker_name": "Мавзолей Ленина"
+        },
+        {
+          "marker_id": "marker_90",
+          "marker_name": "Международный Аэропорт Провинции Редсворд"
+        },
+        {
+          "marker_id": "marker_91",
+          "marker_name": "Музей Блоков"
+        },
+        {
+          "marker_id": "marker_92",
+          "marker_name": "Обсерватория"
+        },
+        {
+          "marker_id": "marker_93",
+          "marker_name": "Воронцовский Дворец"
+        },
+        {
+          "marker_id": "marker_94",
+          "marker_name": "Мемориал Кену Блоку (DC Shoes)"
+        },
+        {
+          "marker_id": "marker_95",
+          "marker_name": "Долина Пшеницы"
+        },
+        {
+          "marker_id": "marker_96",
+          "marker_name": "Остров Питкэрн"
+        },
+        {
+          "marker_id": "marker_97",
+          "marker_name": "Статуя Культа Личности Баси"
+        },
+        {
+          "marker_id": "marker_98",
+          "marker_name": "WTC Towers"
+        },
+        {
+          "marker_id": "marker_99",
+          "marker_name": "Survival Games: Breeze Island"
+        },
+        {
+          "marker_id": "marker_100",
+          "marker_name": "Херсонесский Маяк"
+        },
+        {
+          "marker_id": "marker_101",
+          "marker_name": "Майдан Незалежності"
+        }
+      ]
+    },
+    "category_6": {
+      "name": "Посёлки",
+      "marker_count": 17,
+      "markers": [
+        {
+          "marker_id": "marker_102",
+          "marker_name": "Песчаный"
+        },
+        {
+          "marker_id": "marker_103",
+          "marker_name": "Эрзянск"
+        },
+        {
+          "marker_id": "marker_104",
+          "marker_name": "Сенди-Кост"
+        },
+        {
+          "marker_id": "marker_105",
+          "marker_name": "Жигулёвский"
+        },
+        {
+          "marker_id": "marker_106",
+          "marker_name": "Новый Фарленд"
+        },
+        {
+          "marker_id": "marker_107",
+          "marker_name": "Малый Маяк"
+        },
+        {
+          "marker_id": "marker_108",
+          "marker_name": "Красово"
+        },
+        {
+          "marker_id": "marker_109",
+          "marker_name": "Полтава"
+        },
+        {
+          "marker_id": "marker_110",
+          "marker_name": "Торопова Дача"
+        },
+        {
+          "marker_id": "marker_111",
+          "marker_name": "Примм"
+        },
+        {
+          "marker_id": "marker_112",
+          "marker_name": "Кандалар"
+        },
+        {
+          "marker_id": "marker_113",
+          "marker_name": "Деревня игрока 40тонн"
+        },
+        {
+          "marker_id": "marker_114",
+          "marker_name": "Горбург"
+        },
+        {
+          "marker_id": "marker_115",
+          "marker_name": "Агроусадьба игрока Arbuzik_21"
+        },
+        {
+          "marker_id": "marker_116",
+          "marker_name": "Новый Тимград"
+        },
+        {
+          "marker_id": "marker_117",
+          "marker_name": "Колхоз Имени Ленина"
+        },
+        {
+          "marker_id": "marker_118",
+          "marker_name": "Эль-Джауф"
+        }
+      ]
+    }
+  }
+}

@@ -27,7 +27,15 @@ package de.bluecolored.bluemap.core.map.hires;
 import de.bluecolored.bluemap.core.util.math.MatrixM3f;
 import de.bluecolored.bluemap.core.util.math.MatrixM4f;
 
+/**
+ * Represents a tile model for the map renderer
+ */
 public interface TileModel {
+    int getX();
+
+    int getZ();
+
+    int getZoom();
 
     int size();
 
@@ -112,5 +120,4 @@ public interface TileModel {
     TileModel clear();
 
     void sort();
-
 }

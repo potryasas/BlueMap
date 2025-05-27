@@ -1,0 +1,106 @@
+{
+  "official-markers": {
+    "label": "Official Markers",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "pixel-art-way": {
+        "classes": [],
+        "detail": "",
+        "icon": "assets/markers/custom/paint.png",
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "type": "poi",
+        "label": "Pixel Art Way",
+        "position": {
+          "x": 347,
+          "y": 77,
+          "z": -76
+        },
+        "sorting": 0,
+        "listed": true
+      },
+      "spawn-1": {
+        "classes": [],
+        "detail": "",
+        "icon": "assets/markers/default/world.png",
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "type": "poi",
+        "label": "Spawn",
+        "position": {
+          "x": 0,
+          "y": 70,
+          "z": 0
+        },
+        "sorting": 0,
+        "listed": true
+      }
+    }
+  },
+  "tier-1-player-markers": {
+    "label": "Tier 1 Player Markers",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "the-shed": {
+        "classes": [],
+        "detail": "",
+        "icon": "assets/markers/default/default.png",
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "type": "poi",
+        "label": "The Shed",
+        "position": {
+          "x": -1081,
+          "y": 67,
+          "z": -406
+        },
+        "sorting": 0,
+        "listed": true
+      }
+    }
+  },
+  "tier-2-player-markers": {
+    "label": "Tier 2 Player Markers",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "p-town": {
+        "classes": [],
+        "detail": "",
+        "icon": "assets/markers/custom/tongue_out.png",
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "type": "poi",
+        "label": ":p town",
+        "position": {
+          "x": 3505,
+          "y": 85,
+          "z": -2737
+        },
+        "sorting": 0,
+        "listed": true
+      }
+    }
+  }
+} 

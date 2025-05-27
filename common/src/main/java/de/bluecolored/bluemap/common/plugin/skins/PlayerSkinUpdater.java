@@ -31,6 +31,7 @@ import de.bluecolored.bluemap.common.serverinterface.ServerEventListener;
 import de.bluecolored.bluemap.core.BlueMap;
 import de.bluecolored.bluemap.core.logger.Logger;
 import de.bluecolored.bluemap.core.map.BmMap;
+import de.bluecolored.bluemap.common.util.OptionalUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -43,6 +44,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.Optional;
 
 public class PlayerSkinUpdater implements ServerEventListener {
 
@@ -69,31 +71,37 @@ public class PlayerSkinUpdater implements ServerEventListener {
         skinUpdates.put(playerUuid, now);
 
         // do the update async
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return skinProvider.load(playerUuid);
-            } catch (IOException e) {
-                throw new CompletionException("The skin provider threw an exception while loading the skin for UUID: '" + playerUuid + "'!", e);
+        return CompletableFuture.supplyAsync(new java.util.function.Supplier<Optional<BufferedImage>>() {
+            @Override
+            public Optional<BufferedImage> get() {
+                try {
+                    return skinProvider.load(playerUuid);
+                } catch (IOException e) {
+                    throw new CompletionException("The skin provider threw an exception while loading the skin for UUID: '" + playerUuid + "'!", e);
+                }
             }
-        }, BlueMap.THREAD_POOL).thenAcceptAsync(skin -> {
-            if (skin.isEmpty()) {
-                Logger.global.logDebug("No player-skin provided for UUID: " + playerUuid);
-                return;
-            }
+        }, BlueMap.THREAD_POOL).thenAcceptAsync(new java.util.function.Consumer<Optional<BufferedImage>>() {
+            @Override
+            public void accept(Optional<BufferedImage> skin) {
+                if (OptionalUtil.isEmpty(skin)) {
+                    Logger.global.logDebug("No player-skin provided for UUID: " + playerUuid);
+                    return;
+                }
 
-            Map<String, BmMap> maps = plugin.getBlueMap().getMaps();
-            if (maps == null) {
-                Logger.global.logDebug("Could not update skin, since the plugin seems not to be ready.");
-                return;
-            }
+                Map<String, BmMap> maps = plugin.getBlueMap().getMaps();
+                if (maps == null) {
+                    Logger.global.logDebug("Could not update skin, since the plugin seems not to be ready.");
+                    return;
+                }
 
-            BufferedImage playerHead = playerMarkerIconFactory.apply(playerUuid, skin.get());
+                BufferedImage playerHead = playerMarkerIconFactory.apply(playerUuid, skin.get());
 
-            for (BmMap map : maps.values()) {
-                try (OutputStream out = map.getStorage().asset("playerheads/" + playerUuid + ".png").write()) {
-                    ImageIO.write(playerHead, "png", out);
-                } catch (IOException ex) {
-                    Logger.global.logError("Failed to write player skin to storage: " + playerUuid, ex);
+                for (BmMap map : maps.values()) {
+                    try (OutputStream out = map.getStorage().asset("playerheads/" + playerUuid + ".png").write()) {
+                        ImageIO.write(playerHead, "png", out);
+                    } catch (IOException ex) {
+                        Logger.global.logError("Failed to write player skin to storage: " + playerUuid, ex);
+                    }
                 }
             }
         }, BlueMap.THREAD_POOL);
@@ -101,9 +109,12 @@ public class PlayerSkinUpdater implements ServerEventListener {
 
     @Override
     public void onPlayerJoin(UUID playerUuid) {
-        updateSkin(playerUuid).exceptionally(ex -> {
-            Logger.global.logError("Failed to update player skin: " + playerUuid, ex);
-            return null;
+        updateSkin(playerUuid).exceptionally(new java.util.function.Function<Throwable, Void>() {
+            @Override
+            public Void apply(Throwable ex) {
+                Logger.global.logError("Failed to update player skin: " + playerUuid, ex);
+                return null;
+            }
         });
     }
 

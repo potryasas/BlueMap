@@ -25,13 +25,13 @@
 package de.bluecolored.bluemap.common.config;
 
 import com.flowpowered.math.vector.Vector2i;
+import com.google.gson.reflect.TypeToken;
 import de.bluecolored.bluemap.common.config.storage.StorageConfig;
 import de.bluecolored.bluemap.common.config.typeserializer.KeyTypeSerializer;
 import de.bluecolored.bluemap.common.config.typeserializer.ObjectMapperSerializer;
 import de.bluecolored.bluemap.common.config.typeserializer.Vector2iTypeSerializer;
 import de.bluecolored.bluemap.core.BlueMap;
 import de.bluecolored.bluemap.core.util.Key;
-import de.bluecolored.bluenbt.TypeToken;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.loader.AbstractConfigurationLoader;
@@ -50,6 +50,7 @@ import java.util.Objects;
 public class ConfigManager {
 
     private static final String CONFIG_TEMPLATE_RESOURCE_PATH = "/de/bluecolored/bluemap/config/";
+    private static final int BUFFER_SIZE = 8192;
 
     private final Path configRoot;
 
@@ -82,7 +83,12 @@ public class ConfigManager {
 
             StringWriter writer = new StringWriter();
             InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
-            reader.transferTo(writer);
+            
+            char[] buffer = new char[BUFFER_SIZE];
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
 
             return new ConfigTemplate(writer.toString());
         }
@@ -164,7 +170,7 @@ public class ConfigManager {
                     b.register(Key.class, new KeyTypeSerializer());
 
                     // try parse any StorageConfig type, even without the @ConfigSerializable annotation
-                    b.register(type -> TypeToken.of(type).is(StorageConfig.class), new ObjectMapperSerializer());
+                    b.register(type -> TypeToken.get(type).getRawType().isAssignableFrom(StorageConfig.class), new ObjectMapperSerializer());
 
                 }))
                 .build();

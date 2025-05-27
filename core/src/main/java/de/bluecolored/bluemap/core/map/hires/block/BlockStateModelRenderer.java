@@ -81,7 +81,7 @@ public class BlockStateModelRenderer {
     private void renderModel(BlockNeighborhood block, BlockState blockState, TileModelView tileModel, Color blockColor) {
         int modelStart = tileModel.getStart();
 
-        var stateResource = resourcePack.getBlockState(blockState);
+        de.bluecolored.bluemap.core.resources.pack.resourcepack.blockstate.BlockState stateResource = resourcePack.getBlockState(blockState);
         if (stateResource == null) return;
 
         float blockColorOpacity = 0;

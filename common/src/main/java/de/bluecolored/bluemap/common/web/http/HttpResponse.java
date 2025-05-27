@@ -33,6 +33,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import de.bluecolored.bluemap.common.util.ByteArrayOutputStreamUtil;
 
 public class HttpResponse implements Closeable {
 
@@ -78,7 +79,12 @@ public class HttpResponse implements Closeable {
         }
 
         // send data chunked
-        if (dataBuffer == null) dataBuffer = ByteBuffer.allocate(1024 + 200).flip(); // 200 extra bytes
+        if (dataBuffer == null) {
+            ByteBuffer buffer = ByteBuffer.allocate(1024 + 200);
+            buffer.position(0);
+            buffer.limit(0);
+            dataBuffer = buffer;
+        }
         while (true) {
             if (dataBuffer.hasRemaining()) channel.write(dataBuffer);
             if (dataBuffer.hasRemaining()) return false;
@@ -127,18 +133,24 @@ public class HttpResponse implements Closeable {
             headers.put("Content-Length", new HttpHeader("Content-Length", "0"));
         }
 
-        headerDataOut.writeBytes((version + " " + statusCode.getCode() + " " + statusCode.getMessage() + "\r\n")
-                .getBytes(StandardCharsets.UTF_8));
-        for (HttpHeader header : headers.values()){
-            headerDataOut.writeBytes((header.getKey() + ": " + header.getValue() + "\r\n")
+        try {
+            ByteArrayOutputStreamUtil.writeBytes(headerDataOut, (version + " " + statusCode.getCode() + " " + statusCode.getMessage() + "\r\n")
                     .getBytes(StandardCharsets.UTF_8));
+            for (HttpHeader header : headers.values()){
+                ByteArrayOutputStreamUtil.writeBytes(headerDataOut, (header.getKey() + ": " + header.getValue() + "\r\n")
+                        .getBytes(StandardCharsets.UTF_8));
+            }
+            ByteArrayOutputStreamUtil.writeBytes(headerDataOut, ("\r\n")
+                    .getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to write HTTP header", e);
         }
-        headerDataOut.writeBytes(("\r\n")
-                .getBytes(StandardCharsets.UTF_8));
 
-        headerData = ByteBuffer.allocate(headerDataOut.size())
-                .put(headerDataOut.toByteArray())
-                .flip();
+        ByteBuffer buffer = ByteBuffer.allocate(headerDataOut.size());
+        buffer.put(headerDataOut.toByteArray());
+        buffer.position(0);
+        buffer.limit(headerDataOut.size());
+        headerData = buffer;
     }
 
     public void addHeader(String key, String value){

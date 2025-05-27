@@ -80,7 +80,7 @@ public class MapStorageRequestHandler implements HttpRequestHandler {
 
                 HttpResponse response = new HttpResponse(HttpStatusCode.OK);
                 response.addHeader("Cache-Control", "public");
-                response.addHeader("Cache-Control", "max-age=" + TimeUnit.DAYS.toSeconds(1));
+                response.addHeader("Cache-Control", "max-age=" + String.valueOf(TimeUnit.DAYS.toSeconds(1)));
 
                 if (lod == 0) response.addHeader("Content-Type", "application/octet-stream");
                 else response.addHeader("Content-Type", "image/png");
@@ -90,17 +90,23 @@ public class MapStorageRequestHandler implements HttpRequestHandler {
             }
 
             // provide meta-data
-            CompressedInputStream in = switch (path) {
-                case "settings.json" -> mapStorage.settings().read();
-                case "textures.json" -> mapStorage.textures().read();
-                case "live/markers.json" -> mapStorage.markers().read();
-                case "live/players.json" -> mapStorage.players().read();
-                default -> path.startsWith("assets/") ? mapStorage.asset(path.substring(7)).read() : null;
-            };
+            CompressedInputStream in = null;
+            if ("settings.json".equals(path)) {
+                in = mapStorage.settings().read();
+            } else if ("textures.json".equals(path)) {
+                in = mapStorage.textures().read();
+            } else if ("live/markers.json".equals(path)) {
+                in = mapStorage.markers().read();
+            } else if ("live/players.json".equals(path)) {
+                in = mapStorage.players().read();
+            } else if (path.startsWith("assets/")) {
+                in = mapStorage.asset(path.substring(7)).read();
+            }
+            
             if (in != null){
                 HttpResponse response = new HttpResponse(HttpStatusCode.OK);
                 response.addHeader("Cache-Control", "public");
-                response.addHeader("Cache-Control", "max-age=" + TimeUnit.DAYS.toSeconds(1));
+                response.addHeader("Cache-Control", "max-age=" + String.valueOf(TimeUnit.DAYS.toSeconds(1)));
                 response.addHeader("Content-Type", ContentTypeRegistry.fromFileName(path));
                 writeToResponse(in, response, request);
                 return response;
@@ -130,8 +136,19 @@ public class MapStorageRequestHandler implements HttpRequestHandler {
         ) {
             response.addHeader("Content-Encoding", Compression.GZIP.getId());
             ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-            try (data; OutputStream os = Compression.GZIP.compress(byteOut)) {
-                data.decompress().transferTo(os);
+            OutputStream os = null;
+            try {
+                os = Compression.GZIP.compress(byteOut);
+                
+                // Manual copy of the stream instead of transferTo
+                byte[] buffer = new byte[8192];
+                int read;
+                while ((read = data.decompress().read(buffer, 0, buffer.length)) >= 0) {
+                    os.write(buffer, 0, read);
+                }
+            } finally {
+                if (os != null) os.close();
+                data.close();
             }
             byte[] compressedData = byteOut.toByteArray();
             response.setData(new ByteArrayInputStream(compressedData));

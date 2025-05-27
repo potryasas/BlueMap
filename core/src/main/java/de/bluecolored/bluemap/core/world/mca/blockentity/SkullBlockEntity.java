@@ -29,6 +29,7 @@ import lombok.Getter;
 import lombok.ToString;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -50,7 +51,7 @@ public class SkullBlockEntity extends MCABlockEntity {
 
         @Nullable UUID id;
         @Nullable String name;
-        List<Property> properties = List.of();
+        List<Property> properties = Collections.emptyList();
 
     }
 

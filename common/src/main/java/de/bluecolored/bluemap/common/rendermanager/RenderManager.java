@@ -25,9 +25,21 @@
 package de.bluecolored.bluemap.common.rendermanager;
 
 import de.bluecolored.bluemap.core.logger.Logger;
+import de.bluecolored.bluemap.common.util.ListUtil;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
@@ -51,22 +63,21 @@ public class RenderManager {
 
     public RenderManager() {
         this.id = nextRenderManagerIndex.getAndIncrement();
-        this.nextWorkerThreadIndex = new AtomicInteger(0);
-
         this.running = false;
-        this.workerThreads = new ConcurrentLinkedDeque<>();
-        this.busyCount = new AtomicInteger(0);
+        this.lastTimeBusy = 0;
 
-        this.lastTimeBusy = -1;
+        this.nextWorkerThreadIndex = new AtomicInteger(0);
+        this.workerThreads = Collections.synchronizedCollection(new ArrayList<>());
+        this.busyCount = new AtomicInteger(0);
 
         this.progressTracker = null;
         this.newTask = true;
 
         this.renderTasks = new LinkedList<>();
-        this.completedTasks = new LinkedHashMap<>() {
+        this.completedTasks = new LinkedHashMap<RenderTask, Long>(20, 0.75f, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<RenderTask, Long> eldest) {
-                return size() > 10;
+                return size() > 20;
             }
         };
     }
@@ -189,7 +200,7 @@ public class RenderManager {
         synchronized (this.renderTasks) {
             if (renderTasks.size() <= 2) return;
 
-            RenderTask currentTask = renderTasks.removeFirst();
+            RenderTask currentTask = ListUtil.removeFirst(renderTasks);
             renderTasks.sort(taskComparator);
             renderTasks.addFirst(currentTask);
         }
@@ -215,7 +226,7 @@ public class RenderManager {
         synchronized (this.renderTasks) {
             if (this.renderTasks.isEmpty()) return;
 
-            RenderTask first = renderTasks.removeFirst();
+            RenderTask first = ListUtil.removeFirst(renderTasks);
             if (removeCondition.test(first)) first.cancel();
             renderTasks.removeIf(removeCondition);
             renderTasks.addFirst(first);
@@ -226,7 +237,7 @@ public class RenderManager {
         synchronized (this.renderTasks) {
             if (this.renderTasks.isEmpty()) return;
 
-            RenderTask first = renderTasks.removeFirst();
+            RenderTask first = ListUtil.removeFirst(renderTasks);
             first.cancel();
             renderTasks.clear();
             renderTasks.addFirst(first);
@@ -287,13 +298,23 @@ public class RenderManager {
     }
 
     public Map<RenderTask, Long> getCompletedTasks() {
-        return Map.copyOf(completedTasks);
+        return new HashMap<>(completedTasks);
+    }
+
+    /**
+     * Gets all scheduled render tasks
+     * @return A list of all scheduled render tasks
+     */
+    public List<RenderTask> getTasks() {
+        synchronized (this.renderTasks) {
+            return Collections.unmodifiableList(new ArrayList<>(renderTasks));
+        }
     }
 
     private void removeTasksThatAreContainedIn(RenderTask containingTask) {
         synchronized (this.renderTasks) {
             if (renderTasks.size() < 2) return;
-            RenderTask first = renderTasks.removeFirst();
+            RenderTask first = ListUtil.removeFirst(renderTasks);
             if (containingTask.contains(first)) first.cancel();
             renderTasks.removeIf(containingTask::contains);
             renderTasks.addFirst(first);
@@ -310,7 +331,12 @@ public class RenderManager {
             task = this.renderTasks.getFirst();
             if (this.newTask) {
                 this.newTask = false;
-                this.progressTracker.resetAndStart(task::estimateProgress);
+                this.progressTracker.resetAndStart(new java.util.function.Supplier<Double>() {
+                    @Override
+                    public Double get() {
+                        return task.estimateProgress();
+                    }
+                });
             }
 
             // the following is making sure every render-thread is done working on this task (no thread is "busy")
@@ -318,7 +344,7 @@ public class RenderManager {
             if (!task.hasMoreWork()) {
                 if (busyCount.get() <= 0) {
                     this.completedTasks.put(
-                            this.renderTasks.removeFirst(),
+                            ListUtil.removeFirst(this.renderTasks),
                             System.currentTimeMillis()
                     );
                     this.renderTasks.notifyAll();

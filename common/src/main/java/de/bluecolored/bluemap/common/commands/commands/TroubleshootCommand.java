@@ -26,8 +26,8 @@ package de.bluecolored.bluemap.common.commands.commands;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.commands.checks.*;
 import de.bluecolored.bluemap.common.plugin.Plugin;
@@ -64,7 +64,7 @@ public class TroubleshootCommand {
                 maps = worldHasMapsCheck.getMaps();
             } else {
                 // check all maps
-                maps = plugin.getBlueMap().getMaps().values().toArray(BmMap[]::new);
+                maps = plugin.getBlueMap().getMaps().values().toArray(new BmMap[0]);
             }
 
             Vector2i position2i = position != null ? position.toVector2(true).toInt() : null;

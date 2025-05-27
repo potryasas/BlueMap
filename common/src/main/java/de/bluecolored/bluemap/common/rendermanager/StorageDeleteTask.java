@@ -90,7 +90,7 @@ public class StorageDeleteTask implements RenderTask {
 
     @Override
     public String getDescription() {
-        return "deleting map '%s'".formatted(mapId);
+        return String.format("deleting map '%s'", mapId);
     }
 
 }

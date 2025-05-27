@@ -30,22 +30,26 @@ import de.bluecolored.bluemap.core.resources.pack.datapack.dimension.DimensionTy
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.world.DimensionType;
 import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.bluecolored.bluemap.core.util.nbt.NBTFileWrapper;
 import de.tr7zw.nbtapi.NBTCompound;
+
+import java.io.IOException;
 
 public class DimensionTypeDeserializer implements NBTAdapter<DimensionType> {
 
     private final NBTAdapter<DimensionTypeData> defaultTypeDeserializer;
     private final DataPack dataPack;
 
-    public DimensionTypeDeserializer(NBTFileWrapper nbt, DataPack dataPack) {
+    public DimensionTypeDeserializer(NBTFileWrapper nbt, DataPack dataPack) throws IOException {
         this.defaultTypeDeserializer = nbt.getAdapter(DimensionTypeData.class);
         this.dataPack = dataPack;
     }
 
     @Override
-    public DimensionType read(NBTCompound compound) {
+    public DimensionType read(NBTCompound compound) throws IOException {
         if (compound.hasKey("")) {
-            return defaultTypeDeserializer.read(compound);
+            DimensionTypeData data = defaultTypeDeserializer.read(compound);
+            return mapToDimensionType(data);
         }
 
         Key key = Key.parse(compound.getString(""), Key.MINECRAFT_NAMESPACE);
@@ -62,5 +66,22 @@ public class DimensionTypeDeserializer implements NBTAdapter<DimensionType> {
     @Override
     public void write(DimensionType value, NBTCompound compound) {
         compound.setString("", value.getFormatted());
+    }
+
+    private DimensionType mapToDimensionType(DimensionTypeData data) {
+        if (data.isNatural()) {
+            if (data.isHasCeiling()) {
+                return DimensionType.OVERWORLD_CAVES;
+            }
+            return DimensionType.OVERWORLD;
+        } else if (data.getFixedTime() != null) {
+            if (data.getFixedTime() == 6000L) {
+                return DimensionType.NETHER;
+            } else if (data.getFixedTime() == 18000L) {
+                return DimensionType.END;
+            }
+        }
+
+        return DimensionType.OVERWORLD;
     }
 }

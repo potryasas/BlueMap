@@ -1,0 +1,7 @@
+{
+  "renderDistance": 200,
+  "minY": 0,
+  "maxY": 255,
+  "tileSize": 32,
+  "maxConcurrentRenders": 1
+}

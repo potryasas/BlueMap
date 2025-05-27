@@ -28,6 +28,7 @@ import de.bluecolored.bluemap.core.resources.pack.resourcepack.texture.Texture;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 
 public interface ResourcePackExtension {
@@ -35,7 +36,7 @@ public interface ResourcePackExtension {
     default void loadResources(Path root) throws IOException {}
 
     default Iterable<Texture> loadTextures(Path root) throws IOException {
-        return List.of();
+        return Collections.emptyList();
     }
 
     default void bake() throws IOException {}

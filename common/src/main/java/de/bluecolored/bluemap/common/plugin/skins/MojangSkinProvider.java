@@ -29,6 +29,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import de.bluecolored.bluemap.api.plugin.SkinProvider;
 import de.bluecolored.bluemap.core.logger.Logger;
+import de.bluecolored.bluemap.common.util.OptionalUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -30,13 +30,14 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 @ConfigSerializable
 public class WebserverConfig {
 
     private boolean enabled = true;
-    private Path webroot = Path.of("bluemap", "web");
+    private Path webroot = Paths.get("bluemap", "web");
 
     private String ip = "0.0.0.0";
     private int port = 8100;

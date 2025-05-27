@@ -1,0 +1,80 @@
+2025-05-23 04:48:31 [INFO] Starting minecraft server version 1.5.2
+2025-05-23 04:48:31 [INFO] Loading properties
+2025-05-23 04:48:31 [WARNING] server.properties does not exist
+2025-05-23 04:48:31 [INFO] Generating new properties file
+2025-05-23 04:48:31 [INFO] Default game type: SURVIVAL
+2025-05-23 04:48:31 [INFO] Generating keypair
+2025-05-23 04:48:31 [INFO] Starting Minecraft server on *:25565
+2025-05-23 04:48:31 [WARNING] Failed to load operators list: java.io.FileNotFoundException: .\ops.txt (Не удается найти указанный файл)
+2025-05-23 04:48:31 [WARNING] Failed to load white-list: java.io.FileNotFoundException: .\white-list.txt (Не удается найти указанный файл)
+2025-05-23 04:48:31 [INFO] Preparing level "world"
+2025-05-23 04:48:31 [WARNING] Unable to find spawn biome
+2025-05-23 04:48:32 [INFO] Preparing start region for level 0
+2025-05-23 04:48:33 [INFO] Preparing spawn area: 9%
+2025-05-23 04:48:34 [INFO] Preparing spawn area: 23%
+2025-05-23 04:48:35 [INFO] Preparing spawn area: 37%
+2025-05-23 04:48:36 [INFO] Preparing spawn area: 51%
+2025-05-23 04:48:37 [INFO] Preparing spawn area: 64%
+2025-05-23 04:48:38 [INFO] Preparing spawn area: 79%
+2025-05-23 04:48:39 [INFO] Preparing spawn area: 92%
+2025-05-23 04:48:39 [INFO] Done (8,003s)! For help, type "help" or "?"
+2025-05-23 04:48:40 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:42 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:43 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:44 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:45 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:46 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:48 [INFO] --- Showing help page 1 of 6 (/help <page>) ---
+2025-05-23 04:48:48 [INFO] /ban <name> [reason ...]
+2025-05-23 04:48:48 [INFO] /ban-ip <address|name> [reason ...]
+2025-05-23 04:48:48 [INFO] /banlist [ips|players]
+2025-05-23 04:48:48 [INFO] /clear <player> [item] [data]
+2025-05-23 04:48:48 [INFO] /debug
+2025-05-23 04:48:48 [INFO] /defaultgamemode <mode>
+2025-05-23 04:48:48 [INFO] /deop <player>
+2025-05-23 04:48:50 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:51 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:52 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:48:52 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 04:49:28 [INFO] Stopping server
+2025-05-23 04:49:28 [INFO] Saving players
+2025-05-23 04:49:28 [INFO] Saving worlds
+2025-05-23 04:49:28 [INFO] Closing listening thread
+2025-05-23 04:49:28 [INFO] Saving chunks for level 'world'/Overworld
+2025-05-23 04:49:28 [INFO] Saving chunks for level 'world'/Nether
+2025-05-23 04:49:28 [INFO] Saving chunks for level 'world'/The End
+2025-05-23 04:49:29 [INFO] Stopping server
+2025-05-23 11:50:24 [INFO] Starting minecraft server version 1.5.2
+2025-05-23 11:50:24 [INFO] Loading properties
+2025-05-23 11:50:24 [INFO] Default game type: SURVIVAL
+2025-05-23 11:50:24 [INFO] Generating keypair
+2025-05-23 11:50:24 [INFO] Starting Minecraft server on *:25565
+2025-05-23 11:50:24 [WARNING] **** FAILED TO BIND TO PORT!
+2025-05-23 11:50:24 [WARNING] The exception was: java.net.BindException: Address already in use: bind
+2025-05-23 11:50:24 [WARNING] Perhaps a server is already running on that port?
+2025-05-23 11:50:49 [INFO] Starting minecraft server version 1.5.2
+2025-05-23 11:50:49 [INFO] Loading properties
+2025-05-23 11:50:49 [INFO] Default game type: SURVIVAL
+2025-05-23 11:50:49 [INFO] Generating keypair
+2025-05-23 11:50:49 [INFO] Starting Minecraft server on *:25565
+2025-05-23 11:50:49 [INFO] Preparing level "world"
+2025-05-23 11:50:49 [INFO] Preparing start region for level 0
+2025-05-23 11:50:50 [INFO] Done (0,474s)! For help, type "help" or "?"
+2025-05-23 13:25:20 [INFO] Starting minecraft server version 1.5.2
+2025-05-23 13:25:20 [INFO] Loading properties
+2025-05-23 13:25:20 [INFO] Default game type: SURVIVAL
+2025-05-23 13:25:20 [INFO] Generating keypair
+2025-05-23 13:25:20 [INFO] Starting Minecraft server on *:25565
+2025-05-23 13:25:20 [INFO] Preparing level "world"
+2025-05-23 13:25:20 [INFO] Preparing start region for level 0
+2025-05-23 13:25:20 [INFO] Done (0,281s)! For help, type "help" or "?"
+2025-05-23 13:25:37 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 13:25:38 [INFO] Unknown command. Try /help for a list of commands.
+2025-05-23 13:26:04 [INFO] Starting minecraft server version 1.5.2
+2025-05-23 13:26:04 [INFO] Loading properties
+2025-05-23 13:26:04 [INFO] Default game type: SURVIVAL
+2025-05-23 13:26:04 [INFO] Generating keypair
+2025-05-23 13:26:04 [INFO] Starting Minecraft server on *:25565
+2025-05-23 13:26:04 [INFO] Preparing level "world"
+2025-05-23 13:26:04 [INFO] Preparing start region for level 0
+2025-05-23 13:26:05 [INFO] Done (0,725s)! For help, type "help" or "?"

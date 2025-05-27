@@ -46,10 +46,13 @@ public class MapIsUpdatedCheck implements Check {
     @Override
     public CheckResult getResult() {
         return plugin.getRenderManager().getScheduledRenderTasks().stream()
-                .noneMatch(task ->
-                        task instanceof MapRenderTask mapTask &&
-                        mapTask.getMap().equals(map)
-                ) ? CheckResult.OK : CheckResult.BAD;
+                .noneMatch(task -> {
+                    if (task instanceof MapRenderTask) {
+                        MapRenderTask mapTask = (MapRenderTask) task;
+                        return mapTask.getMap().equals(map);
+                    }
+                    return false;
+                }) ? CheckResult.OK : CheckResult.BAD;
     }
 
     @Override
@@ -59,10 +62,8 @@ public class MapIsUpdatedCheck implements Check {
                         formatMap(map).color(HIGHLIGHT_COLOR)
                 ),
                 empty(),
-                format("""
-                        wait until the map finished updating
-                        you can use % to see the update progress
-                        """.strip(),
+                format("wait until the map finished updating\n" +
+                       "you can use % to see the update progress",
                         command("/bluemap").color(HIGHLIGHT_COLOR)
                 ).color(BASE_COLOR)
         );

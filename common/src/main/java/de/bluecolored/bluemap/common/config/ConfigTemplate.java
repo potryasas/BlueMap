@@ -62,14 +62,43 @@ public class ConfigTemplate {
     }
 
     public String build() {
-        return build(this.template, enabledConditionals::contains, s -> variables.getOrDefault(s, "?"));
+        return build(this.template, new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+                return enabledConditionals.contains(s);
+            }
+        }, new Function<String, String>() {
+            @Override
+            public String apply(String s) {
+                return variables.getOrDefault(s, "?");
+            }
+        });
     }
 
     private String build(String template, Predicate<? super String> conditionalResolver, Function<? super String, String> variableResolver) {
-        String result = TEMPLATE_CONDITIONAL.matcher(template).replaceAll(match ->
-                conditionalResolver.test(match.group(1)) ? replacerEscape(build(match.group(2), conditionalResolver, variableResolver)) : ""
-        );
-        return TEMPLATE_VARIABLE.matcher(result).replaceAll(match -> variableResolver.apply(match.group(1)));
+        // Use Java 8 compatible Matcher.replaceAll approach
+        java.util.regex.Matcher conditionalMatcher = TEMPLATE_CONDITIONAL.matcher(template);
+        StringBuffer resultBuffer = new StringBuffer();
+        while (conditionalMatcher.find()) {
+            String condition = conditionalMatcher.group(1);
+            String content = conditionalMatcher.group(2);
+            String replacement = conditionalResolver.test(condition) ? 
+                  replacerEscape(build(content, conditionalResolver, variableResolver)) : "";
+            conditionalMatcher.appendReplacement(resultBuffer, replacement.replace("$", "\\$"));
+        }
+        conditionalMatcher.appendTail(resultBuffer);
+        String result = resultBuffer.toString();
+        
+        // Handle variable replacements
+        java.util.regex.Matcher variableMatcher = TEMPLATE_VARIABLE.matcher(result);
+        StringBuffer finalBuffer = new StringBuffer();
+        while (variableMatcher.find()) {
+            String variable = variableMatcher.group(1);
+            String replacement = variableResolver.apply(variable);
+            variableMatcher.appendReplacement(finalBuffer, replacement.replace("$", "\\$"));
+        }
+        variableMatcher.appendTail(finalBuffer);
+        return finalBuffer.toString();
     }
 
     private String replacerEscape(String raw) {

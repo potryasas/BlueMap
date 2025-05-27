@@ -24,7 +24,7 @@
  */
 package de.bluecolored.bluemap.common.commands.commands;
 
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.BlueMapService;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.commands.TextFormat;
@@ -152,20 +152,29 @@ public class StatusCommand {
         private @Nullable Component activeTask() {
             if (currentTask == null) return null;
 
-            Component infoLine = ( switch (currentTask) {
-                case MapUpdateTask t -> format("⛏ map % is currently being updated",
+            Component infoLine;
+            if (currentTask instanceof MapUpdateTask) {
+                MapUpdateTask t = (MapUpdateTask) currentTask;
+                infoLine = format("⛏ map % is currently being updated",
                         formatMap(t.getMap()).color(HIGHLIGHT_COLOR)
                 ).color(INFO_COLOR);
-                case WorldRegionRenderTask t -> format("⛏ map % is currently being updated",
+            } else if (currentTask instanceof WorldRegionRenderTask) {
+                WorldRegionRenderTask t = (WorldRegionRenderTask) currentTask;
+                infoLine = format("⛏ map % is currently being updated",
                         formatMap(t.getMap()).color(HIGHLIGHT_COLOR)
                 ).color(INFO_COLOR);
-                case MapPurgeTask t -> format("⛏ map % is currently being purged",
+            } else if (currentTask instanceof MapPurgeTask) {
+                MapPurgeTask t = (MapPurgeTask) currentTask;
+                infoLine = format("⛏ map % is currently being purged",
                         formatMap(t.getMap()).color(HIGHLIGHT_COLOR)
                 ).color(INFO_COLOR);
-                default -> format("⛏ currently running: %",
+            } else {
+                infoLine = format("⛏ currently running: %",
                         text(currentTask.getDescription()).color(HIGHLIGHT_COLOR)
                 ).color(INFO_COLOR);
-            } ).hoverEvent( HoverEvent.showText(text(currentTask.getDescription())) );
+            }
+            
+            infoLine = infoLine.hoverEvent(HoverEvent.showText(text(currentTask.getDescription())));
 
             return lines(
                     empty(),
@@ -181,7 +190,6 @@ public class StatusCommand {
                     )),
                     empty()
             );
-
         }
 
         private @Nullable Component taskETA() {
@@ -204,7 +212,8 @@ public class StatusCommand {
 
             // find pending updates
             for (RenderTask renderTask : renderQueue) {
-                if (renderTask instanceof MapRenderTask mapTask) {
+                if (renderTask instanceof MapRenderTask) {
+                    MapRenderTask mapTask = (MapRenderTask) renderTask;
                     mapsPending.add(mapTask.getMap());
                     mapsUpdated.remove(mapTask.getMap());
                 }
@@ -220,7 +229,8 @@ public class StatusCommand {
 
             // exclude currently in progress
             if (excludeInProgress) {
-                if (currentTask instanceof MapRenderTask mapTask) {
+                if (currentTask instanceof MapRenderTask) {
+                    MapRenderTask mapTask = (MapRenderTask) currentTask;
                     mapsPending.remove(mapTask.getMap());
                     mapsUpdated.remove(mapTask.getMap());
                     mapsFrozen.remove(mapTask.getMap());
@@ -260,24 +270,12 @@ public class StatusCommand {
                                 Component.join(
                                         JoinConfiguration.separator(text(", ").color(BASE_COLOR)),
                                         maps.stream()
-                                                .map(BmMap::getId)
-                                                .map(id -> text(id).color(HIGHLIGHT_COLOR))
-                                                .toArray(Component[]::new)
+                                                .map(map -> formatMap(map).color(HIGHLIGHT_COLOR))
+                                                .toArray(size -> new Component[size])
                                 )
                         )));
             } else {
-                return format(multiple, text(maps.size())
-                        .color(HIGHLIGHT_COLOR)
-                        .hoverEvent(HoverEvent.showText(
-                                Component.join(
-                                        JoinConfiguration.separator(text(", ").color(BASE_COLOR)),
-                                        maps.stream()
-                                                .limit(10)
-                                                .map(BmMap::getId)
-                                                .map(id -> text(id).color(HIGHLIGHT_COLOR))
-                                                .toArray(Component[]::new)
-                                ).append(text("...").color(BASE_COLOR))
-                        )));
+                return format(multiple, text(maps.size()).color(HIGHLIGHT_COLOR));
             }
         }
 

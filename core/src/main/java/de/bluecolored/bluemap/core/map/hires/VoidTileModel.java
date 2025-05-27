@@ -34,6 +34,35 @@ public class VoidTileModel implements TileModel {
 
     public static final TileModel INSTANCE = new VoidTileModel();
 
+    private final int x;
+    private final int z;
+    private final int zoom;
+
+    public VoidTileModel() {
+        this(0, 0, 0);
+    }
+
+    public VoidTileModel(int x, int z, int zoom) {
+        this.x = x;
+        this.z = z;
+        this.zoom = zoom;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getZ() {
+        return z;
+    }
+
+    @Override
+    public int getZoom() {
+        return zoom;
+    }
+
     @Override
     public int size() {
         return 0;

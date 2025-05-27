@@ -24,6 +24,7 @@
  */
 package de.bluecolored.bluemap.core.util;
 
+import de.bluecolored.bluemap.core.util.nbt.BasicNBTAdapter;
 import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTList;
@@ -37,7 +38,7 @@ import java.util.HashMap;
 public class PalettedArrayAdapter<T> implements NBTAdapter<T[]> {
 
     private final Class<T> type;
-    private final ArrayAdapter<T[]> paletteAdapter;
+    private final ArrayAdapter<T> paletteAdapter;
 
     @SuppressWarnings("unchecked")
     public PalettedArrayAdapter(Class<T> type) {
@@ -81,13 +82,16 @@ public class PalettedArrayAdapter<T> implements NBTAdapter<T[]> {
         }
 
         T[] palette = (T[]) Array.newInstance(type, paletteMap.size());
-        paletteMap.forEach((k, v) -> palette[v] = k);
+        for (java.util.Map.Entry<T, Byte> entry : paletteMap.entrySet()) {
+            palette[entry.getValue()] = entry.getKey();
+        }
 
         NBTCompound paletteCompound = compound.addCompound("palette");
         paletteAdapter.write(palette, paletteCompound);
         compound.setByteArray("data", data);
     }
 
+    @SuppressWarnings("unchecked")
     private static class ArrayAdapter<T> implements NBTAdapter<T[]> {
         private final Class<T> type;
 
@@ -96,11 +100,14 @@ public class PalettedArrayAdapter<T> implements NBTAdapter<T[]> {
         }
 
         @Override
-        @SuppressWarnings("unchecked")
         public T[] read(NBTCompound compound) {
-            NBTList list = compound.getList("values", type);
-            T[] result = (T[]) Array.newInstance(type, list.size());
-            for (int i = 0; i < list.size(); i++) {
+            // Use BasicNBTAdapter for Java 8 compatibility
+            NBTList list = BasicNBTAdapter.getList(compound, "values", NBTList.class);
+            if (list == null) return (T[]) Array.newInstance(type, 0);
+            
+            int size = list.size();
+            T[] result = (T[]) Array.newInstance(type, size);
+            for (int i = 0; i < size; i++) {
                 result[i] = (T) list.get(i);
             }
             return result;
@@ -108,7 +115,8 @@ public class PalettedArrayAdapter<T> implements NBTAdapter<T[]> {
 
         @Override
         public void write(T[] value, NBTCompound compound) {
-            NBTList list = compound.createList("values", type);
+            // Create list with BasicNBTAdapter for Java 8 compatibility
+            NBTList list = BasicNBTAdapter.createList(compound, "values", type);
             for (T t : value) {
                 list.add(t);
             }

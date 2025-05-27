@@ -27,6 +27,7 @@ package de.bluecolored.bluemap.common.config;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 @ConfigSerializable
@@ -38,7 +39,7 @@ public class CoreConfig {
 
     private boolean metrics = true;
 
-    private Path data = Path.of("bluemap");
+    private Path data = Paths.get("bluemap");
 
     private boolean scanForModResources = true;
 

@@ -68,25 +68,19 @@ public class TileHasLightDataCheck implements Check {
     @Override
     public Component getFailureDescription() {
         return lines(
-                format("""
-                        ⚠ chunks are missing light-data
-                        around (x:%, z:%) for map %
-                        """.strip(),
+                format("⚠ chunks are missing light-data\n" +
+                       "around (x:%, z:%) for map %",
                         text(position.getX()).color(HIGHLIGHT_COLOR),
                         text(position.getY()).color(HIGHLIGHT_COLOR),
                         formatMap(map).color(HIGHLIGHT_COLOR)
                 ),
                 empty(),
-                format("""
-                        make sure your world is fully upgraded to your current
-                        minecraft-version and try loading this region in-game
-                        with a player
-
-                        if the problem persists, you can visit bluemaps % for help
-
-                        the last time bluemap tried to render this region
-                        was % ago
-                        """.strip(),
+                format("make sure your world is fully upgraded to your current\n" +
+                       "minecraft-version and try loading this region in-game\n" +
+                       "with a player\n\n" +
+                       "if the problem persists, you can visit bluemaps % for help\n\n" +
+                       "the last time bluemap tried to render this region\n" +
+                       "was % ago",
                         text("discord")
                                 .hoverEvent(text(DISCORD_LINK))
                                 .clickEvent(ClickEvent.openUrl(DISCORD_LINK))

@@ -43,6 +43,14 @@ public class BannerBlockEntity extends MCABlockEntity {
 
     @Nullable String customName;
     List<Pattern> patterns = Collections.emptyList();
+    
+    public BannerBlockEntity() {
+        super();
+    }
+    
+    public BannerBlockEntity(String id, int x, int y, int z) {
+        super(id, x, y, z);
+    }
 
     @Override
     public void readFromNBT(NBTCompound compound) {

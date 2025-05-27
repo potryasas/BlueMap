@@ -27,42 +27,44 @@ package de.bluecolored.bluemap.common.commands;
 import com.mojang.brigadier.Message;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import de.bluecolored.bluecommands.ParseFailure;
-import de.bluecolored.bluecommands.ParseResult;
-import de.bluecolored.bluecommands.brigadier.CommandExecutionHandler;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.common.serverinterface.CommandSource;
 
-import java.util.Comparator;
-
-public class BrigadierExecutionHandler extends CommandExecutor implements CommandExecutionHandler<CommandSource, Object> {
-    private static final Message DEFAULT_FAILURE_MESSAGE = () -> "Unknown or incomplete command!";
+/**
+ * Обработчик команд для Brigadier
+ */
+public class BrigadierExecutionHandler extends CommandExecutor {
+    private static final Message DEFAULT_FAILURE_MESSAGE = new Message() {
+        @Override
+        public String getString() {
+            return "Unknown or incomplete command!";
+        }
+    };
 
     public BrigadierExecutionHandler(Plugin plugin) {
         super(plugin);
     }
 
-    @Override
-    public int handle(ParseResult<CommandSource, Object> parseResult) throws CommandSyntaxException {
-        ExecutionResult executionResult = this.execute(parseResult);
+    /**
+     * Обрабатывает команду для Brigadier
+     * @param input входная строка команды
+     * @param context источник команды
+     * @return результат выполнения команды
+     * @throws CommandSyntaxException если команда невалидна
+     */
+    public int handle(String input, CommandSource context) throws CommandSyntaxException {
+        ExecutionResult executionResult = this.execute(input, context);
         if (executionResult.parseFailure())
-            return parseFailure(parseResult);
+            return parseFailure(input);
         return executionResult.resultCode();
     }
 
-    private int parseFailure(ParseResult<CommandSource, Object> result) throws CommandSyntaxException {
-        ParseFailure<CommandSource, Object> failure = result.getFailures().stream()
-                .max(Comparator.comparing(ParseFailure::getPosition))
-                .orElseThrow(() -> new CommandSyntaxException(
-                        new SimpleCommandExceptionType(DEFAULT_FAILURE_MESSAGE),
-                        DEFAULT_FAILURE_MESSAGE
-                ));
+    private int parseFailure(String input) throws CommandSyntaxException {
         throw new CommandSyntaxException(
-                new SimpleCommandExceptionType(failure::getReason),
-                failure::getReason,
-                result.getInput(),
-                failure.getPosition()
+                new SimpleCommandExceptionType(DEFAULT_FAILURE_MESSAGE),
+                DEFAULT_FAILURE_MESSAGE,
+                input,
+                0
         );
     }
-
 }

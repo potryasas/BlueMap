@@ -25,30 +25,36 @@
 package de.bluecolored.bluemap.core.map.renderstate;
 
 import de.bluecolored.bluemap.core.logger.Logger;
+import de.bluecolored.bluemap.core.storage.GridStorage;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTFile;
 import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CellStorage<T extends CellStorage.Cell> {
+public abstract class CellStorage<T extends CellStorage.Cell> {
 
     private final Map<Long, T> cells;
-    private final CellFactory<T> cellFactory;
+    private final GridStorage storage;
+    private final Class<T> cellType;
 
-    public CellStorage(CellFactory<T> cellFactory) {
+    public CellStorage(GridStorage storage, Class<T> cellType) {
         this.cells = new HashMap<>();
-        this.cellFactory = cellFactory;
+        this.storage = storage;
+        this.cellType = cellType;
     }
 
-    public T getCell(int x, int z) {
+    protected T cell(int x, int z) {
         long key = key(x, z);
         T cell = cells.get(key);
         if (cell == null) {
-            cell = cellFactory.create();
+            cell = createNewCell();
             cells.put(key, cell);
         }
         return cell;
@@ -58,42 +64,92 @@ public class CellStorage<T extends CellStorage.Cell> {
         cells.clear();
     }
 
-    public void save(File file) throws IOException {
-        NBTFile nbtFile = new NBTFile(file);
-        NBTCompound root = nbtFile.getCompound("cells");
+    public void save() throws IOException {
         for (Map.Entry<Long, T> entry : cells.entrySet()) {
             if (!entry.getValue().isModified()) continue;
-            NBTCompound cellCompound = root.getCompound(String.valueOf(entry.getKey()));
-            entry.getValue().writeToNBT(cellCompound);
-        }
-        nbtFile.save();
-    }
-
-    public void load(File file) throws IOException {
-        if (!file.exists()) return;
-
-        NBTFile nbtFile = new NBTFile(file);
-        NBTCompound root = nbtFile.getCompound("cells");
-        for (String key : root.getKeys()) {
+            long key = entry.getKey();
+            int x = (int) (key >> 32);
+            int z = (int) (key & 0xFFFFFFFFL);
+            
+            File tempFile = File.createTempFile("bluemap", ".nbt");
             try {
-                long cellKey = Long.parseLong(key);
-                NBTCompound cellCompound = root.getCompound(key);
-                T cell = cellFactory.create();
-                cell.readFromNBT(cellCompound);
-                cells.put(cellKey, cell);
-            } catch (NumberFormatException ex) {
-                Logger.global.logWarning("Failed to parse cell-key: " + key);
+                NBTFile nbtFile = new NBTFile(tempFile);
+                NBTCompound cellCompound = nbtFile.getCompound("cell");
+                entry.getValue().writeToNBT(cellCompound);
+                nbtFile.save();
+                
+                // Copy the NBT data to the storage using a buffer
+                try (OutputStream out = storage.cell(x, z).write()) {
+                    byte[] buffer = new byte[8192];
+                    java.io.FileInputStream fis = new java.io.FileInputStream(tempFile);
+                    try {
+                        int bytesRead;
+                        while ((bytesRead = fis.read(buffer)) != -1) {
+                            out.write(buffer, 0, bytesRead);
+                        }
+                    } finally {
+                        fis.close();
+                    }
+                }
+            } finally {
+                if (!tempFile.delete()) {
+                    tempFile.deleteOnExit();
+                }
             }
         }
     }
 
-    private static long key(int x, int z) {
-        return ((long) x << 32) | (z & 0xFFFFFFFFL);
+    public void load() throws IOException {
+        List<GridStorage.Cell> cellList = new ArrayList<>();
+        storage.stream().forEach(cell -> {
+            try {
+                cellList.add(cell);
+            } catch (Exception e) {
+                if (e instanceof IOException) {
+                    throw new RuntimeException(e);
+                }
+                throw e;
+            }
+        });
+        
+        for (GridStorage.Cell cell : cellList) {
+            File tempFile = File.createTempFile("bluemap", ".nbt");
+            try {
+                // Copy the data to a temporary file using a buffer
+                try (OutputStream out = new java.io.FileOutputStream(tempFile)) {
+                    java.io.InputStream in = cell.read();
+                    if (in != null) {
+                        try {
+                            byte[] buffer = new byte[8192];
+                            int bytesRead;
+                            while ((bytesRead = in.read(buffer)) != -1) {
+                                out.write(buffer, 0, bytesRead);
+                            }
+                        } finally {
+                            in.close();
+                        }
+                    }
+                }
+                
+                NBTFile nbtFile = new NBTFile(tempFile);
+                NBTCompound cellCompound = nbtFile.getCompound("cell");
+                T regionCell = createNewCell();
+                regionCell.readFromNBT(cellCompound);
+                cells.put(key(cell.getX(), cell.getZ()), regionCell);
+            } catch (Exception ex) {
+                Logger.global.logWarning("Failed to load cell at " + cell.getX() + ", " + cell.getZ() + ": " + ex.getMessage());
+            } finally {
+                if (!tempFile.delete()) {
+                    tempFile.deleteOnExit();
+                }
+            }
+        }
     }
 
-    @FunctionalInterface
-    public interface CellFactory<T extends Cell> {
-        T create();
+    protected abstract T createNewCell();
+
+    private static long key(int x, int z) {
+        return ((long) x << 32) | (z & 0xFFFFFFFFL);
     }
 
     public interface Cell {

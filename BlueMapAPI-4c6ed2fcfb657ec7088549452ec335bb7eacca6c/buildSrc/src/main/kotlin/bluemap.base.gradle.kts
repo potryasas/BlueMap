@@ -45,7 +45,6 @@ tasks.javadoc {
             "https://javadoc.io/doc/com.google.code.gson/gson/2.8.9/",
         )
         addStringOption("Xdoclint:none", "-quiet")
-        addBooleanOption("html5", true)
     }
 }
 

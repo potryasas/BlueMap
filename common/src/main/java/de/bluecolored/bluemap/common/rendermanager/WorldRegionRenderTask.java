@@ -43,6 +43,7 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
+import static de.bluecolored.bluemap.core.map.renderstate.TileActionResolver.Action;
 import static de.bluecolored.bluemap.core.map.renderstate.TileActionResolver.Action.DELETE;
 import static de.bluecolored.bluemap.core.map.renderstate.TileActionResolver.Action.RENDER;
 
@@ -130,9 +131,9 @@ public class WorldRegionRenderTask implements MapRenderTask {
                         checkTileBounds(tile)
                 );
 
-                if (tileActions[tileIndex].action() == RENDER)
+                if (tileActions[tileIndex].getAction() == RENDER)
                     tileRenderCount++;
-                if (tileActions[tileIndex].action() == DELETE)
+                if (tileActions[tileIndex].getAction() == DELETE)
                     tileDeleteCount++;
             }
         }
@@ -191,43 +192,31 @@ public class WorldRegionRenderTask implements MapRenderTask {
         TileState resultState = TileState.RENDER_ERROR;
 
         try {
-
-            resultState = switch (action.action()) {
-
-                case NONE -> action.state();
-
-                case RENDER -> {
-                    TileState failedState = checkTileRenderPreconditions(tile);
-                    if (failedState != null){
-                        map.unrenderTile(tile);
-                        yield failedState;
-                    }
-
-                    map.renderTile(tile);
-                    yield action.state();
-                }
-
-                case DELETE -> {
+            Action tileAction = action.getAction();
+            if (tileAction == Action.NONE) {
+                resultState = action.getState();
+            } else if (tileAction == Action.RENDER) {
+                TileState failedState = checkTileRenderPreconditions(tile);
+                if (failedState != null) {
                     map.unrenderTile(tile);
-                    yield action.state();
+                    resultState = failedState;
+                } else {
+                    map.renderTile(tile);
+                    resultState = action.getState();
                 }
-
-            };
-
+            } else if (tileAction == Action.DELETE) {
+                map.unrenderTile(tile);
+                resultState = action.getState();
+            }
         } catch (Exception ex) {
-
             Logger.global.logError("Error while processing map-tile " + tile + " for map '" + map.getId() + "'", ex);
-
         } finally {
-
             // mark tile with new state
             map.getMapTileState().set(tile.getX(), tile.getY(), new TileInfoRegion.TileInfo(
                     (int) (System.currentTimeMillis() / 1000),
                     resultState
             ));
-
         }
-
     }
 
     private synchronized void complete() {
@@ -269,7 +258,7 @@ public class WorldRegionRenderTask implements MapRenderTask {
 
     @Override
     public String getDescription() {
-        return "updating region %s".formatted(regionPos);
+        return String.format("updating region %s", regionPos);
     }
 
     @Override
@@ -310,7 +299,7 @@ public class WorldRegionRenderTask implements MapRenderTask {
                         chunkZ >= chunkMin.getY() && chunkZ <= chunkMax.getY()
                 ) {
                     int hash = chunkHashes[chunkIndex(dx, dz)];
-                    int lastHash = map.getMapChunkState().get(chunkX, chunkZ);
+                    long lastHash = map.getMapChunkState().get(chunkX, chunkZ);
 
                     if (lastHash != hash) return true;
                 }
@@ -368,11 +357,14 @@ public class WorldRegionRenderTask implements MapRenderTask {
     }
 
     public static Comparator<WorldRegionRenderTask> defaultComparator(final Vector2i centerRegion) {
-        return (task1, task2) -> {
-            // use long to compare to avoid overflow (comparison uses distanceSquared)
-            Vector2l task1Rel = new Vector2l(task1.regionPos.getX() - centerRegion.getX(), task1.regionPos.getY() - centerRegion.getY());
-            Vector2l task2Rel = new Vector2l(task2.regionPos.getX() - centerRegion.getX(), task2.regionPos.getY() - centerRegion.getY());
-            return compareVec2L(task1Rel, task2Rel);
+        return new Comparator<WorldRegionRenderTask>() {
+            @Override
+            public int compare(WorldRegionRenderTask task1, WorldRegionRenderTask task2) {
+                // use long to compare to avoid overflow (comparison uses distanceSquared)
+                Vector2l task1Rel = new Vector2l(task1.regionPos.getX() - centerRegion.getX(), task1.regionPos.getY() - centerRegion.getY());
+                Vector2l task2Rel = new Vector2l(task2.regionPos.getX() - centerRegion.getX(), task2.regionPos.getY() - centerRegion.getY());
+                return compareVec2L(task1Rel, task2Rel);
+            }
         };
     }
 
@@ -380,7 +372,10 @@ public class WorldRegionRenderTask implements MapRenderTask {
      * Comparison method that doesn't overflow that easily
      */
     private static int compareVec2L(Vector2l v1, Vector2l v2) {
-        return Long.signum(v1.lengthSquared() - v2.lengthSquared());
+        long diff = v1.lengthSquared() - v2.lengthSquared();
+        if (diff < 0) return -1;
+        if (diff > 0) return 1;
+        return 0;
     }
 
 }

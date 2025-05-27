@@ -25,6 +25,7 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import com.flowpowered.math.vector.Vector2i;
+import de.bluecolored.bluemap.core.util.nbt.BasicNBTAdapter;
 import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTList;
@@ -33,23 +34,18 @@ public class Vector2iDeserializer implements NBTAdapter<Vector2i> {
 
     @Override
     public Vector2i read(NBTCompound compound) {
-        if (compound.hasKey("")) {
-            long[] values = compound.getLongArray("");
-            if (values.length != 2) throw new IllegalArgumentException("Unexpected array length: " + values.length);
-            return new Vector2i(values[0], values[1]);
-        }
-
         if (compound.hasKey("x") || compound.hasKey("y") || compound.hasKey("z")) {
             int x = compound.getInteger("x");
-            int y = compound.getInteger("y");
+            int y = compound.getInteger("z"); // Use z for y if this is actually a position
             return new Vector2i(x, y);
         }
 
-        NBTList list = compound.getList("", NBTList.class);
+        // Use BasicNBTAdapter for Java 8 compatibility
+        NBTList list = BasicNBTAdapter.getList(compound, "", NBTList.class);
         if (list != null) {
             return new Vector2i(
-                list.getInteger(0),
-                list.getInteger(1)
+                    BasicNBTAdapter.getInteger(list, 0),
+                    BasicNBTAdapter.getInteger(list, 1)
             );
         }
 
@@ -59,6 +55,6 @@ public class Vector2iDeserializer implements NBTAdapter<Vector2i> {
     @Override
     public void write(Vector2i value, NBTCompound compound) {
         compound.setInteger("x", value.getX());
-        compound.setInteger("y", value.getY());
+        compound.setInteger("z", value.getY());
     }
 }

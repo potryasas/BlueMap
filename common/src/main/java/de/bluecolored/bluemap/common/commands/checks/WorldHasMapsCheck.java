@@ -46,7 +46,7 @@ public class WorldHasMapsCheck implements Check {
         this.world = world;
         this.maps = plugin.getBlueMap().getMaps().values().stream()
                 .filter(m -> m.getWorld().getId().equals(getWorldId()))
-                .toArray(BmMap[]::new);
+                .toArray(size -> new BmMap[size]);
     }
 
     public String getWorldId() {
@@ -69,23 +69,19 @@ public class WorldHasMapsCheck implements Check {
     }
 
     private Component mapWorldConfigInfo() {
-        return format("""
-                to configure a map for your current world,
-                make sure to set
-                %
-                in the maps config file
-                """.strip(),
+        return format("to configure a map for your current world,\n" +
+                      "make sure to set\n" +
+                      "%\n" +
+                      "in the maps config file",
                 formatWorldConfig().color(INFO_COLOR)
         ).color(BASE_COLOR);
     }
 
     private Component formatWorldConfig() {
-        return format("""
-                ┌
-                │ world: "%"
-                │ dimension: "%"
-                └
-                """.strip(),
+        return format("┌\n" +
+                      "│ world: \"%\"\n" +
+                      "│ dimension: \"%\"\n" +
+                      "└",
                 BlueMapConfigManager.formatPath(world.getWorldFolder()),
                 world.getDimension().getFormatted()
         );

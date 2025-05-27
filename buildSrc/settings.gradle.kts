@@ -1,4 +1,3 @@
-
 // use version-catalog from root project
 dependencyResolutionManagement {
     versionCatalogs {

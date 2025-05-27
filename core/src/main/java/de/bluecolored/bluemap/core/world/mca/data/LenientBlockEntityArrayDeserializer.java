@@ -26,8 +26,12 @@ package de.bluecolored.bluemap.core.world.mca.data;
 
 import de.bluecolored.bluemap.core.world.BlockEntity;
 import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
+import de.bluecolored.bluemap.core.util.nbt.NBTFileWrapper;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTList;
+import de.tr7zw.nbtapi.NBTType;
+
+import java.io.IOException;
 
 public class LenientBlockEntityArrayDeserializer implements NBTAdapter<BlockEntity[]> {
 
@@ -35,21 +39,20 @@ public class LenientBlockEntityArrayDeserializer implements NBTAdapter<BlockEnti
 
     private final NBTAdapter<BlockEntity[]> delegate;
 
-    public LenientBlockEntityArrayDeserializer(NBTFileWrapper nbt) {
+    public LenientBlockEntityArrayDeserializer(NBTFileWrapper nbt) throws IOException {
         delegate = nbt.getAdapter(BlockEntity[].class);
     }
 
     @Override
-    public BlockEntity[] read(NBTCompound compound) {
-        NBTList list = compound.getList("", NBTList.class);
-        if (list == null) {
+    public BlockEntity[] read(NBTCompound compound) throws IOException {
+        if (!compound.hasTag("") || compound.getType("") != NBTType.NBTTagList) {
             return EMPTY_BLOCK_ENTITIES_ARRAY;
         }
         return delegate.read(compound);
     }
 
     @Override
-    public void write(BlockEntity[] value, NBTCompound compound) {
+    public void write(BlockEntity[] value, NBTCompound compound) throws IOException {
         if (value == null || value.length == 0) {
             return;
         }

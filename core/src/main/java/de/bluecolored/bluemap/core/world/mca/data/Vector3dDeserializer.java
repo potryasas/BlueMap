@@ -25,9 +25,11 @@
 package de.bluecolored.bluemap.core.world.mca.data;
 
 import com.flowpowered.math.vector.Vector3d;
+import de.bluecolored.bluemap.core.util.nbt.BasicNBTAdapter;
 import de.bluecolored.bluemap.core.util.nbt.NBTAdapter;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTList;
+import static de.bluecolored.bluemap.core.world.mca.MCAUtil.BLUENBT;
 
 public class Vector3dDeserializer implements NBTAdapter<Vector3d> {
 
@@ -46,12 +48,13 @@ public class Vector3dDeserializer implements NBTAdapter<Vector3d> {
             return new Vector3d(x, y, z);
         }
 
-        NBTList list = compound.getList("", NBTList.class);
+        // Use BasicNBTAdapter for list operations
+        NBTList list = BasicNBTAdapter.getList(compound, "", NBTList.class);
         if (list != null) {
             return new Vector3d(
-                list.getDouble(0),
-                list.getDouble(1),
-                list.getDouble(2)
+                BasicNBTAdapter.getDouble(list, 0),
+                BasicNBTAdapter.getDouble(list, 1),
+                BasicNBTAdapter.getDouble(list, 2)
             );
         }
 

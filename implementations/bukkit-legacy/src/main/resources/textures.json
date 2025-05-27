@@ -1,0 +1,644 @@
+[
+  {
+    "resourcePath": "Material.AIR",
+    "color": [0.0, 0.0, 0.0, 0.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.STONE",
+    "color": [0.5, 0.5, 0.5, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/stone.png"
+  },
+  {
+    "resourcePath": "Material.GRASS",
+    "color": [0.349, 0.49, 0.196, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/grass_block_top.png"
+  },
+  {
+    "resourcePath": "Material.DIRT",
+    "color": [0.525, 0.376, 0.263, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/dirt.png"
+  },
+  {
+    "resourcePath": "Material.COBBLESTONE",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/cobblestone.png"
+  },
+  {
+    "resourcePath": "Material.WOOD",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/oak_planks.png"
+  },
+  {
+    "resourcePath": "Material.SAPLING",
+    "color": [0.471, 0.471, 0.471, 0.0],
+    "halfTransparent": true,
+    "texture": "assets/minecraft/textures/block/oak_sapling.png"
+  },
+  {
+    "resourcePath": "Material.BEDROCK",
+    "color": [0.329, 0.329, 0.329, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/bedrock.png"
+  },
+  {
+    "resourcePath": "Material.WATER",
+    "color": [0.231, 0.341, 0.749, 0.5],
+    "halfTransparent": true,
+    "texture": "assets/minecraft/textures/block/water_still.png"
+  },
+  {
+    "resourcePath": "Material.STATIONARY_WATER",
+    "color": [0.231, 0.341, 0.749, 0.5],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.LAVA",
+    "color": [0.812, 0.361, 0.078, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/lava_still.png"
+  },
+  {
+    "resourcePath": "Material.STATIONARY_LAVA",
+    "color": [0.812, 0.361, 0.078, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SAND",
+    "color": [0.859, 0.827, 0.627, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/sand.png"
+  },
+  {
+    "resourcePath": "Material.GRAVEL",
+    "color": [0.533, 0.494, 0.494, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/gravel.png"
+  },
+  {
+    "resourcePath": "Material.GOLD_ORE",
+    "color": [0.561, 0.549, 0.490, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/gold_ore.png"
+  },
+  {
+    "resourcePath": "Material.IRON_ORE",
+    "color": [0.533, 0.510, 0.498, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/iron_ore.png"
+  },
+  {
+    "resourcePath": "Material.COAL_ORE",
+    "color": [0.176, 0.176, 0.176, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/coal_ore.png"
+  },
+  {
+    "resourcePath": "Material.LOG",
+    "color": [0.400, 0.318, 0.200, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/oak_log.png"
+  },
+  {
+    "resourcePath": "Material.LEAVES",
+    "color": [0.310, 0.541, 0.078, 0.9],
+    "halfTransparent": true,
+    "texture": "assets/minecraft/textures/block/oak_leaves.png"
+  },
+  {
+    "resourcePath": "Material.SPONGE",
+    "color": [0.800, 0.800, 0.318, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/sponge.png"
+  },
+  {
+    "resourcePath": "Material.GLASS",
+    "color": [1.0, 1.0, 1.0, 0.2],
+    "halfTransparent": true,
+    "texture": "assets/minecraft/textures/block/glass.png"
+  },
+  {
+    "resourcePath": "Material.LAPIS_ORE",
+    "color": [0.227, 0.686, 0.851, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/lapis_ore.png"
+  },
+  {
+    "resourcePath": "Material.LAPIS_BLOCK",
+    "color": [0.227, 0.686, 0.851, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/lapis_block.png"
+  },
+  {
+    "resourcePath": "Material.DISPENSER",
+    "color": [0.5, 0.5, 0.5, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/dispenser_front.png"
+  },
+  {
+    "resourcePath": "Material.SANDSTONE",
+    "color": [0.859, 0.827, 0.627, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/sandstone.png"
+  },
+  {
+    "resourcePath": "Material.NOTE_BLOCK",
+    "color": [0.4, 0.2, 0.1, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/note_block.png"
+  },
+  {
+    "resourcePath": "Material.POWERED_RAIL",
+    "color": [0.7, 0.7, 0.7, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/powered_rail.png"
+  },
+  {
+    "resourcePath": "Material.DETECTOR_RAIL",
+    "color": [0.7, 0.7, 0.7, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/detector_rail.png"
+  },
+  {
+    "resourcePath": "Material.PISTON_STICKY_BASE",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WEB",
+    "color": [0.9, 0.9, 0.9, 0.5],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.LONG_GRASS",
+    "color": [0.349, 0.49, 0.196, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.DEAD_BUSH",
+    "color": [0.6, 0.5, 0.3, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL",
+    "color": [0.9, 0.9, 0.9, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_0",
+    "color": [0.918, 0.925, 0.925, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_1",
+    "color": [0.941, 0.463, 0.075, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_2",
+    "color": [0.741, 0.267, 0.702, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_3",
+    "color": [0.227, 0.686, 0.851, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_4",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_5",
+    "color": [0.439, 0.725, 0.098, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_6",
+    "color": [0.929, 0.553, 0.675, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_7",
+    "color": [0.243, 0.267, 0.278, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_8",
+    "color": [0.557, 0.557, 0.525, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_9",
+    "color": [0.082, 0.537, 0.569, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_10",
+    "color": [0.475, 0.165, 0.675, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_11",
+    "color": [0.208, 0.224, 0.616, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_12",
+    "color": [0.447, 0.278, 0.157, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_13",
+    "color": [0.329, 0.427, 0.106, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_14",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOL_15",
+    "color": [0.078, 0.082, 0.098, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.YELLOW_FLOWER",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.RED_ROSE",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": true,
+    "texture": "assets/minecraft/textures/block/poppy.png"
+  },
+  {
+    "resourcePath": "Material.BROWN_MUSHROOM",
+    "color": [0.447, 0.278, 0.157, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.RED_MUSHROOM",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.GOLD_BLOCK",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.IRON_BLOCK",
+    "color": [0.9, 0.9, 0.9, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.BRICK",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.TNT",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.BOOKSHELF",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.MOSSY_COBBLESTONE",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.OBSIDIAN",
+    "color": [0.1, 0.1, 0.1, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.TORCH",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.FIRE",
+    "color": [0.973, 0.776, 0.153, 0.8],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.MOB_SPAWNER",
+    "color": [0.3, 0.3, 0.3, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOD_STAIRS",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.CHEST",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.REDSTONE_WIRE",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.DIAMOND_ORE",
+    "color": [0.227, 0.686, 0.851, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.DIAMOND_BLOCK",
+    "color": [0.227, 0.686, 0.851, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WORKBENCH",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.CROPS",
+    "color": [0.349, 0.49, 0.196, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SOIL",
+    "color": [0.525, 0.376, 0.263, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.FURNACE",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.BURNING_FURNACE",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SIGN_POST",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOODEN_DOOR",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.LADDER",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.RAILS",
+    "color": [0.7, 0.7, 0.7, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.COBBLESTONE_STAIRS",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WALL_SIGN",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.LEVER",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.STONE_PLATE",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.IRON_DOOR_BLOCK",
+    "color": [0.9, 0.9, 0.9, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.WOOD_PLATE",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.REDSTONE_ORE",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.GLOWING_REDSTONE_ORE",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.REDSTONE_TORCH_OFF",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.REDSTONE_TORCH_ON",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.STONE_BUTTON",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SNOW",
+    "color": [1.0, 1.0, 1.0, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.ICE",
+    "color": [0.227, 0.686, 0.851, 0.5],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SNOW_BLOCK",
+    "color": [1.0, 1.0, 1.0, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.CACTUS",
+    "color": [0.349, 0.49, 0.196, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.CLAY",
+    "color": [0.7, 0.7, 0.7, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SUGAR_CANE_BLOCK",
+    "color": [0.349, 0.49, 0.196, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.JUKEBOX",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.FENCE",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.PUMPKIN",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.NETHERRACK",
+    "color": [0.631, 0.153, 0.133, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.SOUL_SAND",
+    "color": [0.447, 0.278, 0.157, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.GLOWSTONE",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.PORTAL",
+    "color": [0.475, 0.165, 0.675, 0.5],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.JACK_O_LANTERN",
+    "color": [0.973, 0.776, 0.153, 1.0],
+    "halfTransparent": false,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.VINE",
+    "color": [0.349, 0.49, 0.196, 1.0],
+    "halfTransparent": true,
+    "texture": ""
+  },
+  {
+    "resourcePath": "Material.BED_BLOCK",
+    "color": [0.7, 0.2, 0.2, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/red_bed_top.png"
+  },
+  {
+    "resourcePath": "Material.STICKY_PISTON",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/sticky_piston_top.png"
+  },
+  {
+    "resourcePath": "Material.COBBLE_WALL",
+    "color": [0.478, 0.478, 0.478, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/cobblestone.png"
+  },
+  {
+    "resourcePath": "Material.TRAPPED_CHEST",
+    "color": [0.612, 0.498, 0.306, 1.0],
+    "halfTransparent": false,
+    "texture": "assets/minecraft/textures/block/trapped_chest_front.png"
+  }
+] 

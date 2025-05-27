@@ -26,8 +26,8 @@ package de.bluecolored.bluemap.common.commands.commands;
 
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.commands.WithPosition;
 import de.bluecolored.bluemap.common.commands.WithWorld;
@@ -44,9 +44,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.bluecolored.bluemap.common.commands.TextFormat.*;
 import static net.kyori.adventure.text.Component.text;
@@ -96,7 +98,7 @@ public class UpdateCommand {
             CommandSource source,
             @Argument("map") BmMap map
     ) throws IOException {
-        return update(source, map.getWorld(), List.of(map), null, null);
+        return update(source, map.getWorld(), Arrays.asList(map), null, null);
     }
 
     @Command("<map> <radius>")
@@ -116,7 +118,7 @@ public class UpdateCommand {
             return false;
         }
 
-        return update(source, map.getWorld(), List.of(map), position.toVector2(true).toInt(), radius);
+        return update(source, map.getWorld(), Arrays.asList(map), position.toVector2(true).toInt(), radius);
     }
 
     @Command("<map> <x> <z> <radius>")
@@ -128,7 +130,7 @@ public class UpdateCommand {
             @Argument("z") int z,
             @Argument("radius") int radius
     ) throws IOException {
-        return update(source, map.getWorld(), List.of(map), new Vector2i(x, z), radius);
+        return update(source, map.getWorld(), Arrays.asList(map), new Vector2i(x, z), radius);
     }
 
     private boolean update(
@@ -159,7 +161,7 @@ public class UpdateCommand {
     ) throws IOException {
         source.sendMessage(text("Creating update-tasks ...").color(INFO_COLOR));
         plugin.flushWorldUpdates(world);
-        plugin.getRenderManager().scheduleRenderTasksNext(maps.stream()
+        List<RenderTask> tasks = maps.stream()
                 .map(map -> MapUpdatePreparationTask.builder()
                         .map(map)
                         .center(center)
@@ -170,7 +172,8 @@ public class UpdateCommand {
                 .peek(task -> source.sendMessage(format("Created new update-task for map %",
                         formatMap(task.getMap()).color(HIGHLIGHT_COLOR)
                 ).color(POSITIVE_COLOR)))
-                .toArray(RenderTask[]::new));
+                .collect(Collectors.toList());
+        plugin.getRenderManager().scheduleRenderTasksNext(tasks.toArray(new RenderTask[0]));
         source.sendMessage(format("Use % to see the progress",
                 command("/bluemap").color(HIGHLIGHT_COLOR)
         ).color(BASE_COLOR));

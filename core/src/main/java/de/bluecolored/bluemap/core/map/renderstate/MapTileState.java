@@ -53,8 +53,16 @@ public class MapTileState extends CellStorage<TileInfoRegion> {
     }
 
     @Override
-    protected synchronized TileInfoRegion createNewCell() {
+    protected TileInfoRegion createNewCell() {
         return TileInfoRegion.create();
+    }
+
+    /**
+     * Resets the state
+     */
+    public synchronized void reset() {
+        clear();
+        lastRenderTime = -1;
     }
 
 }

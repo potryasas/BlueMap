@@ -33,6 +33,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import de.bluecolored.bluemap.common.util.StringUtil;
 
 public class HttpRequest {
 
@@ -77,7 +78,7 @@ public class HttpRequest {
             // read headers
             while (!headerComplete) {
                 if (!writeLine()) return false;
-                String line = lineBuffer.toString().stripTrailing();
+                String line = StringUtil.stripTrailing(lineBuffer.toString());
                 lineBuffer.setLength(0);
 
                 if (line.isEmpty()) {

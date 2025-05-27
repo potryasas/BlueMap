@@ -24,164 +24,148 @@
  */
 package de.bluecolored.bluemap.bukkit.legacy;
 
-import de.bluecolored.bluemap.common.serverinterface.ServerEventListener;
-import org.bukkit.World;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockFadeEvent;
-import org.bukkit.event.block.BlockFormEvent;
-import org.bukkit.event.block.BlockFromToEvent;
-import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.BlockSpreadEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.event.world.StructureGrowEvent;
-import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.event.world.WorldUnloadEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import de.bluecolored.bluemap.bukkit.legacy.java8compat.ServerEventListener;
+import de.bluecolored.bluemap.bukkit.legacy.java8compat.ServerWorld;
 
+/**
+ * Forwards Bukkit events to BlueMap's event listeners
+ */
 public class LegacyEventForwarder implements Listener {
-
+    
+    private final LegacyBukkitPlugin plugin;
     private final Set<ServerEventListener> listeners;
-
-    public LegacyEventForwarder() {
-        this.listeners = new HashSet<ServerEventListener>();
+    
+    public LegacyEventForwarder(LegacyBukkitPlugin plugin) {
+        this.plugin = plugin;
+        this.listeners = new HashSet<>();
     }
-
+    
     public void addListener(ServerEventListener listener) {
         listeners.add(listener);
     }
-
+    
+    public void removeListener(ServerEventListener listener) {
+        listeners.remove(listener);
+    }
+    
     public void removeAllListeners() {
         listeners.clear();
     }
-
+    
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onWorldLoad(WorldLoadEvent evt) {
-        World world = evt.getWorld();
-        LegacyBukkitWorld serverWorld = LegacyBukkitPlugin.getInstance().getServerWorld(world);
+    public void onBlockBreak(BlockBreakEvent event) {
+        notifyBlockChange(event.getBlock().getWorld(), event.getBlock().getX() >> 4, event.getBlock().getZ() >> 4);
+    }
+    
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBlockPlace(BlockPlaceEvent event) {
+        notifyBlockChange(event.getBlock().getWorld(), event.getBlock().getX() >> 4, event.getBlock().getZ() >> 4);
+    }
+    
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if (event.getFrom().getBlockX() == event.getTo().getBlockX() && 
+            event.getFrom().getBlockY() == event.getTo().getBlockY() &&
+            event.getFrom().getBlockZ() == event.getTo().getBlockZ()) {
+            return; // Ignore movements within the same block
+        }
+        
+        notifyPlayerMove(event.getPlayer());
+    }
+    
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        notifyPlayerJoin(event.getPlayer());
+    }
+    
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        notifyPlayerQuit(event.getPlayer());
+    }
+    
+    private void notifyBlockChange(org.bukkit.World world, int chunkX, int chunkZ) {
+        LegacyBukkitWorld serverWorld = getServerWorld(world);
+        if (serverWorld == null) return;
         
         for (ServerEventListener listener : listeners) {
             try {
-                listener.onWorldLoad(serverWorld);
+                listener.onChunkModified(serverWorld, chunkX, chunkZ);
             } catch (Exception e) {
-                e.printStackTrace();
+                plugin.getLogger().severe("Error notifying listener about block change: " + e.getMessage());
             }
         }
     }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onWorldUnload(WorldUnloadEvent evt) {
-        World world = evt.getWorld();
-        LegacyBukkitWorld serverWorld = LegacyBukkitPlugin.getInstance().getServerWorld(world);
+    
+    private void notifyPlayerMove(Player player) {
+        LegacyBukkitWorld world = getServerWorld(player.getWorld());
+        if (world == null) return;
+        
+        LegacyBukkitPlayer blueMapPlayer = new LegacyBukkitPlayer(player, world);
         
         for (ServerEventListener listener : listeners) {
             try {
-                listener.onWorldUnload(serverWorld);
+                listener.onPlayerMoved(blueMapPlayer);
             } catch (Exception e) {
-                e.printStackTrace();
+                plugin.getLogger().severe("Error notifying listener about player movement: " + e.getMessage());
             }
         }
     }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onChunkLoad(ChunkLoadEvent evt) {
-        if (!evt.isNewChunk()) return;
+    
+    private void notifyPlayerJoin(Player player) {
+        LegacyBukkitWorld world = getServerWorld(player.getWorld());
+        if (world == null) return;
         
-        World world = evt.getWorld();
-        LegacyBukkitWorld serverWorld = LegacyBukkitPlugin.getInstance().getServerWorld(world);
-        int chunkX = evt.getChunk().getX();
-        int chunkZ = evt.getChunk().getZ();
+        LegacyBukkitPlayer blueMapPlayer = new LegacyBukkitPlayer(player, world);
         
         for (ServerEventListener listener : listeners) {
             try {
-                listener.onChunkCreated(serverWorld, chunkX, chunkZ);
+                listener.onPlayerJoined(blueMapPlayer);
             } catch (Exception e) {
-                e.printStackTrace();
+                plugin.getLogger().severe("Error notifying listener about player join: " + e.getMessage());
             }
         }
     }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockBreak(BlockBreakEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockPlace(BlockPlaceEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockBurn(BlockBurnEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockFade(BlockFadeEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockForm(BlockFormEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockFromTo(BlockFromToEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-        updateBlock(evt.getToBlock().getWorld(), evt.getToBlock().getX(), evt.getToBlock().getY(), evt.getToBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockGrow(BlockGrowEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onBlockSpread(BlockSpreadEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-        updateBlock(evt.getSource().getWorld(), evt.getSource().getX(), evt.getSource().getY(), evt.getSource().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onLeavesDecay(LeavesDecayEvent evt) {
-        updateBlock(evt.getBlock().getWorld(), evt.getBlock().getX(), evt.getBlock().getY(), evt.getBlock().getZ());
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onStructureGrow(StructureGrowEvent evt) {
-        updateBlock(evt.getLocation().getWorld(), evt.getLocation().getBlockX(), evt.getLocation().getBlockY(), evt.getLocation().getBlockZ());
+    
+    private void notifyPlayerQuit(Player player) {
+        LegacyBukkitWorld world = getServerWorld(player.getWorld());
+        if (world == null) return;
         
-        for (org.bukkit.block.BlockState block : evt.getBlocks()) {
-            updateBlock(block.getWorld(), block.getX(), block.getY(), block.getZ());
-        }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onEntityExplode(EntityExplodeEvent evt) {
-        for (org.bukkit.block.Block block : evt.blockList()) {
-            updateBlock(block.getWorld(), block.getX(), block.getY(), block.getZ());
-        }
-    }
-
-    private void updateBlock(World world, int x, int y, int z) {
-        LegacyBukkitWorld serverWorld = LegacyBukkitPlugin.getInstance().getServerWorld(world);
+        LegacyBukkitPlayer blueMapPlayer = new LegacyBukkitPlayer(player, world);
         
         for (ServerEventListener listener : listeners) {
             try {
-                listener.onBlockChanged(serverWorld, x, y, z);
+                listener.onPlayerLeft(blueMapPlayer);
             } catch (Exception e) {
-                e.printStackTrace();
+                plugin.getLogger().severe("Error notifying listener about player quit: " + e.getMessage());
             }
         }
+    }
+    
+    private LegacyBukkitWorld getServerWorld(org.bukkit.World world) {
+        String worldName = world.getName().toLowerCase();
+        ServerWorld serverWorld = plugin.getLoadedServerWorlds()
+                .stream()
+                .filter(w -> w.getId().equals(worldName))
+                .findFirst()
+                .orElse(null);
+                
+        if (serverWorld instanceof LegacyBukkitWorld) {
+            return (LegacyBukkitWorld) serverWorld;
+        }
+        
+        return null;
     }
 } 

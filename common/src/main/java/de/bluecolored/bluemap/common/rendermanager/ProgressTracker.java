@@ -66,9 +66,13 @@ public class ProgressTracker {
     }
 
     public synchronized long getAverageTimePerProgress() {
-        return timesPerProgress.stream()
-                .collect(Collectors.averagingLong(Long::longValue))
-                .longValue();
+        if (timesPerProgress.isEmpty()) return 0;
+        
+        long sum = 0;
+        for (Long value : timesPerProgress) {
+            sum += value;
+        }
+        return sum / timesPerProgress.size();
     }
 
     private synchronized void update() {

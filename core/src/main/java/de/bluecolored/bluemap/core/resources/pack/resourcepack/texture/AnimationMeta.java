@@ -130,8 +130,8 @@ public class AnimationMeta {
                 animationMeta.frames = frames;
         }
 
-        @Override
-        public void write(JsonWriter out, AnimationMeta value, Gson gson) throws IOException {
+        public void write(JsonWriter out, AnimationMeta value) throws IOException {
+            Gson gson = new Gson();
             gson.getDelegateAdapter(this, TypeToken.get(AnimationMeta.class)).write(out, value);
         }
 

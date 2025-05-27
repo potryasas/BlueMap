@@ -26,6 +26,7 @@ package de.bluecolored.bluemap.core.logger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.logging.Formatter;
@@ -48,9 +49,11 @@ public class LogFormatter extends Formatter {
      * @param record the log record to be formatted.
      * @return the formatted log
      */
+    @Override
     public String format(LogRecord record) {
-        ZonedDateTime zdt = ZonedDateTime.ofInstant(
-                record.getInstant(), ZoneId.systemDefault());
+        ZonedDateTime time = ZonedDateTime.ofInstant(
+            Instant.ofEpochMilli(record.getMillis()),
+            ZoneId.systemDefault());
         String source;
         if (record.getSourceClassName() != null) {
             source = record.getSourceClassName();
@@ -71,7 +74,7 @@ public class LogFormatter extends Formatter {
             throwable = sw.toString();
         }
         return String.format(format,
-                zdt,
+                time,
                 source,
                 record.getLoggerName(),
                 record.getLevel().getLocalizedName(),

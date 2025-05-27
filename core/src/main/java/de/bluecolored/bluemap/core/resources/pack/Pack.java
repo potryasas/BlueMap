@@ -113,12 +113,11 @@ public abstract class Pack {
 
         // stop loading pack if feature is not enabled
         if (enabledFeatures != null && !enabledFeatures.containsAll(packMeta.getFeatures().getEnabled())) {
-            Logger.global.logDebug("Skipping resources from '%s' because not all required features (%s) are enabled (%s)"
-                    .formatted(
-                            root,
-                            Arrays.toString(packMeta.getFeatures().getEnabled().toArray()),
-                            Arrays.toString(enabledFeatures.toArray())
-                    ));
+            Logger.global.logDebug(String.format("Skipping resources from '%s' because not all required features (%s) are enabled (%s)",
+                    root,
+                    Arrays.toString(packMeta.getFeatures().getEnabled().toArray()),
+                    Arrays.toString(enabledFeatures.toArray())
+            ));
             return;
         }
 

@@ -1,27 +1,3 @@
-/*
- * This file is part of BlueMap, licensed under the MIT License (MIT).
- *
- * Copyright (c) Blue (Lukas Rieger) <https://bluecolored.de>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package de.bluecolored.bluemap.core.world;
 
 import de.bluecolored.bluemap.core.util.Key;
@@ -32,12 +8,14 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
- * Represents a BlockState<br>
+ * Represents a BlockState.<br>
  * It is important that {@link #hashCode} and {@link #equals} are implemented correctly, for the caching to work properly.<br>
  * <br>
- * <i>The implementation of this class has to be thread-save!</i><br>
+ * <i>The implementation of this class has to be thread-safe!</i><br>
  */
 @Getter
 public class BlockState extends Key {
@@ -58,10 +36,21 @@ public class BlockState extends Key {
 
     private final String id;
 
+    /**
+     * Constructs a BlockState with the given block id.
+     *
+     * @param id the block id
+     */
     public BlockState(String id) {
         this(id, Collections.emptyMap());
     }
 
+    /**
+     * Constructs a BlockState with the given block id and properties.
+     *
+     * @param id the block id
+     * @param properties the block state properties
+     */
     public BlockState(String id, Map<String, String> properties) {
         super(id);
 
@@ -69,10 +58,16 @@ public class BlockState extends Key {
         this.hash = 0;
 
         this.properties = properties;
-        this.propertiesArray = properties.entrySet().stream()
-                .map(e -> new Property(e.getKey(), e.getValue()))
-                .sorted()
-                .toArray(Property[]::new);
+
+        // build properties array
+        List<Property> propertyList = new ArrayList<>();
+        if (properties != null) {
+            for (Map.Entry<String, String> entry : properties.entrySet()) {
+                propertyList.add(new Property(entry.getKey(), entry.getValue()));
+            }
+        }
+        Collections.sort(propertyList);
+        this.propertiesArray = propertyList.toArray(new Property[propertyList.size()]);
 
         // special fast-access properties
         this.isAir =
@@ -94,23 +89,45 @@ public class BlockState extends Key {
      * facing = east<br>
      * half = bottom<br>
      * </code>
+     *
+     * @return an immutable map of all properties of this block
      */
     public Map<String, String> getProperties() {
         return properties;
     }
 
+    /**
+     * Checks if this block is air.
+     *
+     * @return true if this block is air, false otherwise
+     */
     public boolean isAir() {
         return isAir;
     }
 
+    /**
+     * Checks if this block is water.
+     *
+     * @return true if this block is water, false otherwise
+     */
     public boolean isWater() {
         return isWater;
     }
 
+    /**
+     * Checks if this block is waterlogged.
+     *
+     * @return true if this block is waterlogged, false otherwise
+     */
     public boolean isWaterlogged() {
         return isWaterlogged;
     }
 
+    /**
+     * Returns the liquid level for this block if present, or 0 if not present or invalid.
+     *
+     * @return the liquid level (0-15)
+     */
     public int getLiquidLevel() {
         if (liquidLevel == -1) {
             try {
@@ -125,6 +142,11 @@ public class BlockState extends Key {
         return liquidLevel;
     }
 
+    /**
+     * Returns the redstone power for this block if present, or default value if not present or invalid.
+     *
+     * @return the redstone power (0-15)
+     */
     public int getRedstonePower() {
         if (redstonePower == -1) {
             try {
@@ -160,7 +182,6 @@ public class BlockState extends Key {
             hash = Objects.hash( getFormatted(), getProperties() );
             hashed = true;
         }
-
         return hash;
     }
 
@@ -170,10 +191,16 @@ public class BlockState extends Key {
         for (Entry<String, String> e : getProperties().entrySet()){
             sj.add(e.getKey() + "=" + e.getValue());
         }
-
         return getFormatted() + "[" + sj + "]";
     }
 
+    /**
+     * Parses a serialized block state string to a BlockState instance.
+     *
+     * @param serializedBlockState the serialized string
+     * @return the parsed BlockState
+     * @throws IllegalArgumentException if parsing fails
+     */
     public static BlockState fromString(String serializedBlockState) throws IllegalArgumentException {
         try {
             Matcher m = BLOCKSTATE_SERIALIZATION_PATTERN.matcher(serializedBlockState);
@@ -199,9 +226,18 @@ public class BlockState extends Key {
         }
     }
 
+    /**
+     * Represents a key-value pair property of a block state.
+     */
     public static final class Property implements Comparable<Property> {
         private final String key, value;
 
+        /**
+         * Constructs a block state property with a given key and value.
+         *
+         * @param key the property key
+         * @param value the property value
+         */
         public Property(String key, String value) {
             this.key = intern(key);
             this.value = intern(value);
@@ -221,15 +257,19 @@ public class BlockState extends Key {
             return key.hashCode() * 31 ^ value.hashCode();
         }
 
-
         @Override
         public int compareTo(@NotNull BlockState.Property o) {
             int keyCompare = key.compareTo(o.key);
             return keyCompare != 0 ? keyCompare : value.compareTo(o.value);
         }
-
     }
 
+    /**
+     * Returns a BlockState from the given numeric state value.
+     *
+     * @param state the numeric state
+     * @return the BlockState for the given state
+     */
     public static BlockState get(long state) {
         // TODO: Implement state to block mapping
         return AIR;

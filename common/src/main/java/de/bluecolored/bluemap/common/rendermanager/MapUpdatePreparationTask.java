@@ -105,7 +105,7 @@ public class MapUpdatePreparationTask implements MapRenderTask {
 
     @Override
     public String getDescription() {
-        return "preparing map '%s' update".formatted(map.getId());
+        return String.format("preparing map '%s' update", map.getId());
     }
 
     private Collection<RenderTask> createTasks(Collection<Vector2i> regions) {

@@ -27,49 +27,51 @@ package de.bluecolored.bluemap.core.map.renderstate;
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.util.Keyed;
 import de.bluecolored.bluemap.core.util.Registry;
+import de.bluecolored.bluemap.core.map.Bounds;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import static de.bluecolored.bluemap.core.map.renderstate.TileActionResolver.ActionAndNextState.*;
+import static de.bluecolored.bluemap.core.map.renderstate.TileActionResolver.BoundsSituation.*;
+
+import java.util.Collection;
+import java.util.function.BiFunction;
 
 public interface TileState extends Keyed, TileActionResolver {
 
     TileState UNKNOWN = new Impl( Key.bluemap("unknown"));
 
     TileState RENDERED = new Impl(Key.bluemap("rendered"), (changed, bounds) -> {
-        switch (bounds) {
-            case INSIDE:
-                return changed ? RENDER_RENDERED : NONE_RENDERED;
-            case EDGE:
-                return RENDER_RENDERED_EDGE;
-            case OUTSIDE:
-                return DELETE_OUT_OF_BOUNDS;
-            default:
-                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        if (bounds == INSIDE) {
+            return changed ? RENDER_RENDERED : NONE_RENDERED;
+        } else if (bounds == EDGE) {
+            return RENDER_RENDERED_EDGE;
+        } else if (bounds == OUTSIDE) {
+            return DELETE_OUT_OF_BOUNDS;
+        } else {
+            throw new IllegalStateException("Unexpected bounds: " + bounds);
         }
     });
     TileState RENDERED_EDGE = new Impl(Key.bluemap("rendered-edge"), (changed, bounds) -> {
-        switch (bounds) {
-            case INSIDE:
-                return RENDER_RENDERED;
-            case EDGE:
-                return changed ? RENDER_RENDERED_EDGE : NONE_RENDERED_EDGE;
-            case OUTSIDE:
-                return DELETE_OUT_OF_BOUNDS;
-            default:
-                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        if (bounds == INSIDE) {
+            return RENDER_RENDERED;
+        } else if (bounds == EDGE) {
+            return changed ? RENDER_RENDERED_EDGE : NONE_RENDERED_EDGE;
+        } else if (bounds == OUTSIDE) {
+            return DELETE_OUT_OF_BOUNDS;
+        } else {
+            throw new IllegalStateException("Unexpected bounds: " + bounds);
         }
     });
     TileState OUT_OF_BOUNDS = new Impl(Key.bluemap("out-of-bounds"), (changed, bounds) -> {
-        switch (bounds) {
-            case INSIDE:
-                return RENDER_RENDERED;
-            case EDGE:
-                return RENDER_RENDERED_EDGE;
-            case OUTSIDE:
-                return NONE_OUT_OF_BOUNDS;
-            default:
-                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        if (bounds == INSIDE) {
+            return RENDER_RENDERED;
+        } else if (bounds == EDGE) {
+            return RENDER_RENDERED_EDGE;
+        } else if (bounds == OUTSIDE) {
+            return NONE_OUT_OF_BOUNDS;
+        } else {
+            throw new IllegalStateException("Unexpected bounds: " + bounds);
         }
     });
 
@@ -79,15 +81,14 @@ public interface TileState extends Keyed, TileActionResolver {
     TileState CHUNK_ERROR = new Impl(Key.bluemap("chunk-error"));
 
     TileState RENDER_ERROR = new Impl(Key.bluemap("render-error"), (changed, bounds) -> {
-        switch (bounds) {
-            case INSIDE:
-                return RENDER_RENDERED;
-            case EDGE:
-                return RENDER_RENDERED_EDGE;
-            case OUTSIDE:
-                return DELETE_OUT_OF_BOUNDS;
-            default:
-                throw new IllegalStateException("Unexpected bounds: " + bounds);
+        if (bounds == INSIDE) {
+            return RENDER_RENDERED;
+        } else if (bounds == EDGE) {
+            return RENDER_RENDERED_EDGE;
+        } else if (bounds == OUTSIDE) {
+            return DELETE_OUT_OF_BOUNDS;
+        } else {
+            throw new IllegalStateException("Unexpected bounds: " + bounds);
         }
     });
 
@@ -103,6 +104,8 @@ public interface TileState extends Keyed, TileActionResolver {
             RENDER_ERROR
     );
 
+    TileState refresh(Collection<ChunkInfoRegion> chunksChanged, Bounds tileBounds);
+
     @Getter
     @RequiredArgsConstructor
     class Impl implements TileState {
@@ -113,15 +116,14 @@ public interface TileState extends Keyed, TileActionResolver {
             this.key = key;
             this.resolver = (changed, bounds) -> {
                 if (!changed) return noActionThisNextState();
-                switch (bounds) {
-                    case INSIDE:
-                        return RENDER_RENDERED;
-                    case EDGE:
-                        return RENDER_RENDERED_EDGE;
-                    case OUTSIDE:
-                        return DELETE_OUT_OF_BOUNDS;
-                    default:
-                        throw new IllegalStateException("Unexpected bounds: " + bounds);
+                if (bounds == INSIDE) {
+                    return RENDER_RENDERED;
+                } else if (bounds == EDGE) {
+                    return RENDER_RENDERED_EDGE;
+                } else if (bounds == OUTSIDE) {
+                    return DELETE_OUT_OF_BOUNDS;
+                } else {
+                    throw new IllegalStateException("Unexpected bounds: " + bounds);
                 }
             };
         }
@@ -146,6 +148,15 @@ public interface TileState extends Keyed, TileActionResolver {
             return noActionThisNextState;
         }
 
+        @Override
+        public Key getKey() {
+            return key;
+        }
+
+        @Override
+        public TileState refresh(Collection<ChunkInfoRegion> chunksChanged, Bounds tileBounds) {
+            return this;
+        }
     }
 
 }

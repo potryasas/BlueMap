@@ -33,7 +33,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "bluemap"
+rootProject.name = "BlueMap"
 
 include("api")
 include("common")

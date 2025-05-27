@@ -36,6 +36,11 @@ public class LightData {
         this.blockLight = 0;
     }
 
+    public LightData(int skyLight, int blockLight) {
+        this.skyLight = skyLight;
+        this.blockLight = blockLight;
+    }
+
     public LightData set(int skyLight, int blockLight) {
         this.skyLight = skyLight;
         this.blockLight = blockLight;

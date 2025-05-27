@@ -24,8 +24,8 @@
  */
 package de.bluecolored.bluemap.common.commands.commands;
 
-import de.bluecolored.bluecommands.annotations.Argument;
-import de.bluecolored.bluecommands.annotations.Command;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Argument;
+import de.bluecolored.bluemap.common.commands.java8compat.annotations.Command;
 import de.bluecolored.bluemap.common.commands.Permission;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.common.rendermanager.MapRenderTask;
@@ -46,14 +46,15 @@ public class FreezeCommand {
     public void freeze(CommandSource source, @Argument("map") BmMap map) {
         plugin.getPluginState().getMapState(map).setUpdateEnabled(false);
         plugin.stopWatchingMap(map);
-        plugin.getRenderManager().removeRenderTasksIf(task ->
-                task instanceof MapRenderTask mrt &&
-                        mrt.getMap().equals(map)
-        );
-        source.sendMessage(format("""
-                % Map % is now % and will no longer automatically update
-                Any currently scheduled updates for this map have been cancelled
-                """.strip(),
+        plugin.getRenderManager().removeRenderTasksIf(task -> {
+            if (task instanceof MapRenderTask) {
+                MapRenderTask mrt = (MapRenderTask) task;
+                return mrt.getMap().equals(map);
+            }
+            return false;
+        });
+        source.sendMessage(format("% Map % is now % and will no longer automatically update\n" +
+                                  "Any currently scheduled updates for this map have been cancelled",
                 ICON_FROZEN,
                 formatMap(map).color(HIGHLIGHT_COLOR),
                 text("frozen").color(FROZEN_COLOR)

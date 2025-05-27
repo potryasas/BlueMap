@@ -1,0 +1,9 @@
+[
+  {
+    "resourcePath": "minecraft:block/stone",
+    "color": [1, 1, 1, 1],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==",
+    "animation": null
+  }
+] 

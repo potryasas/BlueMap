@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="50px" height="50px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+<g>
+	<path fill="#FFFFFF" d="M37.468,17.123C37.468,29.596,25,45.346,25,45.346s-12.468-14.93-12.468-28.223
+		c0-6.885,5.581-12.468,12.468-12.468C31.885,4.655,37.468,10.237,37.468,17.123z"/>
+</g>
+<g>
+	<rect x="14" y="15" width="22" height="16" fill="#808080" stroke="#696969" stroke-width="1"/>
+	<rect x="16" y="12" width="3" height="6" fill="#808080" stroke="#696969" stroke-width="1"/>
+	<rect x="22" y="12" width="3" height="6" fill="#808080" stroke="#696969" stroke-width="1"/>
+	<rect x="28" y="12" width="3" height="6" fill="#808080" stroke="#696969" stroke-width="1"/>
+	<rect x="34" y="12" width="3" height="6" fill="#808080" stroke="#696969" stroke-width="1"/>
+	<rect x="22" y="23" width="6" height="8" fill="#4B0000"/>
+	<rect x="19" y="18" width="2" height="3" fill="#000080"/>
+	<rect x="30" y="18" width="2" height="3" fill="#000080"/>
+</g>
+</svg> 

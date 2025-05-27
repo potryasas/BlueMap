@@ -140,7 +140,7 @@ public class FileRequestHandler implements HttpRequestHandler {
                 .atOffset(ZoneOffset.UTC)
         ));
         response.addHeader("Cache-Control", "public");
-        response.addHeader("Cache-Control", "max-age=" + TimeUnit.DAYS.toSeconds(1));
+        response.addHeader("Cache-Control", "max-age=" + String.valueOf(TimeUnit.DAYS.toSeconds(1)));
 
         //add content type header
         String filetype = filePath.getFileName().toString();
@@ -159,21 +159,25 @@ public class FileRequestHandler implements HttpRequestHandler {
     }
 
     private static String toContentType(String fileEnding) {
-        return switch (fileEnding) {
-            case "json" -> "application/json";
-            case "png" -> "image/png";
-            case "jpg",
-                 "jpeg",
-                 "jpe" -> "image/jpeg";
-            case "svg" -> "image/svg+xml";
-            case "css" -> "text/css";
-            case "js" -> "text/javascript";
-            case "html",
-                 "htm",
-                 "shtml" -> "text/html";
-            case "xml" -> "text/xml";
-            default -> "text/plain";
-        };
+        if ("json".equals(fileEnding)) {
+            return "application/json";
+        } else if ("png".equals(fileEnding)) {
+            return "image/png";
+        } else if ("jpg".equals(fileEnding) || "jpeg".equals(fileEnding) || "jpe".equals(fileEnding)) {
+            return "image/jpeg";
+        } else if ("svg".equals(fileEnding)) {
+            return "image/svg+xml";
+        } else if ("css".equals(fileEnding)) {
+            return "text/css";
+        } else if ("js".equals(fileEnding)) {
+            return "text/javascript";
+        } else if ("html".equals(fileEnding) || "htm".equals(fileEnding) || "shtml".equals(fileEnding)) {
+            return "text/html";
+        } else if ("xml".equals(fileEnding)) {
+            return "text/xml";
+        } else {
+            return "text/plain";
+        }
     }
 
 }

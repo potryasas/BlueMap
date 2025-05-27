@@ -5,7 +5,16 @@ plugins {
 }
 
 group = "de.bluecolored"
-version = gitVersion()
+version = if (project.hasProperty("bluemap.version")) {
+    project.property("bluemap.version").toString()
+} else {
+    try {
+        gitVersion()
+    } catch (e: Exception) {
+        logger.warn("Failed to determine Git version: ${e.message}")
+        "0.0.0-dev"
+    }
+}
 
 repositories {
     maven ("https://repo.bluecolored.de/releases") {
@@ -53,7 +62,6 @@ tasks.javadoc {
             "https://javadoc.io/doc/com.google.code.gson/gson/2.8.9/",
         )
         addStringOption("Xdoclint:none", "-quiet")
-        addBooleanOption("html5", true)
     }
 }
 

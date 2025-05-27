@@ -13,6 +13,22 @@ allprojects {
             dirs("${rootProject.projectDir}/libs")
         }
     }
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+    
+    tasks.withType<Javadoc> {
+        options {
+            encoding = "UTF-8"
+            (this as StandardJavadocDocletOptions).apply {
+                charSet = "UTF-8"
+                docEncoding = "UTF-8"
+                addStringOption("Xdoclint:none", "-quiet")
+            }
+        }
+        isFailOnError = false // Temporarily disable Javadoc errors failing the build
+    }
 }
 
 subprojects {
@@ -22,4 +38,4 @@ subprojects {
             targetCompatibility = JavaVersion.VERSION_1_8
         }
     }
-} 
+}

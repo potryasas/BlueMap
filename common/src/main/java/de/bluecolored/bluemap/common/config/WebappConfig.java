@@ -27,6 +27,7 @@ package de.bluecolored.bluemap.common.config;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -38,7 +39,7 @@ public class WebappConfig {
     private boolean enabled = true;
     private boolean updateSettingsFile = true;
 
-    private Path webroot = Path.of("bluemap", "web");
+    private Path webroot = Paths.get("bluemap", "web");
 
     private boolean useCookies = true;
 

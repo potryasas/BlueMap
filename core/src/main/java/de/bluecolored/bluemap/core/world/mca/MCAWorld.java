@@ -1,60 +1,31 @@
-/*
- * This file is part of BlueMap, licensed under the MIT License (MIT).
- *
- * Copyright (c) Blue (Lukas Rieger) <https://bluecolored.de>
- * Copyright (c) contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package de.bluecolored.bluemap.core.world.mca;
 
 import com.flowpowered.math.vector.Vector2i;
-import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import de.bluecolored.bluemap.core.logger.Logger;
 import de.bluecolored.bluemap.core.resources.pack.datapack.DataPack;
-import de.bluecolored.bluemap.core.storage.compression.Compression;
 import de.bluecolored.bluemap.core.util.Grid;
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.util.WatchService;
 import de.bluecolored.bluemap.core.world.*;
 import de.bluecolored.bluemap.core.world.mca.chunk.Chunk;
-import de.bluecolored.bluemap.core.world.mca.chunk.Chunk_1_18;
-import de.bluecolored.bluemap.core.world.mca.data.DimensionTypeDeserializer;
+import de.bluecolored.bluemap.core.world.mca.chunk.MCAChunkLoader;
 import de.bluecolored.bluemap.core.world.mca.data.LevelData;
 import de.bluecolored.bluemap.core.world.mca.entity.chunk.MCAEntityChunk;
 import de.bluecolored.bluemap.core.world.mca.entity.chunk.MCAEntityChunkLoader;
-import de.tr7zw.nbtapi.NBTContainer;
+import de.bluecolored.bluemap.core.world.mca.entity.MCAEntity;
 import de.tr7zw.nbtapi.NBTFile;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.Map;
 
 @Getter
 @ToString
@@ -72,16 +43,17 @@ public class MCAWorld implements World {
     private final Vector3i spawnPoint;
     private final Path dimensionFolder;
 
-    private final ChunkGrid<Chunk> blockChunkGrid;
-    private final ChunkGrid<MCAEntityChunk> entityChunkGrid;
+    private final ChunkGrid blockChunkGrid;
+    private final ChunkGrid entityChunkGrid;
 
+    @SuppressWarnings("unchecked")
     public MCAWorld(File worldFolder, Key dimension, DataPack dataPack) throws IOException {
-        this.id = World.id(worldFolder, dimension);
+        this.id = World.id(worldFolder.toPath(), dimension);
         this.worldFolder = worldFolder;
         this.dimension = dimension;
         this.dataPack = dataPack;
-        this.chunks = new ConcurrentHashMap<>();
-        this.entities = new ConcurrentHashMap<>();
+        this.chunks = new ConcurrentHashMap<Long, Chunk>();
+        this.entities = new ConcurrentHashMap<Long, Chunk>();
 
         // Load level.dat
         File levelFile = new File(worldFolder, "level.dat");
@@ -89,12 +61,14 @@ public class MCAWorld implements World {
             throw new IOException("World folder does not contain a level.dat file!");
         }
 
+        LevelData levelDataTmp;
         try {
             NBTFile nbtFile = new NBTFile(levelFile);
-            this.levelData = new LevelData(nbtFile);
+            levelDataTmp = new LevelData(nbtFile);
         } catch (IOException e) {
             throw new IOException("Failed to read level.dat!", e);
         }
+        this.levelData = levelDataTmp;
 
         LevelData.Dimension dimensionData = levelData.getData().getWorldGenSettings().getDimensions().get(dimension.getFormatted());
         if (dimensionData == null) {
@@ -114,10 +88,32 @@ public class MCAWorld implements World {
                 levelData.getData().getSpawnY(),
                 levelData.getData().getSpawnZ()
         );
-        this.dimensionFolder = resolveDimensionFolder(worldFolder, dimension);
+        this.dimensionFolder = resolveDimensionFolder(worldFolder.toPath(), dimension);
 
-        this.blockChunkGrid = new ChunkGrid<>(new MCAChunkLoader(this), dimensionFolder.resolve("region"));
-        this.entityChunkGrid = new ChunkGrid<>(new MCAEntityChunkLoader(), dimensionFolder.resolve("entities"));
+        ChunkLoader chunkLoader = new MCAChunkLoader(this);
+        ChunkLoader entityLoader = new MCAEntityChunkLoader();
+        this.blockChunkGrid = new ChunkGrid(chunkLoader, dimensionFolder.resolve("region"));
+        this.entityChunkGrid = new ChunkGrid(entityLoader, dimensionFolder.resolve("entities"));
+    }
+
+    // Adapter class to wrap MCA Chunks as core Chunks
+    private class ChunkAdapter implements de.bluecolored.bluemap.core.world.Chunk {
+        private final Chunk mcaChunk;
+        public ChunkAdapter(Chunk mcaChunk) { this.mcaChunk = mcaChunk; }
+        @Override public BlockState getBlockState(int x, int y, int z) { return mcaChunk.getBlockState(x, y, z); }
+        @Override public de.bluecolored.bluemap.core.world.biome.Biome getBiome(int x, int y, int z) { return (de.bluecolored.bluemap.core.world.biome.Biome) mcaChunk.getBiome(x, y, z); }
+        @Override public boolean isGenerated() { return mcaChunk.isGenerated(); }
+        @Override public boolean hasLightData() { return mcaChunk.hasLightData(); }
+        @Override public long getInhabitedTime() { return mcaChunk.getInhabitedTime(); }
+        @Override public LightData getLightData(int x, int y, int z, LightData target) { return mcaChunk.getLightData(x, y, z, target); }
+        @Override public int getMinY(int x, int z) { return mcaChunk.getMinY(x, z); }
+        @Override public int getMaxY(int x, int z) { return mcaChunk.getMaxY(x, z); }
+        @Override public boolean hasWorldSurfaceHeights() { return mcaChunk.hasWorldSurfaceHeights(); }
+        @Override public int getWorldSurfaceY(int x, int z) { return mcaChunk.getWorldSurfaceY(x, z); }
+        @Override public boolean hasOceanFloorHeights() { return mcaChunk.hasOceanFloorHeights(); }
+        @Override public int getOceanFloorY(int x, int z) { return mcaChunk.getOceanFloorY(x, z); }
+        @Override public BlockEntity getBlockEntity(int x, int y, int z) { return mcaChunk.getBlockEntity(x, y, z); }
+        @Override public void iterateBlockEntities(Consumer<BlockEntity> consumer) { mcaChunk.iterateBlockEntities(consumer); }
     }
 
     @Override
@@ -136,26 +132,82 @@ public class MCAWorld implements World {
     }
 
     @Override
-    public Chunk getChunkAtBlock(int x, int z) {
+    public de.bluecolored.bluemap.core.world.Chunk getChunkAtBlock(int x, int z) {
         return getChunk(x >> 4, z >> 4);
     }
 
     @Override
-    public Chunk getChunk(int x, int z) {
-        long key = ((long) x << 32) | (z & 0xFFFFFFFFL);
-        return chunks.computeIfAbsent(key, k -> {
-            try {
-                return loadChunk(x, z);
-            } catch (IOException e) {
-                Logger.global.logError("Failed to load chunk at " + x + "," + z, e);
-                return null;
-            }
-        });
+    public de.bluecolored.bluemap.core.world.Chunk getChunk(int x, int z) {
+        long key = (((long) x) << 32) | (((long) z) & 0xFFFFFFFFL);
+        Chunk mcaChunk = chunks.computeIfAbsent(key, k -> loadChunk(x, z));
+        if (mcaChunk == null) return null;
+        return new ChunkAdapter(mcaChunk);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public Region<Chunk> getRegion(int x, int z) {
-        return blockChunkGrid.getRegion(x, z);
+    public Region<de.bluecolored.bluemap.core.world.Chunk> getRegion(int x, int z) {
+        final Region<Chunk> mcaRegion;
+        try {
+            Region<Chunk> region = (Region<Chunk>) blockChunkGrid.getRegion(x, z);
+            mcaRegion = region;
+        } catch (Exception e) {
+            Logger.global.logError("Failed to get region at " + x + "," + z, e);
+            return new Region<de.bluecolored.bluemap.core.world.Chunk>() {
+                @Override
+                public de.bluecolored.bluemap.core.world.Chunk loadChunk(int chunkX, int chunkZ) throws IOException { return null; }
+                @Override
+                public void iterateAllChunks(ChunkConsumer<de.bluecolored.bluemap.core.world.Chunk> consumer) throws IOException {}
+                @Override
+                public de.bluecolored.bluemap.core.world.Chunk emptyChunk() { return de.bluecolored.bluemap.core.world.Chunk.EMPTY_CHUNK; }
+                @Override
+                public de.bluecolored.bluemap.core.world.Chunk erroredChunk() { return de.bluecolored.bluemap.core.world.Chunk.ERRORED_CHUNK; }
+            };
+        }
+        return new Region<de.bluecolored.bluemap.core.world.Chunk>() {
+            @Override
+            public de.bluecolored.bluemap.core.world.Chunk loadChunk(int chunkX, int chunkZ) throws IOException {
+                try {
+                    Chunk mcaChunk = mcaRegion.loadChunk(chunkX, chunkZ);
+                    if (mcaChunk == null) return null;
+                    return new ChunkAdapter(mcaChunk);
+                } catch (IOException e) {
+                    Logger.global.logError("Failed to load chunk in region at " + chunkX + "," + chunkZ, e);
+                    throw e;
+                }
+            }
+            @Override
+            public void iterateAllChunks(ChunkConsumer<de.bluecolored.bluemap.core.world.Chunk> consumer) throws IOException {
+                try {
+                    mcaRegion.iterateAllChunks(new ChunkConsumer<Chunk>() {
+                        @Override
+                        public boolean filter(int chunkX, int chunkZ, int lastModified) {
+                            return consumer.filter(chunkX, chunkZ, lastModified);
+                        }
+                        @Override
+                        public void accept(int chunkX, int chunkZ, Chunk chunk) {
+                            consumer.accept(chunkX, chunkZ, new ChunkAdapter(chunk));
+                        }
+                        @Override
+                        public void fail(int chunkX, int chunkZ, IOException exception) throws IOException {
+                            try {
+                                consumer.fail(chunkX, chunkZ, exception);
+                            } catch (IOException e) {
+                                Logger.global.logError("Failed to handle chunk fail in region at " + chunkX + "," + chunkZ, e);
+                                throw e;
+                            }
+                        }
+                    });
+                } catch (IOException e) {
+                    Logger.global.logError("Failed to iterate chunks in region", e);
+                    throw e;
+                }
+            }
+            @Override
+            public de.bluecolored.bluemap.core.world.Chunk emptyChunk() { return de.bluecolored.bluemap.core.world.Chunk.EMPTY_CHUNK; }
+            @Override
+            public de.bluecolored.bluemap.core.world.Chunk erroredChunk() { return de.bluecolored.bluemap.core.world.Chunk.ERRORED_CHUNK; }
+        };
     }
 
     @Override
@@ -171,96 +223,96 @@ public class MCAWorld implements World {
     @Override
     public void preloadRegionChunks(int x, int z, Predicate<Vector2i> chunkFilter) {
         blockChunkGrid.preloadRegionChunks(x, z, chunkFilter);
-        entityChunkGrid.preloadRegionChunks(x, z, chunkFilter);
     }
 
     @Override
     public void invalidateChunkCache() {
-        blockChunkGrid.invalidateChunkCache();
-        entityChunkGrid.invalidateChunkCache();
+        chunks.clear();
+        entities.clear();
     }
 
     @Override
     public void invalidateChunkCache(int x, int z) {
-        blockChunkGrid.invalidateChunkCache(x, z);
-        entityChunkGrid.invalidateChunkCache(x, z);
+        long key = (((long) x) << 32) | (((long) z) & 0xFFFFFFFFL);
+        chunks.remove(key);
+        entities.remove(key);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void iterateEntities(int minX, int minZ, int maxX, int maxZ, Consumer<Entity> entityConsumer) {
-        int minChunkX = minX >> 4, minChunkZ = minZ >> 4;
-        int maxChunkX = maxX >> 4, maxChunkZ = maxZ >> 4;
+        int minChunkX = minX >> 4;
+        int minChunkZ = minZ >> 4;
+        int maxChunkX = maxX >> 4;
+        int maxChunkZ = maxZ >> 4;
 
-        for (int x = minChunkX; x <= maxChunkX; x++) {
-            for (int z = minChunkZ; z <= maxChunkZ; z++) {
-                Entity[] entities = entityChunkGrid.getChunk(x, z).getEntities();
-                //noinspection ForLoopReplaceableByForEach
-                for (int i = 0; i < entities.length; i++) {
-                    Entity entity = entities[i];
-                    Vector3d pos = entity.getPos();
-                    int pX = pos.getFloorX();
-                    int pZ = pos.getFloorZ();
+        for (int cx = minChunkX; cx <= maxChunkX; cx++) {
+            for (int cz = minChunkZ; cz <= maxChunkZ; cz++) {
+                final int chunkX = cx;
+                final int chunkZ = cz;
+                long key = (((long) chunkX) << 32) | (((long) chunkZ) & 0xFFFFFFFFL);
+                Chunk entityChunk = entities.computeIfAbsent(key, k -> {
+                    try {
+                        Chunk chunk = (Chunk) entityChunkGrid.getChunk(chunkX, chunkZ);
+                        return chunk;
+                    } catch (Exception e) {
+                        Logger.global.logError("Failed to load entity chunk at " + chunkX + "," + chunkZ, e);
+                        return null;
+                    }
+                });
 
-                    if (
-                            pX >= minX && pX <= maxX &&
-                            pZ >= minZ && pZ <= maxZ
-                    ) {
-                        entityConsumer.accept(entities[i]);
+                if (entityChunk != null && entityChunk instanceof MCAEntityChunk) {
+                    for (MCAEntity entity : ((MCAEntityChunk) entityChunk).getEntities()) {
+                        try {
+                            entityConsumer.accept(entity);
+                        } catch (Exception e) {
+                            Logger.global.logError("Failed to process entity in chunk at " + chunkX + "," + chunkZ, e);
+                        }
                     }
                 }
             }
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private Chunk loadChunk(int x, int z) {
+        try {
+            Chunk chunk = (Chunk) blockChunkGrid.getChunk(x, z);
+            return chunk;
+        } catch (Exception e) {
+            Logger.global.logError("Failed to load chunk at " + x + "," + z, e);
+            return null;
         }
     }
 
     @Override
-    public BlockState getBlockState(int x, int y, int z) {
-        Chunk chunk = getChunkAtBlock(x, z);
-        if (chunk == null) return BlockState.AIR;
-        return chunk.getBlockState(x, y, z);
-    }
-
-    private Chunk loadChunk(int x, int z) throws IOException {
-        File regionFile = MCAUtil.getRegionFile(worldFolder, x, z);
-        if (!regionFile.exists()) return null;
-
-        NBTFile nbtFile = new NBTFile(regionFile);
-        return new Chunk_1_18(this, x, z, nbtFile);
-    }
-
-    public void load() throws IOException {
-        // Load all chunks in the world
-        File regionFolder = MCAUtil.getRegionFolder(worldFolder, dimension);
-        if (!regionFolder.exists()) return;
-
-        File[] regionFiles = regionFolder.listFiles((dir, name) -> name.endsWith(".mca"));
-        if (regionFiles == null) return;
-
-        for (File regionFile : regionFiles) {
-            try {
-                NBTFile nbtFile = new NBTFile(regionFile);
-                String[] coords = regionFile.getName().split("\\.");
-                int regionX = Integer.parseInt(coords[1]);
-                int regionZ = Integer.parseInt(coords[2]);
-
-                for (int x = 0; x < 32; x++) {
-                    for (int z = 0; z < 32; z++) {
-                        int chunkX = (regionX << 5) + x;
-                        int chunkZ = (regionZ << 5) + z;
-                        long key = ((long) chunkX << 32) | (chunkZ & 0xFFFFFFFFL);
-                        chunks.put(key, new Chunk_1_18(this, chunkX, chunkZ, nbtFile));
-                    }
-                }
-            } catch (IOException e) {
-                Logger.global.logError("Failed to load region file: " + regionFile.getName(), e);
-            }
-        }
+    public void close() throws IOException {
+        chunks.clear();
+        entities.clear();
     }
 
     public static Path resolveDimensionFolder(Path worldFolder, Key dimension) {
-        if (DataPack.DIMENSION_OVERWORLD.equals(dimension)) return worldFolder;
-        if (DataPack.DIMENSION_THE_NETHER.equals(dimension)) return worldFolder.resolve("DIM-1");
-        if (DataPack.DIMENSION_THE_END.equals(dimension)) return worldFolder.resolve("DIM1");
-        return worldFolder.resolve("dimensions").resolve(dimension.getNamespace()).resolve(dimension.getValue());
+        if (DataPack.DIMENSION_OVERWORLD.equals(dimension)) {
+            return worldFolder;
+        } else if (DataPack.DIMENSION_THE_NETHER.equals(dimension)) {
+            return worldFolder.resolve("DIM-1");
+        } else if (DataPack.DIMENSION_THE_END.equals(dimension)) {
+            return worldFolder.resolve("DIM1");
+        } else {
+            return worldFolder.resolve("dimensions").resolve(dimension.getNamespace()).resolve(dimension.getValue());
+        }
     }
 
+    public Chunk getMcaChunk(int x, int z) {
+        long key = (((long) x) << 32) | (((long) z) & 0xFFFFFFFFL);
+        return chunks.get(key);
+    }
+
+    public static int getXFromKey(long key) {
+        return (int) (key >> 32);
+    }
+
+    public static int getZFromKey(long key) {
+        return (int) (key & 0xFFFFFFFFL);
+    }
 }

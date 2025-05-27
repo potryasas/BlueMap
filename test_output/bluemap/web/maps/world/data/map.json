@@ -1,0 +1,50 @@
+{
+  "id": "world",
+  "name": "Overworld",
+  "world": "world",
+  "startPos": {
+    "x": 0,
+    "z": 0
+  },
+  "skyColor": {
+    "r": 0.5,
+    "g": 0.8,
+    "b": 1.0,
+    "a": 1.0
+  },
+  "voidColor": {
+    "r": 0.0,
+    "g": 0.0,
+    "b": 0.0,
+    "a": 1.0
+  },
+  "ambientLight": 0.1,
+  "hires": {
+    "tileSize": {
+      "x": 32,
+      "z": 32
+    },
+    "scale": {
+      "x": 1,
+      "z": 1
+    },
+    "translate": {
+      "x": 0,
+      "z": 0
+    }
+  },
+  "lowres": {
+    "tileSize": {
+      "x": 32,
+      "z": 32
+    },
+    "scale": {
+      "x": 32,
+      "z": 32
+    },
+    "translate": {
+      "x": 0,
+      "z": 0
+    }
+  }
+} 

@@ -91,10 +91,16 @@ public class Metrics {
 
     }
 
-    record Report (
-            String implementation,
-            String version,
-            String mcVersion
-    ) {}
+    private static class Report {
+        private final String implementation;
+        private final String version;
+        private final String mcVersion;
+        
+        private Report(String implementation, String version, String mcVersion) {
+            this.implementation = implementation;
+            this.version = version;
+            this.mcVersion = mcVersion;
+        }
+    }
 
 }

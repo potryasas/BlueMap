@@ -243,7 +243,7 @@ public class SpongePlugin implements Server {
 
     @Override
     public Optional<Path> getModsFolder() {
-        return Optional.of(Path.of("mods"));
+        return Optional.of(Paths.get("mods"));
     }
 
     @Override

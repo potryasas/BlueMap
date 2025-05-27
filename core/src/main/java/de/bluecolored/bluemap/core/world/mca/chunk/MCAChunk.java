@@ -29,9 +29,12 @@ import de.bluecolored.bluemap.core.world.BlockState;
 import de.bluecolored.bluemap.core.world.Chunk;
 import de.bluecolored.bluemap.core.world.BlockEntity;
 import de.bluecolored.bluemap.core.world.mca.MCAWorld;
-import de.bluecolored.bluenbt.NBTName;
+import de.tr7zw.nbtapi.NBTCompound;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @ToString
@@ -56,13 +59,36 @@ public abstract class MCAChunk implements Chunk {
         this.dataVersion = chunkData.getDataVersion();
     }
 
+    /**
+     * Gets the position of this chunk as a vector
+     * @return A string representation of this chunk's position
+     */
+    public String getPosition() {
+        return "ChunkPosition";  // Placeholder - needs to be implemented by subclasses
+    }
+    
+    /**
+     * Gets the sections in this chunk
+     * @return A map containing the sections
+     */
+    public Map<String, Object> getSections() {
+        return new HashMap<>();  // Placeholder - needs to be implemented by subclasses
+    }
+
     @SuppressWarnings("FieldMayBeFinal")
     @Getter
     public static class Data {
-
-        @NBTName("DataVersion")
         private int dataVersion = 0;
 
+        public void readFromNBT(NBTCompound compound) {
+            if (compound.hasKey("DataVersion")) {
+                this.dataVersion = compound.getInteger("DataVersion");
+            }
+        }
+
+        public void writeToNBT(NBTCompound compound) {
+            compound.setInteger("DataVersion", dataVersion);
+        }
     }
 
 }

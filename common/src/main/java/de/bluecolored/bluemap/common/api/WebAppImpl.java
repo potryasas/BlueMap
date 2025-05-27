@@ -29,6 +29,7 @@ import de.bluecolored.bluemap.common.BlueMapService;
 import de.bluecolored.bluemap.common.plugin.Plugin;
 import de.bluecolored.bluemap.core.logger.Logger;
 import de.bluecolored.bluemap.core.util.FileHelper;
+import de.bluecolored.bluemap.common.util.FileUtil;
 import lombok.NonNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -121,16 +122,16 @@ public class WebAppImpl implements WebApp {
     }
 
     @Override
-    @Deprecated(forRemoval = true)
+    @Deprecated
     @SuppressWarnings("removal")
     public String createImage(@NonNull BufferedImage image, @NonNull String path) throws IOException {
         path = path.replaceAll("[^a-zA-Z0-9_.\\-/]", "_");
 
-        Path webRoot = getWebRoot().toAbsolutePath();
+        Path webRoot = FileUtil.toAbsolutePath(getWebRoot());
         String separator = webRoot.getFileSystem().getSeparator();
 
         Path imageRootFolder = webRoot.resolve("data").resolve("images");
-        Path imagePath = imageRootFolder.resolve(path.replace("/", separator) + ".png").toAbsolutePath();
+        Path imagePath = FileUtil.toAbsolutePath(imageRootFolder.resolve(path.replace("/", separator) + ".png"));
 
         FileHelper.createDirectories(imagePath.getParent());
         Files.deleteIfExists(imagePath);
@@ -143,13 +144,13 @@ public class WebAppImpl implements WebApp {
     }
 
     @Override
-    @Deprecated(forRemoval = true)
+    @Deprecated
     @SuppressWarnings("removal")
     public Map<String, String> availableImages() throws IOException {
-        Path webRoot = getWebRoot().toAbsolutePath();
+        Path webRoot = FileUtil.toAbsolutePath(getWebRoot());
         String separator = webRoot.getFileSystem().getSeparator();
 
-        Path imageRootPath = webRoot.resolve("data").resolve("images").toAbsolutePath();
+        Path imageRootPath = FileUtil.toAbsolutePath(webRoot.resolve("data").resolve("images"));
 
         Map<String, String> availableImagesMap = new HashMap<>();
 

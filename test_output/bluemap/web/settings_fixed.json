@@ -1,0 +1,22 @@
+{
+  "version": "5.7-SNAPSHOT",
+  "useCookies": false,
+  "enableFreeFlight": true,
+  "resolutionDefault": 1,
+  "minZoomDistance": 5,
+  "maxZoomDistance": 100000,
+  "hiresSliderMax": 500,
+  "hiresSliderDefault": 100,
+  "hiresSliderMin": 0,
+  "lowresSliderMax": 7000,
+  "lowresSliderDefault": 2000,
+  "lowresSliderMin": 500,
+  "startLocation": "world:0:0:0",
+  "maps": [
+    "world",
+    "world_nether", 
+    "world_the_end"
+  ],
+  "scripts": [],
+  "styles": []
+} 

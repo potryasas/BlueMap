@@ -47,6 +47,7 @@ import de.bluecolored.bluemap.core.util.FileHelper;
 import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.world.World;
 import de.bluecolored.bluemap.core.world.mca.MCAWorld;
+import de.bluecolored.bluemap.common.util.FileUtil;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.ConfigurationNode;
@@ -62,6 +63,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -156,23 +158,24 @@ public class BlueMapService implements Closeable {
      * @return A map of all loaded maps
      */
     public synchronized Map<String, BmMap> getOrLoadMaps(Predicate<String> filter) throws InterruptedException {
-        for (var entry : config.getMapConfigs().entrySet()) {
-            if (Thread.interrupted()) throw new InterruptedException();
+        for (Map.Entry<String, MapConfig> entry : this.config.getMapConfigs().entrySet()) {
+            String id = entry.getKey();
+            MapConfig mapConfig = entry.getValue();
 
-            if (!filter.test(entry.getKey())) continue;
-            if (maps.containsKey(entry.getKey())) continue;
+            // skip if filtered out
+            if (filter != null && !filter.test(id)) continue;
+
+            // skip if map is already loaded
+            if (maps.containsKey(id)) continue;
 
             try {
-                loadMap(entry.getKey(), entry.getValue());
+                loadMap(id, mapConfig);
             } catch (ConfigurationException ex) {
-                Logger.global.logWarning(ex.getFormattedExplanation());
-                Throwable cause = ex.getRootCause();
-                if (cause != null) {
-                    Logger.global.logError("Detailed error:", ex);
-                }
+                Logger.global.logError("Failed to load map '" + id + "'!", ex);
             }
         }
-        return Collections.unmodifiableMap(maps);
+
+        return getMaps();
     }
 
     private synchronized void loadMap(String id, MapConfig mapConfig) throws ConfigurationException, InterruptedException {
@@ -215,7 +218,7 @@ public class BlueMapService implements Closeable {
 
         if (!Files.isDirectory(worldFolder)) {
             throw new ConfigurationException(
-                    "'" + worldFolder.toAbsolutePath().normalize() + "' does not exist or is no directory!\n" +
+                    "'" + FileUtil.toAbsolutePath(worldFolder).normalize() + "' does not exist or is no directory!\n" +
                     "Check if the 'world' setting in the config-file for that map is correct, or remove the entire config-file if you don't want that map.");
         }
 
@@ -224,7 +227,7 @@ public class BlueMapService implements Closeable {
         if (world == null) {
             try {
                 Logger.global.logDebug("Loading world " + worldId + " ...");
-                world = MCAWorld.load(worldFolder, dimension, loadDataPack(worldFolder));
+                world = new MCAWorld(worldFolder.toFile(), dimension, loadDataPack(worldFolder));
                 worlds.put(worldId, world);
             } catch (IOException ex) {
                 throw new ConfigurationException(
@@ -333,11 +336,13 @@ public class BlueMapService implements Closeable {
         if (Thread.interrupted()) throw new InterruptedException();
 
         // also load world datapacks
-        Iterable<Path> worldPacks = List.of();
+        Iterable<Path> worldPacks = Arrays.asList();
         Path worldPacksFolder = worldFolder.resolve("datapacks");
         if (Files.isDirectory(worldPacksFolder)) {
             try (Stream<Path> worldPacksStream = Files.list(worldPacksFolder)) {
-                worldPacks = worldPacksStream.toList();
+                List<Path> packsList = new ArrayList<>();
+                worldPacksStream.forEach(packsList::add);
+                worldPacks = packsList;
             } catch (IOException e) {
                 throw new ConfigurationException("Failed to access the worlds datapacks folder.", e);
             }
@@ -357,7 +362,7 @@ public class BlueMapService implements Closeable {
     }
 
     private synchronized Deque<Path> getPackRoots(Path... additionalRoots) throws ConfigurationException, InterruptedException {
-        return getPackRoots(List.of(additionalRoots));
+        return getPackRoots(Arrays.asList(additionalRoots));
     }
 
     private synchronized Deque<Path> getPackRoots(Iterable<Path> additionalRoots) throws ConfigurationException, InterruptedException {
@@ -436,10 +441,9 @@ public class BlueMapService implements Closeable {
                 if (!config.getCoreConfig().isAcceptDownload()) {
                     throw new MissingResourcesException();
                 } else {
-                    throw new ConfigurationException("""
-                            BlueMap was not able to download some important resources!
-                            Make sure BlueMap is able to connect to mojang-servers (%s)."""
-                            .formatted(VersionManifest.DOMAIN), ex);
+                    throw new ConfigurationException(
+                            String.format("BlueMap was not able to download some important resources!\n" +
+                                    "Make sure BlueMap is able to connect to mojang-servers (%s).", VersionManifest.DOMAIN), ex);
                 }
             }
         }

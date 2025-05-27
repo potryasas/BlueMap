@@ -67,6 +67,7 @@ import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -74,6 +75,9 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import de.bluecolored.bluemap.common.util.FileUtil;
 
 @Getter
 public class Plugin implements ServerEventListener {
@@ -146,7 +150,7 @@ public class Plugin implements ServerEventListener {
                 if (coreConfig.getLog().getFile() != null) {
                     ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
                     Logger.global.put(DEBUG_FILE_LOG_NAME, () -> Logger.file(
-                            Path.of(String.format(coreConfig.getLog().getFile(), zdt)),
+                            Paths.get(String.format(coreConfig.getLog().getFile(), zdt)),
                             coreConfig.getLog().isAppend()
                     ));
                 } else {
@@ -199,14 +203,19 @@ public class Plugin implements ServerEventListener {
                     webRequestHandler.register(".*", new FileRequestHandler(webroot));
 
                     // map route
-                    for (var mapConfigEntry : configManager.getMapConfigs().entrySet()) {
+                    for (Map.Entry<String, MapConfig> mapConfigEntry : configManager.getMapConfigs().entrySet()) {
                         String id = mapConfigEntry.getKey();
                         MapConfig mapConfig = mapConfigEntry.getValue();
 
                         MapRequestHandler mapRequestHandler;
                         BmMap map = maps.get(id);
                         if (map != null) {
-                            mapRequestHandler = new MapRequestHandler(map, serverInterface, pluginConfig, Predicate.not(pluginState::isPlayerHidden));
+                            mapRequestHandler = new MapRequestHandler(map, serverInterface, pluginConfig, new Predicate<UUID>() {
+                                @Override
+                                public boolean test(UUID uuid) {
+                                    return !pluginState.isPlayerHidden(uuid);
+                                }
+                            });
                         } else {
                             Storage storage = blueMap.getOrLoadStorage(mapConfig.getStorage());
                             mapRequestHandler = new MapRequestHandler(storage.map(id));
@@ -224,7 +233,7 @@ public class Plugin implements ServerEventListener {
                     if (webserverConfig.getLog().getFile() != null) {
                         ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
                         webLoggerList.add(Logger.file(
-                                Path.of(String.format(webserverConfig.getLog().getFile(), zdt)),
+                                Paths.get(String.format(webserverConfig.getLog().getFile(), zdt)),
                                 webserverConfig.getLog().isAppend()
                         ));
                     }
@@ -248,11 +257,11 @@ public class Plugin implements ServerEventListener {
                         throw new ConfigurationException("BlueMap failed to bind to the configured address.\n" +
                                 "This usually happens when the configured port (" + webserverConfig.getPort() + ") is already in use by some other program.", ex);
                     } catch (IOException ex) {
-                        throw new ConfigurationException("""
-                                BlueMap failed to initialize the webserver.
-                                Check your webserver-config if everything is configured correctly.
-                                (Make sure you DON'T use the same port for bluemap that you also use for your minecraft server)
-                                """.strip(), ex);
+                        throw new ConfigurationException(
+                                "BlueMap failed to initialize the webserver.\n" +
+                                "Check your webserver-config if everything is configured correctly.\n" +
+                                "(Make sure you DON'T use the same port for bluemap that you also use for your minecraft server)",
+                                ex);
                     }
                 }
 
@@ -333,11 +342,12 @@ public class Plugin implements ServerEventListener {
                     TimerTask updateAllMapsTask = new TimerTask() {
                         @Override
                         public void run() {
-                            renderManager.scheduleRenderTasksNext(maps.values().stream()
+                            List<RenderTask> tasks = maps.values().stream()
                                     .filter(map -> pluginState.getMapState(map).isUpdateEnabled())
                                     .sorted(Comparator.comparing(bmMap -> bmMap.getMapSettings().getSorting()))
                                     .map(map -> MapUpdatePreparationTask.updateMap(map, renderManager))
-                                    .toArray(RenderTask[]::new));
+                                    .collect(Collectors.toList());
+                            renderManager.scheduleRenderTasksNext(tasks.toArray(new RenderTask[0]));
                         }
                     };
                     daemonTimer.scheduleAtFixedRate(updateAllMapsTask, 0, fullUpdateTime);
@@ -524,7 +534,7 @@ public class Plugin implements ServerEventListener {
             }
         }
 
-        var maps = blueMap.getMaps();
+        Map<String, BmMap> maps = blueMap.getMaps();
         for (BmMap map : maps.values()) {
             map.save();
         }
@@ -533,7 +543,7 @@ public class Plugin implements ServerEventListener {
     public void saveMarkerStates() {
         if (blueMap == null) return;
 
-        var maps = blueMap.getMaps();
+        Map<String, BmMap> maps = blueMap.getMaps();
         for (BmMap map : maps.values()) {
             map.saveMarkerState();
         }
@@ -542,13 +552,18 @@ public class Plugin implements ServerEventListener {
     public void savePlayerStates() {
         if (blueMap == null) return;
 
-        var maps = blueMap.getMaps();
+        Map<String, BmMap> maps = blueMap.getMaps();
         for (BmMap map : maps.values()) {
-            var dataSupplier = new LivePlayersDataSupplier(
+            LivePlayersDataSupplier dataSupplier = new LivePlayersDataSupplier(
                     serverInterface,
                     getBlueMap().getConfig().getPluginConfig(),
                     map.getWorld(),
-                    Predicate.not(pluginState::isPlayerHidden)
+                    new Predicate<UUID>() {
+                        @Override
+                        public boolean test(UUID uuid) {
+                            return !pluginState.isPlayerHidden(uuid);
+                        }
+                    }
             );
             try (
                     OutputStream out = map.getStorage().players().write();
@@ -585,7 +600,7 @@ public class Plugin implements ServerEventListener {
     }
 
     public boolean flushWorldUpdates(World world) throws IOException {
-        var implWorld = serverInterface.getServerWorld(world).orElse(null);
+        ServerWorld implWorld = serverInterface.getServerWorld(world).orElse(null);
         if (implWorld != null) return implWorld.persistWorldChanges();
         return false;
     }
@@ -637,7 +652,7 @@ public class Plugin implements ServerEventListener {
     }
 
     private void initFileWatcherTasks() {
-        var maps = blueMap.getMaps();
+        Map<String, BmMap> maps = blueMap.getMaps();
         if (maps != null) {
             for (BmMap map : maps.values()) {
                 if (pluginState.getMapState(map).isUpdateEnabled()) {
@@ -649,6 +664,14 @@ public class Plugin implements ServerEventListener {
 
     public boolean isLoading() {
         return loadingLock.isLocked();
+    }
+
+    /**
+     * Gets the version of the plugin
+     * @return The version string
+     */
+    public String getVersion() {
+        return "1.0.0"; // Use actual version or implement logic to retrieve it
     }
 
 }

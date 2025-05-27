@@ -24,18 +24,17 @@
  */
 package de.bluecolored.bluemap.common.commands.arguments;
 
-import de.bluecolored.bluecommands.CommandParseException;
-import de.bluecolored.bluecommands.InputReader;
-import de.bluecolored.bluecommands.SimpleSuggestion;
-import de.bluecolored.bluecommands.Suggestion;
-import de.bluecolored.bluecommands.parsers.SimpleArgumentParser;
+import de.bluecolored.bluemap.common.commands.java8compat.SimpleArgumentParser;
+import de.bluecolored.bluemap.common.commands.java8compat.SimpleArgumentParser.CommandParseException;
 import de.bluecolored.bluemap.common.serverinterface.CommandSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
-public class MapBackedArgumentParser<T> extends SimpleArgumentParser<CommandSource, T> {
+public class MapBackedArgumentParser<T> implements SimpleArgumentParser<T> {
 
     private final String typeName;
     private final Supplier<Map<String, T>> mapSupplier;
@@ -45,24 +44,22 @@ public class MapBackedArgumentParser<T> extends SimpleArgumentParser<CommandSour
     }
 
     public MapBackedArgumentParser(String typeName, Supplier<Map<String, T>> mapSupplier) {
-        super(true, false);
         this.typeName = typeName;
         this.mapSupplier = mapSupplier;
     }
 
     @Override
-    public T parse(CommandSource context, String string) throws CommandParseException {
+    public T parse(String string, CommandSource context) throws CommandParseException {
         T value = mapSupplier.get().get(string);
-        if (value == null) throw new CommandParseException("There is no %s for '%s'".formatted(typeName, string));
+        if (value == null) throw new CommandParseException(String.format("There is no %s for '%s'", typeName, string));
         return value;
     }
 
     @Override
-    public List<Suggestion> suggest(CommandSource context, InputReader input) {
+    public List<String> getSuggestions(String input, CommandSource context) {
         return mapSupplier.get().keySet().stream()
+                .filter(key -> key.startsWith(input))
                 .sorted()
-                .<Suggestion> map(SimpleSuggestion::new)
-                .toList();
+                .collect(Collectors.toList());
     }
-
 }

@@ -85,7 +85,7 @@ public class BlueMapAPIImpl extends BlueMapAPI {
                 .map(this::getMap)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -95,7 +95,7 @@ public class BlueMapAPIImpl extends BlueMapAPI {
                 .map(this::getWorld)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -106,11 +106,12 @@ public class BlueMapAPIImpl extends BlueMapAPI {
     public Optional<BlueMapWorld> getWorldUncached(Object world) {
 
         if (world instanceof String) {
-            var coreWorld = blueMapService.getWorlds().get(world);
+            World coreWorld = blueMapService.getWorlds().get(world);
             if (coreWorld != null) world = coreWorld;
         }
 
-        if (world instanceof World coreWorld) {
+        if (world instanceof World) {
+            World coreWorld = (World) world;
             return Optional.of(new BlueMapWorldImpl(coreWorld, blueMapService, plugin));
         }
 
@@ -132,12 +133,12 @@ public class BlueMapAPIImpl extends BlueMapAPI {
     }
 
     public Optional<BlueMapMap> getMapUncached(String id) {
-        var maps = blueMapService.getMaps();
+        Map<String, BmMap> maps = blueMapService.getMaps();
 
-        var map = maps.get(id);
+        BmMap map = maps.get(id);
         if (map == null) return Optional.empty();
 
-        var world = getWorld(map.getWorld()).orElse(null);
+        BlueMapWorld world = getWorld(map.getWorld()).orElse(null);
         if (world == null) return Optional.empty();
 
         return Optional.of(new BlueMapMapImpl(map, (BlueMapWorldImpl) world, plugin));

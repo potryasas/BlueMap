@@ -55,6 +55,7 @@ public class Multipart {
     }
 
     static class Adapter extends AbstractTypeAdapterFactory<Multipart> {
+        private static final String JSON_COMMENT = "//";
 
         public Adapter() {
             super(Multipart.class);

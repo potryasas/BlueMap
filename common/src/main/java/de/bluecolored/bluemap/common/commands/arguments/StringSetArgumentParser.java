@@ -24,18 +24,16 @@
  */
 package de.bluecolored.bluemap.common.commands.arguments;
 
-import de.bluecolored.bluecommands.CommandParseException;
-import de.bluecolored.bluecommands.InputReader;
-import de.bluecolored.bluecommands.SimpleSuggestion;
-import de.bluecolored.bluecommands.Suggestion;
-import de.bluecolored.bluecommands.parsers.SimpleArgumentParser;
+import de.bluecolored.bluemap.common.commands.java8compat.SimpleArgumentParser;
+import de.bluecolored.bluemap.common.commands.java8compat.SimpleArgumentParser.CommandParseException;
 import de.bluecolored.bluemap.common.serverinterface.CommandSource;
 
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
-public class StringSetArgumentParser extends SimpleArgumentParser<CommandSource, String> {
+public class StringSetArgumentParser implements SimpleArgumentParser<String> {
 
     private final String typeName;
     private final Supplier<Set<String>> setSupplier;
@@ -45,24 +43,22 @@ public class StringSetArgumentParser extends SimpleArgumentParser<CommandSource,
     }
 
     public StringSetArgumentParser(String typeName, Supplier<Set<String>> setSupplier) {
-        super(true, false);
         this.typeName = typeName;
         this.setSupplier = setSupplier;
     }
 
     @Override
-    public String parse(CommandSource context, String string) throws CommandParseException {
+    public String parse(String string, CommandSource context) throws CommandParseException {
         boolean hasValue = setSupplier.get().contains(string);
-        if (!hasValue) throw new CommandParseException("There is no %s for '%s'".formatted(typeName, string));
+        if (!hasValue) throw new CommandParseException(String.format("There is no %s for '%s'", typeName, string));
         return string;
     }
 
     @Override
-    public List<Suggestion> suggest(CommandSource context, InputReader input) {
+    public List<String> getSuggestions(String input, CommandSource context) {
         return setSupplier.get().stream()
+                .filter(key -> key.startsWith(input))
                 .sorted()
-                .<Suggestion> map(SimpleSuggestion::new)
-                .toList();
+                .collect(Collectors.toList());
     }
-
 }

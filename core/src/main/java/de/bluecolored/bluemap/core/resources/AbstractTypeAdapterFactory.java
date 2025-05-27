@@ -24,54 +24,65 @@
  */
 package de.bluecolored.bluemap.core.resources;
 
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 
+/**
+ * Abstract implementation of TypeAdapterFactory that simplifies creating TypeAdapters
+ * for Java 8 compatibility.
+ */
 public abstract class AbstractTypeAdapterFactory<T> implements TypeAdapterFactory {
-    protected static final String JSON_COMMENT = "__comment";
 
-    private final Class<T> type;
+    private final Class<T> clazz;
 
-    public AbstractTypeAdapterFactory(Class<T> type) {
-        this.type = type;
+    protected AbstractTypeAdapterFactory(Class<T> clazz) {
+        this.clazz = clazz;
     }
-
-    public void write(JsonWriter out, T value, Gson gson) throws IOException {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract T read(JsonReader in, Gson gson) throws IOException;
 
     @SuppressWarnings("unchecked")
-    public <U> TypeAdapter<U> create(Gson gson, TypeToken<U> type) {
-        if (!type.getRawType().isAssignableFrom(this.type)) return null;
-        return (TypeAdapter<U>) new Adapter(gson);
+    @Override
+    public <R> TypeAdapter<R> create(Gson gson, TypeToken<R> typeToken) {
+        if (!clazz.isAssignableFrom(typeToken.getRawType())) {
+            return null;
+        }
+
+        return (TypeAdapter<R>) new TypeAdapter<T>() {
+            @Override
+            public void write(JsonWriter out, T value) throws IOException {
+                if (value == null) {
+                    out.nullValue();
+                    return;
+                }
+                
+                JsonElement jsonElement = gson.toJsonTree(value);
+                gson.toJson(jsonElement, out);
+            }
+
+            @Override
+            public T read(JsonReader in) throws IOException {
+                if (in.peek() == JsonToken.NULL) {
+                    in.nextNull();
+                    return null;
+                }
+                
+                return AbstractTypeAdapterFactory.this.read(in, gson);
+            }
+        };
     }
 
-    public class Adapter extends TypeAdapter<T> {
-
-        private final Gson gson;
-
-        public Adapter(Gson gson) {
-            this.gson = gson;
-        }
-
-        @Override
-        public void write(JsonWriter out, T value) throws IOException {
-            AbstractTypeAdapterFactory.this.write(out, value, gson);
-        }
-
-        @Override
-        public T read(JsonReader in) throws IOException {
-            return AbstractTypeAdapterFactory.this.read(in, gson);
-        }
-
-    }
-
+    /**
+     * Read the object from the JsonReader
+     * 
+     * @param in The JsonReader to read from
+     * @param gson The Gson instance
+     * @return The deserialized object
+     * @throws IOException If an I/O error occurs
+     */
+    public abstract T read(JsonReader in, Gson gson) throws IOException;
 }

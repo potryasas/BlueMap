@@ -95,7 +95,7 @@ public class MapPurgeTask implements MapRenderTask {
 
     @Override
     public String getDescription() {
-        return "purging map '%s'".formatted(map.getId());
+        return String.format("purging map '%s'", map.getId());
     }
 
 }

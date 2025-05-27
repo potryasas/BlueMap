@@ -1,52 +1,67 @@
-# BlueMap for Minecraft 1.5.2 (Legacy)
+# BlueMap Bukkit Legacy Plugin
 
-This is a special implementation of BlueMap designed to work with Minecraft 1.5.2 and CraftBukkit servers using Java 8.
+This is a legacy version of BlueMap plugin for Bukkit 1.5.2 (Minecraft 1.5.2), compatible with Java 8.
 
 ## Features
 
-- 3D map rendering of Minecraft 1.5.2 worlds
-- Block support for all legacy blocks (pre-flattening IDs)
+- Web-based map viewer for Minecraft 1.5.2 servers
+- Customizable web interface
 - Player markers on the map
-- Legacy Bukkit API compatibility
-- Java 8 compatibility
+- Compatible with Java 8 and Bukkit 1.5.2
 
 ## Installation
 
-1. Download the BlueMap-Legacy jar from the releases page
-2. Place the jar in your server's `plugins` folder
-3. Start your server once to generate the configuration files
-4. Edit the configuration files in `plugins/BlueMap` to your liking
-5. Restart your server or use `/bluemap reload`
+1. Download the latest `bluemap-bukkit-legacy-5.7-SNAPSHOT.jar` from the repository
+2. Place the JAR file in your server's `plugins` directory
+3. Start or restart your server
+4. Configure the plugin by editing the configuration files in `plugins/BlueMap/`
 
 ## Commands
 
-- `/bluemap` - Show the plugin information
 - `/bluemap reload` - Reload the plugin configuration
-- `/bluemap stop` - Stop all active renders
-- `/bluemap render <world>` - Start rendering a world
 - `/bluemap help` - Show help information
 
-## Limitations
+## Configuration
 
-Due to the age of Minecraft 1.5.2, there are some limitations compared to the modern BlueMap implementations:
+After the first start, configuration files will be generated in the `plugins/BlueMap/` directory:
 
-1. **Block Mapping**: Some block types in 1.5.2 may not map perfectly to their modern counterparts
-2. **Biome Detection**: Biomes are approximated based on block types as 1.5.2 doesn't store biome data the same way
-3. **Reduced Performance**: The legacy implementation may be slower due to compatibility layers
-4. **Missing Features**: Some features available in newer Minecraft versions may not be available
+- `bluemap.properties` - Main configuration file
+  - `webserver.port=8100` - Web server port (default: 8100)
+  - `webserver.bind=0.0.0.0` - Web server binding address
+  - `webserver.enabled=true` - Enable/disable web server
 
-## Compatibility Notes
+## Web Interface
 
-- This implementation requires Java 8 or higher
-- Only tested with CraftBukkit for Minecraft 1.5.2
-- May not be compatible with all Bukkit plugins from that era
+The web interface is available at `http://your-server-ip:8100/` by default.
+
+When first started, the following directories will be created:
+- `plugins/BlueMap/web/` - Web server root directory
+- `plugins/BlueMap/maps/` - Map data storage directory
+
+## Troubleshooting
+
+If the web interface doesn't start:
+1. Check server logs for error messages
+2. Make sure port 8100 (or the one you configured) is not in use by another process
+3. Check that you have write permissions to the `plugins/BlueMap/` directory
+4. If you changed the port in the configuration file, restart the server
+
+If you don't see the web server startup message:
+- After the server has loaded, type `/bluemap reload` to restart the plugin
 
 ## Building from Source
 
-To build this implementation:
+To build the plugin from source:
 
-```shell
-./gradlew :bukkit-legacy:build
-```
+1. Clone the repository
+2. Run `./gradlew :bukkit-legacy:shadowJar`
+3. The JAR file will be created in `implementations/bukkit-legacy/build/libs/`
 
-The built JAR will be in `implementations/bukkit-legacy/build/libs/`. 
+## Requirements
+
+- Java 8 or higher
+- Bukkit 1.5.2 server
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 

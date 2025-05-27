@@ -97,13 +97,13 @@ public class StateDumper {
             return;
         }
 
-        if (instance instanceof Number val) {
-            writer.value(val);
+        if (instance instanceof Number) {
+            writer.value((Number) instance);
             return;
         }
 
-        if (instance instanceof Boolean val) {
-            writer.value(val);
+        if (instance instanceof Boolean) {
+            writer.value((Boolean) instance);
             return;
         }
 
@@ -113,99 +113,50 @@ public class StateDumper {
         }
 
         writer.beginObject();
-        try {
-            String identityString = toIdentityString(instance);
-            writer.name("#identity").value(identityString);
 
-            if (instance instanceof Map<?, ?> map) {
-                writer.name("entries").beginArray();
+        Class<?> clazz = instance.getClass();
+        writer.name("@type").value(clazz.getName());
 
-                int count = 0;
-                for (Map.Entry<?, ?> entry : map.entrySet()) {
-                    if (++count > 30) {
-                        writer.value("<<" + (map.size() - 30) + " more elements>>");
-                        break;
-                    }
-
-                    writer.beginObject();
-
-                    writer.name("key");
-                    dumpInstance(entry.getKey(), writer, alreadyDumped);
-
-                    writer.name("value");
-                    dumpInstance(entry.getValue(), writer, alreadyDumped);
-
-                    writer.endObject();
-                }
-
-                writer.endArray();
-                return;
-            }
-
-            if (instance instanceof Collection<?> collection) {
-                writer.name("entries").beginArray();
-
-                int count = 0;
-                for (Object entry : collection) {
-                    if (++count > 30) {
-                        writer.value("<<" + (collection.size() - 30) + " more elements>>");
-                        break;
-                    }
-
-                    dumpInstance(entry, writer, alreadyDumped);
-                }
-
-                writer.endArray();
-                return;
-            }
-
-            if (instance instanceof Object[] array) {
-                writer.name("entries").beginArray();
-
-                int count = 0;
-                for (Object entry : array) {
-                    if (++count > 30) {
-                        writer.value("<<" + (array.length - 30) + " more elements>>");
-                        break;
-                    }
-
-                    dumpInstance(entry, writer, alreadyDumped);
-                }
-
-                writer.endArray();
-                return;
-            }
-
-            String toString = instance.toString();
-            if (!toString.equals(identityString))
-                writer.name("#toString").value(instance.toString());
-
-            if (instance instanceof Thread thread) {
-                writer.name("name").value(thread.getName());
-                writer.name("state").value(thread.getState().toString());
-                writer.name("priority").value(thread.getPriority());
-                writer.name("alive").value(thread.isAlive());
-                writer.name("id").value(thread.getId());
-                writer.name("deamon").value(thread.isDaemon());
-                writer.name("interrupted").value(thread.isInterrupted());
-
-                try {
-                    StackTraceElement[] trace = thread.getStackTrace();
-                    writer.name("stacktrace").beginArray();
-                    for (StackTraceElement element : trace) {
-                        writer.value(element.toString());
-                    }
-                    writer.endArray();
-                } catch (SecurityException ignore) {}
-
-                return;
-            }
-
-            dumpAnnotatedInstance(instance.getClass(), instance, writer, alreadyDumped);
-
-        } finally {
-            writer.endObject();
+        if (instance instanceof Thread) {
+            Thread thread = (Thread) instance;
+            writer.name("name").value(thread.getName());
+            writer.name("state").value(thread.getState().name());
+            writer.name("priority").value(thread.getPriority());
+            writer.name("daemon").value(thread.isDaemon());
+            writer.name("alive").value(thread.isAlive());
+            writer.name("interrupted").value(thread.isInterrupted());
+            return;
         }
+
+        if (instance instanceof Map) {
+            @SuppressWarnings("unchecked")
+            Map<Object, Object> map = (Map<Object, Object>) instance;
+            for (Map.Entry<Object, Object> entry : map.entrySet()) {
+                writer.name(String.valueOf(entry.getKey()));
+                dumpInstance(entry.getValue(), writer, alreadyDumped);
+            }
+            return;
+        }
+
+        if (instance instanceof Collection) {
+            @SuppressWarnings("unchecked")
+            Collection<Object> collection = (Collection<Object>) instance;
+            writer.name("elements").beginArray();
+            for (Object element : collection) {
+                dumpInstance(element, writer, alreadyDumped);
+            }
+            writer.endArray();
+            return;
+        }
+
+        String toString = instance.toString();
+        if (!toString.equals(toIdentityString(instance))) {
+            writer.name("#toString").value(instance.toString());
+        }
+
+        dumpAnnotatedInstance(clazz, instance, writer, alreadyDumped);
+
+        writer.endObject();
     }
 
     private static String toIdentityString(Object instance) {
@@ -218,7 +169,7 @@ public class StateDumper {
         boolean exclude = typedd != null && typedd.exclude();
         boolean allFields = !exclude && (
                 typedd != null ||
-                type.getPackageName().startsWith("de.bluecolored.bluemap")
+                getPackageName(type).startsWith("de.bluecolored.bluemap")
         );
 
         for (Field field : type.getDeclaredFields()) {
@@ -282,6 +233,12 @@ public class StateDumper {
             dumpAnnotatedInstance(typeSuperclass, instance, writer, alreadyDumped);
         }
 
+    }
+
+    private String getPackageName(Class<?> clazz) {
+        String className = clazz.getName();
+        int lastDot = className.lastIndexOf('.');
+        return lastDot > 0 ? className.substring(0, lastDot) : "";
     }
 
     private void collectSystemInfo(JsonWriter writer) throws IOException {
