@@ -1,0 +1,2334 @@
+[
+  {
+    "resourcePath": "bluemap:missing",
+    "color": [
+      0.5,
+      0.0,
+      0.5,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPo1Ov8TwlmABEzjWeShUcNGDQGxDDE/E9jSCMLg/SOGjBoDKAEAwBU1BDxO7cbqAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wooden_button",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:stone_pressure_plate",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:grass",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:oak_stairs",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:jungle_slab",
+    "color": [
+      0.537,
+      0.431,
+      0.282,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOYWJv0nxLMACIWdueShUcNGDQGJPub/M+LsCILg/SOGjBoDKAEAwA7nEPF7gYAVAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_gray",
+    "color": [
+      0.243,
+      0.267,
+      0.278,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmOIjkv8TwlmABGpmTlk4VEDBo0BugbG/43MLMnCIL2jBgwaAyjBABlf5tICaWvCAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:fire",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      0.8
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmO4szvwFiWYAUT8uhJ9jRw8asCgMWBZq/StvdPlrpGDQXpHDRg0BlCCAQrKl8l4tst7AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:cake",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4fPnyf0owA4h4/fo1WXjUgEFjwNKlS//v2LGDLAzSO2rAoDGAEgwAOWtkkL94oIsAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wooden_door",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:monster_egg",
+    "color": [
+      0.5,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPo7Oz8TwlmABEzZ84kC48aMGgMiImJ+Z+WlkYWBukdNWDQGEAJBgCX1nR7aGHfJQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:planks_acacia",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_blue",
+    "color": [
+      0.208,
+      0.224,
+      0.616,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMICZ//nxLMACJiEzeShUcNGDQGqGkW/tfSqyMLg/SOGjBoDKAEAwA08Bq10/4y6gAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:enchanting_table",
+    "color": [
+      0.298,
+      0.149,
+      0.165,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNI9fT5TwlmABEFgaFk4VEDBo0B5tLy/23llMjCIL2jBgwaAyjBAP5jw+DY5Tl2AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:bed_block",
+    "color": [
+      0.7,
+      0.2,
+      0.2,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYFxz8nxLMACIOxcSQhUcNGDQGNKiq/u/X1CQLg/SOGjBoDKAEAwDPDCV5SWDjeAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_purple",
+    "color": [
+      0.475,
+      0.165,
+      0.675,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNo9Vn1nxLMACKmhO4lC48aMGgMCJev+Z+o1EUWBukdNWDQGEAJBgBuyVBr6mJXawAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:tripwire",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      0.2
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmNYsWJFLiWYAUTcu3cvhhw8asCgMcDW1jY3ICAghhwM0jtqwKAxgBIMAEyyC3FTsEJfAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:carrots",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:stone",
+    "color": [
+      0.5,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPo7Oz8TwlmABEzZ84kC48aMGgMiImJ+Z+WlkYWBukdNWDQGEAJBgCX1nR7aGHfJQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:sand",
+    "color": [
+      0.859,
+      0.827,
+      0.627,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4fWzhf0owA4h4dGczWXjUgEFjwNwZxf/Xr2wgC4P0jhowaAygBAMA/9wWrHfP1hEAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:leaves_dark_oak",
+    "color": [
+      0.235,
+      0.431,
+      0.235,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmOIqot6SwlmABFpvWmvycGjBgwaA7R8tN7qh+m/JgeD9I4aMGgMoAQDAHDn6x7fqEv/AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:redstone_ore",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:nether_brick_stairs",
+    "color": [
+      0.298,
+      0.149,
+      0.165,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNI9fT5TwlmABEFgaFk4VEDBo0B5tLy/23llMjCIL2jBgwaAyjBAP5jw+DY5Tl2AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:hay_block",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:trapdoor",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wheat",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:jukebox",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:oak_slab",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:ice",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmNIX31oMSWYAURUn3o2kxw8asCgMUA+uWqxWunEmeRgkN5RAwaNAZRgAIT6NyXvgYVVAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:snow_block",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAK0lEQVR4XmN4+vTpf0owA4ggF4waMGgM2L59+/8zZ86QhUF6Rw0YNAZQggFicJ8olztcIAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:beacon",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmNIX31oMSWYAURUn3o2kxw8asCgMUA+uWqxWunEmeRgkN5RAwaNAZRgAIT6NyXvgYVVAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:spruce_slab",
+    "color": [
+      0.386,
+      0.308,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoSQv6TwlmABGNRdFk4VEDBo0BbpYq//3sNcjCIL2jBgwaAyjBAA+l+nj2o0WHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:powered_comparator",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:end_portal",
+    "color": [
+      0.1,
+      0.1,
+      0.1,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmMICwtbTAlmABFpaWkzycGjBgwaA/j4+BYLCgrOJAeD9I4aMGgMoAQDACDjRzpeCu6DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wool_green",
+    "color": [
+      0.329,
+      0.427,
+      0.106,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPIqnH6TwlmABFlXZ5k4VEDBo0BNn4i/53DxcjCIL2jBgwaAyjBAFM79ZY7jXjBAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:log_jungle",
+    "color": [
+      0.475,
+      0.357,
+      0.224,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNozQ//TwlmABFTahLJwqMGDBoDwp00/yd66pGFQXpHDRg0BlCCAWH8HJdIt4XRAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wool",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4fPnyf0owA4h4/fo1WXjUgEFjwNKlS//v2LGDLAzSO2rAoDGAEgwAOWtkkL94oIsAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:pumpkin_stem",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:double_wooden_slab",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_yellow",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:log_birch",
+    "color": [
+      0.843,
+      0.843,
+      0.843,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4ceLEf0owA4i4f/8+WXjUgEFjwKxZs/6vWbOGLAzSO2rAoDGAEgwAcS1BRHqEcakAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:log_spruce",
+    "color": [
+      0.298,
+      0.235,
+      0.145,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNIjfT8TwlmABEFyYFk4VEDBo0B5trS/20N5MjCIL2jBgwaAyjBAO7V0YbNO5dbAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wool_orange",
+    "color": [
+      0.941,
+      0.463,
+      0.075,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmO41WT9nxLMACI+T3QiC48aMGgMWBPC+/9AHD9ZGKR31IBBYwAlGABdU29deZoqGgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:crafting_table",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:lit_redstone_ore",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:lever",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:tnt",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:sandstone_slab",
+    "color": [
+      0.859,
+      0.827,
+      0.627,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4fWzhf0owA4h4dGczWXjUgEFjwNwZxf/Xr2wgC4P0jhowaAygBAMA/9wWrHfP1hEAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:acacia_stairs",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:air",
+    "color": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAKklEQVR4XmNYvHixByWYAUT8///fmBw8asCgMQAIQIQxmXjUgEFlANkYALMPliRlSzfHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:standing_sign",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:log_oak",
+    "color": [
+      0.4,
+      0.318,
+      0.2,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMozwj+TwlmABGtJTFk4VEDBo0BXlaq/4McNcnCIL2jBgwaAyjBANTMAUvEsvpIAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:log",
+    "color": [
+      0.4,
+      0.318,
+      0.2,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMozwj+TwlmABGtJTFk4VEDBo0BXlaq/4McNcnCIL2jBgwaAyjBANTMAUvEsvpIAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:dark_oak_slab",
+    "color": [
+      0.386,
+      0.308,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoSQv6TwlmABGNRdFk4VEDBo0BbpYq//3sNcjCIL2jBgwaAyjBAA+l+nj2o0WHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:stained_clay",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:pumpkin",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:light_weighted_pressure_plate",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:bookshelf",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:end_portal_frame",
+    "color": [
+      0.298,
+      0.149,
+      0.165,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNI9fT5TwlmABEFgaFk4VEDBo0B5tLy/23llMjCIL2jBgwaAyjBAP5jw+DY5Tl2AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:diamond_ore",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:cobblestone_slab",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wall_sign",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:iron_door",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4fPnyf0owA4h4/fo1WXjUgEFjwNKlS//v2LGDLAzSO2rAoDGAEgwAOWtkkL94oIsAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:stained_glass",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      0.2
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmM4dOhQLiWYAUT8//8/hhw8asCgMSA8PDy3qKgohhwM0jtqwKAxgBIMAPAaaqvgK/E4AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:mob_spawner",
+    "color": [
+      0.3,
+      0.3,
+      0.3,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNITU39TwlmABGFhYVk4VEDBo0BFhYW/+3s7MjCIL2jBgwaAyjBAEXM/zw++WtKAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:dirt",
+    "color": [
+      0.525,
+      0.376,
+      0.263,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPoK477TwlmABHzGjLJwqMGDBoDElwN/mf7mpGFQXpHDRg0BlCCARt+MgGwV7/QAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:redstone_wire",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:stone_button",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:ender_chest",
+    "color": [
+      0.1,
+      0.1,
+      0.1,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNwdHT8TwlmABEeHh5k4VEDBo0BwsLC/0VFRcnCIL2jBgwaAyjBABGvh2bNMeOOAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:leaves_oak",
+    "color": [
+      0.31,
+      0.541,
+      0.078,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPImGj/lhLMACJKF7u/JgePGjBoDDBP4H1rl83/mhwM0jtqwKAxgBIMAM1g8B5cXpmCAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:glass",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      0.2
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmM4dOhQLiWYAUT8//8/hhw8asCgMSA8PDy3qKgohhwM0jtqwKAxgBIMAPAaaqvgK/E4AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:double_plant",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wool_cyan",
+    "color": [
+      0.082,
+      0.537,
+      0.569,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOwnTjtPyWYAUS4LFxOFh41YNAYwJ+c8V8wr4QsDNI7asCgMYASDACyCTcB3E9XvAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:gold_block",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:hardened_clay",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:planks_birch",
+    "color": [
+      0.867,
+      0.812,
+      0.588,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4e3jWf0owA4h4cnM1WXjUgEFjwPypOf83LqsgC4P0jhowaAygBAMANh8N6EUpbFgAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:end_stone",
+    "color": [
+      0.859,
+      0.827,
+      0.627,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4fWzhf0owA4h4dGczWXjUgEFjwNwZxf/Xr2wgC4P0jhowaAygBAMA/9wWrHfP1hEAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:detector_rail",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:piston",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:cobble_wall",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:acacia_slab",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:jack_o_lantern",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:cactus",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:cocoa",
+    "color": [
+      0.447,
+      0.278,
+      0.157,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNoSPT+TwlmABF9OcFk4VEDBo0BQcay/6MtFcjCIL2jBgwaAyjBAIN3+ZZ9CRtnAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:leaves2",
+    "color": [
+      0.31,
+      0.541,
+      0.078,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPImGj/lhLMACJKF7u/JgePGjBoDDBP4H1rl83/mhwM0jtqwKAxgBIMAM1g8B5cXpmCAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:iron_ore",
+    "color": [
+      0.533,
+      0.51,
+      0.498,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY0N35nxLMACIWzJ5JFh41YNAYkBQb8z83I40sDNI7asCgMYASDADIGn0/e6Ko8wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:leaves_acacia",
+    "color": [
+      0.31,
+      0.541,
+      0.078,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPImGj/lhLMACJKF7u/JgePGjBoDDBP4H1rl83/mhwM0jtqwKAxgBIMAM1g8B5cXpmCAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:sapling",
+    "color": [
+      0.471,
+      0.471,
+      0.471,
+      0.0
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAKklEQVR4XmNYvHixByWYAUT8///fmBw8asCgMQAIQIQxmXjUgEFlANkYALMPliRlSzfHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:leaves",
+    "color": [
+      0.31,
+      0.541,
+      0.078,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPImGj/lhLMACJKF7u/JgePGjBoDDBP4H1rl83/mhwM0jtqwKAxgBIMAM1g8B5cXpmCAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:fence_gate",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:netherrack",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:nether_brick_slab",
+    "color": [
+      0.298,
+      0.149,
+      0.165,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNI9fT5TwlmABEFgaFk4VEDBo0B5tLy/23llMjCIL2jBgwaAyjBAP5jw+DY5Tl2AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:redstone_torch",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wooden_pressure_plate",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_magenta",
+    "color": [
+      0.741,
+      0.267,
+      0.702,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPYGrfuPyWYAUScyjxEFh41YNAY0GHQ8H+6WT9ZGKR31IBBYwAlGAD9cZ1PrlTF5AAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_pink",
+    "color": [
+      0.929,
+      0.553,
+      0.675,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmO4MXnVf0owA4j4uGQvWXjUgEFjwOrUmv/7CrvIwiC9owYMGgMowQD/rvgzbvOB8AAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:sandstone_stairs",
+    "color": [
+      0.859,
+      0.827,
+      0.627,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4fWzhf0owA4h4dGczWXjUgEFjwNwZxf/Xr2wgC4P0jhowaAygBAMA/9wWrHfP1hEAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:mossy_cobblestone",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:furnace",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:nether_brick_fence",
+    "color": [
+      0.298,
+      0.149,
+      0.165,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNI9fT5TwlmABEFgaFk4VEDBo0B5tLy/23llMjCIL2jBgwaAyjBAP5jw+DY5Tl2AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:hopper",
+    "color": [
+      0.3,
+      0.3,
+      0.3,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNITU39TwlmABGFhYVk4VEDBo0BFhYW/+3s7MjCIL2jBgwaAyjBAEXM/zw++WtKAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:leaves_birch",
+    "color": [
+      0.318,
+      0.529,
+      0.157,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPI7Pd9SwlmABFlC8Nfk4NHDRg0BljEyby1z5R/TQ4G6R01YNAYQAkGAF4W/sTQ4GKoAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:note_block",
+    "color": [
+      0.4,
+      0.2,
+      0.1,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoD3b8TwlmABGtMR5k4VEDBo0BXqrC/4M0RcnCIL2jBgwaAyjBAM8x1miUvzDeAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:log2",
+    "color": [
+      0.4,
+      0.318,
+      0.2,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMozwj+TwlmABGtJTFk4VEDBo0BXlaq/4McNcnCIL2jBgwaAyjBANTMAUvEsvpIAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:redstone_lamp",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:quartz_stairs",
+    "color": [
+      0.929,
+      0.929,
+      0.929,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4cePGf0owA4j4+PEjWXjUgEFjwOrVq//v27ePLAzSO2rAoDGAEgwAnMB2Nl9Nt9AAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:brewing_stand",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:log_acacia",
+    "color": [
+      0.4,
+      0.318,
+      0.2,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMozwj+TwlmABGtJTFk4VEDBo0BXlaq/4McNcnCIL2jBgwaAyjBANTMAUvEsvpIAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:leaves_spruce",
+    "color": [
+      0.235,
+      0.431,
+      0.235,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmOIqot6SwlmABFpvWmvycGjBgwaA7R8tN7qh+m/JgeD9I4aMGgMoAQDAHDn6x7fqEv/AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:piston_extension",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:smooth_stairs",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:stone_brick_slab",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:dragon_egg",
+    "color": [
+      0.1,
+      0.1,
+      0.1,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNwdHT8TwlmABEeHh5k4VEDBo0BwsLC/0VFRcnCIL2jBgwaAyjBABGvh2bNMeOOAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:stone_stairs",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:sticky_piston",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:ladder",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:snow",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAK0lEQVR4XmN4+vTpf0owA4ggF4waMGgM2L59+/8zZ86QhUF6Rw0YNAZQggFicJ8olztcIAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:melon_block",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:unpowered_comparator",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:skull",
+    "color": [
+      0.2,
+      0.2,
+      0.2,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMIDg7+TwlmABExMTFk4VEDBo0Bqqqq/zU1NcnCIL2jBgwaAyjBADq0wf7ohOwFAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:glass_pane",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      0.2
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmM4dOhQLiWYAUT8//8/hhw8asCgMSA8PDy3qKgohhwM0jtqwKAxgBIMAPAaaqvgK/E4AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:leaves_jungle",
+    "color": [
+      0.349,
+      0.573,
+      0.086,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPIn+74lhLMACJqV3q+JgePGjBoDLBN5X/rWiT4mhwM0jtqwKAxgBIMAL5a/6YKbnDTAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:rail",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:jungle_stairs",
+    "color": [
+      0.537,
+      0.431,
+      0.282,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOYWJv0nxLMACIWdueShUcNGDQGJPub/M+LsCILg/SOGjBoDKAEAwA7nEPF7gYAVAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:diamond_block",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:lapis_block",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:dead_bush",
+    "color": [
+      0.6,
+      0.5,
+      0.3,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY3Zn6nxLMACLWziwkC48aMGgMyIux+F+VZkcWBukdNWDQGEAJBgAaIWDz29UBEAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:stone_slab",
+    "color": [
+      0.5,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPo7Oz8TwlmABEzZ84kC48aMGgMiImJ+Z+WlkYWBukdNWDQGEAJBgCX1nR7aGHfJQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:farmland",
+    "color": [
+      0.525,
+      0.376,
+      0.263,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPoK477TwlmABHzGjLJwqMGDBoDElwN/mf7mpGFQXpHDRg0BlCCARt+MgGwV7/QAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:bedrock",
+    "color": [
+      0.329,
+      0.329,
+      0.329,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPIysr6TwlmABFlZWVk4VEDBo0BNjY2/52dncnCIL2jBgwaAyjBAJDMDfFEP0+nAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:iron_block",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4fPnyf0owA4h4/fo1WXjUgEFjwNKlS//v2LGDLAzSO2rAoDGAEgwAOWtkkL94oIsAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:smooth_brick",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:lit_redstone_lamp",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:brick",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:spruce_stairs",
+    "color": [
+      0.386,
+      0.308,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoSQv6TwlmABGNRdFk4VEDBo0BbpYq//3sNcjCIL2jBgwaAyjBAA+l+nj2o0WHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:activator_rail",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:brick_slab",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:gravel",
+    "color": [
+      0.533,
+      0.494,
+      0.494,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY0Nn5nxLMACIWzJhBFh41YNAYkBQd/T83NZUsDNI7asCgMYASDACIeXmZqZI5kQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:nether_brick",
+    "color": [
+      0.298,
+      0.149,
+      0.165,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNI9fT5TwlmABEFgaFk4VEDBo0B5tLy/23llMjCIL2jBgwaAyjBAP5jw+DY5Tl2AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:nether_wart",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:carpet",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4fPnyf0owA4h4/fo1WXjUgEFjwNKlS//v2LGDLAzSO2rAoDGAEgwAOWtkkL94oIsAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_red",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:soul_sand",
+    "color": [
+      0.447,
+      0.278,
+      0.157,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNoSPT+TwlmABF9OcFk4VEDBo0BQcay/6MtFcjCIL2jBgwaAyjBAIN3+ZZ9CRtnAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:vine",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      0.9
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPI7wx5SwlmABG1M+Nek4NHDRg0BtiGK711TVJ/TQ4G6R01YNAYQAkGAES/BRcxpjtOAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:glowstone",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:planks_oak",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:piston_moving_piece",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_light_blue",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:tripwire_hook",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_brown",
+    "color": [
+      0.447,
+      0.278,
+      0.157,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNoSPT+TwlmABF9OcFk4VEDBo0BQcay/6MtFcjCIL2jBgwaAyjBAIN3+ZZ9CRtnAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:web",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmM4ceLEYkowA4h49+7dTHLwqAGDxoCGhobFM8kEIL2jBgwaAyjBAGgpz9FBhbW4AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wool_light_gray",
+    "color": [
+      0.557,
+      0.557,
+      0.525,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOYMqXvPyWYAUQsXTqPLDxqwKAxIC0t4X9RUTZZGKR31IBBYwAlGABuQpCpTrJXDgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:trapped_chest",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:potatoes",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:dropper",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:lava",
+    "color": [
+      0.812,
+      0.361,
+      0.078,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmM4XGDznxLMACJu1jqThUcNGDQGTHXi+7/MS4AsDNI7asCgMYASDAAhRkOJiWhgpQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:gold_ore",
+    "color": [
+      0.561,
+      0.549,
+      0.49,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOYMqnjPyWYAUQsXTydLDxqwKAxIC016n9RQQpZGKR31IBBYwAlGACzjIgDUnx8EgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:planks_dark_oak",
+    "color": [
+      0.386,
+      0.308,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoSQv6TwlmABGNRdFk4VEDBo0BbpYq//3sNcjCIL2jBgwaAyjBAA+l+nj2o0WHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:chest",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:brown_mushroom",
+    "color": [
+      0.447,
+      0.278,
+      0.157,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNoSPT+TwlmABF9OcFk4VEDBo0BQcay/6MtFcjCIL2jBgwaAyjBAIN3+ZZ9CRtnAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:lit_furnace",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:birch_stairs",
+    "color": [
+      0.867,
+      0.812,
+      0.588,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4e3jWf0owA4h4cnM1WXjUgEFjwPypOf83LqsgC4P0jhowaAygBAMANh8N6EUpbFgAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:cauldron",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:stained_glass_pane",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      0.2
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmM4dOhQLiWYAUT8//8/hhw8asCgMSA8PDy3qKgohhwM0jtqwKAxgBIMAPAaaqvgK/E4AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:yellow_flower",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:daylight_detector",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:portal",
+    "color": [
+      0.475,
+      0.165,
+      0.675,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPojV+2mBLMACKWFx6bSQ4eNWDQGOAqHr84SKZwJjkYpHfUgEFjACUYAIcr7MhIsvlgAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:quartz_block",
+    "color": [
+      0.929,
+      0.929,
+      0.929,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4cePGf0owA4j4+PEjWXjUgEFjwOrVq//v27ePLAzSO2rAoDGAEgwAnMB2Nl9Nt9AAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:dark_oak_stairs",
+    "color": [
+      0.386,
+      0.308,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoSQv6TwlmABGNRdFk4VEDBo0BbpYq//3sNcjCIL2jBgwaAyjBAA+l+nj2o0WHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:dispenser",
+    "color": [
+      0.5,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPo7Oz8TwlmABEzZ84kC48aMGgMiImJ+Z+WlkYWBukdNWDQGEAJBgCX1nR7aGHfJQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:coal_ore",
+    "color": [
+      0.176,
+      0.176,
+      0.176,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPw8/P7TwlmABHh4eFk4VEDBo0BCgoK/1VUVMjCIL2jBgwaAyjBALljsv7YxxZ6AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:fence",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_black",
+    "color": [
+      0.078,
+      0.082,
+      0.098,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmOwsXX4TwlmABHOLu5k4VEDBo0BfPxC/wUERcjCIL2jBgwaAyjBALd0fWaBvrMOAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:water",
+    "color": [
+      0.231,
+      0.341,
+      0.749,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR4XmPIrNi0mBLMACJq+6/MJAePGjBoDFA0yFqsYVU/kxwM0jtqwKAxgBIMANZC7m5L7MBIAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:planks",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:torch",
+    "color": [
+      0.973,
+      0.776,
+      0.153,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmN4sMfrPyWYAUT8vBhEFh41YNAYsKlP5v+xefJkYZDeUQMGjQGUYADiosO5apeWaAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:wool_white",
+    "color": [
+      0.918,
+      0.925,
+      0.925,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4duPGf0owA4h49+EDWXjUgEFjwIpVq/7v3ruXLAzSO2rAoDGAEgwAp3FxkKynUwcAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:flower_pot",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:brick_stairs",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:quartz_ore",
+    "color": [
+      0.929,
+      0.929,
+      0.929,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4cePGf0owA4j4+PEjWXjUgEFjwOrVq//v27ePLAzSO2rAoDGAEgwAnMB2Nl9Nt9AAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:double_stone_slab",
+    "color": [
+      0.5,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmPo7Oz8TwlmABEzZ84kC48aMGgMiImJ+Z+WlkYWBukdNWDQGEAJBgCX1nR7aGHfJQAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:quartz_slab",
+    "color": [
+      0.929,
+      0.929,
+      0.929,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmO4cePGf0owA4j4+PEjWXjUgEFjwOrVq//v27ePLAzSO2rAoDGAEgwAnMB2Nl9Nt9AAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:melon_stem",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wool_lime",
+    "color": [
+      0.439,
+      0.725,
+      0.098,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOo3+zwnxLMACJ6j7uThUcNGDQGBLYK/Y+aIkIWBukdNWDQGEAJBgBeYEXFNhFqAgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:cobblestone",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:powered_rail",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:heavy_weighted_pressure_plate",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:redstone_block",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:coal_block",
+    "color": [
+      0.176,
+      0.176,
+      0.176,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPw8/P7TwlmABHh4eFk4VEDBo0BCgoK/1VUVMjCIL2jBgwaAyjBALljsv7YxxZ6AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:planks_spruce",
+    "color": [
+      0.386,
+      0.308,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmMoSQv6TwlmABGNRdFk4VEDBo0BbpYq//3sNcjCIL2jBgwaAyjBAA+l+nj2o0WHAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:wooden_slab",
+    "color": [
+      0.612,
+      0.498,
+      0.306,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOY15n6nxLMACI2zCwkC48aMGgMKIix+F+bZkcWBukdNWDQGEAJBgAkx2PVPkyu/wAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:command_block",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:sandstone",
+    "color": [
+      0.859,
+      0.827,
+      0.627,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4fWzhf0owA4h4dGczWXjUgEFjwNwZxf/Xr2wgC4P0jhowaAygBAMA/9wWrHfP1hEAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:packed_ice",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:red_flower",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:emerald_block",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:birch_slab",
+    "color": [
+      0.867,
+      0.812,
+      0.588,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR4XmM4e3jWf0owA4h4cnM1WXjUgEFjwPypOf83LqsgC4P0jhowaAygBAMANh8N6EUpbFgAAAAASUVORK5CYII\u003d"
+  },
+  {
+    "resourcePath": "minecraft:iron_bars",
+    "color": [
+      0.9,
+      0.9,
+      0.9,
+      0.5
+    ],
+    "halfTransparent": true,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmM4ceLEYkowA4h49+7dTHLwqAGDxoCGhobFM8kEIL2jBgwaAyjBAGgpz9FBhbW4AAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:sponge",
+    "color": [
+      0.8,
+      0.8,
+      0.318,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmM4cCDjPyWYAURcu1ZCFh41YNAYMGmS1f/Fix3JwiC9owYMGgMowQDNs8dBYxzxjgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:lapis_ore",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:mycelium",
+    "color": [
+      0.447,
+      0.278,
+      0.157,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNoSPT+TwlmABF9OcFk4VEDBo0BQcay/6MtFcjCIL2jBgwaAyjBAIN3+ZZ9CRtnAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:water_lily",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:anvil",
+    "color": [
+      0.3,
+      0.3,
+      0.3,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNITU39TwlmABGFhYVk4VEDBo0BFhYW/+3s7MjCIL2jBgwaAyjBAEXM/zw++WtKAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:obsidian",
+    "color": [
+      0.1,
+      0.1,
+      0.1,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNwdHT8TwlmABEeHh5k4VEDBo0BwsLC/0VFRcnCIL2jBgwaAyjBABGvh2bNMeOOAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:sugar_cane",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:planks_jungle",
+    "color": [
+      0.537,
+      0.431,
+      0.282,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmOYWJv0nxLMACIWdueShUcNGDQGJPub/M+LsCILg/SOGjBoDKAEAwA7nEPF7gYAVAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:red_mushroom",
+    "color": [
+      0.631,
+      0.153,
+      0.133,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNY5OX2nxLMACK2BPmRhUcNGDQGlMhI/G+UlyYLg/SOGjBoDKAEAwBv2wBpvkuzLAAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:repeater",
+    "color": [
+      0.478,
+      0.478,
+      0.478,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNoa2v7TwlmABFTp04lC48aMGgMiIiI+J+UlEQWBukdNWDQGEAJBgBoNWjVQQyFkwAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:tall_grass",
+    "color": [
+      0.349,
+      0.49,
+      0.196,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmPI6wj6TwlmABFV06PJwqMGDBoDHKJU/runaJCFQXpHDRg0BlCCAQVTF/HCZx4DAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:log_dark_oak",
+    "color": [
+      0.298,
+      0.235,
+      0.145,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALUlEQVR4XmNIjfT8TwlmABEFyYFk4VEDBo0B5trS/20N5MjCIL2jBgwaAyjBAO7V0YbNO5dbAAAAAElFTkSuQmCC"
+  },
+  {
+    "resourcePath": "minecraft:clay",
+    "color": [
+      0.7,
+      0.7,
+      0.7,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmNYt27df0owA4g4dOgQWXjUgEFjQENDw//+/n6yMEjvqAGDxgBKMADNeOxRUugz3QAAAABJRU5ErkJggg\u003d\u003d"
+  },
+  {
+    "resourcePath": "minecraft:emerald_ore",
+    "color": [
+      0.227,
+      0.686,
+      0.851,
+      1.0
+    ],
+    "halfTransparent": false,
+    "texture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR4XmMIX3PqPyWYAUQk7n9IFh41YNAYoFk3579ezzqyMEjvqAGDxgBKMADN7akxZxzbKgAAAABJRU5ErkJggg\u003d\u003d"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "world_nether",
+  "sorting": 1,
+  "hires": {
+    "tileSize": [32, 32],
+    "scale": [1, 1],
+    "translate": [2, 2]
+  },
+  "lowres": {
+    "tileSize": [500, 500],
+    "lodFactor": 5,
+    "lodCount": 3
+  },
+  "startPos": [0, 0],
+  "skyColor": [0.1, 0.05, 0.05, 1.0],
+  "voidColor": [0.05, 0.0, 0.0, 1.0],
+  "ambientLight": 0.3,
+  "skyLight": 0.5,
+  "perspectiveView": true,
+  "flatView": true,
+  "freeFlightView": false
+} 

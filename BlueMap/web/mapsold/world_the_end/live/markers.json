@@ -1,0 +1,37 @@
+{
+  "places": {
+    "label": "Важные места",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "category_6833": {
+    "label": "test1",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "buildings": {
+    "label": "Постройки",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "resources": {
+    "label": "Ресурсы",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "transport": {
+    "label": "Транспорт",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  }
+}

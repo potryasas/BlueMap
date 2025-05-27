@@ -1,0 +1,16 @@
+{
+  "name": "world_nether",
+  "skyColor": "#300000",
+  "ambientLight": 0.2,
+  "equirectangular": false,
+  "renderEdges": true,
+  "renderAll": false,
+  "hires": {
+    "enabled": true,
+    "save": true
+  },
+  "lowres": {
+    "enabled": true,
+    "save": true
+  }
+}

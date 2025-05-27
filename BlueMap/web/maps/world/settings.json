@@ -1,0 +1,47 @@
+{
+  "name": "Overworld",
+  "sorting": 0,
+  "hires": {
+    "tileSize": [
+      32,
+      32
+    ],
+    "scale": [
+      1.0,
+      1.0
+    ],
+    "translate": [
+      2.0,
+      2.0
+    ]
+  },
+  "lowres": {
+    "tileSize": [
+      500,
+      500
+    ],
+    "lodFactor": 5,
+    "lodCount": 3
+  },
+  "startPos": [
+    -1.0,
+    0.0
+  ],
+  "skyColor": [
+    0.5686274766921997,
+    0.6745098233222961,
+    1.0,
+    1.0
+  ],
+  "voidColor": [
+    0.239215686917305,
+    0.3137255012989044,
+    0.686274528503418,
+    1.0
+  ],
+  "ambientLight": 0.1,
+  "skyLight": 1.0,
+  "perspectiveView": true,
+  "flatView": true,
+  "freeFlightView": false
+}

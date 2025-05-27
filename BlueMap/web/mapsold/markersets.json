@@ -1,0 +1,27 @@
+{
+  "places": {
+    "label": "Важные места",
+    "toggleable": true,
+    "defaultHidden": false
+  },
+  "category_6833": {
+    "label": "test1",
+    "toggleable": true,
+    "defaultHidden": false
+  },
+  "buildings": {
+    "label": "Постройки",
+    "toggleable": true,
+    "defaultHidden": false
+  },
+  "resources": {
+    "label": "Ресурсы",
+    "toggleable": true,
+    "defaultHidden": false
+  },
+  "transport": {
+    "label": "Транспорт",
+    "toggleable": true,
+    "defaultHidden": false
+  }
+}

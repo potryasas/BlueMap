@@ -1,0 +1,16 @@
+{
+  "name": "world_the_end",
+  "skyColor": "#000000",
+  "ambientLight": 0.1,
+  "equirectangular": false,
+  "renderEdges": true,
+  "renderAll": false,
+  "hires": {
+    "enabled": true,
+    "save": true
+  },
+  "lowres": {
+    "enabled": true,
+    "save": true
+  }
+}

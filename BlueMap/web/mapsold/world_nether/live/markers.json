@@ -1,0 +1,138 @@
+{
+  "places": {
+    "label": "Важные места",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "category_6833": {
+    "label": "test1",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {
+      "1": {
+        "label": "test2",
+        "type": "poi",
+        "icon": "poi",
+        "detail": "",
+        "listed": true,
+        "sorting": 0,
+        "position": {
+          "x": 107.63503484086782,
+          "y": 86.0,
+          "z": -95.24896729916367
+        },
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "classes": []
+      },
+      "3": {
+        "label": "test4",
+        "type": "poi",
+        "icon": "poi",
+        "detail": "",
+        "listed": true,
+        "sorting": 0,
+        "position": {
+          "x": 1.7607486504724101,
+          "y": 37.0,
+          "z": 7.695786939294872
+        },
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "classes": []
+      },
+      "4": {
+        "label": "test4",
+        "type": "poi",
+        "icon": "poi",
+        "detail": "",
+        "listed": true,
+        "sorting": 0,
+        "position": {
+          "x": 1.7607486504724104,
+          "y": 37.0,
+          "z": 7.703890537726656
+        },
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "classes": []
+      },
+      "5": {
+        "label": "test4",
+        "type": "poi",
+        "icon": "poi",
+        "detail": "",
+        "listed": true,
+        "sorting": 0,
+        "position": {
+          "x": 1.9665287411753787,
+          "y": 37.0,
+          "z": 7.30000001192093
+        },
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "classes": []
+      },
+      "6": {
+        "label": "test4",
+        "type": "poi",
+        "icon": "church",
+        "detail": "",
+        "listed": true,
+        "sorting": 0,
+        "position": {
+          "x": -0.8993534239520292,
+          "y": 39.15473176351258,
+          "z": 18.050954951010073
+        },
+        "anchor": {
+          "x": 25,
+          "y": 45
+        },
+        "minDistance": 0.0,
+        "maxDistance": 1.0E7,
+        "classes": []
+      }
+    }
+  },
+  "buildings": {
+    "label": "Постройки",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "resources": {
+    "label": "Ресурсы",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  },
+  "transport": {
+    "label": "Транспорт",
+    "toggleable": true,
+    "defaultHidden": false,
+    "sorting": 0,
+    "markers": {}
+  }
+}

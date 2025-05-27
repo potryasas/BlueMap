@@ -1,0 +1,11 @@
+render:
+  type: "perspective"
+  use-block-textures: true
+  hires: true
+  quality:
+    texture-quality: 4
+  advanced:
+    resource-pack:
+      enabled: true
+      path: "assets"
+      download-vanilla: true

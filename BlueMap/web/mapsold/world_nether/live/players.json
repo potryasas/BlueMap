@@ -1,0 +1,16 @@
+{
+  "players": [],
+  "updateInterval": 250,
+  "showPlayerMarkers": true,
+  "showPlayerBody": true,
+  "showPlayerHead": true,
+  "showLabelBackground": true,
+  "markerSetId": "players",
+  "markerSet": {
+    "id": "players",
+    "label": "Players",
+    "toggleable": true,
+    "defaultHidden": false,
+    "priority": 1000
+  }
+}
